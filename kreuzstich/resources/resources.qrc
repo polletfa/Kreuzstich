@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>thimble.png</file>
+        <file>zoom.png</file>
+    </qresource>
+</RCC>
