@@ -1,0 +1,490 @@
+#
+# Color table for DMC
+# Created using the conversion tables at 
+# http://www.cyberstitchers.com/stitching_tools/floss_conversion_charts
+#
+DMC White:fafafa     # white
+DMC Ecru:F5F0EC     # ecru
+DMC 48:F0BDCE     # variegated baby pink
+DMC 51:CF5232     # variegated burnt orange
+DMC 52:8C7AB6     # variegated violet
+DMC 53:6B7B7B     # variegated steel gray
+DMC 57:E54A5A     # variegated red
+DMC 69:C48C73     # variegated terra cotta
+DMC 90:E6BF4A     # variegated yellow
+DMC 92:C5CE95     # variegated avocado
+DMC 94:B5C385     # variegated khaki green
+DMC 99:BD6C7B     # variegated mauve
+DMC 103:426DA2     # variegated royal blue
+DMC 105:A5765A     # variegated tan/brown
+DMC 106:F65B3C     # variegated coral
+DMC 107:D6527A     # variegated carnation
+DMC 111:BD8E22     # variegated mustard
+DMC 115:82192A     # variegated garnet
+DMC 121:7BB4D6     # variegated delft blue
+DMC 125:63B47C     # variegated seafoam green
+DMC 150:A8024A     # ul vy dk dustry rose
+DMC 151:F3C1CD     # vy lt dustry rose
+DMC 152:E09A93     # md lt shell pink
+DMC 153:e3c6d5     # vy lt violet
+DMC 154:552332     # vy dk grape
+DMC 155:948DB3     # md dk blue violet
+DMC 156:A5B0D1     # md lt blue violet
+DMC 157:B7C4E4     # vy lt cornflower blue
+DMC 158:403D6D     # md vy dk cornflower blue
+DMC 159:C1C9D9     # lt gray blue
+DMC 160:8293B3     # md gray blue
+DMC 161:5C6694     # gray blue
+DMC 162:C7E2EF     # ul vy lt blue
+DMC 163:559A6E     # md celadon green
+DMC 164:B6D4A3     # lt forest green
+DMC 165:EFF39D     # vy lt moss green
+DMC 166:CED129     # md lt moss green
+DMC 167:AC8D3E     # vy dk yellow beige
+DMC 168:C7CDCE     # vy lt pewter
+DMC 169:7F8887     # lt pewter
+DMC 208:805988     # vy dk lavender
+DMC 209:A078A5     # dk lavender
+DMC 210:C09BC0     # md lavender
+DMC 211:e0c5e0     # lt lavender
+DMC 221:9A3D43     # vy dk shell pink
+DMC 223:D58582     # lt shell pink
+DMC 224:E9B1A8     # vy lt shell pink
+DMC 225:ffd5d5     # ul vy lt shell pink
+DMC 225:ffd7ce     # ul vy lt shell pink
+DMC 300:6d2d00     # vy dk mahogany
+DMC 301:af5b2a     # md mahogany
+DMC 304:B31E32     # md red
+DMC 307:fee73d     # lemon
+DMC 309:C9344D     # dk rose
+DMC 310:000000     # black
+DMC 311:064055     # md navy blue
+DMC 312:2E597C     # vy dk baby blue
+DMC 315:903E4E     # md dk antique mauve
+DMC 316:B56F7C     # md antique mauve
+DMC 317:575D61     # pewter gray
+DMC 318:9c9ca4     # lt steel gray
+DMC 319:236831     # vy dkpistachio green
+DMC 320:75BB71     # md pistachio green
+DMC 321:c32a3c     # red
+DMC 322:467194     # dk dark baby blue
+DMC 326:AF3A4A     # vy dk rose
+DMC 327:551346     # dk violet
+DMC 333:604e87     # vy dk blue violet
+DMC 334:5F8DA9     # md baby blue
+DMC 335:D64A5F     # rose
+DMC 336:0F3251     # navy blue
+DMC 340:A4A4C4     # md blue violet
+DMC 341:b8bfdc     # lt blue violet
+DMC 347:BF2642     # vy dk salmon
+DMC 349:C72E33     # dk coral
+DMC 350:D64542     # md coral
+DMC 351:de605e     # coral
+DMC 352:EA8079     # lt coral
+DMC 353:F2A898     # peach
+DMC 355:A5463C     # dk terra cotta
+DMC 356:D37863     # md terra cotta
+DMC 367:4b924b     # dk pistachio green
+DMC 368:aad99f     # lt pistachio green
+DMC 369:D2EBC5     # vy lt pistachio green
+DMC 370:AE9B54     # md mustard
+DMC 371:B7A765     # mustard
+DMC 372:C1BA7E     # lt mustard
+DMC 400:8C410F     # dk mahogany
+DMC 402:F7A170     # vy lt mahogany
+DMC 407:BB8871     # dk desert sand
+DMC 413:3E4144     # dk pewter gray
+DMC 414:7C7C84     # dk steel gray
+DMC 415:BFBFC3     # pearl gray
+DMC 420:9A7B33     # dk hazelnut brown
+DMC 422:d5b067     # lt hazelnut brown
+DMC 433:79511A     # md brown
+DMC 434:8C602A     # lt brown
+DMC 435:a0743e     # vy lt brown
+DMC 436:b58c53     # tan
+DMC 437:C99F6A     # lt tan
+DMC 444:FAC800     # dk lemon
+DMC 445:FFF983     # lt lemon
+DMC 451:7C696D     # dk shell gray
+DMC 452:AE9AA4     # md shell gray
+DMC 453:D1C3CF     # lt shell gray
+DMC 469:819442     # avocado green
+DMC 470:9EAD57     # lt avocado green
+DMC 471:b9c572     # vy lt avocado green
+DMC 472:D5E191     # ul lt avocado green
+DMC 498:A4132B     # dk red
+DMC 500:055538     # vy dk blue green
+DMC 501:3D7654     # dk blue green
+DMC 502:598d6e     # blue green
+DMC 503:8AB5A0     # md blue green
+DMC 504:B2D4BD     # vy lt blue green
+DMC 505:328060     # jade green
+DMC 517:2E7288     # dk wedgewood
+DMC 518:4d91a4     # lt wedgewood
+DMC 519:6FB1C1     # sky blue
+DMC 520:42612B     # dk fern green
+DMC 522:819569     # fern green
+DMC 523:b3be95     # lt fern green
+DMC 524:C1CAA7     # vy lt fern green
+DMC 535:555545     # vy lt ash gray
+DMC 543:eaded3     # ul vy lt beige brown
+DMC 550:4a133f     # vy dk violet
+DMC 552:793666     # md violet
+DMC 553:a16089     # violet
+DMC 554:d8aec7     # lt violet
+DMC 561:2B6843     # vy dk jade
+DMC 562:519468     # md jade
+DMC 563:8CD2A8     # lt jade
+DMC 564:B5E1BE     # vy lt jade
+DMC 580:667913     # dk moss green
+DMC 581:8BA136     # moss green
+DMC 597:57a2b1     # turquoise
+DMC 598:82C1CD     # lt turquoise
+DMC 600:D30B61     # vy dk cranberry
+DMC 601:DE2271     # dk cranberry
+DMC 602:e64281     # md cranberry
+DMC 603:ee6195     # cranberry
+DMC 604:F784AA     # lt cranberry
+DMC 605:FFAAC5     # vy lt cranberry
+DMC 606:FD340C     # bright orange-red
+DMC 608:FD552F     # bright orange
+DMC 610:6F6641     # dk drab brown
+DMC 611:847a57     # drab brown
+DMC 612:A29670     # lt drab brown
+DMC 613:D4C7A8     # vy lt drab brown
+DMC 632:936148     # ul vy dk desert sand
+DMC 640:918463     # vy dk beige gray
+DMC 642:B8AD92     # dk beige gray
+DMC 644:DDD3BC     # md beige gray
+DMC 645:515542     # vy dk beaver gray
+DMC 646:707864     # dk beaver gray
+DMC 647:959884     # md beaver gray
+DMC 648:bcc0a8     # lt beaver gray
+DMC 666:D90028     # bright red
+DMC 676:EECA70     # lt old gold
+DMC 677:F4E7B4     # vy lt old gold
+DMC 680:C8A027     # dk old gold
+DMC 699:005922     # green
+DMC 700:07711a     # bright green
+DMC 701:1C8817     # lt green
+DMC 702:46a42e     # kelly green
+DMC 703:7ab146     # chartreuse
+DMC 704:aeda62     # bright chartreuse
+DMC 712:fff8e5     # cream
+DMC 718:B73275     # plum
+DMC 720:EF6A41     # dk orange spice
+DMC 721:f37c51     # md orange spice
+DMC 722:F79168     # lt orange spice
+DMC 725:f7cc41     # md lt topaz
+DMC 726:f7dd68     # lt topaz
+DMC 727:F6E990     # vy lt topaz
+DMC 728:EFC11A     # topaz
+DMC 729:e3b344     # md old gold
+DMC 730:706C21     # vy dk olive green
+DMC 731:989239     # dk olive green
+DMC 732:989239     # olive green
+DMC 733:C0BA61     # md olive green
+DMC 734:D4CE75     # lt olive green
+DMC 738:DDB689     # vy lt tan
+DMC 739:f2d3a8     # ul vy lt tan
+DMC 740:FA8500     # tangerine
+DMC 741:FF9D25     # md tangerine
+DMC 742:FFBC50     # lt tangerine
+DMC 743:FFE48B     # pale yellow
+DMC 743:FFDD64     # md yellow
+DMC 744:FFE48B     # pale yellow
+DMC 745:fff1b2     # lt pale yellow
+DMC 746:FFFFE1     # off white
+DMC 747:D3FFF9     # vy lt sky blue
+DMC 754:f6c4b7     # lt peach
+DMC 758:eda394     # vy lt terra cotta
+DMC 760:E6858F     # salmon
+DMC 761:F2ACAC     # lt salmon
+DMC 762:E2E2E7     # vy lt pearl gray
+DMC 772:E4FEB0     # vy lt yellow green
+DMC 775:D7EBF2     # vy lt baby blue
+DMC 776:f3949f     # md pink
+DMC 777:810B28     # vy dk Raspberry
+DMC 778:DDADB6     # vy lt antique mauve
+DMC 779:604944     # dk cocoa
+DMC 780:AF5E00     # ul vy dk topaz
+DMC 781:C77E00     # vy dk topaz
+DMC 782:C77E00     # dk topaz
+DMC 783:DA9605     # md topaz
+DMC 791:363562     # vy dk cornflower blue
+DMC 792:4b497d     # dk cornflower blue
+DMC 793:7784AF     # md cornflower blue
+DMC 794:8e9dc6     # lt cornflower blue
+DMC 796:0F2075     # dk royal blue
+DMC 797:223F88     # royal blue
+DMC 798:3E5EA0     # dk delft blue
+DMC 799:5b81b5     # md delft blue
+DMC 800:adcbe1     # pale delft blue
+DMC 801:653D0F     # dk coffee brown
+DMC 803:1E4669     # ul vy dk baby blue
+DMC 806:3D839F     # dk peacock blue
+DMC 807:5F9EA5     # peacock blue
+DMC 809:82a8c9     # delft blue
+DMC 813:7EACC9     # lt blue
+DMC 814:79001c     # dk garnet
+DMC 815:840720     # md garnet
+DMC 816:940B24     # garnet
+DMC 817:BF1A23     # vy dk coral red
+DMC 818:ffcece     # baby pink
+DMC 819:FFE1E1     # lt baby pink
+DMC 820:000861     # vy dk royal blue
+DMC 822:F3ECDC     # lt beige gray
+DMC 823:071F3A     # dk navy blue
+DMC 824:224271     # vy dk blue
+DMC 825:3A628C     # dk blue
+DMC 826:5785AD     # md blue
+DMC 827:ACD4E9     # vy lt blue
+DMC 828:B9E1E9     # ul vy very lt blue
+DMC 829:694F00     # vy dk golden olive
+DMC 830:766400     # dk golden olive
+DMC 831:928030     # md golden olive
+DMC 832:A89234     # golden olive
+DMC 833:CCBA60     # lt golden olive
+DMC 834:D5C77F     # vy lt golden olive
+DMC 838:523516     # vy dk beige brown
+DMC 839:6a4726     # dk beige brown
+DMC 840:967954     # md beige brown
+DMC 841:B39A7D     # lt beige brown
+DMC 842:D9C2A8     # vy lt beige brown
+DMC 844:31372D     # ul dk beaver gray
+DMC 869:745e27     # vy dk hazelnut brown
+DMC 890:144B26     # ul dk pistachio green
+DMC 891:f32d3e     # dk carnation
+DMC 892:F75172     # md carnation
+DMC 893:fb7493     # lt carnation
+DMC 894:FF9BB2     # vy lt carnation
+DMC 895:1B5100     # vy dk hunter green
+DMC 898:512D07     # vy dk coffee brown
+DMC 899:e2697b     # md rose
+DMC 900:DB3700     # dk burnt orange
+DMC 902:6d1a2b     # vy dk garnet
+DMC 904:2F6800     # vy dk parrot green
+DMC 905:568F2E     # dk parrot green
+DMC 906:89c53a     # md parrot green
+DMC 907:C6E560     # lt parrot green
+DMC 909:0B7C38     # vy dk emerald green
+DMC 910:1E9044     # dk emerald green
+DMC 911:36A459     # md emerald green
+DMC 912:53BD6A     # lt emerald green
+DMC 913:76D185     # md nile green
+DMC 915:90004F     # dk plum
+DMC 917:a4175d     # md plum
+DMC 918:A02500     # dk red copper
+DMC 919:BB3A0F     # red copper
+DMC 920:CF501E     # md copper
+DMC 921:E26132     # copper
+DMC 922:EC9163     # lt copper
+DMC 924:166059     # vy dk gray green
+DMC 926:79A296     # md gray green
+DMC 927:a0bebe     # lt gray green
+DMC 928:C2D4D4     # vy lt gray green
+DMC 930:316274     # dk antique blue
+DMC 931:46728C     # md antique blue
+DMC 932:80A3BA     # lt antique blue
+DMC 934:314615     # black avocado green
+DMC 935:3B4D0F     # dk avocado green
+DMC 936:52651A     # vy dk avocado green
+DMC 937:697C2E     # md avocado green
+DMC 938:3e2200     # ul dk coffee brown
+DMC 939:001326     # vy dk navy blue
+DMC 943:39AC78     # md aquamarine
+DMC 945:ffc9ae     # tawny
+DMC 946:DE4600     # md burnt orange
+DMC 947:E66007     # burnt orange
+DMC 948:FDDCC5     # vy lt peach
+DMC 950:EBC8B3     # lt desert sand
+DMC 951:FFDDC6     # lt tawny
+DMC 954:99E5A6     # nile green
+DMC 955:C6FFCA     # lt nile green
+DMC 956:fb5c84     # geranium
+DMC 957:FF9BBA     # pale geranium
+DMC 958:5BC39D     # dk seagreen
+DMC 959:85D5B6     # md seagreen
+DMC 961:DA627C     # dk dusty rose
+DMC 962:DD818F     # md dusty rose
+DMC 963:ffced7     # ul vy lt dusty rose
+DMC 964:b4f2df     # lt seagreen
+DMC 966:A2D5AE     # md baby green
+DMC 967:FFC9B4     # vy lt apricot
+DMC 970:F7860E     # lt pumpkin
+DMC 971:FA8500     # pumpkin
+DMC 972:F7BE12     # deep canary
+DMC 973:FADD00     # bright canary
+DMC 975:8E4C12     # dk golden brown
+DMC 976:CB8234     # md golden brown
+DMC 977:DB9851     # lt golden brown
+DMC 986:2B671F     # vy dk forest green
+DMC 987:408128     # dk forest green
+DMC 988:68A046     # md forest green
+DMC 989:92bf68     # forest green
+DMC 991:0B6D4C     # dk aquamarine
+DMC 992:7ecdaf     # vy lt aquamarine
+DMC 992:4AAC88     # lt aquamarine
+DMC 993:7ecdaf     # vy lt aquamarine
+DMC 995:016EA5     # dk electric blue
+DMC 996:13BCDE     # md electric blue
+DMC 3011:6E783B     # dk khaki green
+DMC 3012:939857     # md khaki green
+DMC 3013:B7B77E     # lt khaki green
+DMC 3021:44452A     # vy dk brown gray
+DMC 3022:84835C     # md brown gray
+DMC 3023:AEAB8A     # lt brown gray
+DMC 3024:D7D7C3     # vy lt brown gray
+DMC 3031:473727     # vy dk mocha brown
+DMC 3032:AE9D78     # md mocha brown
+DMC 3033:E0D4C3     # vy lt mocha brown
+DMC 3041:937580     # md antique violet
+DMC 3042:B499A4     # lt antique violet
+DMC 3045:C5AD66     # dk yellow beige
+DMC 3046:D9CDA3     # md yellow beige
+DMC 3047:E7E1B8     # lt yellow beige
+DMC 3051:516132     # dk green gray
+DMC 3052:798855     # md green gray
+DMC 3053:A4B583     # green gray
+DMC 3064:ca9073     # desert sand
+DMC 3072:E3E7D9     # vy lt beaver gray
+DMC 3078:faf6b7     # vy lt golden yellow
+DMC 3325:A6C3D9     # lt baby blue
+DMC 3326:F3949F     # lt rose
+DMC 3328:CE3F54     # dk salmon
+DMC 3340:FA8155     # md apricot
+DMC 3341:FF9774     # apricot
+DMC 3345:2F6913     # dk hunter green
+DMC 3346:4b8835     # hunter green
+DMC 3347:76A451     # md yellow green
+DMC 3348:ceeb90     # lt yellow green
+DMC 3350:B84263     # ul dk dusty rose
+DMC 3354:EEA1B2     # lt dusty rose
+DMC 3362:4A6332     # dk pine green
+DMC 3363:6E8D58     # md pine green
+DMC 3364:9DB275     # pine green
+DMC 3371:3A2723     # black brown
+DMC 3607:D25292     # lt plum
+DMC 3608:E67DAC     # vy lt plum
+DMC 3609:FFAACF     # ul lt plum
+DMC 3685:851531     # vy dk mauve
+DMC 3687:C65375     # mauve
+DMC 3688:e890ac     # md mauve
+DMC 3689:FDBACE     # lt mauve
+DMC 3705:F75156     # dk melon
+DMC 3706:FF7F8C     # md melon
+DMC 3708:FFA2B0     # lt melon
+DMC 3712:DA6270     # md salmon
+DMC 3713:FFD5D5     # vy lt salmon
+DMC 3716:f6a7b4     # vy lt dusty rose
+DMC 3721:AC4A52     # dk shell pink
+DMC 3722:C16363     # md shell pink
+DMC 3726:A45561     # dk antique mauve
+DMC 3727:C98C97     # lt antique mauve
+DMC 3731:D96280     # vy dk dusty rose
+DMC 3733:E78197     # dusty rose
+DMC 3740:765561     # dk antique violet
+DMC 3743:D3C6CF     # vy lt antique violet
+DMC 3746:746896     # dk blue violet
+DMC 3747:CDD2EA     # vy lt blue violet
+DMC 3750:1B3E49     # vy dk antique blue
+DMC 3752:9AB3CD     # vy lt antique blue
+DMC 3753:CDDBE8     # ul vy lt antique blue
+DMC 3755:83A4C1     # baby blue
+DMC 3756:E7F9F9     # ul vy lt baby blue
+DMC 3760:3D839F     # md wedgewood
+DMC 3761:9DD5DD     # lt sky blue
+DMC 3765:17616D     # vy dk peacock blue
+DMC 3766:9ACDCD     # lt peacock blue
+DMC 3768:528779     # dk gray green
+DMC 3770:FFF3E1     # vy lt tawny
+DMC 3771:F3B5A2     # ul vy lt terra cotta
+DMC 3772:AA7959     # vy dk desert sand
+DMC 3773:BB8871     # md desert sand
+DMC 3774:F1DBD0     # vy lt desert sand
+DMC 3776:CE7535     # lt mahogany
+DMC 3777:8E3230     # vy dk terra cotta
+DMC 3778:DA8E7F     # lt terra cotta
+DMC 3779:EFBDBA     # ul vy lt terra cotta
+DMC 3781:574d2a     # dk mocha brown
+DMC 3782:CABCA3     # lt mocha brown
+DMC 3787:656040     # dk brown gray
+DMC 3790:776847     # ul dk beige gray
+DMC 3799:2B2C2F     # vy dk pewter gray
+DMC 3801:F03646     # vy dk melon
+DMC 3802:7C2A40     # vy dk antique mauve
+DMC 3803:a83255     # dk mauve
+DMC 3804:E6367C     # dk cyclamen pink
+DMC 3805:F34188     # cyclamen pink
+DMC 3806:FD75A9     # lt cyclamen pink
+DMC 3807:5B648F     # cornflower blue
+DMC 3808:0B525D     # ul vy dk turquoise
+DMC 3809:1E6A79     # vy dk turquoise
+DMC 3810:3A8594     # dk turquoise
+DMC 3811:B4E0E9     # vy lt turquoise
+DMC 3812:1C925F     # vy dk seagreen
+DMC 3813:b2d4bd     # lt blue green
+DMC 3814:228C69     # aquamarine
+DMC 3815:397A59     # dk celadon green
+DMC 3816:78B48A     # celadon green
+DMC 3817:AAD9BA     # lt celadon green
+DMC 3818:00692d     # ul vy dk emerald greene
+DMC 3819:E0E762     # lt moss green
+DMC 3820:E2B735     # dk straw
+DMC 3821:F2CD49     # straw
+DMC 3822:f2df70     # lt straw
+DMC 3823:FEFBCE     # ul pale yellow
+DMC 3824:FFB496     # lt apricot
+DMC 3825:FDB78E     # pale pumpkin
+DMC 3826:B66E2A     # golden brown
+DMC 3827:F7B670     # pale golden brown
+DMC 3828:B2913C     # hazelnut brown
+DMC 3829:A67D04     # vy dk old gold
+DMC 3830:C35A4C     # terra cotta
+DMC 3831:B22B54     # dk raspberry
+DMC 3832:E0577E     # md raspberry
+DMC 3833:EB6D84     # lt raspberry
+DMC 3834:70365B     # dk grape
+DMC 3835:915E81     # md grape
+DMC 3836:B78DA7     # lt grape
+DMC 3837:69396C     # ul dk lavender
+DMC 3838:5D6F9D     # dk lavender blue
+DMC 3839:798FB3     # md lavender blue
+DMC 3840:A7B2C5     # lt lavender blue
+DMC 3841:BFDBE7     # pale baby blue
+DMC 3842:17566D     # dk wedgwood
+DMC 3843:0493BE     # electric blue
+DMC 3844:099D89     # dk bright turquoise
+DMC 3845:04BAAE     # md bright turquoise
+DMC 3846:44DEC7     # lt bright turquoise
+DMC 3847:2B6F51     # dk teal green
+DMC 3848:3C8B6E     # md teal green
+DMC 3849:75BCA1     # lt teal green
+DMC 3850:0F9161     # dk bright green
+DMC 3851:66BF9D     # lt bright green
+DMC 3852:D2A021     # vy dk straw
+DMC 3853:E58632     # dk autumn gold
+DMC 3854:F9B460     # md autumn gold
+DMC 3855:F9DA8C     # lt autumn gold
+DMC 3856:F5C3A9     # ul vy lt mahogany
+DMC 3857:75281C     # dk rosewood
+DMC 3858:93483E     # md rosewood
+DMC 3859:B88778     # lt rosewood
+DMC 3860:8F6D65     # cocoa
+DMC 3861:A4857E     # lt cocoa
+DMC 3862:8C6F4E     # dk mocha beige
+DMC 3863:A88764     # md mocha beige
+DMC 3864:CBB69C     # lt mocha beige
+DMC 3865:F9F7F1     # winter white
+DMC 3866:F8F2E9     # ul vy lt mocha brown
+DMC B5200:fafafa     # snow white
+DMC 5269:477654     # metallic green
+DMC 5270:A21B22     # metalic red
+DMC 5279:9B6E5B     # metallic copper
+DMC 5282:C3B47D     # metallic gold
+DMC 5283:EBE3D8     # metallic silver
+DMC 5284:C3AD48     # metallic dk gold
+DMC 5287:717880     # metallic dk silver
+DMC 5288:D3A6B5     # metallic pink
+DMC 5289:8047A8     # metallic purple
+DMC 5290:2672B0     # metallic electric blue

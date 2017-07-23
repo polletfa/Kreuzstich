@@ -1,0 +1,554 @@
+#
+# Color table for J & P Coats
+# Created using the conversion tables at 
+# http://www.cyberstitchers.com/stitching_tools/floss_conversion_charts
+#
+J & P Coats 862:42612B     # dk fern green
+J & P Coats 1001:fafafa     # white
+J & P Coats 1001:F9F7F1     # winter white
+J & P Coats 1001:fafafa     # snow white
+J & P Coats 1002:F5F0EC     # ecru
+J & P Coats 1002:fff8e5     # cream
+J & P Coats 2099:FA8500     # pumpkin
+J & P Coats 2275:FFF3E1     # vy lt tawny
+J & P Coats 2275:EADED3     # ul vy lt beige brown
+J & P Coats 2275:FFFFE1     # off white
+J & P Coats 2288:fee73d     # lemon
+J & P Coats 2288:FFF983     # lt lemon
+J & P Coats 2289:F6E990     # vy lt topaz
+J & P Coats 2290:FAC800     # dk lemon
+J & P Coats 2290:FADD00     # bright canary
+J & P Coats 2292:faf6b7     # vy lt golden yellow
+J & P Coats 2293:FFE48B     # pale yellow
+J & P Coats 2294:F2CD49     # straw
+J & P Coats 2294:f7cc41     # md lt topaz
+J & P Coats 2294:FFDD64     # md yellow
+J & P Coats 2295:f2df70     # lt straw
+J & P Coats 2295:F7DD68     # lt topaz
+J & P Coats 2296:fff1b2     # lt pale yellow
+J & P Coats 2298:F7BE12     # deep canary
+J & P Coats 2300:E7E1B8     # lt yellow beige
+J & P Coats 2300:F4E7B4     # vy lt old gold
+J & P Coats 2302:EFC11A     # topaz
+J & P Coats 2302:FFBC50     # lt tangerine
+J & P Coats 2303:FFBC50     # lt tangerine
+J & P Coats 2305:F2CD49     # straw
+J & P Coats 2305:FDB78E     # pale pumpkin
+J & P Coats 2305:F9DA8C     # lt autumn gold
+J & P Coats 2306:F9B460     # md autumn gold
+J & P Coats 2306:DB9851     # lt golden brown
+J & P Coats 2307:DA9605     # md topaz
+J & P Coats 2308:CB8234     # md golden brown
+J & P Coats 2314:FF9D25     # md tangerine
+J & P Coats 2322:EF6A41     # dk orange spice
+J & P Coats 2323:FF9774     # apricot
+J & P Coats 2323:FDB78E     # pale pumpkin
+J & P Coats 2323:F79168     # lt orange spice
+J & P Coats 2324:FA8155     # md apricot
+J & P Coats 2324:f37c51     # md orange spice
+J & P Coats 2326:BB3A0F     # red copper
+J & P Coats 2327:FA8500     # tangerine
+J & P Coats 2327:F7860E     # lt pumpkin
+J & P Coats 2329:DB3700     # dk burnt orange
+J & P Coats 2330:E66007     # burnt orange
+J & P Coats 2331:f6c4b7     # lt peach
+J & P Coats 2331:FDDCC5     # vy lt peach
+J & P Coats 2331:EBC8B3     # lt desert sand
+J & P Coats 2332:FD552F     # bright orange
+J & P Coats 2332:DE4600     # md burnt orange
+J & P Coats 2334:FD340C     # bright orange-red
+J & P Coats 2334:DB3700     # dk burnt orange
+J & P Coats 2335:C72E33     # dk coral
+J & P Coats 2335:D64542     # md coral
+J & P Coats 2335:BF1A23     # vy dk coral red
+J & P Coats 2336:ca9073     # desert sand
+J & P Coats 2336:BB8871     # md desert sand
+J & P Coats 2336:F1DBD0     # vy lt desert sand
+J & P Coats 2337:BB8871     # md desert sand
+J & P Coats 2337:B88778     # lt rosewood
+J & P Coats 2337:EDA394     # vy lt terra cotta
+J & P Coats 2338:D37863     # md terra cotta
+J & P Coats 2338:DA8E7F     # lt terra cotta
+J & P Coats 2338:93483E     # md rosewood
+J & P Coats 2339:A5463C     # dk terra cotta
+J & P Coats 2339:8E3230     # vy dk terra cotta
+J & P Coats 2386:FEFBCE     # ul pale yellow
+J & P Coats 2410:D9CDA3     # md yellow beige
+J & P Coats 2412:C5AD66     # dk yellow beige
+J & P Coats 2412:B2913C     # hazelnut brown
+J & P Coats 2874:D9CDA3     # md yellow beige
+J & P Coats 2874:EECA70     # lt old gold
+J & P Coats 2874:CCBA60     # lt golden olive
+J & P Coats 2874:D5C77F     # vy lt golden olive
+J & P Coats 2875:e3b344     # md old gold
+J & P Coats 2876:C5AD66     # dk yellow beige
+J & P Coats 2876:AE9B54     # md mustard
+J & P Coats 2876:B2913C     # hazelnut brown
+J & P Coats 2876:A67D04     # vy dk old gold
+J & P Coats 2876:C8A027     # dk old gold
+J & P Coats 2975:C35A4C     # terra cotta
+J & P Coats 3000:A4132B     # dk red
+J & P Coats 3000:840720     # md garnet
+J & P Coats 3001:F784AA     # lt cranberry
+J & P Coats 3003:EEA1B2     # lt dusty rose
+J & P Coats 3004:B84263     # ul dk dusty rose
+J & P Coats 3006:F2A898     # peach
+J & P Coats 3006:FFB496     # lt apricot
+J & P Coats 3006:FFC9B4     # vy lt apricot
+J & P Coats 3008:EA8079     # lt coral
+J & P Coats 3011:de605e     # coral
+J & P Coats 3012:F75156     # dk melon
+J & P Coats 3012:F03646     # vy dk melon
+J & P Coats 3012:F32D3E     # dk carnation
+J & P Coats 3013:BF2642     # vy dk salmon
+J & P Coats 3019:B31E32     # md red
+J & P Coats 3021:940B24     # garnet
+J & P Coats 3041:B22B54     # dk raspberry
+J & P Coats 3044:79001c     # dk garnet
+J & P Coats 3044:6d1a2b     # vy dk garnet
+J & P Coats 3046:D90028     # bright red
+J & P Coats 3047:A8024A     # ul vy dk dustry rose
+J & P Coats 3047:C32A3C     # red
+J & P Coats 3056:D30B61     # vy dk cranberry
+J & P Coats 3063:E6367C     # dk cyclamen pink
+J & P Coats 3063:E64281     # md cranberry
+J & P Coats 3065:B84263     # ul dk dusty rose
+J & P Coats 3065:a83255     # dk mauve
+J & P Coats 3066:ffd5d5     # ul vy lt shell pink
+J & P Coats 3066:ffd7ce     # ul vy lt shell pink
+J & P Coats 3067:FFD5D5     # vy lt salmon
+J & P Coats 3068:E9B1A8     # vy lt shell pink
+J & P Coats 3068:FFD5D5     # vy lt salmon
+J & P Coats 3068:F2ACAC     # lt salmon
+J & P Coats 3069:E6858F     # salmon
+J & P Coats 3071:CE3F54     # dk salmon
+J & P Coats 3071:DA6270     # md salmon
+J & P Coats 3072:9A3D43     # vy dk shell pink
+J & P Coats 3072:810B28     # vy dk Raspberry
+J & P Coats 3072:940B24     # garnet
+J & P Coats 3073:6d1a2b     # vy dk garnet
+J & P Coats 3080:DDADB6     # vy lt antique mauve
+J & P Coats 3081:B56F7C     # md antique mauve
+J & P Coats 3081:C98C97     # lt antique mauve
+J & P Coats 3082:903E4E     # md dk antique mauve
+J & P Coats 3082:7C2A40     # vy dk antique mauve
+J & P Coats 3083:6d1a2b     # vy dk garnet
+J & P Coats 3084:A45561     # dk antique mauve
+J & P Coats 3086:F3C1CD     # vy lt dustry rose
+J & P Coats 3086:FDBACE     # lt mauve
+J & P Coats 3087:e890ac     # md mauve
+J & P Coats 3088:C65375     # mauve
+J & P Coats 3089:851531     # vy dk mauve
+J & P Coats 3089:90004F     # dk plum
+J & P Coats 3111:D64542     # md coral
+J & P Coats 3125:f6a7b4     # vy lt dusty rose
+J & P Coats 3125:FF9BBA     # pale geranium
+J & P Coats 3126:F3949F     # lt rose
+J & P Coats 3126:E78197     # dusty rose
+J & P Coats 3126:ffced7     # ul vy lt dusty rose
+J & P Coats 3127:FFA2B0     # lt melon
+J & P Coats 3127:FF9BB2     # vy lt carnation
+J & P Coats 3127:fb5c84     # geranium
+J & P Coats 3128:DE2271     # dk cranberry
+J & P Coats 3146:E09A93     # md lt shell pink
+J & P Coats 3146:F3B5A2     # ul vy lt terra cotta
+J & P Coats 3146:f6c4b7     # lt peach
+J & P Coats 3146:EBC8B3     # lt desert sand
+J & P Coats 3150:FDBACE     # lt mauve
+J & P Coats 3151:FFAAC5     # vy lt cranberry
+J & P Coats 3152:FF7F8C     # md melon
+J & P Coats 3152:F75172     # md carnation
+J & P Coats 3152:fb7493     # lt carnation
+J & P Coats 3153:F34188     # cyclamen pink
+J & P Coats 3153:FD75A9     # lt cyclamen pink
+J & P Coats 3153:EE6195     # cranberry
+J & P Coats 3153:DD818F     # md dusty rose
+J & P Coats 3173:ffced7     # ul vy lt dusty rose
+J & P Coats 3176:D96280     # vy dk dusty rose
+J & P Coats 3176:DA627C     # dk dusty rose
+J & P Coats 3238:7ab146     # chartreuse
+J & P Coats 3240:D58582     # lt shell pink
+J & P Coats 3241:C16363     # md shell pink
+J & P Coats 3242:AC4A52     # dk shell pink
+J & P Coats 3243:9A3D43     # vy dk shell pink
+J & P Coats 3280:FFE1E1     # lt baby pink
+J & P Coats 3281:f3949f     # md pink
+J & P Coats 3281:FFCECE     # baby pink
+J & P Coats 3282:EB6D84     # lt raspberry
+J & P Coats 3282:E2697B     # md rose
+J & P Coats 3283:D64A5F     # rose
+J & P Coats 3283:E0577E     # md raspberry
+J & P Coats 3284:c9344d     # dk rose
+J & P Coats 3334:FFF3E1     # vy lt tawny
+J & P Coats 3335:F5C3A9     # ul vy lt mahogany
+J & P Coats 3335:ffc9ae     # tawny
+J & P Coats 3335:FFDDC6     # lt tawny
+J & P Coats 3336:CE7535     # lt mahogany
+J & P Coats 3336:E58632     # dk autumn gold
+J & P Coats 3336:E26132     # copper
+J & P Coats 3336:EC9163     # lt copper
+J & P Coats 3337:CF501E     # md copper
+J & P Coats 3340:75281C     # dk rosewood
+J & P Coats 3340:A02500     # dk red copper
+J & P Coats 3401:A8024A     # ul vy dk dustry rose
+J & P Coats 3401:C9344D     # dk rose
+J & P Coats 3401:AF3A4A     # vy dk rose
+J & P Coats 3401:B22B54     # dk raspberry
+J & P Coats 3410:b31e32     # md red
+J & P Coats 3500:c32a3c     # red
+J & P Coats 3868:EFBDBA     # ul vy lt terra cotta
+J & P Coats 4085:FFAACF     # ul lt plum
+J & P Coats 4086:E67DAC     # vy lt plum
+J & P Coats 4087:D25292     # lt plum
+J & P Coats 4089:B73275     # plum
+J & P Coats 4089:a4175d     # md plum
+J & P Coats 4092:793666     # md violet
+J & P Coats 4097:915E81     # md grape
+J & P Coats 4097:a16089     # violet
+J & P Coats 4101:551346     # dk violet
+J & P Coats 4101:604e87     # vy dk blue violet
+J & P Coats 4101:70365B     # dk grape
+J & P Coats 4104:B78DA7     # lt grape
+J & P Coats 4104:d8aec7     # lt violet
+J & P Coats 4107:4a133f     # vy dk violet
+J & P Coats 4220:D3C6CF     # vy lt antique violet
+J & P Coats 4221:B499A4     # lt antique violet
+J & P Coats 4221:D3C6CF     # vy lt antique violet
+J & P Coats 4222:937580     # md antique violet
+J & P Coats 4223:7F8887     # lt pewter
+J & P Coats 4223:937580     # md antique violet
+J & P Coats 4223:765561     # dk antique violet
+J & P Coats 4224:765561     # dk antique violet
+J & P Coats 4300:69396C     # ul dk lavender
+J & P Coats 4301:805988     # vy dk lavender
+J & P Coats 4301:746896     # dk blue violet
+J & P Coats 4302:A078A5     # dk lavender
+J & P Coats 4303:e3c6d5     # vy lt violet
+J & P Coats 4303:C09BC0     # md lavender
+J & P Coats 4303:e0c5e0     # lt lavender
+J & P Coats 5000:af5b2a     # md mahogany
+J & P Coats 5000:8C602A     # lt brown
+J & P Coats 5307:D2A021     # vy dk straw
+J & P Coats 5307:DA9605     # md topaz
+J & P Coats 5308:C77E00     # dk topaz
+J & P Coats 5309:AF5E00     # ul vy dk topaz
+J & P Coats 5309:C77E00     # vy dk topaz
+J & P Coats 5345:DDB689     # vy lt tan
+J & P Coats 5347:b58c53     # tan
+J & P Coats 5349:B66E2A     # golden brown
+J & P Coats 5349:8c410f     # dk mahogany
+J & P Coats 5350:d5b067     # lt hazelnut brown
+J & P Coats 5351:F7B670     # pale golden brown
+J & P Coats 5351:D2A021     # vy dk straw
+J & P Coats 5351:F7A170     # vy lt mahogany
+J & P Coats 5356:6D2D00     # vy dk mahogany
+J & P Coats 5356:8e4c12     # Dk Golden Brown
+J & P Coats 5360:8C6F4E     # dk mocha beige
+J & P Coats 5360:6A4726     # dk beige brown
+J & P Coats 5363:E2B735     # dk straw
+J & P Coats 5363:D2A021     # vy dk straw
+J & P Coats 5363:D4CE75     # lt olive green
+J & P Coats 5365:a0743e     # vy lt brown
+J & P Coats 5369:f2d3a8     # ul vy lt tan
+J & P Coats 5371:a0743e     # vy lt brown
+J & P Coats 5372:f4e7b4     # vy lt old gold
+J & P Coats 5374:AC8D3E     # vy dk yellow beige
+J & P Coats 5374:9A7B33     # dk hazelnut brown
+J & P Coats 5374:745E27     # vy dk hazelnut brown
+J & P Coats 5375:DDB689     # vy lt tan
+J & P Coats 5376:A4857E     # lt cocoa
+J & P Coats 5376:CBB69C     # lt mocha beige
+J & P Coats 5376:B39A7D     # lt beige brown
+J & P Coats 5378:AA7959     # vy dk desert sand
+J & P Coats 5379:8F6D65     # cocoa
+J & P Coats 5379:A88764     # md mocha beige
+J & P Coats 5379:967954     # md beige brown
+J & P Coats 5381:44452A     # vy dk brown gray
+J & P Coats 5381:3E2200     # ul dk coffee brown
+J & P Coats 5382:3A2723     # black brown
+J & P Coats 5387:F5F0EC     # ecru
+J & P Coats 5387:E0D4C3     # vy lt mocha brown
+J & P Coats 5387:fafafa     # snow white
+J & P Coats 5387:D4C7A8     # vy lt drab brown
+J & P Coats 5388:CABCA3     # lt mocha brown
+J & P Coats 5388:D1C3CF     # lt shell gray
+J & P Coats 5388:A29670     # lt drab brown
+J & P Coats 5393:84835C     # md brown gray
+J & P Coats 5393:AE9D78     # md mocha brown
+J & P Coats 5393:574d2a     # dk mocha brown
+J & P Coats 5393:776847     # ul dk beige gray
+J & P Coats 5393:918463     # vy dk beige gray
+J & P Coats 5393:B8AD92     # dk beige gray
+J & P Coats 5395:6E783B     # dk khaki green
+J & P Coats 5395:44452A     # vy dk brown gray
+J & P Coats 5470:79511A     # md brown
+J & P Coats 5471:79511A     # md brown
+J & P Coats 5472:473727     # vy dk mocha brown
+J & P Coats 5472:653D0F     # dk coffee brown
+J & P Coats 5472:766400     # dk golden olive
+J & P Coats 5475:653D0F     # dk coffee brown
+J & P Coats 5476:523516     # vy dk beige brown
+J & P Coats 5476:512D07     # vy dk coffee brown
+J & P Coats 5477:512D07     # vy dk coffee brown
+J & P Coats 5478:604944     # dk cocoa
+J & P Coats 5478:523516     # vy dk beige brown
+J & P Coats 5533:EADED3     # ul vy lt beige brown
+J & P Coats 5576:F1DBD0     # vy lt desert sand
+J & P Coats 5578:BB8871     # dk desert sand
+J & P Coats 5579:AA7959     # vy dk desert sand
+J & P Coats 5830:DDD3BC     # md beige gray
+J & P Coats 5831:E0D4C3     # vy lt mocha brown
+J & P Coats 5832:AE9D78     # md mocha brown
+J & P Coats 5832:AE9AA4     # md shell gray
+J & P Coats 5832:B8AD92     # dk beige gray
+J & P Coats 5889:6F6641     # dk drab brown
+J & P Coats 5889:706C21     # vy dk olive green
+J & P Coats 5889:989239     # dk olive green
+J & P Coats 5889:694F00     # vy dk golden olive
+J & P Coats 5898:B7A765     # mustard
+J & P Coats 5898:6F6641     # dk drab brown
+J & P Coats 5898:847a57     # drab brown
+J & P Coats 5898:694F00     # vy dk golden olive
+J & P Coats 5933:F8F2E9     # ul vy lt mocha brown
+J & P Coats 5933:F3ECDC     # lt beige gray
+J & P Coats 5933:d9c2a8     # vy lt beige brown
+J & P Coats 5936:a5463c     # dk terra cotta
+J & P Coats 5936:936148     # ul vy dk desert sand
+J & P Coats 5942:c99f6a     # lt tan
+J & P Coats 5943:b58c53     # tan
+J & P Coats 6001:CED129     # md lt moss green
+J & P Coats 6001:C6E560     # lt parrot green
+J & P Coats 6005:E3E7D9     # vy lt beaver gray
+J & P Coats 6005:C2D4D4     # vy lt gray green
+J & P Coats 6006:a0bebe     # lt gray green
+J & P Coats 6007:528779     # dk gray green
+J & P Coats 6007:79A296     # md gray green
+J & P Coats 6008:166059     # vy dk gray green
+J & P Coats 6010:798855     # md green gray
+J & P Coats 6010:76A451     # md yellow green
+J & P Coats 6010:9EAD57     # lt avocado green
+J & P Coats 6010:8BA136     # moss green
+J & P Coats 6015:D2EBC5     # vy lt pistachio green
+J & P Coats 6015:b3be95     # lt fern green
+J & P Coats 6015:C1CAA7     # vy lt fern green
+J & P Coats 6016:B6D4A3     # lt forest green
+J & P Coats 6016:aad99f     # lt pistachio green
+J & P Coats 6016:A2D5AE     # md baby green
+J & P Coats 6017:75BB71     # md pistachio green
+J & P Coats 6018:4b924b     # dk pistachio green
+J & P Coats 6020:aad99f     # lt pistachio green
+J & P Coats 6020:328060     # jade green
+J & P Coats 6020:C6FFCA     # lt nile green
+J & P Coats 6020:A2D5AE     # md baby green
+J & P Coats 6021:144B26     # ul dk pistachio green
+J & P Coats 6021:1B5100     # vy dk hunter green
+J & P Coats 6021:2B671F     # vy dk forest green
+J & P Coats 6030:99E5A6     # nile green
+J & P Coats 6031:1E9044     # dk emerald green
+J & P Coats 6063:E64281     # md cranberry
+J & P Coats 6185:b2d4bd     # lt blue green
+J & P Coats 6185:75BCA1     # lt teal green
+J & P Coats 6185:85D5B6     # md seagreen
+J & P Coats 6185:b4f2df     # lt seagreen
+J & P Coats 6185:7ecdaf     # vy lt aquamarine
+J & P Coats 6186:1C925F     # vy dk seagreen
+J & P Coats 6186:66BF9D     # lt bright green
+J & P Coats 6186:5bc39d     # dk seagreen
+J & P Coats 6186:4AAC88     # lt aquamarine
+J & P Coats 6187:1C925F     # vy dk seagreen
+J & P Coats 6187:228C69     # aquamarine
+J & P Coats 6187:3C8B6E     # md teal green
+J & P Coats 6187:0F9161     # dk bright green
+J & P Coats 6187:39AC78     # md aquamarine
+J & P Coats 6205:36A459     # md emerald green
+J & P Coats 6209:B5E1BE     # vy lt jade
+J & P Coats 6210:8cd2a8     # lt jade
+J & P Coats 6210:B5E1BE     # vy lt jade
+J & P Coats 6211:2B6843     # vy dk jade
+J & P Coats 6212:0b6d4c     # dk aquamarine
+J & P Coats 6213:559A6E     # md celadon green
+J & P Coats 6213:519468     # md jade
+J & P Coats 6225:76D185     # md nile green
+J & P Coats 6226:1C8817     # lt green
+J & P Coats 6226:53BD6A     # lt emerald green
+J & P Coats 6227:07711a     # bright green
+J & P Coats 6228:00692d     # ul vy dk emerald greene
+J & P Coats 6228:005922     # green
+J & P Coats 6228:0B7C38     # vy dk emerald green
+J & P Coats 6238:7AB146     # chartreuse
+J & P Coats 6238:aeda62     # bright chartreuse
+J & P Coats 6239:46a42e     # kelly green
+J & P Coats 6246:236831     # vy dkpistachio green
+J & P Coats 6250:ceeb90     # lt yellow green
+J & P Coats 6250:E4FEB0     # vy lt yellow green
+J & P Coats 6253:EFF39D     # vy lt moss green
+J & P Coats 6253:B7B77E     # lt khaki green
+J & P Coats 6253:A4B583     # green gray
+J & P Coats 6253:E0E762     # lt moss green
+J & P Coats 6253:D5E191     # ul lt avocado green
+J & P Coats 6256:89C53A     # md parrot green
+J & P Coats 6258:2F6913     # dk hunter green
+J & P Coats 6258:2F6800     # vy dk parrot green
+J & P Coats 6258:568F2E     # dk parrot green
+J & P Coats 6258:408128     # dk forest green
+J & P Coats 6258:68A046     # md forest green
+J & P Coats 6261:4b8835     # hunter green
+J & P Coats 6261:819442     # avocado green
+J & P Coats 6266:76A451     # md yellow green
+J & P Coats 6266:ceeb90     # lt yellow green
+J & P Coats 6266:9DB275     # pine green
+J & P Coats 6266:B9C572     # vy lt avocado green
+J & P Coats 6266:92bf68     # forest green
+J & P Coats 6267:4b8835     # hunter green
+J & P Coats 6267:6E8D58     # md pine green
+J & P Coats 6267:819442     # avocado green
+J & P Coats 6267:667913     # dk moss green
+J & P Coats 6268:2F6913     # dk hunter green
+J & P Coats 6268:697C2E     # md avocado green
+J & P Coats 6269:516132     # dk green gray
+J & P Coats 6269:4A6332     # dk pine green
+J & P Coats 6269:42612B     # dk fern green
+J & P Coats 6269:52651A     # vy dk avocado green
+J & P Coats 6269:697C2E     # md avocado green
+J & P Coats 6270:314615     # black avocado green
+J & P Coats 6270:3B4D0F     # dk avocado green
+J & P Coats 6315:C1CAA7     # vy lt fern green
+J & P Coats 6316:6E8D58     # md pine green
+J & P Coats 6316:819569     # fern green
+J & P Coats 6316:b3be95     # lt fern green
+J & P Coats 6317:516132     # dk green gray
+J & P Coats 6317:4A6332     # dk pine green
+J & P Coats 6318:42612B     # dk fern green
+J & P Coats 6842:939857     # md khaki green
+J & P Coats 6842:B7B77E     # lt khaki green
+J & P Coats 6843:C1BA7E     # lt mustard
+J & P Coats 6844:939857     # md khaki green
+J & P Coats 6844:989239     # dk olive green
+J & P Coats 6844:A89234     # golden olive
+J & P Coats 6845:6E783B     # dk khaki green
+J & P Coats 6845:706C21     # vy dk olive green
+J & P Coats 6845:C0BA61     # md olive green
+J & P Coats 6845:928030     # md golden olive
+J & P Coats 6875:b2d4bd     # lt blue green
+J & P Coats 6875:AAD9BA     # lt celadon green
+J & P Coats 6875:B2D4BD     # vy lt blue green
+J & P Coats 6876:559A6E     # md celadon green
+J & P Coats 6876:397A59     # dk celadon green
+J & P Coats 6876:598d6e     # blue green
+J & P Coats 6878:3D7654     # dk blue green
+J & P Coats 6879:78B48A     # celadon green
+J & P Coats 6879:8AB5A0     # md blue green
+J & P Coats 6880:055538     # vy dk blue green
+J & P Coats 6884:2B6F51     # dk teal green
+J & P Coats 7001:04BAAE     # md bright turquoise
+J & P Coats 7001:44DEC7     # lt bright turquoise
+J & P Coats 7001:13bcde     # md electric blue
+J & P Coats 7004:CDD2EA     # vy lt blue violet
+J & P Coats 7005:B8BFDC     # lt blue violet
+J & P Coats 7005:A7B2C5     # lt lavender blue
+J & P Coats 7005:8e9dc6     # lt cornflower blue
+J & P Coats 7010:0493BE     # electric blue
+J & P Coats 7010:099D89     # dk bright turquoise
+J & P Coats 7010:016EA5     # dk electric blue
+J & P Coats 7020:adcbe1     # pale delft blue
+J & P Coats 7021:82a8c9     # delft blue
+J & P Coats 7022:3E5EA0     # dk delft blue
+J & P Coats 7023:5C6694     # gray blue
+J & P Coats 7023:223F88     # royal blue
+J & P Coats 7024:403D6D     # md vy dk cornflower blue
+J & P Coats 7024:363562     # vy dk cornflower blue
+J & P Coats 7024:1E4669     # ul vy dk baby blue
+J & P Coats 7024:000861     # vy dk royal blue
+J & P Coats 7030:5b81b5     # md delft blue
+J & P Coats 7031:CDDBE8     # ul vy lt antique blue
+J & P Coats 7031:D7EBF2     # vy lt baby blue
+J & P Coats 7045:363562     # vy dk cornflower blue
+J & P Coats 7050:80A3BA     # lt antique blue
+J & P Coats 7051:8293B3     # md gray blue
+J & P Coats 7051:46728C     # md antique blue
+J & P Coats 7052:316274     # dk antique blue
+J & P Coats 7053:C7E2EF     # ul vy lt blue
+J & P Coats 7053:9DD5DD     # lt sky blue
+J & P Coats 7053:B4E0E9     # vy lt turquoise
+J & P Coats 7053:BFDBE7     # pale baby blue
+J & P Coats 7053:D3FFF9     # vy lt sky blue
+J & P Coats 7053:B9E1E9     # ul vy very lt blue
+J & P Coats 7080:3E5EA0     # dk delft blue
+J & P Coats 7100:0F2075     # dk royal blue
+J & P Coats 7110:948DB3     # md dk blue violet
+J & P Coats 7110:A5B0D1     # md lt blue violet
+J & P Coats 7110:A4A4C4     # md blue violet
+J & P Coats 7110:798FB3     # md lavender blue
+J & P Coats 7110:7784AF     # md cornflower blue
+J & P Coats 7143:223F88     # royal blue
+J & P Coats 7150:403D6D     # md vy dk cornflower blue
+J & P Coats 7150:5C6694     # gray blue
+J & P Coats 7150:5B648F     # cornflower blue
+J & P Coats 7150:5D6F9D     # dk lavender blue
+J & P Coats 7150:4B497D     # dk cornflower blue
+J & P Coats 7159:C1C9D9     # lt gray blue
+J & P Coats 7159:6FB1C1     # sky blue
+J & P Coats 7159:ACD4E9     # vy lt blue
+J & P Coats 7160:001326     # vy dk navy blue
+J & P Coats 7161:3D839F     # md wedgewood
+J & P Coats 7161:4d91a4     # lt wedgewood
+J & P Coats 7161:7eacc9     # lt blue
+J & P Coats 7162:17616D     # vy dk peacock blue
+J & P Coats 7162:2E7288     # dk wedgewood
+J & P Coats 7167:82C1CD     # lt turquoise
+J & P Coats 7168:9ACDCD     # lt peacock blue
+J & P Coats 7168:3A8594     # dk turquoise
+J & P Coats 7168:57a2b1     # turquoise
+J & P Coats 7168:5F9EA5     # peacock blue
+J & P Coats 7169:1E6A79     # vy dk turquoise
+J & P Coats 7169:3D839F     # dk peacock blue
+J & P Coats 7180:5785AD     # md blue
+J & P Coats 7181:3A628C     # dk blue
+J & P Coats 7182:17566D     # dk wedgwood
+J & P Coats 7182:224271     # vy dk blue
+J & P Coats 7225:A0BEBE     # lt gray green
+J & P Coats 7226:46728c     # md antique blue
+J & P Coats 7227:0B525D     # ul vy dk turquoise
+J & P Coats 7227:166059     # vy dk gray green
+J & P Coats 7876:9AB3CD     # vy lt antique blue
+J & P Coats 7975:E7F9F9     # ul vy lt baby blue
+J & P Coats 7976:B7C4E4     # vy lt cornflower blue
+J & P Coats 7976:A6C3D9     # lt baby blue
+J & P Coats 7976:9AB3CD     # vy lt antique blue
+J & P Coats 7976:83A4C1     # baby blue
+J & P Coats 7977:A5B0D1     # md lt blue violet
+J & P Coats 7977:B7C4E4     # vy lt cornflower blue
+J & P Coats 7977:5F8DA9     # md baby blue
+J & P Coats 7978:467194     # dk dark baby blue
+J & P Coats 7979:2E597C     # vy dk baby blue
+J & P Coats 7980:064055     # md navy blue
+J & P Coats 7980:1B3E49     # vy dk antique blue
+J & P Coats 7981:0F3251     # navy blue
+J & P Coats 7982:071F3A     # dk navy blue
+J & P Coats 8231:D1C3CF     # lt shell gray
+J & P Coats 8232:AE9AA4     # md shell gray
+J & P Coats 8233:7C696D     # dk shell gray
+J & P Coats 8390:aeab8a     # lt brown gray
+J & P Coats 8390:bcc0a8     # lt beaver gray
+J & P Coats 8397:D7D7C3     # vy lt brown gray
+J & P Coats 8398:BFBFC3     # pearl gray
+J & P Coats 8399:9c9ca4     # lt steel gray
+J & P Coats 8400:552332     # vy dk grape
+J & P Coats 8400:555545     # vy lt ash gray
+J & P Coats 8403:000000     # black
+J & P Coats 8500:84835C     # md brown gray
+J & P Coats 8500:515542     # vy dk beaver gray
+J & P Coats 8500:707864     # dk beaver gray
+J & P Coats 8501:656040     # dk brown gray
+J & P Coats 8501:31372D     # ul dk beaver gray
+J & P Coats 8510:E2E2E7     # vy lt pearl gray
+J & P Coats 8511:C7CDCE     # vy lt pewter
+J & P Coats 8511:9C9CA4     # lt steel gray
+J & P Coats 8512:7F8887     # lt pewter
+J & P Coats 8512:575D61     # pewter gray
+J & P Coats 8513:7C7C84     # dk steel gray
+J & P Coats 8513:7C696D     # dk shell gray
+J & P Coats 8514:2B2C2F     # vy dk pewter gray
+J & P Coats 8514:3E4144     # dk pewter gray
+J & P Coats 8900:959884     # md beaver gray
+J & P Coats 8999:2B2C2F     # vy dk pewter gray
