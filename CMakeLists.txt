@@ -14,8 +14,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(Kreuzstich)
 
-set(USE_QT_VERSION 4)
-#set(USE_QT_VERSION 5)
+#set(USE_QT_VERSION 4)
+set(USE_QT_VERSION 5)
 
 # Build shared libraries
 set(BUILD_SHARED_LIBS ON)
@@ -45,8 +45,10 @@ add_definitions(-DSYSTEM="${CMAKE_SYSTEM}"
                 -DPROCESSOR="${CMAKE_SYSTEM_PROCESSOR}")
 
 # Packages
-find_package(ImageMagick REQUIRED COMPONENTS Magick++ MagickCore)
-add_definitions(-DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16)
+find_package(ImageMagick 7 REQUIRED COMPONENTS Magick++ MagickCore)
+execute_process(COMMAND Magick++-config --cppflags
+                OUTPUT_VARIABLE MAGICK_CPPFLAGS)
+add_definitions(${MAGICK_CPPFLAGS})
 find_package(Boost REQUIRED COMPONENTS system filesystem program_options regex)
 if(${USE_QT_VERSION} MATCHES 4)
     find_package(Qt4 REQUIRED QtGui)
