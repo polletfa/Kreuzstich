@@ -26,15 +26,14 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Set C++ standard to C++11
 add_definitions(-std=c++11)
 
-# SVN revision & build time (note: computed when cmake is run, not make, so only
-# correct with a clean build)
-execute_process(COMMAND svnversion -n ..
-                OUTPUT_VARIABLE SVN_REVISION)
+# Git commit hash & build time (note: computed when cmake is run, not make, so only correct with a clean build)
+execute_process(COMMAND git log --pretty=format:%h -n1 HEAD
+                OUTPUT_VARIABLE GIT_COMMIT)
 execute_process(COMMAND date "+%s"
                 COMMAND tr -d "\n"
                 OUTPUT_VARIABLE BUILD_TIME)
                
-add_definitions(-DSVN_REVISION="${SVN_REVISION}"
+add_definitions(-DGIT_COMMIT="${GIT_COMMIT}"
                 -DBUILD_TIME="${BUILD_TIME}" )
 
 # Copyright
