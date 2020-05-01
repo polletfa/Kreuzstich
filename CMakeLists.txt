@@ -37,7 +37,7 @@ add_definitions(-DGIT_COMMIT="${GIT_COMMIT}"
                 -DBUILD_TIME="${BUILD_TIME}" )
 
 # Copyright
-add_definitions(-DCOPYRIGHT="2015, Fabien Pollet")
+add_definitions(-DCOPYRIGHT="2015-2020, Fabien Pollet")
 
 # System information
 add_definitions(-DSYSTEM="${CMAKE_SYSTEM}"
@@ -46,8 +46,12 @@ add_definitions(-DSYSTEM="${CMAKE_SYSTEM}"
 # Packages
 find_package(ImageMagick 7 REQUIRED COMPONENTS Magick++ MagickCore)
 execute_process(COMMAND Magick++-config --cppflags
-                OUTPUT_VARIABLE MAGICK_CPPFLAGS)
+                OUTPUT_VARIABLE MAGICK_CPPFLAGS
+                OUTPUT_STRIP_TRAILING_WHITESPACE)
 add_definitions(${MAGICK_CPPFLAGS})
+execute_process(COMMAND Magick++-config --ldflags
+                OUTPUT_VARIABLE MAGICK_LDFLAGS
+                OUTPUT_STRIP_TRAILING_WHITESPACE)
 find_package(Boost REQUIRED COMPONENTS system filesystem program_options regex)
 if(${USE_QT_VERSION} MATCHES 4)
     find_package(Qt4 REQUIRED QtGui)

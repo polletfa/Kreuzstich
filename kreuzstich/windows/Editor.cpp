@@ -51,12 +51,10 @@ Editor::~Editor()
 QImage* Editor::toQImage(const Magick::Image &image)
 {
     QImage *newQImage = new QImage(image.columns(), image.rows(), QImage::Format_RGB32);
-    const Magick::PixelPacket *pixels;
     Magick::ColorRGB rgb;
     for (int y = 0; y < newQImage->height(); y++) {
-        pixels = image.getConstPixels(0, y, newQImage->width(), 1);
         for (int x = 0; x < newQImage->width(); x++) {
-            rgb = (*(pixels + x));
+            rgb = image.pixelColor(x, y);
             newQImage->setPixel(x, y, QColor((int) (255 * rgb.red())
                                              , (int) (255 * rgb.green())
                                              , (int) (255 * rgb.blue())).rgb());

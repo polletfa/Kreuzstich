@@ -47,7 +47,7 @@ Creator::Creator() : m_columns(0), m_rows(0) {
     initInternProperties();
 }
 Creator::Creator(size_t width, size_t height, ThreadColor fill)
-    : m_columns(width), m_rows(height), m_pixels(NULL), m_image(Magick::Geometry(width, height), fill.rgb())
+    : m_columns(width), m_rows(height), m_image(Magick::Geometry(width, height), fill.rgb())
 {
     initInternProperties();
 }
@@ -275,32 +275,30 @@ void Creator::quantizeColors(size_t maxColors) {
 }
 
 void Creator::chooseThreads(ProgressCallback& callback) {
-    m_pixels = m_image.getPixels(0, 0, m_columns, m_rows);
-
     m_required.clear();
     unordered_map<ThreadColor, ThreadColor, ColorHash> bestMatches;
-    size_t nbPixels = m_columns*m_rows;
-    for(int i = 0; i < nbPixels; i++) {
-        ThreadColor rgb(ColorRGB(m_pixels[i]));
-        unordered_map<ThreadColor, ThreadColor, ColorHash>::iterator it = bestMatches.find(rgb);
-        ThreadColors::const_iterator bestMatch;
-        if(it != bestMatches.end()) {
-            bestMatch = m_colortable.bestMatch(it->second);
-        } else {
-            bestMatch = m_colortable.bestMatch(rgb);
-            bestMatches[rgb] = bestMatch->first;
+    for(int x = 0, i = 0; x < m_columns; ++x) {
+        for(int y = 0; y < m_rows; ++y, ++i) {
+            ThreadColor rgb(m_image.pixelColor(x, y));
+            unordered_map<ThreadColor, ThreadColor, ColorHash>::iterator it = bestMatches.find(rgb);
+            ThreadColors::const_iterator bestMatch;
+            if(it != bestMatches.end()) {
+                bestMatch = m_colortable.bestMatch(it->second);
+            } else {
+                bestMatch = m_colortable.bestMatch(rgb);
+                bestMatches[rgb] = bestMatch->first;
+            }
+            // add to list of required threads
+            if(m_required.find(bestMatch->first) == m_required.end()) {
+                m_required.insert(*bestMatch);
+            }
+            // change pixel
+            m_image.pixelColor(x, y, bestMatch->first.rgb());
+            
+            if(!(i%100))
+                callback((double)i/(m_columns*m_rows));
         }
-        // add to list of required threads
-        if(m_required.find(bestMatch->first) == m_required.end()) {
-            m_required.insert(*bestMatch);
-        }
-        // change pixel
-        m_pixels[i] = bestMatch->first.rgb();
-        if(!(i%100))
-            callback((double)i/nbPixels);
     }
-    // apply the changes to the image
-    m_image.syncPixels();
 }
 
 void Creator::writeProjectFile(string filename) {
@@ -554,7 +552,7 @@ void Creator::writeScript(Report::Writer& script, Report::Header header) {
                     for(int c = 0; c < 2; c++) {
                         int x;
                         for(x = 0; x < GRID_MOD && (xmod+c)*GRID_MOD+x < m_columns; x++) {
-                            ThreadColor pixel(ColorRGB(m_pixels[(ymod*GRID_MOD+y)*m_columns + ((xmod+c)*GRID_MOD+x)]));
+                            ThreadColor pixel(m_image.pixelColor((xmod+c)*GRID_MOD+x, ymod*GRID_MOD+y));
                             row.cells.push_back(Report::TableCell(1, boost::lexical_cast<string>(colorindex[pixel])));
                         }
                         for(; x < GRID_MOD; x++)

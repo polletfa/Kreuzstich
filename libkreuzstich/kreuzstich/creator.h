@@ -109,7 +109,6 @@ namespace Kreuzstich {
         void initInternProperties();
 
         Magick::Image m_image;          /**< Image data */
-        Magick::PixelPacket* m_pixels;  /**< Pixel buffer */
         size_t m_columns;               /**< Width */
         size_t m_rows;                  /**< Height */
         ThreadColors m_colortable;      /**< Color table */

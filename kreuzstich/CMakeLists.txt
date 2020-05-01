@@ -50,4 +50,4 @@ endif()
 
 add_executable(kreuzstich ${SOURCES} ${UI_headers} ${RESOURCES_src})
 target_link_libraries(kreuzstich libkreuzstich ${QT_TARGET}
-    ${Boost_LIBRARIES} ${ImageMagick_LIBRARIES} ${LIBXML2_LIBRARIES})
+    ${Boost_LIBRARIES} ${MAGICK_LDFLAGS} ${LIBXML2_LIBRARIES})
