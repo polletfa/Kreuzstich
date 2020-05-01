@@ -24,8 +24,10 @@ const std::string Kreuzstich::COLORTABLE_EXTENSION = std::string("colors");
 
 std::string Kreuzstich::versionString() {
     std::stringstream ss;
-    ss << PROJECT_NAME << " " << MAJOR_VERSION << "." << MINOR_VERSION << "r"<<SVN_REVISION << " build " << BUILD_TIME
-       << " " << SYSTEM << " " << PROCESSOR;
+    ss << PROJECT_NAME << " " << MAJOR_VERSION << "." << MINOR_VERSION
+       << " build " << BUILD_TIME
+       << " " << SYSTEM << " " << PROCESSOR
+       << " (commit " << GIT_COMMIT << ")";
     return ss.str();
 }
 
