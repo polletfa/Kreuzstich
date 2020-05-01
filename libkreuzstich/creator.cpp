@@ -457,7 +457,7 @@ void Creator::writeGrid(std::string filename, ProgressCallback& callback) {
     }
 }
 
-// ************************
+// ************************ alter Code noch nicht angepasst / wird noch nicht aufgerufen
 void Creator::writeScript(Report::Writer& script, Report::Header header) {
     cout << "Create the script... \033[s"<<flush;
     if(script.is_open()) {
