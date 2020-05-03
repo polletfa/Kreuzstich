@@ -455,7 +455,7 @@ void Creator::writeGrid(std::string filename, ProgressCallback& callback) {
     }
 }
 
-// ************************ alter Code noch nicht angepasst / wird noch nicht aufgerufen
+// ************************ todo: anpassen (progress, errrors, generate header from properties)
 void Creator::writeScript(Report::Writer& script, Report::Header header) {
     cout << "Create the script... \033[s"<<flush;
     if(script.is_open()) {
@@ -480,8 +480,8 @@ void Creator::writeScript(Report::Writer& script, Report::Header header) {
                 if(header.margin.cm() == 0) script << "out";
                 script << " margin: " << Report::LengthIN(width) << " x "<< Report::LengthIN(height) << Report::newline;
             } else {
-                double width((double)m_columns * 10 / header.count);
-                double height((double)m_rows * 10 / header.count);
+                double width((double)m_columns / header.count);
+                double height((double)m_rows / header.count);
 
                 if(header.margin.cm() > 0.001) {
                     script << "Margin: " << Report::LengthCM(header.margin) << Report::newline;
@@ -500,18 +500,14 @@ void Creator::writeScript(Report::Writer& script, Report::Header header) {
         script << "Required threads: ";
         Report::Enumeration threadlist(0);
         map<ThreadColor, size_t, ColorComparator> colorindex;
+        map<ThreadColor, size_t, ColorComparator> colorcount;
         int i = 0;
         for(ThreadColors::iterator it = m_required.begin(); it != m_required.end(); it++, i++) {
             stringstream ss;
 
             // save the index of the color
             colorindex.insert(pair<ThreadColor, size_t>(it->first, i));
-
-            threadlist.items.push_back(it->second.toStdString());
-
-            std::cout << "debug - required " << i << ": " << it->first.rgb().red() << "," << it->first.rgb().green() <<","<<it->first.rgb().blue()<<std::endl;
         }
-        script << threadlist << Report::newpage;
 
         // grid
         // the grid is shown by block of GRID_MOD^2 with 2 columns
@@ -555,8 +551,15 @@ void Creator::writeScript(Report::Writer& script, Report::Header header) {
                         int x;
                         for(x = 0; x < GRID_MOD && (xmod+c)*GRID_MOD+x < m_columns; x++) {
                             ThreadColor pixel(m_image.pixelColor((xmod+c)*GRID_MOD+x, ymod*GRID_MOD+y));
-                            row.cells.push_back(Report::TableCell(1, boost::lexical_cast<string>(colorindex[pixel])));
-                            std::cout << "debug - pixel " << x << "x" << y << ": " << pixel.rgb().red() << "," << pixel.rgb().green() <<","<<pixel.rgb().blue()<<std::endl;
+                            try {
+                                ThreadColors::const_iterator it = m_required.bestMatch(pixel);
+                                colorcount[it->first] ++;
+                                row.cells.push_back(Report::TableCell(1, boost::lexical_cast<string>(colorindex[it->first])));
+                            } catch(Exception& kexc) {
+                                // TODO
+                            } catch(Exception& exc) {
+                                // TODO
+                            }
                         }
                         for(; x < GRID_MOD; x++)
                             row.cells.push_back(Report::TableCell(1, ""));
@@ -566,8 +569,16 @@ void Creator::writeScript(Report::Writer& script, Report::Header header) {
                 cout << "\033[u\033[Kgrid " << (ymod*maxxmod+xmod+2)*100/(maxymod*maxxmod) << " %"<<flush;
             }
         }
+
+        for(ThreadColors::iterator it = m_required.begin(); it != m_required.end(); it++) {
+            stringstream ss;
+
+            threadlist.items.push_back(it->second.toStdString() + " (" + std::to_string(colorcount[it->first]) + " stitches)");
+        }
+
         cout << "\033[u\033[Ksaving..."<<flush;
-        script << table;
+        script << threadlist << Report::newpage
+               << table;
 
         script.close();
         cout << "\033[u\033[K"<< script.filename() << endl;

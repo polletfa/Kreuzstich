@@ -219,8 +219,8 @@ void Editor::generateScriptAsLaTeX() {
                 // TODO: dialog to select unit and fabric count
                 Kreuzstich::Report::Header header;
                 header.unit = Kreuzstich::Length::CM;
-                header.count = 10;
-                header.margin = 1;
+                header.count = 7;
+                header.margin = 0;
                 Kreuzstich::Report::LaTeXWriter writer(m_filename);
                 m_creator->writeScript(writer, header);                
             }
@@ -264,8 +264,8 @@ void Editor::generateScriptAsText() {
                 // TODO: dialog to select unit and fabric count
                 Kreuzstich::Report::Header header;
                 header.unit = Kreuzstich::Length::CM;
-                header.count = 10;
-                header.margin = 1;
+                header.count = 7;
+                header.margin = 0;
                 Kreuzstich::Report::TextWriter writer(m_filename);
                 m_creator->writeScript(writer, header);                
             }
