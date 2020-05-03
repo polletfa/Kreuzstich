@@ -555,9 +555,9 @@ void Creator::writeScript(Report::Writer& script, Report::Header header) {
                                 ThreadColors::const_iterator it = m_required.bestMatch(pixel);
                                 colorcount[it->first] ++;
                                 row.cells.push_back(Report::TableCell(1, boost::lexical_cast<string>(colorindex[it->first])));
-                            } catch(Exception& kexc) {
+                            } catch(Kreuzstich::Exception& kexc) {
                                 // TODO
-                            } catch(Exception& exc) {
+                            } catch(std::exception& exc) {
                                 // TODO
                             }
                         }
