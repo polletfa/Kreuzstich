@@ -69,7 +69,7 @@ namespace KreuzstichGUI {
         // generate menu
         void generateGrid();
         void generateScriptAsText();
-        void generateScriptAsPDF();
+        void generateScriptAsLaTeX();
 
         // view
         void zoomIn();

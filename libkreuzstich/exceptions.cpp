@@ -1,6 +1,6 @@
 /* $Id: exceptions.cpp 45 2015-07-31 17:08:02Z polletfa $
 
-   Copyright (C) 2013 Fabien Pollet <polletfa@gmail.com>
+   Copyright (C) 2013-2020 Fabien Pollet <polletfa@posteo.de>
 
    Weiterverbreitung und Verwendung in nichtkompilierter oder
    kompilierter Form, mit oder ohne Veränderungen, sind ohne Bedingungen

@@ -1,6 +1,6 @@
 /* $Id: thread.h 53 2016-01-11 18:34:15Z polletfa $
 
-   Copyright (C) 2013 Fabien Pollet <polletfa@gmail.com>
+   Copyright (C) 2013-2020 Fabien Pollet <polletfa@posteo.de>
 
    Weiterverbreitung und Verwendung in nichtkompilierter oder
    kompilierter Form, mit oder ohne Veränderungen, sind ohne Bedingungen

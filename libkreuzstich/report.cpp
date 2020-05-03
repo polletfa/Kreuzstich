@@ -1,6 +1,6 @@
 /* $Id: report.cpp 43 2015-05-10 21:34:40Z polletfa $
 
-   Copyright (C) 2013 Fabien Pollet <polletfa@gmail.com>
+   Copyright (C) 2013-2020 Fabien Pollet <polletfa@posteo.de>
 
    Weiterverbreitung und Verwendung in nichtkompilierter oder
    kompilierter Form, mit oder ohne Veränderungen, sind ohne Bedingungen

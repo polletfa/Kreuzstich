@@ -148,7 +148,7 @@ void MainWindow::updateMenu() {
     // generate menu
     ui->actionGenerate_grid->setEnabled(hasGenerateTools);
     ui->actionGenerate_script_as_text->setEnabled(hasGenerateTools);
-    ui->actionGenerate_script_as_PDF->setEnabled(hasGenerateTools);
+    ui->actionGenerate_script_as_LaTeX->setEnabled(hasGenerateTools);
 
     // file menu
     ui->actionClo_se_all->setEnabled(hasWindows);
@@ -156,7 +156,7 @@ void MainWindow::updateMenu() {
 
     ui->action_Close->setEnabled(hasActiveWindow);
     ui->action_Save->setEnabled(hasModifications);
-    ui->actionSave_as->setEnabled(hasModifications);
+    ui->actionSave_as->setEnabled(hasActiveWindow);
     if(hasActiveWindow)
         activeChild()->windowMenuAction()->setChecked(true);
 }
@@ -430,8 +430,11 @@ void MainWindow::generateGrid() {
     }
 }
 
-void MainWindow::generateScriptAsPDF() {
+void MainWindow::generateScriptAsLaTeX() {
     try {
+        if(activeChild())
+            if(activeChild()->hasGenerateTools())
+                dynamic_cast<GenerateToolsInterface*>(activeChild())->generateScriptAsLaTeX();
     } catch(Kreuzstich::Exception& kexc) {
         genericErrorDialog(this, kexc);
     } catch(exception& exc) {
@@ -441,6 +444,9 @@ void MainWindow::generateScriptAsPDF() {
 
 void MainWindow::generateScriptAsText() {
     try {
+        if(activeChild())
+            if(activeChild()->hasGenerateTools())
+                dynamic_cast<GenerateToolsInterface*>(activeChild())->generateScriptAsText();
     } catch(Kreuzstich::Exception& kexc) {
         genericErrorDialog(this, kexc);
     } catch(exception& exc) {

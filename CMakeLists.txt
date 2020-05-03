@@ -1,14 +1,12 @@
 # TODO:
 # - writescript fehler handlung?
-# - generategrid -> thread
-# - generatescript
-# - size in mm/inch schon beim erstellen eines projektes?
+# - generatescript / dialog to select unit and fabric count
+# - oder size in mm/inch schon beim erstellen eines projektes + dialog um parameter nachträglich zu ändern?
 # - tools: pen / fill / replace
 # - imagemagick fehlerhandlung müsste noch überprüft werden (warnings? weitere versuche mit nicht-bild-dateien)
 # - doxy & mehr kommentaren (und Header)
 # - l10n (auch libKreuzstich)
 #   --> im prinzip nichts außer writescript
-# - lizenzierung/packaging/sourceforge?
 #########################################
 
 cmake_minimum_required(VERSION 2.8.11)
@@ -37,7 +35,7 @@ add_definitions(-DGIT_COMMIT="${GIT_COMMIT}"
                 -DBUILD_TIME="${BUILD_TIME}" )
 
 # Copyright
-add_definitions(-DCOPYRIGHT="2015-2020, Fabien Pollet")
+add_definitions(-DCOPYRIGHT="2013-2020, Fabien Pollet \(polletfa@posteo.de\)")
 
 # System information
 add_definitions(-DSYSTEM="${CMAKE_SYSTEM}"

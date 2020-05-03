@@ -1,6 +1,6 @@
 /* $Id: creator.h 53 2016-01-11 18:34:15Z polletfa $
 
-   Copyright (C) 2013 Fabien Pollet <polletfa@gmail.com>
+   Copyright (C) 2013-2020 Fabien Pollet <polletfa@posteo.de>
 
    Weiterverbreitung und Verwendung in nichtkompilierter oder
    kompilierter Form, mit oder ohne Veränderungen, sind ohne Bedingungen
@@ -84,6 +84,9 @@ namespace Kreuzstich {
 
         /**
          * Create the grid and save into a file.
+         *
+         * Note: always call \ref chooseThread before writing the grid.
+         *
          * \param filename Output file name
          * \param callback Callback object for progress notification
          * \throws std::exception
@@ -91,6 +94,9 @@ namespace Kreuzstich {
         void writeGrid(std::string filename, ProgressCallback& callback = NoProgressCallback);
         /**
          * Create the script and save into a file.
+         *
+         * Note: always call \ref chooseThread before writing the script.
+         *
          * \param script Writer (LaTeXWriter or TextWriter)
          * \param header Header
          * \throws std::exception

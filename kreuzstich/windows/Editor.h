@@ -61,7 +61,7 @@ namespace KreuzstichGUI {
 
         // GenerateToolsInterface
         void generateGrid();
-        void generateScriptAsPDF();
+        void generateScriptAsLaTeX();
         void generateScriptAsText();
 
     private:

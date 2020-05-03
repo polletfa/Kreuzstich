@@ -154,12 +154,12 @@ void Editor::generateGrid() {
     selectFile.setWindowTitle(tr("Generate grid"));
     selectFile.setFileMode(QFileDialog::AnyFile);
     QStringList filters;
-    filters << tr("All Images") + " (*.bmp *.dib *.rle *.jpg *.jpeg *.jpe *.jfif *.gif *.tif *.tiff *.png);;"
-            << tr("BMP Files") + " (*.bmp *.dib *.rle);;"
-            << tr("JPEG Files") + " (*.jpg *.jpeg *.jpe *.jfif);;"
-            << tr("GIF Files") + " (*.gif);;"
-            << tr("TIFF Files") + " (*.tif *.tiff);;"
-            << tr("PNG Files") + " (*.png);;"
+    filters << tr("All Images") + " (*.bmp *.dib *.rle *.jpg *.jpeg *.jpe *.jfif *.gif *.tif *.tiff *.png)"
+            << tr("BMP Files") + " (*.bmp *.dib *.rle)"
+            << tr("JPEG Files") + " (*.jpg *.jpeg *.jpe *.jfif)"
+            << tr("GIF Files") + " (*.gif)"
+            << tr("TIFF Files") + " (*.tif *.tiff)"
+            << tr("PNG Files") + " (*.png)"
             << tr("All Files") + " (*)";
     selectFile.setNameFilters(filters);
     selectFile.setDefaultSuffix("jpg");
@@ -173,6 +173,9 @@ void Editor::generateGrid() {
             GenerateTask(MainWindow* mw, Kreuzstich::Creator* creator, string filename)
                 : Task(mw), m_creator(creator), m_filename(filename) {}
             void doTask(TaskProgressCallback& callback) {
+                emit showMessage(tr("Selecting thread colors..."));
+                m_creator->chooseThreads(callback);
+
                 emit showMessage(tr("Saving grid..."));
                 m_creator->writeGrid(m_filename, callback);                
             }
@@ -187,12 +190,94 @@ void Editor::generateGrid() {
     }
 }
 
-void Editor::generateScriptAsPDF() {
+void Editor::generateScriptAsLaTeX() {
+    QFileDialog selectFile(this);
+    selectFile.setDirectory(boost::filesystem::current_path().string().c_str());
+    selectFile.setAcceptMode(QFileDialog::AcceptSave);
+    selectFile.setWindowTitle(tr("Generate script as LaTeX"));
+    selectFile.setFileMode(QFileDialog::AnyFile);
+    QStringList filters;
+    filters << tr("TeX/LaTeX files") + " (*.tex *.latex)"
+            << tr("All Files") + " (*)";
+    selectFile.setNameFilters(filters);
+    selectFile.setDefaultSuffix("tex");
+    QString file;
+    if(selectFile.exec()) {
+        file = selectFile.selectedFiles().at(0);
+    }
+    if(!file.isEmpty()) {
+        class GenerateTask: public Task {
+        public:
+            GenerateTask(MainWindow* mw, Kreuzstich::Creator* creator, string filename)
+                : Task(mw), m_creator(creator), m_filename(filename) {}
+            void doTask(TaskProgressCallback& callback) {
+                emit showMessage(tr("Selecting thread colors..."));
+                m_creator->chooseThreads(callback);
+                
+                emit showMessage(tr("Saving script as LaTeX..."));
 
+                // TODO: dialog to select unit and fabric count
+                Kreuzstich::Report::Header header;
+                header.unit = Kreuzstich::Length::CM;
+                header.count = 10;
+                header.margin = 1;
+                Kreuzstich::Report::LaTeXWriter writer(m_filename);
+                m_creator->writeScript(writer, header);                
+            }
+            string taskName() const { return "GenerateTask"; }
+
+        private:
+            string m_filename;
+            Kreuzstich::Creator* m_creator;
+        };
+        GenerateTask* generateTask = new GenerateTask(mainWindow(), m_creator, file.toStdString());
+        generateTask->start();
+    }
 }
 
 void Editor::generateScriptAsText() {
+    QFileDialog selectFile(this);
+    selectFile.setDirectory(boost::filesystem::current_path().string().c_str());
+    selectFile.setAcceptMode(QFileDialog::AcceptSave);
+    selectFile.setWindowTitle(tr("Generate script as text"));
+    selectFile.setFileMode(QFileDialog::AnyFile);
+    QStringList filters;
+    filters << tr("Text files") + " (*.txt)"
+            << tr("All Files") + " (*)";
+    selectFile.setNameFilters(filters);
+    selectFile.setDefaultSuffix("txt");
+    QString file;
+    if(selectFile.exec()) {
+        file = selectFile.selectedFiles().at(0);
+    }
+    if(!file.isEmpty()) {
+        class GenerateTask: public Task {
+        public:
+            GenerateTask(MainWindow* mw, Kreuzstich::Creator* creator, string filename)
+                : Task(mw), m_creator(creator), m_filename(filename) {}
+            void doTask(TaskProgressCallback& callback) {
+                emit showMessage(tr("Selecting thread colors..."));
+                m_creator->chooseThreads(callback);
+                
+                emit showMessage(tr("Saving script as text..."));
 
+                // TODO: dialog to select unit and fabric count
+                Kreuzstich::Report::Header header;
+                header.unit = Kreuzstich::Length::CM;
+                header.count = 10;
+                header.margin = 1;
+                Kreuzstich::Report::TextWriter writer(m_filename);
+                m_creator->writeScript(writer, header);                
+            }
+            string taskName() const { return "GenerateTask"; }
+
+        private:
+            string m_filename;
+            Kreuzstich::Creator* m_creator;
+        };
+        GenerateTask* generateTask = new GenerateTask(mainWindow(), m_creator, file.toStdString());
+        generateTask->start();
+    }
 }
 
 // *****************************************

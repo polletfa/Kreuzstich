@@ -105,7 +105,7 @@
     </property>
     <addaction name="actionGenerate_grid"/>
     <addaction name="actionGenerate_script_as_text"/>
-    <addaction name="actionGenerate_script_as_PDF"/>
+    <addaction name="actionGenerate_script_as_LaTeX"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Generate"/>
@@ -254,12 +254,12 @@
     <string>Ctrl+T</string>
    </property>
   </action>
-  <action name="actionGenerate_script_as_PDF">
+  <action name="actionGenerate_script_as_LaTeX">
    <property name="text">
-    <string>Generate script as &amp;PDF</string>
+    <string>Generate script as &amp;LaTeX</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+F</string>
+    <string>Ctrl+L</string>
    </property>
   </action>
  </widget>
@@ -572,10 +572,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>actionGenerate_script_as_PDF</sender>
+   <sender>actionGenerate_script_as_LaTeX</sender>
    <signal>triggered()</signal>
    <receiver>KreuzstichGUI::MainWindow</receiver>
-   <slot>generateScriptAsPDF()</slot>
+   <slot>generateScriptAsLaTeX()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -601,6 +601,6 @@
   <slot>zoomOut()</slot>
   <slot>generateGrid()</slot>
   <slot>generateScriptAsText()</slot>
-  <slot>generateScriptAsPDF()</slot>
+  <slot>generateScriptAsLaTeX()</slot>
  </slots>
 </ui>

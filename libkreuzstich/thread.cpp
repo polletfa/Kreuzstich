@@ -1,6 +1,6 @@
 /* $Id: thread.cpp 53 2016-01-11 18:34:15Z polletfa $
 
-   Copyright (C) 2013 Fabien Pollet <polletfa@gmail.com>
+   Copyright (C) 2013-2020 Fabien Pollet <polletfa@posteo.de>
 
    Weiterverbreitung und Verwendung in nichtkompilierter oder
    kompilierter Form, mit oder ohne Veränderungen, sind ohne Bedingungen
@@ -135,7 +135,7 @@ double ThreadColors::distance(const ThreadColor& left, const ThreadColor& right)
 }
 
 double ThreadColors::maxDistance() {
-    return 1000000.0;
+    return 100000000.0;
 }
 
 ThreadColors::ThreadColors() {
@@ -215,7 +215,7 @@ ThreadColors::const_iterator ThreadColors::bestMatch(const ThreadColor& col) con
       } else {
           // not in the list. Find closest
           double mindist = maxDistance();
-          const_iterator mindistcolor;
+          const_iterator mindistcolor = begin();
           for(const_iterator it = begin(); it != end(); it++) {
               double dist = distance(it->first, col);
               if(dist < mindist) {

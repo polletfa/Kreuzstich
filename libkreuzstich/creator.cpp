@@ -1,6 +1,6 @@
 /* $Id: creator.cpp 53 2016-01-11 18:34:15Z polletfa $
 
-   Copyright (C) 2013 Fabien Pollet <polletfa@gmail.com>
+   Copyright (C) 2013-2020 Fabien Pollet <polletfa@posteo.de>
 
    Weiterverbreitung und Verwendung in nichtkompilierter oder
    kompilierter Form, mit oder ohne Veränderungen, sind ohne Bedingungen
@@ -508,6 +508,8 @@ void Creator::writeScript(Report::Writer& script, Report::Header header) {
             colorindex.insert(pair<ThreadColor, size_t>(it->first, i));
 
             threadlist.items.push_back(it->second.toStdString());
+
+            std::cout << "debug - required " << i << ": " << it->first.rgb().red() << "," << it->first.rgb().green() <<","<<it->first.rgb().blue()<<std::endl;
         }
         script << threadlist << Report::newpage;
 
@@ -554,6 +556,7 @@ void Creator::writeScript(Report::Writer& script, Report::Header header) {
                         for(x = 0; x < GRID_MOD && (xmod+c)*GRID_MOD+x < m_columns; x++) {
                             ThreadColor pixel(m_image.pixelColor((xmod+c)*GRID_MOD+x, ymod*GRID_MOD+y));
                             row.cells.push_back(Report::TableCell(1, boost::lexical_cast<string>(colorindex[pixel])));
+                            std::cout << "debug - pixel " << x << "x" << y << ": " << pixel.rgb().red() << "," << pixel.rgb().green() <<","<<pixel.rgb().blue()<<std::endl;
                         }
                         for(; x < GRID_MOD; x++)
                             row.cells.push_back(Report::TableCell(1, ""));
