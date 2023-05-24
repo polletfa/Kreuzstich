@@ -147,6 +147,49 @@ void Editor::setFilename(string filename) {
     updateTitle();
 }
 
+void Editor::savePicture() {
+    QFileDialog selectFile(this);
+    selectFile.setDirectory(boost::filesystem::current_path().string().c_str());
+    selectFile.setAcceptMode(QFileDialog::AcceptSave);
+    selectFile.setWindowTitle(tr("Save picture"));
+    selectFile.setFileMode(QFileDialog::AnyFile);
+    QStringList filters;
+    filters << tr("All Images") + " (*.bmp *.dib *.rle *.jpg *.jpeg *.jpe *.jfif *.gif *.tif *.tiff *.png)"
+            << tr("BMP Files") + " (*.bmp *.dib *.rle)"
+            << tr("JPEG Files") + " (*.jpg *.jpeg *.jpe *.jfif)"
+            << tr("GIF Files") + " (*.gif)"
+            << tr("TIFF Files") + " (*.tif *.tiff)"
+            << tr("PNG Files") + " (*.png)"
+            << tr("All Files") + " (*)";
+    selectFile.setNameFilters(filters);
+    selectFile.setDefaultSuffix("jpg");
+    QString file;
+    if(selectFile.exec()) {
+        file = selectFile.selectedFiles().at(0);
+    }
+    if(!file.isEmpty()) {
+        class GenerateTask: public Task {
+        public:
+            GenerateTask(MainWindow* mw, Kreuzstich::Creator* creator, string filename)
+                : Task(mw), m_creator(creator), m_filename(filename) {}
+            void doTask(TaskProgressCallback& callback) {
+                emit showMessage(tr("Selecting thread colors..."));
+                m_creator->chooseThreads(callback);
+
+                emit showMessage(tr("Saving picture..."));
+                m_creator->writePicture(m_filename, callback);                
+            }
+            string taskName() const { return "GenerateTask"; }
+
+        private:
+            string m_filename;
+            Kreuzstich::Creator* m_creator;
+        };
+        GenerateTask* generateTask = new GenerateTask(mainWindow(), m_creator, file.toStdString());
+        generateTask->start();
+    }
+}
+
 void Editor::generateGrid() {
     QFileDialog selectFile(this);
     selectFile.setDirectory(boost::filesystem::current_path().string().c_str());

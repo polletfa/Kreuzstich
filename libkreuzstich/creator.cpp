@@ -275,7 +275,10 @@ void Creator::quantizeColors(size_t maxColors) {
 }
 
 void Creator::chooseThreads(ProgressCallback& callback) {
-    m_required.clear();
+    typedef std::map<ThreadColor, std::pair<ThreadIDList, int>, ColorComparator > ThreadColorsWithCounter;
+    ThreadColorsWithCounter requiredThreads;
+
+    // select the best match for each pixel
     unordered_map<ThreadColor, ThreadColor, ColorHash> bestMatches;
     for(int x = 0, i = 0; x < m_columns; ++x) {
         for(int y = 0; y < m_rows; ++y, ++i) {
@@ -289,8 +292,11 @@ void Creator::chooseThreads(ProgressCallback& callback) {
                 bestMatches[rgb] = bestMatch->first;
             }
             // add to list of required threads
-            if(m_required.find(bestMatch->first) == m_required.end()) {
-                m_required.insert(*bestMatch);
+            auto found = requiredThreads.find(bestMatch->first);
+            if(found == requiredThreads.end()) {
+                requiredThreads[bestMatch->first] = std::make_pair(bestMatch->second, 1);
+            } else {
+                found->second.second ++;
             }
             // change pixel
             m_image.pixelColor(x, y, bestMatch->first.rgb());
@@ -298,6 +304,30 @@ void Creator::chooseThreads(ProgressCallback& callback) {
             if(!(i%100))
                 callback((double)i/(m_columns*m_rows));
         }
+    }
+
+    // for all colors with less than 10 stitches, replace by the closest color among the rest
+    ThreadColors requiredFiltered;
+    ThreadColors toBeReplaced;
+    int threshold = 10;
+    for(ThreadColorsWithCounter::iterator it = requiredThreads.begin(); it != requiredThreads.end(); it++) {
+        if(it->second.second >= threshold) {
+            requiredFiltered[it->first] = it->second.first;
+        } else {
+            toBeReplaced[it->first] = it->second.first;
+        }
+    }
+    for(int x = 0, i = 0; x < m_columns; ++x) {
+        for(int y = 0; y < m_rows; ++y, ++i) {
+            ThreadColor rgb(m_image.pixelColor(x, y));
+            m_image.pixelColor(x, y, requiredFiltered.bestMatch(rgb)->first.rgb());
+        }
+    }
+
+    // save list of required threads
+    m_required.clear();
+    for(ThreadColors::iterator it = requiredFiltered.begin(); it != requiredFiltered.end(); it++) {
+        m_required[it->first] = it->second;
     }
 }
 
@@ -394,6 +424,46 @@ std::string Creator::escapeStringForXMLTag(string str) {
 }
 
 void Creator::xmlNullErrorHandler(void*, const char*, ...) {}
+
+void Creator::writePicture(std::string filename, ProgressCallback& callback) {
+    try {
+        callback(0);
+
+        // save
+        m_image.write(filename);
+    } catch(Magick::ErrorFileOpen&) {
+        throw FileIOError(filename, errno);
+    } catch(Magick::WarningFileOpen&) {
+        throw FileIOError(filename, errno);
+
+    } catch(Magick::ErrorCorruptImage&) {
+        throw InvalidFileFormat(filename);
+    } catch(Magick::WarningCorruptImage&) {
+        throw InvalidFileFormat(filename);
+
+    } catch(Magick::ErrorOption&) {
+        throw InvalidFileFormat(filename);
+    } catch(Magick::WarningOption&) {
+        throw InvalidFileFormat(filename);
+
+    } catch(Magick::ErrorMissingDelegate&) {
+        throw InvalidFileFormat(filename);
+    } catch(Magick::WarningMissingDelegate&) {
+        throw InvalidFileFormat(filename);
+
+    } catch(Magick::ErrorResourceLimit&) {
+        throw MemoryError();
+    } catch(Magick::WarningResourceLimit&) {
+        throw MemoryError();
+
+    } catch(Magick::Error&) {
+        throw UnknownError();
+    } catch(Magick::Warning&) {
+        throw UnknownError();
+    } catch(std::exception&) {
+        throw UnknownError();
+    }
+}
 
 void Creator::writeGrid(std::string filename, ProgressCallback& callback) {
     try {

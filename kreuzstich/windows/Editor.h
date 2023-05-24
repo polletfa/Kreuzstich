@@ -60,6 +60,7 @@ namespace KreuzstichGUI {
         void currentColorChanged();
 
         // GenerateToolsInterface
+        void savePicture();
         void generateGrid();
         void generateScriptAsLaTeX();
         void generateScriptAsText();

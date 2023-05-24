@@ -146,6 +146,7 @@ void MainWindow::updateMenu() {
     ui->action_Next->setEnabled(hasMultipleWindows);
 
     // generate menu
+    ui->actionSave_picture->setEnabled(hasGenerateTools);
     ui->actionGenerate_grid->setEnabled(hasGenerateTools);
     ui->actionGenerate_script_as_text->setEnabled(hasGenerateTools);
     ui->actionGenerate_script_as_LaTeX->setEnabled(hasGenerateTools);
@@ -418,6 +419,18 @@ void MainWindow::saveAll() {
 // Qt slots (generate menu)
 // *****************************************
 
+void MainWindow::savePicture() {
+    try {
+        if(activeChild())
+            if(activeChild()->hasGenerateTools())
+                dynamic_cast<GenerateToolsInterface*>(activeChild())->savePicture();
+    } catch(Kreuzstich::Exception& kexc) {
+        genericErrorDialog(this, kexc);
+    } catch(exception& exc) {
+        genericErrorDialog(this, exc);
+    }
+}
+
 void MainWindow::generateGrid() {
     try {
         if(activeChild())
@@ -512,4 +525,3 @@ void MainWindow::closeEvent(QCloseEvent *event) {
         genericErrorDialog(this, exc);
     }
 }
-

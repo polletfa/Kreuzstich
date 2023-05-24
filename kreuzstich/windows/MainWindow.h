@@ -67,6 +67,7 @@ namespace KreuzstichGUI {
         void saveAll();
 
         // generate menu
+        void savePicture();
         void generateGrid();
         void generateScriptAsText();
         void generateScriptAsLaTeX();

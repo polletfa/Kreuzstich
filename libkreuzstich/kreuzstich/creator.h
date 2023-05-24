@@ -83,6 +83,16 @@ namespace Kreuzstich {
         void chooseThreads(ProgressCallback& callback = NoProgressCallback);
 
         /**
+         * Save the picture into a file.
+         *
+         * Note: always call \ref chooseThread before saving the picture.
+         *
+         * \param filename Output file name
+         * \param callback Callback object for progress notification
+         * \throws std::exception
+         */
+        void writePicture(std::string filename, ProgressCallback& callback = NoProgressCallback);
+        /**
          * Create the grid and save into a file.
          *
          * Note: always call \ref chooseThread before writing the grid.

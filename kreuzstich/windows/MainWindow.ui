@@ -52,7 +52,7 @@
      <x>0</x>
      <y>0</y>
      <width>871</width>
-     <height>19</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="nativeMenuBar">
@@ -103,6 +103,7 @@
     <property name="title">
      <string>&amp;Generate</string>
     </property>
+    <addaction name="actionSave_picture"/>
     <addaction name="actionGenerate_grid"/>
     <addaction name="actionGenerate_script_as_text"/>
     <addaction name="actionGenerate_script_as_LaTeX"/>
@@ -260,6 +261,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionSave_picture">
+   <property name="text">
+    <string>Save pict&amp;ure</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
    </property>
   </action>
  </widget>
@@ -540,6 +549,22 @@
    </hints>
   </connection>
   <connection>
+   <sender>actionSave_picture</sender>
+   <signal>triggered()</signal>
+   <receiver>KreuzstichGUI::MainWindow</receiver>
+   <slot>savePicture()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>435</x>
+     <y>295</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
    <sender>actionGenerate_grid</sender>
    <signal>triggered()</signal>
    <receiver>KreuzstichGUI::MainWindow</receiver>
@@ -599,6 +624,7 @@
   <slot>subwindowActivated()</slot>
   <slot>zoomIn()</slot>
   <slot>zoomOut()</slot>
+  <slot>savePicture()</slot>
   <slot>generateGrid()</slot>
   <slot>generateScriptAsText()</slot>
   <slot>generateScriptAsLaTeX()</slot>
