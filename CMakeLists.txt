@@ -42,12 +42,12 @@ add_definitions(-DSYSTEM="${CMAKE_SYSTEM}"
                 -DPROCESSOR="${CMAKE_SYSTEM_PROCESSOR}")
 
 # Packages
-find_package(ImageMagick 7 REQUIRED COMPONENTS Magick++ MagickCore)
-execute_process(COMMAND Magick++-config --cppflags
+find_package(ImageMagick 6 REQUIRED COMPONENTS Magick++ MagickCore)
+execute_process(COMMAND pkg-config Magick++ --cflags
                 OUTPUT_VARIABLE MAGICK_CPPFLAGS
                 OUTPUT_STRIP_TRAILING_WHITESPACE)
 add_definitions(${MAGICK_CPPFLAGS})
-execute_process(COMMAND Magick++-config --ldflags
+execute_process(COMMAND pkg-config Magick++ --libs
                 OUTPUT_VARIABLE MAGICK_LDFLAGS
                 OUTPUT_STRIP_TRAILING_WHITESPACE)
 find_package(Boost REQUIRED COMPONENTS system filesystem program_options regex)
