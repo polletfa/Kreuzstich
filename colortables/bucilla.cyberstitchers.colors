@@ -1,0 +1,739 @@
+#
+# Color table for Bucilla
+# Created using the conversion tables at 
+# http://www.cyberstitchers.com/stitching_tools/floss_conversion_charts
+#
+Bucilla 9:f5f0ec     # ecru
+Bucilla 102:fff1b2     # lt pale yellow
+Bucilla 103:F6E990     # vy lt topaz
+Bucilla 104:f7cc41     # md lt topaz
+Bucilla 105:F7BE12     # deep canary
+Bucilla 115:e2697b     # md rose
+Bucilla 118:C72E33     # dk coral
+Bucilla 119:BF1A23     # vy dk coral red
+Bucilla 120:c32a3c     # red
+Bucilla 209:a078a5     # Dk Lavender
+Bucilla 214:da9605     # md topaz
+Bucilla 223:d58582     # Lt Shell Pink
+Bucilla 224:f6a7b4     # vy lt dusty rose
+Bucilla 225:ffd7ce     # ul vy lt shell pink
+Bucilla 301:adcbe1     # pale delft blue
+Bucilla 302:A7B2C5     # lt lavender blue
+Bucilla 303:82a8c9     # delft blue
+Bucilla 304:b31e32     # md red
+Bucilla 304:5b81b5     # md delft blue
+Bucilla 304:5785ad     # md blue
+Bucilla 309:c9344d     # dk rose
+Bucilla 309:ffc9ae     # tawny
+Bucilla 311:064055     # md navy blue
+Bucilla 317:99e5a6     # nile green
+Bucilla 318:46a42e     # kelly green
+Bucilla 319:1C8817     # lt green
+Bucilla 320:07711a     # bright green
+Bucilla 321:0B7C38     # vy dk emerald green
+Bucilla 327:551346     # dk violet
+Bucilla 333:604e87     # vy dk blue violet
+Bucilla 340:a4a4c4     # md blue violet
+Bucilla 341:b8bfdc     # lt blue violet
+Bucilla 353:f2a898     # peach
+Bucilla 369:d2ebc5     # vy lt pistachio green
+Bucilla 372:c16363     # md shell pink
+Bucilla 415:bfbfc3     # Pearl Gray
+Bucilla 416:BFBFC3     # pearl gray
+Bucilla 419:7c7c84     # dk steel gray
+Bucilla 420:000000     # black
+Bucilla 433:79511a     # Md Brown
+Bucilla 434:8c602a     # lt brown
+Bucilla 435:a0743e     # vy lt brown
+Bucilla 502:598d6e     # blue green
+Bucilla 515:fee73d     # lemon
+Bucilla 522:819569     # fern green
+Bucilla 524:ceeb90     # lt yellow green
+Bucilla 524:C1CAA7     # vy lt fern green
+Bucilla 552:793666     # md violet
+Bucilla 563:8cd2a8     # lt jade
+Bucilla 605:ffaac5     # vy lt cranberry
+Bucilla 632:936148     # ul vy dk desert sand
+Bucilla 642:b8ad92     # dk beige gray
+Bucilla 647:959884     # md beaver gray
+Bucilla 666:d90028     # Bright Red
+Bucilla 677:f4e7b4     # vy lt old gold
+Bucilla 718:4b924b     # dk pistachio green
+Bucilla 725:f7cc41     # md lt topaz
+Bucilla 726:f7dd68     # lt topaz
+Bucilla 739:f2d3a8     # ul vy lt tan
+Bucilla 754:f6c4b7     # lt peach
+Bucilla 758:eda394     # vy lt terra cotta
+Bucilla 762:E2E2E7     # vy lt pearl gray
+Bucilla 772:e4feb0     # vy lt yellow green
+Bucilla 791:363562     # vy dk cornflower blue
+Bucilla 792:4b497d     # dk cornflower blue
+Bucilla 793:7784af     # md cornflower blue
+Bucilla 798:3e5ea0     # dk delft blue
+Bucilla 813:7eacc9     # lt blue
+Bucilla 815:840720     # md garnet
+Bucilla 818:ffcece     # baby pink
+Bucilla 822:f3ecdc     # lt beige gray
+Bucilla 838:523516     # vy dk beige brown
+Bucilla 839:6a4726     # dk beige brown
+Bucilla 841:b39a7d     # lt beige brown
+Bucilla 842:d9c2a8     # vy lt beige brown
+Bucilla 844:31372d     # ul dk beaver gray
+Bucilla 869:745e27     # vy dk hazelnut brown
+Bucilla 898:512d07     # vy dk coffee brown
+Bucilla 899:e2697b     # md rose
+Bucilla 900:db3700     # dk burnt orange
+Bucilla 904:eea1b2     # lt dusty rose
+Bucilla 905:568f2e     # dk parrot green
+Bucilla 912:53bd6a     # lt emerald green
+Bucilla 924:c99f6a     # lt tan
+Bucilla 924:166059     # vy dk gray green
+Bucilla 925:ca9073     # desert sand
+Bucilla 926:8c602a     # lt brown
+Bucilla 927:8E4C12     # dk golden brown
+Bucilla 928:8c410f     # dk mahogany
+Bucilla 930:6d2d00     # vy dk mahogany
+Bucilla 951:ffddc6     # lt tawny
+Bucilla 958:5bc39d     # dk seagreen
+Bucilla 969:80a3ba     # lt antique blue
+Bucilla 971:46728c     # md antique blue
+Bucilla 986:2b671f     # vy dk forest green
+Bucilla 989:92bf68     # forest green
+Bucilla 991:0b6d4c     # dk aquamarine
+Bucilla 992:4aac88     # vy lt aquamarine
+Bucilla 996:13bcde     # md electric blue
+Bucilla 1224:DDADB6     # vy lt antique mauve
+Bucilla 1304:b31e32     # md red
+Bucilla 1310:000000     # black
+Bucilla 1320:75bb71     # md pistachio green
+Bucilla 1322:467194     # dk dark baby blue
+Bucilla 1349:c72e33     # dk coral
+Bucilla 1350:d64542     # md coral
+Bucilla 1351:de605e     # coral
+Bucilla 1367:4b924b     # dk pistachio green
+Bucilla 1368:aad99f     # lt pistachio green
+Bucilla 1435:a0743e     # vy lt brown
+Bucilla 1470:9ead57     # lt avocado green
+Bucilla 1472:d5e191     # ul lt avocado green
+Bucilla 1502:598d6e     # blue green
+Bucilla 1666:d90028     # bright red
+Bucilla 1712:fff8e5     # cream
+Bucilla 1738:ddb689     # vy lt tan
+Bucilla 1739:f2d3a8     # ul vy lt tan
+Bucilla 1742:ffbc50     # lt tangerine
+Bucilla 1743:ffdd64     # md yellow
+Bucilla 1745:fff1b2     # lt pale yellow
+Bucilla 1754:f6c4b7     # lt peach
+Bucilla 1758:eda394     # vy lt terra cotta
+Bucilla 1772:e4feb0     # vy lt yellow green
+Bucilla 1797:223f88     # royal blue
+Bucilla 1798:3e5ea0     # dk delft blue
+Bucilla 1948:fddcc5     # vy lt peach
+Bucilla 1961:DA627C     # dk dusty rose
+Bucilla 1963:ffced7     # ul vy lt dusty rose
+Bucilla 1996:13bcde     # md electric blue
+Bucilla 2001:000000     # black
+Bucilla 2003:FAFAFA     # white
+Bucilla 2056:D64A5F     # rose
+Bucilla 2057:AF3A4A     # vy dk rose
+Bucilla 2174:5F9EA5     # peacock blue
+Bucilla 2200:FFCED7     # ul vy lt dusty rose
+Bucilla 2203:D58582     # lt shell pink
+Bucilla 2210:FD75A9     # lt cyclamen pink
+Bucilla 2240:D2EBC5     # vy lt pistachio green
+Bucilla 2242:99E5A6     # nile green
+Bucilla 2246:36A459     # md emerald green
+Bucilla 2440:CDDBE8     # ul vy lt antique blue
+Bucilla 2450:0f2075     # dk royal blue
+Bucilla 2465:AE9D78     # md mocha brown
+Bucilla 2469:B9C572     # vy lt avocado green
+Bucilla 2481:bf1a23     # vy dk coral red
+Bucilla 2514:F9DA8C     # lt autumn gold
+Bucilla 2560:a0743e     # vy lt brown
+Bucilla 2568:6D2D00     # vy dk mahogany
+Bucilla 2572:FFF1B2     # lt pale yellow
+Bucilla 2574:EFC11A     # topaz
+Bucilla 2576:FFBC50     # lt tangerine
+Bucilla 2582:9acdcd     # lt peacock blue
+Bucilla 2592:ffbc50     # lt tangerine
+Bucilla 2593:DA9605     # md topaz
+Bucilla 2595:016EA5     # dk electric blue
+Bucilla 2596:44dec7     # lt bright turquoise
+Bucilla 2601:D7EBF2     # vy lt baby blue
+Bucilla 2602:5f8da9     # md baby blue
+Bucilla 2604:223F88     # royal blue
+Bucilla 2606:0F2075     # dk royal blue
+Bucilla 2610:f3949f     # md pink
+Bucilla 2611:f2a898     # peach
+Bucilla 2612:F32D3E     # dk carnation
+Bucilla 2613:CE7535     # lt mahogany
+Bucilla 2614:CF501E     # md copper
+Bucilla 2615:BB3A0F     # red copper
+Bucilla 2621:CEEB90     # lt yellow green
+Bucilla 2622:9EAD57     # lt avocado green
+Bucilla 2623:2F6913     # dk hunter green
+Bucilla 2630:e0c5e0     # lt lavender
+Bucilla 2631:d8aec7     # lt violet
+Bucilla 2632:a16089     # violet
+Bucilla 2633:4a133f     # vy dk violet
+Bucilla 2642:FF9BBA     # pale geranium
+Bucilla 2643:E64281     # md cranberry
+Bucilla 2650:d90028     # bright red
+Bucilla 2652:c32a3c     # red
+Bucilla 2653:b31e32     # md red
+Bucilla 2661:fee73d     # lemon
+Bucilla 2662:FADD00     # bright canary
+Bucilla 2664:FF9D25     # md tangerine
+Bucilla 2665:E66007     # burnt orange
+Bucilla 2666:fd340c     # bright orange-red
+Bucilla 2670:c99f6a     # lt tan
+Bucilla 2671:8e4c12     # Dk Golden Brown
+Bucilla 2672:6d2d00     # vy dk mahogany
+Bucilla 2673:3A2723     # black brown
+Bucilla 2680:89C53A     # md parrot green
+Bucilla 2681:AEDA62     # bright chartreuse
+Bucilla 2682:568f2e     # dk parrot green
+Bucilla 2690:bcc0a8     # lt beaver gray
+Bucilla 2691:BCC0A8     # lt beaver gray
+Bucilla 2692:7c7c84     # dk steel gray
+Bucilla 2711:B4E0E9     # vy lt turquoise
+Bucilla 2712:2E7288     # dk wedgewood
+Bucilla 2712:4d91a4     # lt wedgewood
+Bucilla 2721:4aac88     # lt aquamarine
+Bucilla 2721:7ecdaf     # vy lt aquamarine
+Bucilla 2740:937580     # md antique violet
+Bucilla 2741:A45561     # dk antique mauve
+Bucilla 2751:F5F0EC     # ecru
+Bucilla 2752:E0D4C3     # vy lt mocha brown
+Bucilla 2754:918463     # vy dk beige gray
+Bucilla 2756:6A4726     # dk beige brown
+Bucilla 2757:A88764     # md mocha beige
+Bucilla 2762:2b671f     # vy dk forest green
+Bucilla 2763:1E9044     # dk emerald green
+Bucilla 2764:1e9044     # dk emerald green
+Bucilla 2773:fff1b2     # lt pale yellow
+Bucilla 2775:314615     # black avocado green
+Bucilla 2780:055538     # vy dk blue green
+Bucilla 2781:fb5c84     # geranium
+Bucilla 2782:AAD99F     # lt pistachio green
+Bucilla 2783:75BB71     # md pistachio green
+Bucilla 2784:79001C     # dk garnet
+Bucilla 2874:75BCA1     # lt teal green
+Bucilla 2884:519468     # md jade
+Bucilla 3012:939857     # md khaki green
+Bucilla 3013:B7B77E     # lt khaki green
+Bucilla 3023:AEAB8A     # lt brown gray
+Bucilla 3033:E0D4C3     # vy lt mocha brown
+Bucilla 3041:937580     # md antique violet
+Bucilla 3042:B499A4     # lt antique violet
+Bucilla 3045:C5AD66     # dk yellow beige
+Bucilla 3046:D9CDA3     # md yellow beige
+Bucilla 3047:E7E1B8     # lt yellow beige
+Bucilla 3053:819569     # fern green
+Bucilla 3063:E64281     # md cranberry
+Bucilla 3312:2E597C     # vy dk baby blue
+Bucilla 3325:A6C3D9     # lt baby blue
+Bucilla 3326:F3949F     # lt rose
+Bucilla 3347:BF2642     # vy dk salmon
+Bucilla 3352:EA8079     # lt coral
+Bucilla 3354:DDB689     # vy lt tan
+Bucilla 3356:D37863     # md terra cotta
+Bucilla 3400:d7d7c3     # vy lt brown gray
+Bucilla 3402:F7A170     # vy lt mahogany
+Bucilla 3413:3E4144     # dk pewter gray
+Bucilla 3535:555545     # vy lt ash gray
+Bucilla 3607:D25292     # lt plum
+Bucilla 3608:E67DAC     # vy lt plum
+Bucilla 3609:FFAACF     # ul lt plum
+Bucilla 3610:6F6641     # dk drab brown
+Bucilla 3611:847a57     # drab brown
+Bucilla 3612:A29670     # lt drab brown
+Bucilla 3646:707864     # dk beaver gray
+Bucilla 3676:EECA70     # lt old gold
+Bucilla 3685:851531     # vy dk mauve
+Bucilla 3687:C65375     # mauve
+Bucilla 3688:E890AC     # md mauve
+Bucilla 3689:FDBACE     # lt mauve
+Bucilla 3720:EF6A41     # dk orange spice
+Bucilla 3721:f37c51     # md orange spice
+Bucilla 3722:F79168     # lt orange spice
+Bucilla 3743:D3C6CF     # vy lt antique violet
+Bucilla 3747:CDD2EA     # vy lt blue violet
+Bucilla 3752:9AB3CD     # vy lt antique blue
+Bucilla 3756:E7F9F9     # ul vy lt baby blue
+Bucilla 3765:17616D     # vy dk peacock blue
+Bucilla 3766:9ACDCD     # lt peacock blue
+Bucilla 3768:528779     # dk gray green
+Bucilla 3772:AA7959     # vy dk desert sand
+Bucilla 3778:DA8E7F     # lt terra cotta
+Bucilla 3781:574d2a     # dk mocha brown
+Bucilla 3782:CABCA3     # lt mocha brown
+Bucilla 3783:C77E00     # vy dk topaz
+Bucilla 3787:656040     # dk brown gray
+Bucilla 3790:776847     # ul dk beige gray
+Bucilla 3793:7784af     # md cornflower blue
+Bucilla 3794:8e9dc6     # lt cornflower blue
+Bucilla 3799:2B2C2F     # vy dk pewter gray
+Bucilla 3803:A83255     # dk mauve
+Bucilla 3808:0B525D     # ul vy dk turquoise
+Bucilla 3809:1E6A79     # vy dk turquoise
+Bucilla 3814:79001C     # dk garnet
+Bucilla 3820:E2B735     # dk straw
+Bucilla 3822:F2DF70     # lt straw
+Bucilla 3827:F7B670     # pale golden brown
+Bucilla 3830:C35A4C     # terra cotta
+Bucilla 3834:70365B     # dk grape
+Bucilla 3835:915E81     # md grape
+Bucilla 3917:A4175D     # md plum
+Bucilla 3930:316274     # dk antique blue
+Bucilla 3931:46728c     # md antique blue
+Bucilla 3932:80A3BA     # lt antique blue
+Bucilla 3945:FFC9AE     # tawny
+Bucilla 3948:FDDCC5     # vy lt peach
+Bucilla 3950:EBC8B3     # lt desert sand
+Bucilla 4195:3e4144     # dk pewter gray
+Bucilla 5165:f7cc41     # md lt topaz
+Bucilla 5375:f2d3a8     # ul vy lt tan
+Bucilla 5943:B58C53     # tan
+Bucilla 6001:001326     # vy dk navy blue
+Bucilla 6002:064055     # md navy blue
+Bucilla 6003:467194     # dk dark baby blue
+Bucilla 6004:467194     # dk dark baby blue
+Bucilla 6005:5F8DA9     # md baby blue
+Bucilla 6006:ACD4E9     # vy lt blue
+Bucilla 6007:224271     # vy dk blue
+Bucilla 6009:6FB1C1     # sky blue
+Bucilla 6011:D3FFF9     # vy lt sky blue
+Bucilla 6016:5F8DA9     # md baby blue
+Bucilla 6017:82a8c9     # delft blue
+Bucilla 6018:B9E1E9     # ul vy very lt blue
+Bucilla 6019:940B24     # garnet
+Bucilla 6022:AF3A4A     # vy dk rose
+Bucilla 6024:D64A5F     # rose
+Bucilla 6025:E2697B     # md rose
+Bucilla 6026:F3949F     # md pink
+Bucilla 6028:C32A3C     # red
+Bucilla 6029:d64542     # md coral
+Bucilla 6030:DE605E     # coral
+Bucilla 6031:F2A898     # peach
+Bucilla 6031:FFB496     # lt apricot
+Bucilla 6033:fb7493     # lt carnation
+Bucilla 6034:FF9BB2     # vy lt carnation
+Bucilla 6037:B84263     # ul dk dusty rose
+Bucilla 6041:DE2271     # dk cranberry
+Bucilla 6044:fb5c84     # geranium
+Bucilla 6046:FF9BB2     # vy lt carnation
+Bucilla 6048:236831     # vy dkpistachio green
+Bucilla 6050:75BB71     # md pistachio green
+Bucilla 6052:D2EBC5     # vy lt pistachio green
+Bucilla 6053:005922     # green
+Bucilla 6055:53BD6A     # lt emerald green
+Bucilla 6057:005922     # green
+Bucilla 6058:07711a     # bright green
+Bucilla 6059:568f2e     # dk parrot green
+Bucilla 6060:46a42e     # kelly green
+Bucilla 6061:408128     # dk forest green
+Bucilla 6062:568F2E     # dk parrot green
+Bucilla 6063:76A451     # md yellow green
+Bucilla 6064:C6E560     # lt parrot green
+Bucilla 6065:1B5100     # vy dk hunter green
+Bucilla 6067:4B8835     # hunter green
+Bucilla 6068:76A451     # md yellow green
+Bucilla 6074:D5E191     # ul lt avocado green
+Bucilla 6076:07711a     # bright green
+Bucilla 6077:46A42E     # kelly green
+Bucilla 6078:b3be95     # lt fern green
+Bucilla 6079:3E4144     # dk pewter gray
+Bucilla 6080:7C7C84     # dk steel gray
+Bucilla 6081:BFBFC3     # pearl gray
+Bucilla 6082:E2E2E7     # vy lt pearl gray
+Bucilla 6083:2E7288     # dk wedgewood
+Bucilla 6084:4d91a4     # lt wedgewood
+Bucilla 6086:57a2b1     # turquoise
+Bucilla 6089:85D5B6     # md seagreen
+Bucilla 6089:92bf68     # forest green
+Bucilla 6090:85D5B6     # md seagreen
+Bucilla 6091:b4f2df     # lt seagreen
+Bucilla 6092:3e2200     # ul dk coffee brown
+Bucilla 6093:653D0F     # dk coffee brown
+Bucilla 6095:8C602A     # lt brown
+Bucilla 6096:B58C53     # tan
+Bucilla 6098:FFF3E1     # vy lt tawny
+Bucilla 6099:6A4726     # dk beige brown
+Bucilla 6100:967954     # md beige brown
+Bucilla 6101:B39A7D     # lt beige brown
+Bucilla 6103:918463     # vy dk beige gray
+Bucilla 6104:CABCA3     # lt mocha brown
+Bucilla 6104:D9C2A8     # vy lt beige brown
+Bucilla 6108:6D2D00     # vy dk mahogany
+Bucilla 6109:af5b2a     # md mahogany
+Bucilla 6110:EC9163     # lt copper
+Bucilla 6111:C77E00     # vy dk topaz
+Bucilla 6113:DA9605     # md topaz
+Bucilla 6114:a29670     # lt drab brown
+Bucilla 6115:F5F0EC     # ecru
+Bucilla 6116:FD340C     # bright orange-red
+Bucilla 6117:E66007     # burnt orange
+Bucilla 6118:FA8500     # pumpkin
+Bucilla 6119:FF9D25     # md tangerine
+Bucilla 6121:FFDD64     # md yellow
+Bucilla 6122:FFE48B     # pale yellow
+Bucilla 6123:FAF6B7     # vy lt golden yellow
+Bucilla 6125:ff9d25     # md tangerine
+Bucilla 6126:FFBC50     # lt tangerine
+Bucilla 6127:F7CC41     # md lt topaz
+Bucilla 6128:F7DD68     # lt topaz
+Bucilla 6129:fff983     # lt lemon
+Bucilla 6130:FAC800     # dk lemon
+Bucilla 6131:FEE73D     # lemon
+Bucilla 6132:FFF983     # lt lemon
+Bucilla 6133:4A133F     # vy dk violet
+Bucilla 6135:A16089     # violet
+Bucilla 6136:D8AEC7     # lt violet
+Bucilla 6137:805988     # vy dk lavender
+Bucilla 6139:C09BC0     # md lavender
+Bucilla 6140:E0C5E0     # lt lavender
+Bucilla 6149:fafafa     # white
+Bucilla 6150:000000     # black
+Bucilla 6153:C32A3C     # red
+Bucilla 6155:FFF8E5     # cream
+Bucilla 6158:85D5B6     # md seagreen
+Bucilla 6159:8C602A     # lt brown
+Bucilla 6171:CE3F54     # dk salmon
+Bucilla 6172:EA8079     # lt coral
+Bucilla 6174:ffb496     # lt apricot
+Bucilla 6176:a83255     # dk mauve
+Bucilla 6177:E890AC     # md mauve
+Bucilla 6181:516132     # dk green gray
+Bucilla 6182:6E8D58     # md pine green
+Bucilla 6183:819569     # fern green
+Bucilla 6184:BFBFC3     # pearl gray
+Bucilla 6185:D7D7C3     # vy lt brown gray
+Bucilla 6186:AEAB8A     # lt brown gray
+Bucilla 6187:79A296     # md gray green
+Bucilla 6195:3D7654     # dk blue green
+Bucilla 6196:3d7654     # dk blue green
+Bucilla 6197:598D6E     # blue green
+Bucilla 6197:8AB5A0     # md blue green
+Bucilla 6198:B2D4BD     # vy lt blue green
+Bucilla 6199:653D0F     # dk coffee brown
+Bucilla 6200:aeab8a     # lt brown gray
+Bucilla 6202:F9B460     # md autumn gold
+Bucilla 6203:DDB689     # vy lt tan
+Bucilla 6206:B66E2A     # golden brown
+Bucilla 6206:8E4C12     # dk golden brown
+Bucilla 6210:C09BC0     # md lavender
+Bucilla 6212:9A3D43     # vy dk shell pink
+Bucilla 6213:c65375     # mauve
+Bucilla 6214:EEA1B2     # lt dusty rose
+Bucilla 6215:a4132b     # dk red
+Bucilla 6217:F32D3E     # dk carnation
+Bucilla 6218:F784AA     # lt cranberry
+Bucilla 6221:9c9ca4     # lt steel gray
+Bucilla 6223:B66E2A     # golden brown
+Bucilla 6224:F5C3A9     # ul vy lt mahogany
+Bucilla 6226:de605e     # coral
+Bucilla 6227:C8A027     # dk old gold
+Bucilla 6228:E3B344     # md old gold
+Bucilla 6238:D1C3CF     # lt shell gray
+Bucilla 6243:BB8871     # dk desert sand
+Bucilla 6245:228C69     # aquamarine
+Bucilla 6263:9C9CA4     # lt steel gray
+Bucilla 6280:57A2B1     # turquoise
+Bucilla 6281:EE6195     # cranberry
+Bucilla 6303:a88764     # md mocha beige
+Bucilla 6307:ADCBE1     # pale delft blue
+Bucilla 6316:52651A     # vy dk avocado green
+Bucilla 6328:FFF3E1     # vy lt tawny
+Bucilla 6340:A4A4C4     # md blue violet
+Bucilla 6341:B8BFDC     # lt blue violet
+Bucilla 6347:BF2642     # vy dk salmon
+Bucilla 6352:EA8079     # lt coral
+Bucilla 6367:4B924B     # dk pistachio green
+Bucilla 6368:aad99f     # lt pistachio green
+Bucilla 6402:F7A170     # vy lt mahogany
+Bucilla 6504:B2D4BD     # vy lt blue green
+Bucilla 6666:d90028     # bright red
+Bucilla 6720:EF6A41     # dk orange spice
+Bucilla 6722:F79168     # lt orange spice
+Bucilla 6738:DDB689     # vy lt tan
+Bucilla 6739:f2d3a8     # ul vy lt tan
+Bucilla 6746:FFFFE1     # off white
+Bucilla 6754:F6C4B7     # lt peach
+Bucilla 6758:EDA394     # vy lt terra cotta
+Bucilla 6760:E6858F     # salmon
+Bucilla 6798:3E5EA0     # dk delft blue
+Bucilla 6800:ADCBE1     # pale delft blue
+Bucilla 6814:79001C     # dk garnet
+Bucilla 6819:FFE1E1     # lt baby pink
+Bucilla 6842:D9C2A8     # vy lt beige brown
+Bucilla 6891:F32D3E     # dk carnation
+Bucilla 6917:A4175D     # md plum
+Bucilla 6919:BB3A0F     # red copper
+Bucilla 6930:316274     # dk antique blue
+Bucilla 6931:46728C     # md antique blue
+Bucilla 6932:80A3BA     # lt antique blue
+Bucilla 6945:ffc9ae     # tawny
+Bucilla 6954:99e5a6     # nile green
+Bucilla 6955:C6FFCA     # lt nile green
+Bucilla 6975:8E4C12     # dk golden brown
+Bucilla 6976:CB8234     # md golden brown
+Bucilla 6977:DB9851     # lt golden brown
+Bucilla 6996:13BCDE     # md electric blue
+Bucilla 10209:A078A5     # dk lavender
+Bucilla 10224:E9B1A8     # vy lt shell pink
+Bucilla 10225:ffd5d5     # ul vy lt shell pink
+Bucilla 10225:ffd7ce     # ul vy lt shell pink
+Bucilla 10304:B31E32     # md red
+Bucilla 10309:C9344D     # dk rose
+Bucilla 10311:064055     # md navy blue
+Bucilla 10327:551346     # dk violet
+Bucilla 10333:604E87     # vy dk blue violet
+Bucilla 10334:5F8DA9     # md baby blue
+Bucilla 10340:A4A4C4     # md blue violet
+Bucilla 10341:B8BFDC     # lt blue violet
+Bucilla 10350:D64542     # md coral
+Bucilla 10369:D2EBC5     # vy lt pistachio green
+Bucilla 10372:C16363     # md shell pink
+Bucilla 10415:BFBFC3     # pearl gray
+Bucilla 10433:79511A     # md brown
+Bucilla 10434:8C602A     # lt brown
+Bucilla 10435:a0743e     # vy lt brown
+Bucilla 10436:b58c53     # tan
+Bucilla 10437:C99F6A     # lt tan
+Bucilla 10501:3D7654     # dk blue green
+Bucilla 10502:598d6e     # blue green
+Bucilla 10504:B2D4BD     # vy lt blue green
+Bucilla 10552:793666     # md violet
+Bucilla 10561:2B6843     # vy dk jade
+Bucilla 10563:8CD2A8     # lt jade
+Bucilla 10605:FFAAC5     # vy lt cranberry
+Bucilla 10610:6F6641     # dk drab brown
+Bucilla 10632:936148     # ul vy dk desert sand
+Bucilla 10642:B8AD92     # dk beige gray
+Bucilla 10647:959884     # md beaver gray
+Bucilla 10666:D90028     # bright red
+Bucilla 10677:F4E7B4     # vy lt old gold
+Bucilla 10721:AC4A52     # dk shell pink
+Bucilla 10725:F7CC41     # md lt topaz
+Bucilla 10726:F7DD68     # lt topaz
+Bucilla 10741:FF9D25     # md tangerine
+Bucilla 10746:FFFFE1     # off white
+Bucilla 10758:EDA394     # vy lt terra cotta
+Bucilla 10761:F2ACAC     # lt salmon
+Bucilla 10772:e4feb0     # vy lt yellow green
+Bucilla 10792:4B497D     # dk cornflower blue
+Bucilla 10793:7784AF     # md cornflower blue
+Bucilla 10798:3E5EA0     # dk delft blue
+Bucilla 10813:7EACC9     # lt blue
+Bucilla 10815:840720     # md garnet
+Bucilla 10818:FFCECE     # baby pink
+Bucilla 10822:F3ECDC     # lt beige gray
+Bucilla 10826:5785AD     # md blue
+Bucilla 10838:523516     # vy dk beige brown
+Bucilla 10839:6A4726     # dk beige brown
+Bucilla 10840:967954     # md beige brown
+Bucilla 10841:B39A7D     # lt beige brown
+Bucilla 10842:D9C2A8     # vy lt beige brown
+Bucilla 10844:31372D     # ul dk beaver gray
+Bucilla 10869:745E27     # vy dk hazelnut brown
+Bucilla 10898:512D07     # vy dk coffee brown
+Bucilla 10899:E2697B     # md rose
+Bucilla 10900:DB3700     # dk burnt orange
+Bucilla 10912:53BD6A     # lt emerald green
+Bucilla 10921:E26132     # copper
+Bucilla 10924:166059     # vy dk gray green
+Bucilla 10951:FFDDC6     # lt tawny
+Bucilla 10958:5BC39D     # dk seagreen
+Bucilla 10986:2B671F     # vy dk forest green
+Bucilla 10989:92BF68     # forest green
+Bucilla 10991:0B6D4C     # dk aquamarine
+Bucilla 10992:4AAC88     # lt aquamarine
+Bucilla 10996:13BCDE     # md electric blue
+Bucilla 11224:E9B1A8     # vy lt shell pink
+Bucilla 12001:000000     # black
+Bucilla 12003:FAFAFA     # white
+Bucilla 12056:D64A5F     # rose
+Bucilla 12057:AF3A4A     # vy dk rose
+Bucilla 12174:5F9EA5     # peacock blue
+Bucilla 12200:FFCED7     # ul vy lt dusty rose
+Bucilla 12203:D58582     # lt shell pink
+Bucilla 12210:FD75A9     # lt cyclamen pink
+Bucilla 12240:d2ebc5     # vy lt pistachio green
+Bucilla 12242:99E5A6     # nile green
+Bucilla 12246:36A459     # md emerald green
+Bucilla 12469:B9C572     # vy lt avocado green
+Bucilla 12514:F9DA8C     # lt autumn gold
+Bucilla 12560:a0743e     # vy lt brown
+Bucilla 12568:8C410F     # dk mahogany
+Bucilla 12572:FFF1B2     # lt pale yellow
+Bucilla 12576:FAC800     # dk lemon
+Bucilla 12593:DA9605     # md topaz
+Bucilla 12595:0493BE     # electric blue
+Bucilla 12596:44DEC7     # lt bright turquoise
+Bucilla 12601:B9E1E9     # ul vy very lt blue
+Bucilla 12604:223F88     # royal blue
+Bucilla 12606:0F2075     # dk royal blue
+Bucilla 12612:F32D3E     # dk carnation
+Bucilla 12613:CE7535     # lt mahogany
+Bucilla 12614:CF501E     # md copper
+Bucilla 12615:BB3A0F     # red copper
+Bucilla 12621:D5E191     # ul lt avocado green
+Bucilla 12622:9EAD57     # lt avocado green
+Bucilla 12623:2F6913     # dk hunter green
+Bucilla 12630:E0C5E0     # lt lavender
+Bucilla 12631:d8aec7     # lt violet
+Bucilla 12632:A16089     # violet
+Bucilla 12633:4A133F     # vy dk violet
+Bucilla 12642:FF9BBA     # pale geranium
+Bucilla 12643:FB5C84     # geranium
+Bucilla 12650:c32a3c     # red
+Bucilla 12662:FADD00     # bright canary
+Bucilla 12664:FF9D25     # md tangerine
+Bucilla 12665:E66007     # burnt orange
+Bucilla 12666:DE4600     # md burnt orange
+Bucilla 12671:a0743e     # vy lt brown
+Bucilla 12672:8E4C12     # dk golden brown
+Bucilla 12673:3A2723     # black brown
+Bucilla 12680:89c53a     # md parrot green
+Bucilla 12681:AEDA62     # bright chartreuse
+Bucilla 12690:7C696D     # dk shell gray
+Bucilla 12691:9C9CA4     # lt steel gray
+Bucilla 12692:7C7C84     # dk steel gray
+Bucilla 12711:B4E0E9     # vy lt turquoise
+Bucilla 12740:937580     # md antique violet
+Bucilla 12741:A45561     # dk antique mauve
+Bucilla 12751:F5F0EC     # ecru
+Bucilla 12752:E0D4C3     # vy lt mocha brown
+Bucilla 12754:918463     # vy dk beige gray
+Bucilla 12756:6A4726     # dk beige brown
+Bucilla 12757:a88764     # md mocha beige
+Bucilla 12763:1E9044     # dk emerald green
+Bucilla 12775:314615     # black avocado green
+Bucilla 12780:055538     # vy dk blue green
+Bucilla 12781:FB5C84     # geranium
+Bucilla 12782:aad99f     # lt pistachio green
+Bucilla 12783:75BB71     # md pistachio green
+Bucilla 12784:79001c     # dk garnet
+Bucilla 12884:519468     # md jade
+Bucilla 13011:6E783B     # dk khaki green
+Bucilla 13012:939857     # md khaki green
+Bucilla 13013:B7B77E     # lt khaki green
+Bucilla 13023:AEAB8A     # lt brown gray
+Bucilla 13041:937580     # md antique violet
+Bucilla 13042:B499A4     # lt antique violet
+Bucilla 13045:C5AD66     # dk yellow beige
+Bucilla 13046:D9CDA3     # md yellow beige
+Bucilla 13047:E7E1B8     # lt yellow beige
+Bucilla 13078:faf6b7     # vy lt golden yellow
+Bucilla 13325:A6C3D9     # lt baby blue
+Bucilla 13326:F3949F     # lt rose
+Bucilla 13340:FA8155     # md apricot
+Bucilla 13341:FF9774     # apricot
+Bucilla 13345:2f6913     # dk hunter green
+Bucilla 13346:4b8835     # hunter green
+Bucilla 13347:BF2642     # vy dk salmon
+Bucilla 13348:ceeb90     # lt yellow green
+Bucilla 13352:EA8079     # lt coral
+Bucilla 13354:E0D4C3     # vy lt mocha brown
+Bucilla 13356:D37863     # md terra cotta
+Bucilla 13364:9DB275     # pine green
+Bucilla 13371:3A2723     # black brown
+Bucilla 13400:D1C3CF     # lt shell gray
+Bucilla 13402:F7A170     # vy lt mahogany
+Bucilla 13413:3E4144     # dk pewter gray
+Bucilla 13453:D1C3CF     # lt shell gray
+Bucilla 13535:555545     # vy lt ash gray
+Bucilla 13607:D25292     # lt plum
+Bucilla 13608:E67DAC     # vy lt plum
+Bucilla 13609:FFAACF     # ul lt plum
+Bucilla 13610:6F6641     # dk drab brown
+Bucilla 13611:847A57     # drab brown
+Bucilla 13612:A29670     # lt drab brown
+Bucilla 13646:707864     # dk beaver gray
+Bucilla 13676:EECA70     # lt old gold
+Bucilla 13687:C65375     # mauve
+Bucilla 13716:F6A7B4     # vy lt dusty rose
+Bucilla 13720:EF6A41     # dk orange spice
+Bucilla 13721:f37c51     # md orange spice
+Bucilla 13722:F79168     # lt orange spice
+Bucilla 13743:D3C6CF     # vy lt antique violet
+Bucilla 13747:CDD2EA     # vy lt blue violet
+Bucilla 13750:1B3E49     # vy dk antique blue
+Bucilla 13752:9AB3CD     # vy lt antique blue
+Bucilla 13756:E7F9F9     # ul vy lt baby blue
+Bucilla 13766:9ACDCD     # lt peacock blue
+Bucilla 13772:AA7959     # vy dk desert sand
+Bucilla 13776:CE7535     # lt mahogany
+Bucilla 13778:DA8E7F     # lt terra cotta
+Bucilla 13781:574D2A     # dk mocha brown
+Bucilla 13783:C77E00     # vy dk topaz
+Bucilla 13794:8E9DC6     # lt cornflower blue
+Bucilla 13799:2B2C2F     # vy dk pewter gray
+Bucilla 13803:a83255     # dk mauve
+Bucilla 13813:b2d4bd     # lt blue green
+Bucilla 13814:79001C     # dk garnet
+Bucilla 13816:78B48A     # celadon green
+Bucilla 13822:f2df70     # lt straw
+Bucilla 13827:F7B670     # pale golden brown
+Bucilla 13830:C35A4C     # terra cotta
+Bucilla 13841:B39A7D     # lt beige brown
+Bucilla 13843:0493be     # electric blue
+Bucilla 13917:A4175D     # md plum
+Bucilla 13930:316274     # dk antique blue
+Bucilla 13931:46728C     # md antique blue
+Bucilla 13932:80A3BA     # lt antique blue
+Bucilla 13945:FFC9AE     # tawny
+Bucilla 13948:FDDCC5     # vy lt peach
+Bucilla 13950:EBC8B3     # lt desert sand
+Bucilla 15375:DDB689     # vy lt tan
+Bucilla 15943:C1C9D9     # lt gray blue
+Bucilla 16001:D3FFF9     # vy lt sky blue
+Bucilla 16004:467194     # dk dark baby blue
+Bucilla 16009:6FB1C1     # sky blue
+Bucilla 16011:D3FFF9     # vy lt sky blue
+Bucilla 16016:5F8DA9     # md baby blue
+Bucilla 16019:840720     # md garnet
+Bucilla 16030:DE605E     # coral
+Bucilla 16031:F2A898     # peach
+Bucilla 16046:FF9BB2     # vy lt carnation
+Bucilla 16048:236831     # vy dkpistachio green
+Bucilla 16067:4b8835     # hunter green
+Bucilla 16068:76A451     # md yellow green
+Bucilla 16077:46A42E     # kelly green
+Bucilla 16078:b3be95     # lt fern green
+Bucilla 16121:FFDD64     # md yellow
+Bucilla 16122:FFE48B     # pale yellow
+Bucilla 16125:ff9d25     # md tangerine
+Bucilla 16126:FFBC50     # lt tangerine
+Bucilla 16129:FFF983     # lt lemon
+Bucilla 16137:805988     # vy dk lavender
+Bucilla 16138:A078A5     # dk lavender
+Bucilla 16159:9A7B33     # dk hazelnut brown
+Bucilla 16171:CE3F54     # dk salmon
+Bucilla 16172:EA8079     # lt coral
+Bucilla 16177:e890ac     # md mauve
+Bucilla 16181:516132     # dk green gray
+Bucilla 16182:6E8D58     # md pine green
+Bucilla 16183:B3BE95     # lt fern green
+Bucilla 16184:BFBFC3     # pearl gray
+Bucilla 16185:D7D7C3     # vy lt brown gray
+Bucilla 16186:AEAB8A     # lt brown gray
+Bucilla 16187:79A296     # md gray green
+Bucilla 16195:3D7654     # dk blue green
+Bucilla 16197:8AB5A0     # md blue green
+Bucilla 16198:B2D4BD     # vy lt blue green
+Bucilla 16199:653D0F     # dk coffee brown
+Bucilla 16202:F9B460     # md autumn gold
+Bucilla 16203:DDB689     # vy lt tan
+Bucilla 16206:b66e2a     # golden brown
+Bucilla 16212:9A3D43     # vy dk shell pink
+Bucilla 16215:a4132b     # dk red
+Bucilla 16218:F784AA     # lt cranberry
+Bucilla 16221:AE9AA4     # md shell gray
+Bucilla 16223:B66E2A     # golden brown
+Bucilla 16224:F5C3A9     # ul vy lt mahogany
+Bucilla 16227:C8A027     # dk old gold
+Bucilla 16228:E3B344     # md old gold
+Bucilla 16238:D1C3CF     # lt shell gray
+Bucilla 16243:BB8871     # dk desert sand

@@ -12,6 +12,11 @@ type=txt
 if [ "$1" = "--html" ]; then
     type=html
     echo "<html><body><table>"
+else
+    echo "#"
+    echo "# Generated from pictures of the DMC color card"
+    echo "#"
+    echo
 fi
 
 for i in extracted_colors/*.png; do
