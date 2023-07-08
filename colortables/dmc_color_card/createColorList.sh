@@ -20,13 +20,7 @@ for i in extracted_colors/*.png; do
     colornum="$(basename "$i" .png | cut -d_ -f3)"
     name="$namePrefix$colornum"
 
-    intensity="$(convert "$i" -colorspace HSI -resize 1x1 txt:- |tail -n1|cut -d, -f4|cut -d% -f1|cut -d. -f1)"
-
-    # For image with high intensity, we increase the brightness to compensate
-    # for the shadows
-    increase_brightness="$(($intensity / 5))"
-
-    color="$(convert "$i" -resize 1x1 -brightness-contrast $increase_brightness -modulate 100,150 txt:- | grep -e '\#[0-9A-F]\{6\}' -o | cut -d# -f2 )"
+    color="$(convert "$i" -resize 1x1 -modulate 100,150 txt:- | grep -e '\#[0-9A-F]\{6\}' -o | cut -d# -f2 )"
 
     if [ "$type" = "txt" ]; then
         if [ "$num" = "000" ]; then
