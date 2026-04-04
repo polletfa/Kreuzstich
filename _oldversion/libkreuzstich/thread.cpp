@@ -65,8 +65,8 @@ namespace fs = boost::filesystem;
 bool ColorComparator::operator ()(const ThreadColor& a, const ThreadColor& b) const {
     if(a.hsl().hue() < b.hsl().hue()) return true;
     if(a.hsl().hue() == b.hsl().hue()) {
-        if(a.hsl().luminosity() < b.hsl().luminosity()) return true;
-        if(a.hsl().luminosity() == b.hsl().luminosity())
+        if(a.hsl().lightness() < b.hsl().lightness()) return true;
+        if(a.hsl().lightness() == b.hsl().lightness())
             return a.hsl().saturation() < b.hsl().saturation();
     }
     return false;

@@ -1,0 +1,22 @@
+-------------------
+features
+-------------------
+
+# create/edit pattern:
+
+- keep original picture
+- select colors
+- select region and:
+  - count pixels per colors
+  - replace color by another
+- undo/redo feature
+- replace individual pixel
+
+# work
+
+- create pdf for selected region (or for whole picture)
+  - maybe use the system print feature?
+- mark pixel as done
+- highlight pixel of specific color
+
+-------------------
