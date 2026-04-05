@@ -5,8 +5,18 @@
     <name>MainWindow</name>
     <message>
         <location filename="../../src/gui/MainWindow.ui" line="14"/>
-        <source>Kreuzstich - Create cross-stitch patterns from pictures</source>
-        <translation>Kreuzstich - Kreuzstich-Muster anhand von Bildern erstellen</translation>
+        <source>$NAME$ - Create cross-stitch patterns from pictures</source>
+        <translation>$NAME$ - Kreuzstich-Muster anhand von Bildern erstellen</translation>
+    </message>
+    <message>
+        <location filename="../../src/gui/MainWindow.ui" line="28"/>
+        <source>&amp;Help</source>
+        <translation>&amp;Hilfe</translation>
+    </message>
+    <message>
+        <location filename="../../src/gui/MainWindow.ui" line="36"/>
+        <source>&amp;About $NAME$</source>
+        <translation>&amp;Über $NAME$</translation>
     </message>
 </context>
 </TS>

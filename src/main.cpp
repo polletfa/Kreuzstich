@@ -1,12 +1,12 @@
 #include "gui/MainWindow.hpp"
 
 // Qt
-#include <QApplication>
+#include <QCoreApplication>
 #include <QTranslator>
 #include <QLocale>
 
 int main(int argc, char *argv[]) {
-    QApplication app(argc, argv);
+    QCoreApplication app(argc, argv);
 
     // load language
     QTranslator translator;

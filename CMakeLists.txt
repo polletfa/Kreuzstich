@@ -1,6 +1,8 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.19)
 
 project(kreuzstich VERSION 1.0 LANGUAGES CXX)
+
+# Basic definitions
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -11,28 +13,26 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets LinguistTools)
+# Requirements
 
-set(TS_FILES resources/i18n/de_DE.ts)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
+
+# Sources
 
 set(PROJECT_SOURCES
     src/main.cpp
+    src/version.cpp
     src/gui/MainWindow.cpp
     src/gui/MainWindow.hpp
     src/gui/MainWindow.ui
-    ${TS_FILES}
 )
+
+# Target: kreuzstich
 
 qt_add_executable(kreuzstich
     MANUAL_FINALIZATION
     ${PROJECT_SOURCES}
 )
-
-qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR}/src ${TS_FILES} OPTIONS -no-obsolete)
-qt_add_resources(kreuzstich "i18n" PREFIX "/i18n" BASE ${CMAKE_BINARY_DIR} FILES ${QM_FILES})
-
-target_link_libraries(kreuzstich PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-
 set_target_properties(kreuzstich PROPERTIES
     ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
@@ -40,6 +40,31 @@ set_target_properties(kreuzstich PROPERTIES
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
+target_link_libraries(kreuzstich PRIVATE Qt6::Core Qt6::Widgets)
+
+## Generate version.hpp
+add_custom_target(generate_version ALL
+    COMMAND ${CMAKE_COMMAND}
+    -DSOURCE=${CMAKE_SOURCE_DIR}/src/version.hpp.in
+    -DOUTPUT=${CMAKE_BINARY_DIR}/generate_version/version.hpp
+    -DMAJOR=${PROJECT_VERSION_MAJOR}
+    -DMINOR=${PROJECT_VERSION_MINOR}
+    -DIS_RELEASE_BUILD=$<CONFIG:Release>
+    -P ${CMAKE_SOURCE_DIR}/tools/generate_version.cmake
+    COMMENT "Generating version.hpp"
+)
+target_include_directories(kreuzstich PRIVATE ${CMAKE_BINARY_DIR}/generate_version)
+add_dependencies(kreuzstich generate_version)
+
+## Generate colortables (external resource, but still a dependency)
+add_subdirectory(resources/colortables)
+add_dependencies(kreuzstich generate_colortables)
+
+## Add translation files
+add_subdirectory(resources/i18n)
+target_link_libraries(kreuzstich PRIVATE i18n_resources)
+
+## Install
 
 include(GNUInstallDirs)
 install(TARGETS kreuzstich
@@ -47,5 +72,3 @@ install(TARGETS kreuzstich
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
-
-qt_finalize_executable(kreuzstich)
