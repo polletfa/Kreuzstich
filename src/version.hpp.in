@@ -1,0 +1,24 @@
+#ifndef VERSION_HPP
+#define VERSION_HPP
+
+// STL
+#include <ctime>
+
+// Qt
+#include <QString>
+
+namespace Version {
+
+constexpr const char* NAME{"Kreuzstich"};
+constexpr int MAJOR{@MAJOR@};
+constexpr int MINOR{@MINOR@};
+constexpr time_t BUILD_TIME{@BUILD_TIME@};
+constexpr const char* GIT_COMMIT{"@GIT_COMMIT@"};
+constexpr bool GIT_DIRTY{@GIT_DIRTY@};
+constexpr bool RELEASE_BUILD{@RELEASE_BUILD@};
+
+QString getVersionString();
+
+}
+
+#endif // VERSION_HPP

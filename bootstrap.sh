@@ -15,3 +15,7 @@
         cmake -DCMAKE_BUILD_TYPE=Release ../..
     )
 )
+
+echo
+echo "To build in DEBUG mode:   cd build/debug/ && make"
+echo "To build in RELEASE mode: cd build/release/ && make"

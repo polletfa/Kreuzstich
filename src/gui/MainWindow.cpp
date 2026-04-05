@@ -1,14 +1,27 @@
 #include "MainWindow.hpp"
 #include "./ui_MainWindow.h"
+#include "version.hpp"
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+// Qt
+#include <QMessageBox>
+
+MainWindow::MainWindow()
+    : QMainWindow(nullptr)
+    , m_ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
+    setWindowTitle(windowTitle().replace("$NAME$", Version::NAME));
+    m_ui->action_About_NAME->setText(m_ui->action_About_NAME->text().replace("$NAME$", Version::NAME));
+    m_ui->action_About_NAME->setIconText(m_ui->action_About_NAME->iconText().replace("$NAME$", Version::NAME));
+    m_ui->action_About_NAME->setToolTip(m_ui->action_About_NAME->toolTip().replace("$NAME$", Version::NAME));
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
+    delete m_ui;
+}
+
+void MainWindow::openAboutBox() {
+    QMessageBox::information(this, "Kreuzstich", Version::getVersionString());
+    //QApplication::aboutQt();
 }
