@@ -6,6 +6,12 @@ if(NOT IMAGEMAGICK_CONVERT)
 endif()
 message(STATUS "Found ImageMagick convert: ${IMAGEMAGICK_CONVERT}")
 
+find_program(BASH bash)
+if(NOT BASH)
+    message(FATAL_ERROR "Bash not found. Install with: sudo apt install bash (Debian/Ubuntu)")
+endif()
+message(STATUS "Found bash: ${BASH}")
+
 # Sources
 
 set(COLORTABLES dmc)
@@ -30,7 +36,7 @@ foreach(NAME ${COLORTABLES})
     add_custom_command(
         OUTPUT ${OUTPUT}
         COMMAND ${CMAKE_SOURCE_DIR}/tools/generate_colortable.sh
-        ${COLORTABLES_NAME_${NAME}} ${CMAKE_CURRENT_SOURCE_DIR}/${NAME} ${INTERMEDIATE} ${OUTPUT}
+                ${COLORTABLES_NAME_${NAME}} ${CMAKE_CURRENT_SOURCE_DIR}/${NAME} ${INTERMEDIATE} ${OUTPUT}
         DEPENDS ${SOURCES}
         COMMENT "Generating ${NAME}.colors"
     )

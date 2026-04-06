@@ -15,12 +15,12 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow();
+    explicit MainWindow();
     ~MainWindow();
 
 private slots:
     // Help menu
-    void openAboutBox();
+    void openAboutBox(); /**< Open the "about" dialog */
 
 private:
     Ui::MainWindow *m_ui;

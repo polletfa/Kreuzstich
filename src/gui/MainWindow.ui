@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>$NAME$ - Create cross-stitch patterns from pictures</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../../build/debug/.qt/rcc/resources.qrc">
+    <normaloff>:/icons/icon64.png</normaloff>:/icons/icon64.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -37,7 +41,10 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../build/debug/.qt/rcc/resources.qrc"/>
+  <include location="../../build/debug/.qt/rcc/i18n.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>action_About_NAME</sender>

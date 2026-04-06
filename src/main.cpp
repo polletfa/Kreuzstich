@@ -1,19 +1,25 @@
 #include "gui/MainWindow.hpp"
 
 // Qt
-#include <QCoreApplication>
+#include <QApplication>
 #include <QTranslator>
 #include <QLocale>
+#include <QLibraryInfo>
 
 int main(int argc, char *argv[]) {
-    QCoreApplication app(argc, argv);
+    QApplication app(argc, argv);
 
     // load language
-    QTranslator translator;
+    // We look for a locale within the user preferences with both a custom and a Qt translation file.
+    QTranslator translator, qtTranslator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
     for (const QString &locale : uiLanguages) {
-        if (translator.load(":/i18n/" + QLocale(locale).name())) {
+        const QString name = QLocale(locale).name();
+        const bool hasCustomTranslation = translator.load(":/i18n/" + name);
+        const bool hasQtTranslation = qtTranslator.load("qtbase_" + name, QLibraryInfo::path(QLibraryInfo::TranslationsPath));
+        if (hasCustomTranslation && hasQtTranslation) {
             app.installTranslator(&translator);
+            app.installTranslator(&qtTranslator);
             break;
         }
     }
