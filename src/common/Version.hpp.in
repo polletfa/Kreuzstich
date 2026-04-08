@@ -1,0 +1,27 @@
+#ifndef VERSION_HPP
+#define VERSION_HPP
+
+// STL
+#include <ctime>
+
+// Qt
+#include <QString>
+
+class Version {
+public:
+    static constexpr const char* NAME{"Kreuzstich"};
+    static constexpr const char* WEBSITE{"https://github.com/polletfa/Kreuzstich"};
+    static constexpr int MAJOR{@MAJOR@};
+    static constexpr int MINOR{@MINOR@};
+    static constexpr time_t BUILD_TIME{@BUILD_TIME@};
+    static constexpr const char* GIT_COMMIT{"@GIT_COMMIT@"};
+    static constexpr bool RELEASE_BUILD{@RELEASE_BUILD@};
+    static const QString VERSION_STRING;
+
+    static QString replaceVersionVars(QString& str);
+
+private:
+    static QString getVersionString();
+};
+
+#endif // VERSION_HPP

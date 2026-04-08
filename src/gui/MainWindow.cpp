@@ -1,7 +1,9 @@
 #include "MainWindow.hpp"
-#include "./ui_MainWindow.h"
-#include "Version.hpp"
-#include "AboutDialog.hpp"
+#include "ui_MainWindow.h"
+
+// gui
+#include "gui/AboutDialog.hpp"
+#include "gui/Application.hpp"
 
 // Qt
 #include <QMessageBox>
@@ -11,8 +13,8 @@ MainWindow::MainWindow()
     , m_ui(new Ui::MainWindow)
 {
     m_ui->setupUi(this);
-    Version::replaceVars(this);
-    Version::replaceVars(m_ui->action_About_NAME);
+    Application::replaceVersionVars(this);
+    Application::replaceVersionVars(m_ui->action_About_NAME);
 }
 
 MainWindow::~MainWindow()

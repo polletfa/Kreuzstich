@@ -79,7 +79,7 @@ CMakeLists.txt.user*
 .pch/
 .rcc/
 .uic/
-/build*/
+/_build*/
 
 # User-config: clangd
 compile_commands.json
