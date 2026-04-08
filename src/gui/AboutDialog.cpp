@@ -1,6 +1,8 @@
 #include "AboutDialog.hpp"
 #include "ui_AboutDialog.h"
-#include "Version.hpp"
+
+// gui
+#include "gui/Application.hpp"
 
 // Qt
 #include <QFile>
@@ -11,7 +13,7 @@
 // We don't include these strings in QtDesigner directly, because we don't want the whole html stuff to end up in the translation files.
 constexpr const char* TITLE = R"(<html><head/><body><p><span style=" font-size:16pt; font-weight:700;">$NAME$</span></p></body></html>)";
 constexpr const char* TEXT = R"(<html><head/><body>
-    <p>$VERSION_STR$
+    <p>$VERSION_STRING$
     <br/>%1</p>
     <p><a href="$WEBSITE$"><span style=" text-decoration: underline; color:#0000ff;">$WEBSITE$</span></a></p>
     <p>%2</p>
@@ -36,10 +38,10 @@ AboutDialog::AboutDialog(QWidget *parent) :
     m_ui->lbl_copyright->setText(QString(COPYRIGHT)
                                  .arg(tr("Copyright &amp; License")));
 
-    Version::replaceVars(this);
-    Version::replaceVars(m_ui->lbl_title);
-    Version::replaceVars(m_ui->lbl_text);
-    Version::replaceVars(m_ui->lbl_copyright);
+    Application::replaceVersionVars(this);
+    Application::replaceVersionVars(m_ui->lbl_title);
+    Application::replaceVersionVars(m_ui->lbl_text);
+    Application::replaceVersionVars(m_ui->lbl_copyright);
 
     QFile license{":/LICENSE"};
     if(license.open(QIODevice::ReadOnly)) {

@@ -23,7 +23,7 @@ set(COLORTABLES_SOURCES_dmc
 )
 set(COLORTABLES_NAME_dmc DMC)
 
-# Target: generate_colortables
+# Target: colortables
 
 set(COLORTABLE_FILES)
 foreach(NAME ${COLORTABLES})
@@ -42,6 +42,6 @@ foreach(NAME ${COLORTABLES})
     )
     list(APPEND COLORTABLES_FILES ${OUTPUT})
 endforeach()
-add_custom_target(generate_colortables ALL DEPENDS ${COLORTABLES_FILES}
+add_custom_target(colortables ALL DEPENDS ${COLORTABLES_FILES}
     COMMENT "Building colortables"
 )
