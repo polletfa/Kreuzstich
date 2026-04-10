@@ -14,34 +14,34 @@ message(STATUS "Found bash: ${BASH}")
 
 # Sources
 
-set(COLORTABLES dmc)
-set(COLORTABLES_SOURCES_dmc
+set(THREADLISTS dmc)
+set(THREADLISTS_SOURCES_dmc
     01.def 02.def 03.def 04.def 05.def 06.def 07.def 08.def 09.def 10.def
     11.def 12.def 13.def 14.def 15.def 16.def 17.def 18.def 19.def
     Page1.jpg  Page2.jpg  Page3.jpg Page4.jpg
     README
 )
-set(COLORTABLES_NAME_dmc DMC)
+set(THREADLISTS_NAME_dmc DMC)
 
-# Target: colortables
+# Target: threadlists
 
-set(COLORTABLE_FILES)
-foreach(NAME ${COLORTABLES})
+set(THREADLIST_FILES)
+foreach(NAME ${THREADLISTS})
     set(SOURCES)
-    foreach(SRC ${COLORTABLES_SOURCES_${NAME}})
+    foreach(SRC ${THREADLISTS_SOURCES_${NAME}})
         list(APPEND SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/${NAME}/${SRC})
     endforeach()
-    set(INTERMEDIATE ${CMAKE_BINARY_DIR}/generate_colortables/${NAME})
-    set(OUTPUT ${CMAKE_BINARY_DIR}/colortables/${NAME}.colors)
+    set(INTERMEDIATE ${CMAKE_BINARY_DIR}/generate_threadlists/${NAME})
+    set(OUTPUT ${CMAKE_BINARY_DIR}/threadlists/${NAME}.threads)
     add_custom_command(
         OUTPUT ${OUTPUT}
-        COMMAND ${CMAKE_SOURCE_DIR}/tools/generate_colortable.sh
-                ${COLORTABLES_NAME_${NAME}} ${CMAKE_CURRENT_SOURCE_DIR}/${NAME} ${INTERMEDIATE} ${OUTPUT}
+        COMMAND ${CMAKE_SOURCE_DIR}/tools/generate_threadlist.sh
+                ${THREADLISTS_NAME_${NAME}} ${CMAKE_CURRENT_SOURCE_DIR}/${NAME} ${INTERMEDIATE} ${OUTPUT}
         DEPENDS ${SOURCES}
-        COMMENT "Generating ${NAME}.colors"
+        COMMENT "Generating ${NAME}.threads"
     )
-    list(APPEND COLORTABLES_FILES ${OUTPUT})
+    list(APPEND THREADLISTS_FILES ${OUTPUT})
 endforeach()
-add_custom_target(colortables ALL DEPENDS ${COLORTABLES_FILES}
-    COMMENT "Building colortables"
+add_custom_target(threadlists ALL DEPENDS ${THREADLISTS_FILES}
+    COMMENT "Building threadlists"
 )
