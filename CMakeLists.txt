@@ -29,7 +29,7 @@ add_subdirectory(src/creator)    # The actual logic
 add_subdirectory(src/gui)        # Standard desktop application
 
 ## Components: additional resources
-add_subdirectory(resources/colortables)
+add_subdirectory(resources/threadlists)
 
 ## Unit Tests
 enable_testing()
