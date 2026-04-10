@@ -1,8 +1,6 @@
 #include "AboutDialog.hpp"
 #include "ui_AboutDialog.h"
-
-// gui
-#include "gui/Application.hpp"
+#include "Application.hpp"
 
 // Qt
 #include <QFile>

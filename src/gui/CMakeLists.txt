@@ -29,7 +29,7 @@ set(TRANSLATIONS
 qt_add_library(gui STATIC ${SOURCES})
 target_link_libraries(gui PRIVATE common creator)
 target_link_libraries(gui PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets)
-target_include_directories(gui PRIVATE ${CMAKE_SOURCE_DIR}/src ${common_INCLUDES} ${creator_INCLUDES})
+target_include_directories(gui PRIVATE ${common_INCLUDES} ${creator_INCLUDES})
 qt_add_resources(gui "resources" PREFIX "/" BASE ${CMAKE_SOURCE_DIR}/resources/ FILES ${ICONS})
 qt_add_resources(gui "LICENSE" PREFIX "/" BASE ${CMAKE_SOURCE_DIR} FILES ${LICENSE})
 qt_add_translations(gui RESOURCE_PREFIX "/i18n/gui/" TS_FILES ${TRANSLATIONS}) # to cleanup, add: LUPDATE_OPTIONS -no-obsolete

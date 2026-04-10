@@ -1,9 +1,7 @@
 #include "MainWindow.hpp"
 #include "ui_MainWindow.h"
-
-// gui
-#include "gui/AboutDialog.hpp"
-#include "gui/Application.hpp"
+#include "AboutDialog.hpp"
+#include "Application.hpp"
 
 // Qt
 #include <QMessageBox>

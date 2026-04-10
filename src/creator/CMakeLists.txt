@@ -1,12 +1,14 @@
 # Requirements
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui LinguistTools)
+find_package(TBB REQUIRED)
 
 # Sources
 
 set(SOURCES
     # C++ file           Header file
-    dummy.cpp            dummy.hpp
+    ColorSpace.cpp       ColorSpace.hpp
+    Thread.cpp           Thread.hpp
 )
 
 # Resources
@@ -16,7 +18,7 @@ set(TRANSLATIONS
 
 # Target: version depends on generate_version
 qt_add_library(creator STATIC ${SOURCES})
-target_link_libraries(creator PRIVATE Qt6::Core Qt6::Gui)
+target_link_libraries(creator PRIVATE Qt6::Core Qt6::Gui TBB::tbb)
 qt_add_translations(creator RESOURCE_PREFIX "/i18n/creator/" TS_FILES ${TRANSLATIONS}) # to cleanup, add: LUPDATE_OPTIONS -no-obsolete
 
 # Export variables

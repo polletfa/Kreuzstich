@@ -1,23 +1,25 @@
--------------------
-features
--------------------
+HSL sort: either HLS or HSL
+ QImage: convert to sRGB when reading image, in case the image uses another profile:
+     Load the image
+     Check colorSpace().isValid()
+     If valid, convert to sRGB with convertToColorSpace
+     If not valid, assume sRGB (covers the vast majority of real-world images)
 
-# create/edit pattern:
 
-- keep original picture
-- select colors
-- select region and:
-  - count pixels per colors
-  - replace color by another
-- undo/redo feature
-- replace individual pixel
 
-# work
+Thread:
+  - might also provide list of pixel indexes where it is used ??
 
-- create pdf for selected region (or for whole picture)
-  - maybe use the system print feature?
-- mark pixel as done
-- highlight pixel of specific color
+ThreadList
+  - provide findClosest(rgbaFromPicture)
 
--------------------
+the modified image would be a normal QImage with the color set after choosing a thread.
+when replacing a thread with another, picture is modified through index list. no need to go through all pictures to find pixels
 
+
+
+implement parallelism:
+    auto indices = std::views::iota(0, 300'000'000);
+    std::for_each(std::execution::par_unseq, indices.begin(), indices.end(), [](int) {
+        testDistance({70, 90,  -8}, {79, 95, 10}, ColorSpace::CIEDE2000, 9.2152);
+    });

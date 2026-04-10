@@ -1,7 +1,5 @@
 #include "Application.hpp"
-
-// gui
-#include "gui/MainWindow.hpp"
+#include "MainWindow.hpp"
 
 // common
 #include "common/Version.hpp"
