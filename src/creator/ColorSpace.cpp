@@ -7,6 +7,14 @@
 #include <cmath>
 #pragma GCC diagnostic pop
 
+namespace ColorSpace {
+
+constexpr double toRadians(double degrees) {
+    return degrees * M_PI / 180;
+}
+
+}
+
 ColorSpace::rgba_t ColorSpace::compositeRGBAOntoBackground(const ColorSpace::rgba_t& rgba, const ColorSpace::rgba_t& bg) {
     return {
         rgba.alpha * rgba.red + (1 - rgba.alpha) * bg.red,
@@ -127,8 +135,4 @@ double ColorSpace::distance(const ColorSpace::lab_t& color1, const ColorSpace::l
         double Hintermediate = deltaHprime / SH; // note: KH = 1
         return std::sqrt(Lintermediate * Lintermediate + Cintermediate * Cintermediate + Hintermediate * Hintermediate + RT * Cintermediate * Hintermediate);
     }
-}
-
-constexpr double ColorSpace::toRadians(double degrees) {
-    return degrees * M_PI / 180;
 }

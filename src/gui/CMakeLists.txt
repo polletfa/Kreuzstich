@@ -19,19 +19,17 @@ set(ICONS
     ${CMAKE_SOURCE_DIR}/resources/icons/icon128.png
     ${CMAKE_SOURCE_DIR}/resources/icons/icon64.png
 )
-set(LICENSE ${CMAKE_SOURCE_DIR}/LICENSE)
 set(TRANSLATIONS
     ${CMAKE_SOURCE_DIR}/resources/i18n/gui/de_DE.ts
 )
 
-# Target: gui depends on common, creator
+# Target: gui depends on creator
 
 qt_add_library(gui STATIC ${SOURCES})
-target_link_libraries(gui PRIVATE common creator)
+target_link_libraries(gui PRIVATE creator)
 target_link_libraries(gui PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets)
-target_include_directories(gui PRIVATE ${common_INCLUDES} ${creator_INCLUDES})
+target_include_directories(gui PRIVATE ${creator_INCLUDES})
 qt_add_resources(gui "resources" PREFIX "/" BASE ${CMAKE_SOURCE_DIR}/resources/ FILES ${ICONS})
-qt_add_resources(gui "LICENSE" PREFIX "/" BASE ${CMAKE_SOURCE_DIR} FILES ${LICENSE})
 qt_add_translations(gui RESOURCE_PREFIX "/i18n/gui/" TS_FILES ${TRANSLATIONS}) # to cleanup, add: LUPDATE_OPTIONS -no-obsolete
 
 # Target: kreuzstich depends on gui
