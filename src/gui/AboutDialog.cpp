@@ -3,7 +3,7 @@
 #include "Application.hpp"
 
 // creator
-#include "creator/Version.hpp"
+#include "creator/utils/Version.hpp"
 
 // Qt
 #include <QFile>

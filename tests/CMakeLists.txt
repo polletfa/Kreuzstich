@@ -7,9 +7,12 @@ find_program(GENHTML genhtml)
 # Sources
 
 set(SOURCES
-    creator/ColorSpace.cpp
-    creator/Thread.cpp
-    creator/Version.cpp
+    creator/utils/Version.cpp
+
+    creator/colors/ColorSpace.cpp
+    creator/colors/Thread.cpp
+
+    # TODO creator/files/FileLocator
 )
 
 # Target: unittests depends on creator, gui
