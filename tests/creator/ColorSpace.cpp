@@ -2,13 +2,6 @@
 
 #include "creator/ColorSpace.hpp"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Winvalid-constexpr"   // clangd is having issues with cmath from GCC apparently
-#include <cmath>
-#pragma GCC diagnostic pop
-#include <ranges>
-#include <execution>
-
 class ColorSpaceTest: public testing::Test {
 protected:
     void testCompositeRGBAOntoBackground(ColorSpace::rgba_t color, ColorSpace::rgba_t background, ColorSpace::rgba_t expected) {

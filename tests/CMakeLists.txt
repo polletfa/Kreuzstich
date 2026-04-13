@@ -9,14 +9,15 @@ find_program(GENHTML genhtml)
 set(SOURCES
     creator/ColorSpace.cpp
     creator/Thread.cpp
+    creator/Version.cpp
 )
 
-# Target: unittests
+# Target: unittests depends on creator, gui
 if(GTest_FOUND)
     add_executable(unittests ${SOURCES})
-    target_include_directories(unittests PRIVATE ${common_INCLUDES} ${creator_INCLUDES} ${gui_INCLUDES})
+    target_include_directories(unittests PRIVATE ${creator_INCLUDES} ${gui_INCLUDES})
     target_link_libraries(unittests PRIVATE
-        common creator gui
+        creator gui
         GTest::gtest GTest::gtest_main
     )
 

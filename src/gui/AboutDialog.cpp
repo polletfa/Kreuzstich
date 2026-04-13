@@ -2,6 +2,9 @@
 #include "ui_AboutDialog.h"
 #include "Application.hpp"
 
+// creator
+#include "creator/Version.hpp"
+
 // Qt
 #include <QFile>
 #include <QTextStream>
@@ -41,10 +44,9 @@ AboutDialog::AboutDialog(QWidget *parent) :
     Application::replaceVersionVars(m_ui->lbl_text);
     Application::replaceVersionVars(m_ui->lbl_copyright);
 
-    QFile license{":/LICENSE"};
-    if(license.open(QIODevice::ReadOnly)) {
-        QTextStream in(&license);
-        m_ui->txt_license->setText(in.readAll());
+    auto license = Version::getLicense();
+    if(license.has_value()) {
+        m_ui->txt_license->setText(license.value().data());
     } else {
         m_ui->lbl_copyright->hide();
         m_ui->txt_license->hide();

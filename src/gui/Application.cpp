@@ -1,21 +1,23 @@
 #include "Application.hpp"
 #include "MainWindow.hpp"
 
-// common
-#include "common/Version.hpp"
-#include "common/I18n.hpp"
+// creator
+#include "creator/Version.hpp"
+#include "creator/I18n.hpp"
 
 // Qt
 #include <QApplication>
 #include <QTranslator>
 #include <QLibraryInfo>
 
+#include <QStandardPaths>
 #ifdef DEBUG
 #  include <QDirIterator>
 #endif
 
 int Application::main(int argc, char** argv) {
     QApplication app(argc, argv);
+    app.setApplicationName(QString(Version::NAME.data()).toLower());
 
 #ifdef DEBUG
     QDirIterator it(":", QDirIterator::Subdirectories);
@@ -24,8 +26,8 @@ int Application::main(int argc, char** argv) {
     }
 #endif
 
-    // load translations for: the GUI, the creator, and Qt
-    auto translators = I18n::loadTranslations({":/i18n/gui/", ":/i18n/creator/", "qtbase_"});
+    // load translations for the creator + additional translations for the GUI (including Qt)
+    auto translators = I18n::loadTranslations({":/i18n/gui/", "qtbase_"});
 
     MainWindow win;
     win.show();
@@ -34,25 +36,25 @@ int Application::main(int argc, char** argv) {
 
 void Application::replaceVersionVars(QWidget* win) {
     if(win != nullptr) {
-        QString title = win->windowTitle();
-        win->setWindowTitle(Version::replaceVersionVars(title));
+        std::string title = win->windowTitle().toStdString();
+        win->setWindowTitle(Version::replaceVersionVars(title).data());
     }
 }
 
 void Application::replaceVersionVars(QAction* action) {
     if(action != nullptr) {
-        QString text = action->text(),
-            iconText = action->iconText(),
-            toolTip = action->toolTip();
-        action->setText(Version::replaceVersionVars(text));
-        action->setIconText(Version::replaceVersionVars(iconText));
-        action->setToolTip(Version::replaceVersionVars(toolTip));
+        std::string text = action->text().toStdString(),
+            iconText = action->iconText().toStdString(),
+            toolTip = action->toolTip().toStdString();
+        action->setText(Version::replaceVersionVars(text).data());
+        action->setIconText(Version::replaceVersionVars(iconText).data());
+        action->setToolTip(Version::replaceVersionVars(toolTip).data());
     }
 }
 
 void Application::replaceVersionVars(QLabel* label) {
     if(label != nullptr) {
-        QString text = label->text();
-        label->setText(Version::replaceVersionVars(text));
+        std::string text = label->text().toStdString();
+        label->setText(Version::replaceVersionVars(text).data());
     }
 }

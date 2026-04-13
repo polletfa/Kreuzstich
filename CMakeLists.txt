@@ -21,11 +21,8 @@ add_link_options($<$<CONFIG:Debug>:--coverage>)
 
 list(APPEND CMAKE_CTEST_ARGUMENTS "--output-on-failure")
 
-## Components: static libraries
-add_subdirectory(src/common)     # Common functionalities for all applications
-add_subdirectory(src/creator)    # The actual logic
-
-## Components: applications
+## Components
+add_subdirectory(src/creator)    # The actual logic (the "backend" so to speak)
 add_subdirectory(src/gui)        # Standard desktop application
 
 ## Components: additional resources
