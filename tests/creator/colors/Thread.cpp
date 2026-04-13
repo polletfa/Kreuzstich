@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "creator/Thread.hpp"
+#include "creator/colors/Thread.hpp"
 
 class ThreadTest: public testing::Test {
 protected:

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "creator/ColorSpace.hpp"
+#include "creator/colors/ColorSpace.hpp"
 
 class ColorSpaceTest: public testing::Test {
 protected:

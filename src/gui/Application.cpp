@@ -2,8 +2,8 @@
 #include "MainWindow.hpp"
 
 // creator
-#include "creator/Version.hpp"
-#include "creator/I18n.hpp"
+#include "creator/utils/Version.hpp"
+#include "creator/utils/I18n.hpp"
 
 // Qt
 #include <QApplication>
