@@ -12,8 +12,6 @@ void MockupBase::SetUp() {
 }
 
 void MockupBase::TearDown() {
-    m_testSuite = nullptr;
-    m_testName = nullptr;
 }
 
 const char* MockupBase::testSuite() const {

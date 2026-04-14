@@ -24,13 +24,13 @@ TEST(VersionTest, replaceVersionVars) {
     testStr += "(pqr)$GIT_COMMIT$(stu)$RELEASE_BUILD$(vwx)$VERSION_STRING$(yz0)$NAME$(123)";
 
     Version::replaceVersionVars(testStr);
-    EXPECT_STREQ(testStr.data(), oss.str().data());
+    EXPECT_EQ(testStr, oss.str());
 }
 
 // --- getLicense
 
 TEST(VersionTest, getLicense) {
     auto license = Version::getLicense();
-    EXPECT_EQ(license.has_value(), true);
-    EXPECT_STREQ(license.value().substr(0, 3).data(), "MIT");
+    ASSERT_TRUE(license.has_value());
+    EXPECT_EQ(license.value().substr(0, 3), "MIT");
 }
