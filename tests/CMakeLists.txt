@@ -1,3 +1,7 @@
+# Kreuzstich
+# Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
 # Requirements
 
 find_package(GTest)
@@ -15,8 +19,8 @@ set(SOURCES
     creator/colors/ColorSpace.cpp
     creator/colors/Thread.cpp
 
-    creator/files/Mockup_IStandardPaths.hpp
-    creator/files/Mockup_IStandardPaths.cpp
+    creator/files/Mockup_QStandardPathsWrapper.hpp
+    creator/files/Mockup_QStandardPathsWrapper.cpp
     creator/files/FileLocator.cpp
 )
 

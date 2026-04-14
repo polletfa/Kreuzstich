@@ -1,3 +1,7 @@
+# Kreuzstich
+# Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
 cmake_minimum_required(VERSION 3.19)
 
 project(kreuzstich VERSION 1.0 LANGUAGES CXX)

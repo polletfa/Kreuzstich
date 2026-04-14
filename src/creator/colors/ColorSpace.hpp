@@ -1,6 +1,16 @@
+/*
+  Kreuzstich
+  Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+  MIT License, see LICENSE file.
+*/
 #ifndef COLORSPACE_HPP
 #define COLORSPACE_HPP
 
+/**
+ * Datatypes and methods to handle color arithmetic:
+ * - Convert between color spaces (RGB/RGBA for input/display, HSL for sorting, CIELAB for distance)
+ * - Compute distance
+ */
 namespace ColorSpace {
 
 /**

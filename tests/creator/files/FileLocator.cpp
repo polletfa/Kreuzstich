@@ -1,11 +1,16 @@
+/*
+  Kreuzstich
+  Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+  MIT License, see LICENSE file.
+*/
 #include <gtest/gtest.h>
-#include "Mockup_IStandardPaths.hpp"
+#include "Mockup_QStandardPathsWrapper.hpp"
 
 #include "creator/files/FileLocator.hpp"
 
 class FileLocatorTests: public testing::Test {
 protected:
-    std::shared_ptr<Mockup_IStandardPaths> mockStandardPaths{std::make_shared<Mockup_IStandardPaths>()};
+    std::shared_ptr<Mockup_QStandardPathsWrapper> mockStandardPaths{std::make_shared<Mockup_QStandardPathsWrapper>()};
     FileLocator locator{mockStandardPaths};
 
     void SetUp() override {

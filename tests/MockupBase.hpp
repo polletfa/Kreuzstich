@@ -1,8 +1,16 @@
+/*
+  Kreuzstich
+  Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+  MIT License, see LICENSE file.
+*/
 #ifndef MOCKUPBASE_HPP
 #define MOCKUPBASE_HPP
 
 #include <gtest/gtest.h>
 
+/**
+ * Helper base class for mockups
+ */
 class MockupBase {
 public:
     virtual void SetUp();

@@ -1,7 +1,11 @@
+# Kreuzstich
+# Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
 # Requirements
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui LinguistTools)
-find_package(TBB REQUIRED)
+#find_package(TBB REQUIRED)
 
 # Sources
 
@@ -15,7 +19,7 @@ set(SOURCES
     colors/Thread.hpp
     colors/Thread.cpp
 
-    files/IStandardPaths.hpp
+    files/IQStandardPathsWrapper.hpp
     files/QStandardPathsWrapper.hpp
     files/QStandardPathsWrapper.cpp
     files/FileLocator.hpp
@@ -43,7 +47,10 @@ add_custom_target(version ALL
 # Target: creator depends on version
 qt_add_library(creator STATIC ${SOURCES})
 add_dependencies(creator version)
-target_link_libraries(creator PRIVATE Qt6::Core Qt6::Gui TBB::tbb)
+target_link_libraries(creator PRIVATE
+    Qt6::Core Qt6::Gui
+    #TBB::tbb
+)
 target_include_directories(creator PRIVATE ${CMAKE_BINARY_DIR}/generate_version/creator ${CMAKE_BINARY_DIR}/generate_version/creator/utils)
 qt_add_translations(creator RESOURCE_PREFIX "/i18n/creator/" TS_FILES ${TRANSLATIONS}) # to cleanup, add: LUPDATE_OPTIONS -no-obsolete
 qt_add_resources(creator "LICENSE" PREFIX "/" BASE ${CMAKE_SOURCE_DIR} FILES ${LICENSE})
