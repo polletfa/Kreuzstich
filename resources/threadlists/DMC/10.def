@@ -1,3 +1,7 @@
+# Kreuzstich
+# Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
 FILE=Page2.jpg
 COLUMN=10
 SIZE=100x30

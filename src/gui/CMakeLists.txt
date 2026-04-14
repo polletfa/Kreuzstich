@@ -1,3 +1,7 @@
+# Kreuzstich
+# Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
 # Requirements
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets LinguistTools)

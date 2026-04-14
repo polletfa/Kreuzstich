@@ -1,3 +1,8 @@
+/*
+  Kreuzstich
+  Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+  MIT License, see LICENSE file.
+*/
 #ifndef THREAD_HPP
 #define THREAD_HPP
 
@@ -7,6 +12,13 @@
 #include <string>
 #include <compare>
 
+/**
+ * Class representing a thread (textile thread, not computing thread!):
+ * - Name and color
+ * - Sort/Distance operations
+ *
+ * @todo add data/methods to track usage of the thread, when it is part of a project-specific threadlist
+ */
 class Thread {
 public:
     /**

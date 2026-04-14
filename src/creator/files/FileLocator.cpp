@@ -1,10 +1,15 @@
+/*
+  Kreuzstich
+  Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+  MIT License, see LICENSE file.
+*/
 #include "FileLocator.hpp"
 #include "QStandardPathsWrapper.hpp"
 
 // STL
 #include <filesystem>
 
-FileLocator::FileLocator(std::shared_ptr<IStandardPaths> standardPathWrapper)
+FileLocator::FileLocator(std::shared_ptr<IQStandardPathsWrapper> standardPathWrapper)
     : m_standardPath(standardPathWrapper == nullptr ? std::make_shared<QStandardPathsWrapper>() : standardPathWrapper)
 {}
 
