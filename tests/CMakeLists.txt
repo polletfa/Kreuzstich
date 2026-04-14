@@ -7,17 +7,23 @@ find_program(GENHTML genhtml)
 # Sources
 
 set(SOURCES
+    MockupBase.hpp
+    MockupBase.cpp
+
     creator/utils/Version.cpp
 
     creator/colors/ColorSpace.cpp
     creator/colors/Thread.cpp
 
-    # TODO creator/files/FileLocator
+    creator/files/Mockup_IStandardPaths.hpp
+    creator/files/Mockup_IStandardPaths.cpp
+    creator/files/FileLocator.cpp
 )
 
 # Target: unittests depends on creator, gui
 if(GTest_FOUND)
     add_executable(unittests ${SOURCES})
+    target_compile_definitions(unittests PRIVATE TEST_FILES="${CMAKE_SOURCE_DIR}/resources/test_files")
     target_include_directories(unittests PRIVATE ${creator_INCLUDES} ${gui_INCLUDES})
     target_link_libraries(unittests PRIVATE
         creator gui
