@@ -8,6 +8,10 @@
 
 #include "creator/files/FileLocator.hpp"
 
+/**
+ * For each test, test files are provided under:
+ * - resources/test_file/TEST_SUITE_NAME/TEST_NAME.
+ */
 class FileLocatorTests: public testing::Test {
 protected:
     std::shared_ptr<Mockup_QStandardPathsWrapper> mockStandardPaths{std::make_shared<Mockup_QStandardPathsWrapper>()};
@@ -20,14 +24,14 @@ protected:
 
 TEST_F(FileLocatorTests, findConfigFile_firstDir) {
     auto res = locator.findConfigFile();
-    EXPECT_EQ(res.has_value(), true);
-    EXPECT_STREQ(res.value().data(), TEST_FILES "/FileLocatorTests/findConfigFile_firstDir/test/path/1/config.xml");
+    ASSERT_TRUE(res.has_value());
+    EXPECT_EQ(res.value(), TEST_FILES "/FileLocatorTests/findConfigFile_firstDir/test/path/1/config.xml");
 }
 
 TEST_F(FileLocatorTests, findConfigFile_secondDir) {
     auto res = locator.findConfigFile();
-    EXPECT_EQ(res.has_value(), true);
-    EXPECT_STREQ(res.value().data(), TEST_FILES "/FileLocatorTests/findConfigFile_secondDir/another/test/path/config.xml");
+    ASSERT_TRUE(res.has_value());
+    EXPECT_EQ(res.value(), TEST_FILES "/FileLocatorTests/findConfigFile_secondDir/another/test/path/config.xml");
 }
 
 TEST_F(FileLocatorTests, findConfigFile_notfound) {
@@ -37,14 +41,14 @@ TEST_F(FileLocatorTests, findConfigFile_notfound) {
 
 TEST_F(FileLocatorTests, findStateFile_firstDir) {
     auto res = locator.findStateFile();
-    EXPECT_EQ(res.has_value(), true);
-    EXPECT_STREQ(res.value().data(), TEST_FILES "/FileLocatorTests/findStateFile_firstDir/test/path/1/state.xml");
+    ASSERT_TRUE(res.has_value());
+    EXPECT_EQ(res.value(), TEST_FILES "/FileLocatorTests/findStateFile_firstDir/test/path/1/state.xml");
 }
 
 TEST_F(FileLocatorTests, findStateFile_secondDir) {
     auto res = locator.findStateFile();
-    EXPECT_EQ(res.has_value(), true);
-    EXPECT_STREQ(res.value().data(), TEST_FILES "/FileLocatorTests/findStateFile_secondDir/another/test/path/state.xml");
+    ASSERT_TRUE(res.has_value());
+    EXPECT_EQ(res.value(), TEST_FILES "/FileLocatorTests/findStateFile_secondDir/another/test/path/state.xml");
 }
 
 TEST_F(FileLocatorTests, findStateFile_notfound) {
