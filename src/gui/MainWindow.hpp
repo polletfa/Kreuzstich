@@ -6,6 +6,9 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
+// STL
+#include <memory.h>
+
 // Qt
 #include <QMainWindow>
 
@@ -21,14 +24,13 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow();
-    ~MainWindow();
 
 private slots:
     // Help menu
     void openAboutBox(); /**< Open the "about" dialog */
 
 private:
-    Ui::MainWindow *m_ui;
+    std::shared_ptr<Ui::MainWindow> m_ui;
 };
 
 #endif // MAINWINDOW_HPP

@@ -5,13 +5,16 @@
 */
 #include "Thread.hpp"
 
+// STL
+#include <limits>
+
 Thread::SortBy Thread::m_sortBy = Thread::HLS;
 
 Thread::Thread(const std::string& name, const std::string& rgb)
     : m_name(name)
 {
     std::string rgbNoSpaces;
-    for(auto ch: rgb) {
+    for(unsigned char ch: rgb) {
         if(!std::isspace(ch)) {
             rgbNoSpaces += ch;
         }
@@ -79,7 +82,9 @@ std::strong_ordering Thread::operator<=>(const Thread& other) const {
 
 // Note: Unlike a default operator<=>, a custom operator<=> does not generate operator== for performance reasons (a faster implementation is usually possible for operator==)
 bool Thread::operator==(const Thread& other) const {
-    return m_hsl.hue == other.m_hsl.hue && m_hsl.saturation == other.m_hsl.saturation && m_hsl.lightness == other.m_hsl.lightness;
+    return std::abs(m_hsl.hue - other.m_hsl.hue) < std::numeric_limits<double>::epsilon()
+        && std::abs(m_hsl.saturation - other.m_hsl.saturation) < std::numeric_limits<double>::epsilon()
+        && std::abs(m_hsl.lightness - other.m_hsl.lightness) < std::numeric_limits<double>::epsilon();
 }
 
 double Thread::distance(const Thread& other, ColorSpace::DistanceAlgo algo) const {

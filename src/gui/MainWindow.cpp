@@ -13,16 +13,11 @@
 
 MainWindow::MainWindow()
     : QMainWindow(nullptr)
-    , m_ui(new Ui::MainWindow)
+    , m_ui(std::make_shared<Ui::MainWindow>())
 {
     m_ui->setupUi(this);
     Application::replaceVersionVars(this);
     Application::replaceVersionVars(m_ui->action_About_NAME);
-}
-
-MainWindow::~MainWindow()
-{
-    delete m_ui;
 }
 
 void MainWindow::openAboutBox() {

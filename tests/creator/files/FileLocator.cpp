@@ -58,7 +58,7 @@ TEST_F(FileLocatorTests, findStateFile_notfound) {
 
 TEST_F(FileLocatorTests, findThreadLists) {
     auto res = locator.findThreadLists();
-    std::vector<std::string> expected = {
+    std::vector<std::filesystem::path> expected = {
         TEST_FILES "/FileLocatorTests/findThreadLists/test/path/1/file1.threads",
         TEST_FILES "/FileLocatorTests/findThreadLists/another/test/path/file1.threads",
         TEST_FILES "/FileLocatorTests/findThreadLists/another/test/path/file2.threads",

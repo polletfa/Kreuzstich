@@ -22,7 +22,7 @@
 
 int Application::main(int argc, char** argv) {
     QApplication app(argc, argv);
-    app.setApplicationName(QString(Version::NAME.data()).toLower());
+    app.setApplicationName(QString::fromStdString(std::string(Version::NAME)).toLower());
 
 #ifdef DEBUG
     QDirIterator it(":", QDirIterator::Subdirectories);
@@ -42,7 +42,7 @@ int Application::main(int argc, char** argv) {
 void Application::replaceVersionVars(QWidget* win) {
     if(win != nullptr) {
         std::string title = win->windowTitle().toStdString();
-        win->setWindowTitle(Version::replaceVersionVars(title).data());
+        win->setWindowTitle(QString::fromStdString(Version::replaceVersionVars(title)));
     }
 }
 
@@ -51,15 +51,15 @@ void Application::replaceVersionVars(QAction* action) {
         std::string text = action->text().toStdString(),
             iconText = action->iconText().toStdString(),
             toolTip = action->toolTip().toStdString();
-        action->setText(Version::replaceVersionVars(text).data());
-        action->setIconText(Version::replaceVersionVars(iconText).data());
-        action->setToolTip(Version::replaceVersionVars(toolTip).data());
+        action->setText(QString::fromStdString(Version::replaceVersionVars(text)));
+        action->setIconText(QString::fromStdString(Version::replaceVersionVars(iconText)));
+        action->setToolTip(QString::fromStdString(Version::replaceVersionVars(toolTip)));
     }
 }
 
 void Application::replaceVersionVars(QLabel* label) {
     if(label != nullptr) {
         std::string text = label->text().toStdString();
-        label->setText(Version::replaceVersionVars(text).data());
+        label->setText(QString::fromStdString(Version::replaceVersionVars(text)));
     }
 }
