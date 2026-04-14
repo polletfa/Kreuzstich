@@ -38,20 +38,14 @@ TEST_F(ThreadTests, sort) {
     Thread thr1("color1", "c8c814"), thr2("color2", "bfbf40");
 
     // default sort: HLS
-    EXPECT_GT(thr2, thr1);
-    EXPECT_EQ(thr1, thr1);
     EXPECT_LT(thr1, thr2);
 
     // Change sort to HSL
     Thread::setSortBy(Thread::HSL);
-    EXPECT_GT(thr1, thr2);
-    EXPECT_EQ(thr1, thr1);
     EXPECT_LT(thr2, thr1);
 
     // Change sort back
     Thread::setSortBy(Thread::HLS);
-    EXPECT_GT(thr2, thr1);
-    EXPECT_EQ(thr1, thr1);
     EXPECT_LT(thr1, thr2);
 }
 

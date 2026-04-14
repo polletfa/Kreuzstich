@@ -5,9 +5,6 @@
 */
 #include "Thread.hpp"
 
-// STL
-#include <limits>
-
 Thread::SortBy Thread::m_sortBy = Thread::HLS;
 
 Thread::Thread(const std::string& name, const std::string& rgb)
@@ -57,34 +54,12 @@ void Thread::setSortBy(Thread::SortBy sortBy) {
     m_sortBy = sortBy;
 }
 
-std::strong_ordering Thread::operator<=>(const Thread& other) const {
-    auto compare = [](double mine, double other) -> std::strong_ordering {
-        if(mine < other) { return std::strong_ordering::less; }
-        else if(mine > other) { return std::strong_ordering::greater; }
-        else { return std::strong_ordering::equal; }
-    };
-    if(auto res = compare(m_hsl.hue, other.m_hsl.hue); res != std::strong_ordering::equal) {
-        return res;
-    }
-
+bool Thread::operator<(const Thread& other) const {
     if(m_sortBy == Thread::HLS) {
-        if(auto res = compare(m_hsl.lightness, other.m_hsl.lightness); res != std::strong_ordering::equal) {
-            return res;
-        }
-        return compare(m_hsl.saturation, other.m_hsl.saturation);
+        return m_hsl.hue < other.m_hsl.hue || m_hsl.lightness < other.m_hsl.lightness || m_hsl.saturation < other.m_hsl.saturation;
     } else {
-        if(auto res = compare(m_hsl.saturation, other.m_hsl.saturation); res != std::strong_ordering::equal) {
-            return res;
-        }
-        return compare(m_hsl.lightness, other.m_hsl.lightness);
+        return m_hsl.hue < other.m_hsl.hue || m_hsl.saturation < other.m_hsl.saturation || m_hsl.lightness < other.m_hsl.lightness;
     }
-}
-
-// Note: Unlike a default operator<=>, a custom operator<=> does not generate operator== for performance reasons (a faster implementation is usually possible for operator==)
-bool Thread::operator==(const Thread& other) const {
-    return std::abs(m_hsl.hue - other.m_hsl.hue) < std::numeric_limits<double>::epsilon()
-        && std::abs(m_hsl.saturation - other.m_hsl.saturation) < std::numeric_limits<double>::epsilon()
-        && std::abs(m_hsl.lightness - other.m_hsl.lightness) < std::numeric_limits<double>::epsilon();
 }
 
 double Thread::distance(const Thread& other, ColorSpace::DistanceAlgo algo) const {

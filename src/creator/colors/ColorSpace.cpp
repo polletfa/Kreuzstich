@@ -22,9 +22,9 @@ constexpr double toRadians(double degrees) {
 
 ColorSpace::rgba_t ColorSpace::compositeRGBAOntoBackground(const ColorSpace::rgba_t& rgba, const ColorSpace::rgba_t& bg) {
     return {
-        rgba.alpha * rgba.red + (1 - rgba.alpha) * bg.red,
-        rgba.alpha * rgba.green + (1 - rgba.alpha) * bg.green,
-        rgba.alpha * rgba.blue + (1 - rgba.alpha) * bg.blue
+        rgba.alpha * rgba.red + (1. - rgba.alpha) * bg.red,
+        rgba.alpha * rgba.green + (1. - rgba.alpha) * bg.green,
+        rgba.alpha * rgba.blue + (1. - rgba.alpha) * bg.blue
     };
 }
 
