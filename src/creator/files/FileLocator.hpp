@@ -10,6 +10,7 @@
 
 // STL
 #include <string>
+#include <filesystem>
 #include <vector>
 #include <optional>
 
@@ -30,34 +31,34 @@ public:
     /**
      * Go through all applicable directories and returns the first config file found (if any)
      */
-    std::optional<std::string> findConfigFile();
+    std::optional<std::filesystem::path> findConfigFile();
 
     /**
      * Go through all applicable directories and returns the first state file found (if any)
      */
-    std::optional<std::string> findStateFile();
+    std::optional<std::filesystem::path> findStateFile();
 
     /**
      * Go through all applicable directories and returns all threadlists files found (if any).
      */
-    std::vector<std::string> findThreadLists();
+    std::vector<std::filesystem::path> findThreadLists();
 
     /**
      * Get the path to use to write a new config file
      * (will use user-writable directory, might supersede config files in system directories)
      */
-    std::string getPathForWritableConfigFile();
+    std::filesystem::path getPathForWritableConfigFile();
 
     /**
      * Get the path to use to write a new state file
      * (will use user-writable directory, might supersede state files in system directories)
      */
-    std::string getPathForWritableStateFile();
+    std::filesystem::path getPathForWritableStateFile();
 
     /**
      * Get the path to use to write a new threadlist file
      */
-    std::string getPathForWritableThreadListFile(const std::string& basename);
+    std::filesystem::path getPathForWritableThreadListFile(const std::string& basename);
 
 private:
     constexpr static std::string CONFIG_FILE{"config.xml"};
@@ -66,9 +67,9 @@ private:
 
     std::shared_ptr<IQStandardPathsWrapper> m_standardPath;  /**< Wrapper for QStandardPaths */
 
-    std::optional<std::string> findFile(QStandardPaths::StandardLocation location, const std::string& basename);
-    std::vector<std::string> findAllFiles(QStandardPaths::StandardLocation location, const std::string& extension);
-    std::string getPathForWritableFile(QStandardPaths::StandardLocation location, const std::string& basename);
+    std::optional<std::filesystem::path> findFile(QStandardPaths::StandardLocation location, const std::string& basename);
+    std::vector<std::filesystem::path> findAllFiles(QStandardPaths::StandardLocation location, const std::string& extension);
+    std::filesystem::path getPathForWritableFile(QStandardPaths::StandardLocation location, const std::string& basename);
 };
 
 #endif // FILELOCATOR_HPP

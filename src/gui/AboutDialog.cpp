@@ -33,7 +33,7 @@ constexpr const char* COPYRIGHT = R"(<html><head/><body><p><span style=" font-we
 
 AboutDialog::AboutDialog(QWidget *parent) :
     QDialog(parent),
-    m_ui(new Ui::AboutDialog)
+    m_ui(std::make_shared<Ui::AboutDialog>())
 {
     m_ui->setupUi(this);
 
@@ -51,16 +51,11 @@ AboutDialog::AboutDialog(QWidget *parent) :
 
     auto license = Version::getLicense();
     if(license.has_value()) {
-        m_ui->txt_license->setText(license.value().data());
+        m_ui->txt_license->setText(QString::fromStdString(license.value()));
     } else {
         m_ui->lbl_copyright->hide();
         m_ui->txt_license->hide();
     }
-}
-
-AboutDialog::~AboutDialog()
-{
-    delete m_ui;
 }
 
 void AboutDialog::linkActivated(const QString& link) {

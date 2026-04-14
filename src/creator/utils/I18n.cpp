@@ -19,10 +19,9 @@ std::unique_ptr<QTranslator> loadTranslation(QCoreApplication* app, QStringList 
         if (translator->load(prefix + name)) {
             app->installTranslator(translator.get());
             return translator;
-            break;
         }
     }
-    return nullptr;
+    return {};
 }
 }
 
