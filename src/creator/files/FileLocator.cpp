@@ -1,11 +1,11 @@
 #include "FileLocator.hpp"
-#include "StandardFileSystem.hpp"
+#include "QStandardPathsWrapper.hpp"
 
 // STL
 #include <filesystem>
 
-FileLocator::FileLocator(std::shared_ptr<IFileSystem> fsWrapper)
-    : m_filesystem(fsWrapper == nullptr ? std::shared_ptr<IFileSystem>{new StandardFileSystem} : fsWrapper)
+FileLocator::FileLocator(std::shared_ptr<IStandardPaths> standardPathWrapper)
+    : m_standardPath(standardPathWrapper == nullptr ? std::make_shared<QStandardPathsWrapper>() : standardPathWrapper)
 {}
 
 std::optional<std::string> FileLocator::findConfigFile() {
@@ -33,10 +33,10 @@ std::string FileLocator::getPathForWritableThreadListFile(const std::string& bas
 }
 
 std::optional<std::string> FileLocator::findFile(QStandardPaths::StandardLocation location, const std::string& basename) {
-    for(const QString& path: QStandardPaths::standardLocations(location)) {
+    for(const QString& path: m_standardPath->standardLocations(location)) {
         std::filesystem::path filepath{path.toStdString()};
         filepath /= basename;
-        if(m_filesystem->isRegularFile(filepath)) {
+        if(std::filesystem::is_regular_file(filepath)) {
             return filepath;
         }
     }
@@ -45,10 +45,10 @@ std::optional<std::string> FileLocator::findFile(QStandardPaths::StandardLocatio
 
 std::vector<std::string> FileLocator::findAllFiles(QStandardPaths::StandardLocation location, const std::string& extension) {
     std::vector<std::string> files;
-    for(const QString& path: QStandardPaths::standardLocations(location)) {
-        for(const auto& entry: m_filesystem->listDirectory(path.toStdString())) {
-            if(entry.ends_with(extension) && m_filesystem->isRegularFile(entry)) {
-                files.push_back(entry);
+    for(const QString& path: m_standardPath->standardLocations(location)) {
+        for(const auto& entry: std::filesystem::directory_iterator(path.toStdString())) {
+            if(entry.path().string().ends_with(extension) && std::filesystem::is_regular_file(entry)) {
+                files.push_back(entry.path());
             }
         }
     }
@@ -56,7 +56,7 @@ std::vector<std::string> FileLocator::findAllFiles(QStandardPaths::StandardLocat
 }
 
 std::string FileLocator::getPathForWritableFile(QStandardPaths::StandardLocation location, const std::string& basename) {
-    std::filesystem::path filepath{QStandardPaths::writableLocation(location).toStdString()};
+    std::filesystem::path filepath{m_standardPath->writableLocation(location).toStdString()};
     filepath /= basename;
     return filepath;
 }

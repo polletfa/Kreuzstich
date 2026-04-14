@@ -1,22 +1,20 @@
 #ifndef FILELOCATOR_HPP
 #define FILELOCATOR_HPP
 
-#include "IFileSystem.hpp"
+#include "IStandardPaths.hpp"
 
 // STL
 #include <string>
 #include <vector>
 #include <optional>
 
-// Qt
-#include <QStandardPaths>
-
 class FileLocator {
 public:
     /**
-     * @param fsWrapper Wrapper for file operations (default: use StandardFileSystem)
+     * @param standardPathWrapper Wrapper for QStandardPaths, so that it can be replaced by a mockup for unit tests
+     *                            Default: use QStandardPathsWrapper
      */
-    explicit FileLocator(std::shared_ptr<IFileSystem> fsWrapper = nullptr);
+    explicit FileLocator(std::shared_ptr<IStandardPaths> standardPathWrapper = nullptr);
 
     /**
      * Go through all applicable directories and returns the first config file found (if any)
@@ -55,7 +53,7 @@ private:
     constexpr static std::string STATE_FILE{"state.xml"};
     constexpr static std::string THREADLISTS_EXTENSION{".threads"};
 
-    std::shared_ptr<IFileSystem> m_filesystem; /**< Wrapper for file system operations. Default: StandardFileSystem */
+    std::shared_ptr<IStandardPaths> m_standardPath;  /**< Wrapper for QStandardPaths */
 
     std::optional<std::string> findFile(QStandardPaths::StandardLocation location, const std::string& basename);
     std::vector<std::string> findAllFiles(QStandardPaths::StandardLocation location, const std::string& extension);

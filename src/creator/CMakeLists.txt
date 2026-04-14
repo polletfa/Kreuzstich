@@ -15,9 +15,9 @@ set(SOURCES
     colors/Thread.hpp
     colors/Thread.cpp
 
-    files/IFileSystem.hpp
-    files/StandardFileSystem.hpp
-    files/StandardFileSystem.cpp
+    files/IStandardPaths.hpp
+    files/QStandardPathsWrapper.hpp
+    files/QStandardPathsWrapper.cpp
     files/FileLocator.hpp
     files/FileLocator.cpp
 )
