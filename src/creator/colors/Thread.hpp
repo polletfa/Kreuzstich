@@ -10,7 +10,6 @@
 
 // STL
 #include <string>
-#include <compare>
 
 /**
  * Class representing a thread (textile thread, not computing thread!):
@@ -33,8 +32,7 @@ public:
     // sort
     enum SortBy { HLS, HSL }; /**< Default: hue, lightness, saturation */
     static void setSortBy(SortBy sortBy);
-    std::strong_ordering operator<=>(const Thread& other) const;
-    bool operator==(const Thread& other) const;
+    bool operator<(const Thread& other) const;
 
     // distance
     double distance(const Thread& other, ColorSpace::DistanceAlgo algo = ColorSpace::CIE1976) const;
