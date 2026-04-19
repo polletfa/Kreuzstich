@@ -23,7 +23,7 @@ std::string getVersionString() {
         std::tm* tm_info = std::localtime(&BUILD_TIME);
         std::ostringstream oss;
         oss << NAME
-           << " " << MAJOR << "." << MINOR
+            << " " << std::to_string(MAJOR) << "." << std::to_string(MINOR)
            << " " << (RELEASE_BUILD ? "release" : "debug");
         if(GIT_COMMIT[0]) {
             oss << " " << GIT_COMMIT.substr(0, 8);
@@ -39,15 +39,18 @@ std::string getVersionString() {
 const std::string Version::VERSION_STRING = Version::getVersionString();
 
 std::string Version::replaceVersionVars(std::string& str) {
+    const std::string major{std::to_string(MAJOR)};
+    const std::string minor{std::to_string(MINOR)};
+    const std::string buildTime{std::to_string(BUILD_TIME)};
     std::vector<std::pair<std::string_view, std::string_view>> variables {
-        {"$NAME$", Version::NAME},
-        {"$WEBSITE$", Version::WEBSITE},
-        {"$MAJOR$", std::to_string(Version::MAJOR)},
-        {"$MINOR$", std::to_string(Version::MINOR)},
-        {"$BUILD_TIME$", std::to_string(Version::BUILD_TIME)},
-        {"$GIT_COMMIT$", Version::GIT_COMMIT},
-        {"$RELEASE_BUILD$", Version::RELEASE_BUILD ? "true" : "false"},
-        {"$VERSION_STRING$", Version::VERSION_STRING}
+        {"$NAME$", NAME},
+        {"$WEBSITE$", WEBSITE},
+        {"$MAJOR$", major},
+        {"$MINOR$", minor},
+        {"$BUILD_TIME$", buildTime},
+        {"$GIT_COMMIT$", GIT_COMMIT},
+        {"$RELEASE_BUILD$", RELEASE_BUILD ? "true" : "false"},
+        {"$VERSION_STRING$", VERSION_STRING}
     };
 
     for(const auto& var: variables) {

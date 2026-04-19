@@ -7,6 +7,7 @@
 
 // STL
 #include <algorithm>
+#include <numbers>
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Winvalid-constexpr"   // clangd is having issues with cmath from GCC apparently
 #include <cmath>
@@ -15,7 +16,7 @@
 namespace ColorSpace {
 
 constexpr double toRadians(double degrees) {
-    return degrees * M_PI / 180;
+    return degrees * std::numbers::pi / 180;
 }
 
 }
