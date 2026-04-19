@@ -6,15 +6,19 @@
 
 find_program(IMAGEMAGICK_CONVERT convert)
 if(IMAGEMAGICK_CONVERT STREQUAL IMAGEMAGICK_CONVERT-NOTFOUND)
+    message(WARNING "ImageMagick convert not found!")
     set(SKIP_THREADLISTS true)
+else()
+    message(STATUS "Found ImageMagick convert: ${IMAGEMAGICK_CONVERT}")
 endif()
-message(STATUS "Found ImageMagick convert: ${IMAGEMAGICK_CONVERT}")
 
 find_program(BASH bash)
 if(BASH STREQUAL BASH-NOTFOUND)
+    message(WARNING "Bash not found!")
     set(SKIP_THREADLISTS true)
+else()
+    message(STATUS "Found bash: ${BASH}")
 endif()
-message(STATUS "Found bash: ${BASH}")
 
 # Sources
 
@@ -30,7 +34,7 @@ set(THREADLISTS_NAME_DMC DMC)
 # Target: threadlists
 
 if(SKIP_THREADLISTS)
-    message(WARNING "Skip threadlists (missing requirement)")
+    message(WARNING "Skipping threadlists (missing requirement)")
 else()
     set(THREADLIST_FILES)
     foreach(NAME ${THREADLISTS})

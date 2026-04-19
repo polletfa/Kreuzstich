@@ -10,6 +10,7 @@
 #include <ctime>
 #include <string_view>
 #include <optional>
+#include <string>
 
 /**
  * Some constants providing informations about version and build

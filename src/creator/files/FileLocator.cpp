@@ -6,6 +6,9 @@
 #include "FileLocator.hpp"
 #include "QStandardPathsWrapper.hpp"
 
+// STL
+#include <algorithm>
+
 FileLocator::FileLocator(std::shared_ptr<IQStandardPathsWrapper> standardPathWrapper)
     : m_standardPath(standardPathWrapper == nullptr ? std::make_shared<QStandardPathsWrapper>() : standardPathWrapper)
 {}
@@ -49,11 +52,14 @@ std::vector<std::filesystem::path> FileLocator::findAllFiles(QStandardPaths::Sta
     std::vector<std::filesystem::path> files;
     for(const QString& path: m_standardPath->standardLocations(location)) {
         try {
+            std::vector<std::filesystem::path> filesCurrentDir;
             for(const auto& entry: std::filesystem::directory_iterator(path.toStdString())) {
                 if(entry.path().string().ends_with(extension) && std::filesystem::is_regular_file(entry)) {
-                    files.push_back(entry.path());
+                    filesCurrentDir.push_back(entry.path());
                 }
             }
+            std::sort(filesCurrentDir.begin(), filesCurrentDir.end());
+            files.insert(files.end(), std::make_move_iterator(filesCurrentDir.begin()), std::make_move_iterator(filesCurrentDir.end()));
         } catch(...) {}
     }
     return files;

@@ -10,7 +10,7 @@ void Mockup_QStandardPathsWrapper::SetUp() {
     m_root = QString(TEST_FILES) + "/" + testSuite() + "/" + testName();
 }
 
-QStringList Mockup_QStandardPathsWrapper::standardLocations(QStandardPaths::StandardLocation location) {
+QStringList Mockup_QStandardPathsWrapper::standardLocations(QStandardPaths::StandardLocation /*location*/) {
     return {
         m_root + "/test/path/1",
         m_root + "/another/test/path",
@@ -18,6 +18,6 @@ QStringList Mockup_QStandardPathsWrapper::standardLocations(QStandardPaths::Stan
     };
 }
 
-QString Mockup_QStandardPathsWrapper::writableLocation(QStandardPaths::StandardLocation location) {
+QString Mockup_QStandardPathsWrapper::writableLocation(QStandardPaths::StandardLocation /*location*/) {
     return m_root + "/test/path/1";
 }
