@@ -8,10 +8,7 @@
 // STL
 #include <algorithm>
 #include <numbers>
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Winvalid-constexpr"   // clangd is having issues with cmath from GCC apparently
 #include <cmath>
-#pragma GCC diagnostic pop
 
 namespace ColorSpace {
 
