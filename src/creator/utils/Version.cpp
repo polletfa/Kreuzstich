@@ -7,8 +7,7 @@
 
 // STL
 #include <sstream>
-#include <iomanip>
-#include <vector>
+#include <chrono>
 
 // Qt
 #include <QFile>
@@ -19,16 +18,14 @@ namespace Version {
 std::string getVersionString() {
     static std::string versionString;
     if(versionString.empty()) {
-        std::locale::global(std::locale(""));
-        std::tm* tm_info = std::localtime(&BUILD_TIME);
         std::ostringstream oss;
         oss << NAME
             << " " << std::to_string(MAJOR) << "." << std::to_string(MINOR)
-           << " " << (RELEASE_BUILD ? "release" : "debug");
+           << (RELEASE_BUILD ? "" : "-debug");
         if(GIT_COMMIT[0]) {
-            oss << " " << GIT_COMMIT.substr(0, 8);
+            oss << " commit " << GIT_COMMIT.substr(0, 8);
         }
-        oss << " " << std::put_time(tm_info, "%x %X");
+        oss << " build " << std::format("{:%Y-%m-%d %H:%M:%S}", std::chrono::floor<std::chrono::seconds>(std::chrono::system_clock::from_time_t(BUILD_TIME)));
         versionString = oss.str();
     }
     return versionString;

@@ -8,6 +8,7 @@
 // Qt
 #include <QCoreApplication>
 #include <QLocale>
+#include <QLibraryInfo>
 
 namespace I18n {
 constexpr const char* TRANSLATION_FILES_PREFIX = ":/i18n/creator/";
@@ -16,7 +17,7 @@ std::unique_ptr<QTranslator> loadTranslation(QCoreApplication* app, QStringList 
     auto translator = std::make_unique<QTranslator>();
     for (const QString &locale : uiLanguages) {
         const QString name = QLocale(locale).name();
-        if (translator->load(prefix + name)) {
+        if (translator->load(prefix + name, QLibraryInfo::path(QLibraryInfo::TranslationsPath))) {
             app->installTranslator(translator.get());
             return translator;
         }
