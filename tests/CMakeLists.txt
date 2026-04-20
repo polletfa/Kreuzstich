@@ -37,6 +37,7 @@ set(SOURCES
     core/Version.cpp
     core/ColorSpace.cpp
     core/Thread.cpp
+    core/ThreadList.cpp
 
     data-qt/Mockup_QStandardPathsWrapper.hpp
     data-qt/Mockup_QStandardPathsWrapper.cpp

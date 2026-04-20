@@ -11,6 +11,8 @@ set(SOURCES
     ColorSpace.cpp
     Thread.hpp
     Thread.cpp
+    ThreadList.hpp
+    ThreadList.cpp
 )
 
 # Resources

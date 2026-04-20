@@ -37,8 +37,8 @@ public:
     bool operator<(const Thread& other) const;
 
     // distance
-    double distance(const Thread& other, ColorSpace::DistanceAlgo algo = ColorSpace::CIE1976) const;
-    double distance(const ColorSpace::ColorRGBA& rgba, ColorSpace::DistanceAlgo algo = ColorSpace::CIE1976) const;
+    double distance(const Thread& other, ColorSpace::DistanceAlgo algo = ColorSpace::CIEDE2000) const;
+    double distance(const ColorSpace::ColorRGBA& rgba, ColorSpace::DistanceAlgo algo = ColorSpace::CIEDE2000) const;
 
 private:
     static SortBy m_sortBy;

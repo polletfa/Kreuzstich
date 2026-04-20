@@ -10,10 +10,28 @@
 // core
 #include "core/Thread.hpp"
 
+// STL
+#include <vector>
+
 // Qt
 #include <QList>
 #include <QString>
 
+/**
+ * Parse a ThreadList file (*.threads)
+ *
+ * Format:
+ * - Everything after '#' is ignored (comment)
+ * - Empty lines are ignored
+ * - A thread is defined with a line:
+ *      <name>:<color>
+ *   where:
+ *   - <name> can be any string that doesn't contains '#' or ':'
+ *   - <color> must be a hexadecimal RGB color description with exactly 6 digits
+ *     (e.g. ff0000 for red, 00ff00 for green, 0000ff for blue - spaces are allowed, e.g. "ff 00 00" for red)
+ * - Any line that cannot be interpreted is ignored.
+ * - If too many lines are ignored (rule: more ignored than valid lines), the file is considered invalid
+ */
 class ThreadListParser {
 public:
     explicit ThreadListParser(const QString& file);
@@ -46,8 +64,11 @@ public:
 
     /**
      * Get the parsed values (if parsing was successful).
+     *
+     * Note: threads retuns a STL vector instead of a Qt QList because the list of thread will be
+     *       passed to ThreadList from core, rather than to the Qt GUI (unlike warnings() for example).
      */
-    QList<Thread>& threads();
+    std::vector<Thread>& threads();
 
     /**
      * Get the warnings (if parsing was successful).
@@ -62,7 +83,7 @@ public:
 private:
     QString m_file;
 
-    QList<Thread> m_threads;
+    std::vector<Thread> m_threads;
     QList<Warning> m_warnings;
     Error m_error{Error::SUCCESS};
 };

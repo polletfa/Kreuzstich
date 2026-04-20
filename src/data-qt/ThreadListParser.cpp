@@ -41,7 +41,7 @@ ThreadListParser::ThreadListParser(const QString& file)
                 m_threads.push_back(thread);
             }
         }
-        if(m_warnings.size() > m_threads.size()) {
+        if(m_warnings.size() > static_cast<qsizetype>(m_threads.size())) {
             m_error = Error::TOO_MANY_ERRORS;
         } else if(m_threads.empty()) {
             m_error = Error::NO_DEFINITION_FOUND;
@@ -58,7 +58,7 @@ ThreadListParser::operator bool() const {
     return m_error.error == Error::SUCCESS;
 }
 
-QList<Thread>& ThreadListParser::threads() {
+std::vector<Thread>& ThreadListParser::threads() {
     return m_threads;
 }
 
