@@ -16,9 +16,9 @@
 ThreadListParser::ThreadListParser(const std::filesystem::path& file)
     : m_file(file)
 {
-    if(std::ifstream file{m_file}; file) {
+    if(std::ifstream ifile{m_file}; ifile) {
         std::string line;
-        while(std::getline(file, line)) {
+        while(std::getline(ifile, line)) {
             std::string_view vline = StringUtils::trim(StringUtils::removeComment(line, "#"));
             if(vline.size() == 0) {
                 continue; // ignore line (empty or comment only)
@@ -49,7 +49,7 @@ ThreadListParser::ThreadListParser(const std::filesystem::path& file)
         }
     } else {
         m_error = tr("Cannot open file: %1.")
-            .arg(std::strerror(errno))
+            .arg(strerror(errno))
             .toStdString();
         m_parseResult = false;
     }
