@@ -5,19 +5,14 @@
 */
 #include "Mockup_QStandardPathsWrapper.hpp"
 
-void Mockup_QStandardPathsWrapper::SetUp() {
-    MockupBase::SetUp();
-    m_root = QString(TEST_FILES) + "/" + testSuite() + "/" + testName();
-}
-
 QStringList Mockup_QStandardPathsWrapper::standardLocations(QStandardPaths::StandardLocation /*location*/) {
     return {
-        m_root + "/test/path/1",
-        m_root + "/another/test/path",
-        m_root + "/one/more/path"
+        QString(testPath({"test", "path", "1"}).string().data()),
+        QString(testPath({"another", "test", "path"}).string().data()),
+        QString(testPath({"one", "more", "path"}).string().data())
     };
 }
 
 QString Mockup_QStandardPathsWrapper::writableLocation(QStandardPaths::StandardLocation /*location*/) {
-    return m_root + "/test/path/1";
+    return QString(testPath({"test", "path", "1"}).string().data());
 }

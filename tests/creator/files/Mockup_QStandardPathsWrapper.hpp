@@ -6,7 +6,7 @@
 #ifndef MOCKUP_QSTANDARDPATHWRAPPER_HPP
 #define MOCKUP_QSTANDARDPATHWRAPPER_HPP
 
-#include "../../MockupBase.hpp"
+#include "../../Mockup.hpp"
 
 #include "creator/files/IQStandardPathsWrapper.hpp"
 
@@ -14,17 +14,11 @@
  * Mockup for QStandardPathsWrapper.
  * @see QStandardPathWrapper, IQStandardPathsWrapper
  */
-class Mockup_QStandardPathsWrapper: public MockupBase, public IQStandardPathsWrapper {
+class Mockup_QStandardPathsWrapper: public Mockup, public IQStandardPathsWrapper {
 public:
-    // MockupBase
-    void SetUp() override;
-
     // IQStandardPathsWrapper
     QStringList standardLocations(QStandardPaths::StandardLocation location) override;
     QString writableLocation(QStandardPaths::StandardLocation location) override;
-
-private:
-    QString m_root;
 };
 
 #endif // MOCKUP_QSTANDARDPATHWRAPPER_HPP

@@ -42,10 +42,11 @@ endforeach()
 # Sources
 
 set(SOURCES
-    MockupBase.hpp
-    MockupBase.cpp
+    Mockup.hpp
+    Mockup.cpp
 
     creator/utils/Version.cpp
+    creator/utils/StringUtils.cpp
 
     creator/colors/ColorSpace.cpp
     creator/colors/Thread.cpp
@@ -53,6 +54,7 @@ set(SOURCES
     creator/files/Mockup_QStandardPathsWrapper.hpp
     creator/files/Mockup_QStandardPathsWrapper.cpp
     creator/files/FileLocator.cpp
+    creator/files/ThreadListParser.cpp
 )
 
 # Target: unittests depends on creator, gui

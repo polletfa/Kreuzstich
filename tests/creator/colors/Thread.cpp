@@ -12,23 +12,25 @@ protected:
     void testConstructor(const std::string& color, bool isValid, ColorSpace::rgba_t expected) {
         Thread thr("thread", color);
         EXPECT_EQ(thr.name(), "thread");
-        EXPECT_EQ(thr.isValid(), isValid);
+        EXPECT_EQ(thr.colorString(), color);
         if(isValid) {
+            ASSERT_TRUE(thr);
             EXPECT_EQ(thr.color().red, expected.red);
             EXPECT_EQ(thr.color().green, expected.green);
             EXPECT_EQ(thr.color().blue, expected.blue);
+        } else {
+            ASSERT_FALSE(thr);
         }
     }
 };
 
 // --- constructor, isValid, name, color
 
-TEST_F(ThreadTests, constuctorValid)           { testConstructor("123456", true, {0x12/255., 0x34/255., 0x56/255.});     }
-TEST_F(ThreadTests, constuctorValidWithSpaces) { testConstructor(" 12 34 56 ", true, {0x12/255., 0x34/255., 0x56/255.}); }
-TEST_F(ThreadTests, constuctorTooShort)        { testConstructor("12345", false, {});                                                    }
-TEST_F(ThreadTests, constuctorInvalidChar)     { testConstructor("1g3456", false, {});                                                   }
-TEST_F(ThreadTests, constuctorInvalidInput)    { testConstructor("wrong", false, {});                                                    }
-TEST_F(ThreadTests, constuctorEmpty)           { testConstructor("      ", false, {});                                                   }
+TEST_F(ThreadTests, constuctorValid)           { testConstructor("123456", true, {0x12/255., 0x34/255., 0x56/255.}); }
+TEST_F(ThreadTests, constuctorTooShort)        { testConstructor("12345", false, {}); }
+TEST_F(ThreadTests, constuctorInvalidChar)     { testConstructor("1g3456", false, {}); }
+TEST_F(ThreadTests, constuctorInvalidInput)    { testConstructor("wrong", false, {}); }
+TEST_F(ThreadTests, constuctorEmpty)           { testConstructor("      ", false, {}); }
 
 // --- setSortBy, operator<
 

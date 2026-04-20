@@ -24,9 +24,11 @@ public:
      * @param rgb Color with format "RRGGBB" (hexadecimal notation)
      */
     Thread(const std::string& name, const std::string& rgb);
-    bool isValid() const; /**< false if the constructor fails (invalid rgb string) */
+
+    operator bool() const; /**< false if the constructor fails (invalid rgb string) */
 
     const std::string& name() const;
+    const std::string& colorString() const;
     const ColorSpace::rgba_t& color() const;
 
     // sort
@@ -43,6 +45,7 @@ private:
 
     bool m_isValid;
     std::string m_name;
+    std::string m_colorString;
     ColorSpace::rgba_t m_rgb; // for displaying
     ColorSpace::hsl_t m_hsl;  // for sorting
     ColorSpace::lab_t m_lab;  // for distance
