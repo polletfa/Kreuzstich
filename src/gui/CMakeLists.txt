@@ -33,8 +33,9 @@ qt_add_library(gui STATIC ${SOURCES})
 target_link_libraries(gui PRIVATE creator)
 target_link_libraries(gui PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets)
 target_include_directories(gui PRIVATE ${creator_INCLUDES})
-qt_add_resources(gui "resources" PREFIX "/" BASE ${CMAKE_SOURCE_DIR}/resources/ FILES ${ICONS})
-qt_add_translations(gui RESOURCE_PREFIX "/i18n/gui/" TS_FILES ${TRANSLATIONS}) # to cleanup, add: LUPDATE_OPTIONS -no-obsolete
+qt_add_resources(gui "gui_resources" PREFIX "/" BASE ${CMAKE_SOURCE_DIR}/resources/ FILES ${ICONS})
+qt_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR} ${TRANSLATIONS}) # to cleanup, add: OPTIONS -no-obsolete
+qt_add_resources(gui "gui_translations" PREFIX "/i18n/gui" BASE ${CMAKE_CURRENT_BINARY_DIR} FILES ${QM_FILES})
 
 # Target: kreuzstich depends on gui
 qt_add_executable(kreuzstich ${ENTRYPOINT})
