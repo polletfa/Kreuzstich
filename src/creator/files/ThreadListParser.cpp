@@ -24,7 +24,7 @@ ThreadListParser::ThreadListParser(const std::filesystem::path& file)
                 continue; // ignore line (empty or comment only)
             }
             if(auto pos = vline.find(':'); pos == std::string::npos) {
-                m_warnings.push_back(tr("Invalid line: %1").arg(std::string{vline}).toStdString());
+                m_warnings.push_back(tr("Invalid line: %1").arg(std::string{vline}.data()).toStdString());
                 continue; // ignore line
             } else {
                 std::string_view name = StringUtils::trim(vline.substr(0, pos));
@@ -32,7 +32,7 @@ ThreadListParser::ThreadListParser(const std::filesystem::path& file)
 
                 Thread thread{std::string{name}, std::string{rgb}};
                 if(!thread) {
-                    m_warnings.push_back(tr("Invalid color: %1").arg(std::string{rgb}).toStdString());
+                    m_warnings.push_back(tr("Invalid color: %1").arg(std::string{rgb}.data()).toStdString());
                     continue; // ignore line
                 }
                 m_threads.push_back(thread);
