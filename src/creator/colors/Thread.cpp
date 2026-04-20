@@ -5,25 +5,22 @@
 */
 #include "Thread.hpp"
 
+#include "../utils/StringUtils.hpp"
+
 Thread::SortBy Thread::m_sortBy = Thread::HLS;
 
 Thread::Thread(const std::string& name, const std::string& rgb)
-    : m_name(name)
+    : m_name(name), m_colorString(rgb)
 {
-    std::string rgbNoSpaces;
-    for(unsigned char ch: rgb) {
-        if(!std::isspace(ch)) {
-            rgbNoSpaces += ch;
-        }
-    }
+    std::string_view rgbNoSpaces = StringUtils::trim(rgb);
     if(rgbNoSpaces.size() != 6) {
         m_isValid = false;
     } else {
         try {
             size_t nred, ngreen, nblue;
-            const int red = std::stoi(rgbNoSpaces.substr(0, 2), &nred, 16);
-            const int green = std::stoi(rgbNoSpaces.substr(2, 2), &ngreen, 16);
-            const int blue = std::stoi(rgbNoSpaces.substr(4, 2), &nblue, 16);
+            const int red = std::stoi(std::string{rgbNoSpaces.substr(0, 2)}, &nred, 16);
+            const int green = std::stoi(std::string{rgbNoSpaces.substr(2, 2)}, &ngreen, 16);
+            const int blue = std::stoi(std::string{rgbNoSpaces.substr(4, 2)}, &nblue, 16);
             if(nred != 2 || ngreen != 2 || nblue != 2) {
                 m_isValid = false;
             } else {
@@ -38,12 +35,16 @@ Thread::Thread(const std::string& name, const std::string& rgb)
     }
 }
 
-bool Thread::isValid() const {
+Thread::operator bool() const {
     return m_isValid;
 }
 
 const std::string& Thread::name() const {
     return m_name;
+}
+
+const std::string& Thread::colorString() const {
+    return m_colorString;
 }
 
 const ColorSpace::rgba_t& Thread::color() const {
