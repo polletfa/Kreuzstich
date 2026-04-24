@@ -8,6 +8,7 @@
 
 #include "data-qt/FileLocator.hpp"
 
+#include <iostream>
 /**
  * For each test, test files are provided under:
  * - resources/test_files/TEST_SUITE_NAME/TEST_NAME.
@@ -43,6 +44,8 @@ TEST_F(FileLocatorTests, findConfigFile_notfound) {
 TEST_F(FileLocatorTests, findStateFile_firstDir) {
     auto res = locator.findStateFile();
     ASSERT_TRUE(res.has_value());
+    std::cout << res.value().toStdString() << std::endl
+              << qTestPath({"test", "path", "1", "state.xml"}).toStdString() << std::endl;
     EXPECT_EQ(res.value(), qTestPath({"test", "path", "1", "state.xml"}));
 }
 
