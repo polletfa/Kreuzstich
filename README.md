@@ -15,6 +15,12 @@ One of the main caveat of this version is that it doesn't allow editing. It simp
 picture and may therefore create unnecessary complex patterns with lots of threads being used only for a few pixels.
 While stitching the created pattern, I often made some modifications "on the fly" be replacing or removing some threads.
 
+Here's an example of a work currently being created with Kreuzstich:
+
+| Original picture | Setup | Close-up |
+| :---: | :---: | :---: |
+| ![Original picture](example/torshavn0.jpg) | ![Setup](example/torshavn1.jpg) | ![Close-up](example/torshavn2.jpg) |
+
 ## Rewrite
 
 ### Motivation
