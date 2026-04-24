@@ -10,8 +10,10 @@
 
 // STL
 #include <string>
-#include <vector>
 #include <filesystem>
+
+// Qt
+#include <QString>
 
 /**
  * Helper class for mockups
@@ -23,12 +25,12 @@ public:
 
     const std::string& testSuite() const;
     const std::string& testName() const;
-    std::filesystem::path testPath(const std::vector<std::string>& relativePath) const;
+    std::filesystem::path testPath(const std::string& relativePath) const;
+    QString testPath(const QString& relativePath) const;
 
 private:
     std::string m_testSuite;
     std::string m_testName;
-    std::filesystem::path m_testData;
 };
 
 #endif // MOCKUP_HPP
