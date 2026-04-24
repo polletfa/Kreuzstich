@@ -7,12 +7,12 @@
 
 QStringList Mockup_QStandardPathsWrapper::standardLocations(QStandardPaths::StandardLocation /*location*/) {
     return {
-        QString(testPath({"test", "path", "1"}).string().data()),
-        QString(testPath({"another", "test", "path"}).string().data()),
-        QString(testPath({"one", "more", "path"}).string().data())
+        testPath(QString("test/path/1")),
+        testPath(QString("another/test/path")),
+        testPath(QString("one/more/path"))
     };
 }
 
 QString Mockup_QStandardPathsWrapper::writableLocation(QStandardPaths::StandardLocation /*location*/) {
-    return QString(testPath({"test", "path", "1"}).string().data());
+    return testPath(QString("test/path/1"));
 }

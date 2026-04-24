@@ -21,13 +21,13 @@ protected:
 };
 
 TEST_F(ThreadListParserTests, fileNotFound) {
-    ThreadListParser parser{qTestPath({"file_not_found"})};
+    ThreadListParser parser{testPath(QString("file_not_found"))};
     ASSERT_FALSE(parser);
     EXPECT_EQ(parser.error().error, ThreadListParser::Error::OPEN_FILE_ERROR);
 }
 
 TEST_F(ThreadListParserTests, found) {
-    ThreadListParser parser{qTestPath({"list.threads"})};
+    ThreadListParser parser{testPath(QString("list.threads"))};
     ASSERT_TRUE(parser);
 
     auto warnings = parser.warnings();
@@ -49,13 +49,13 @@ TEST_F(ThreadListParserTests, found) {
 }
 
 TEST_F(ThreadListParserTests, invalidFile) {
-    ThreadListParser parser{qTestPath({"invalid.threads"})};
+    ThreadListParser parser{testPath(QString("invalid.threads"))};
     ASSERT_FALSE(parser);
     EXPECT_EQ(parser.error().error, ThreadListParser::Error::TOO_MANY_ERRORS);
 }
 
 TEST_F(ThreadListParserTests, emptyFile) {
-    ThreadListParser parser{qTestPath({"empty.threads"})};
+    ThreadListParser parser{testPath(QString("empty.threads"))};
     ASSERT_FALSE(parser);
     EXPECT_EQ(parser.error().error, ThreadListParser::Error::NO_DEFINITION_FOUND);
 }

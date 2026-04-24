@@ -27,13 +27,13 @@ protected:
 TEST_F(FileLocatorTests, findConfigFile_firstDir) {
     auto res = locator.findConfigFile();
     ASSERT_TRUE(res.has_value());
-    EXPECT_EQ(res.value(), qTestPath({"test", "path", "1", "config.xml"}));
+    EXPECT_EQ(res.value(), testPath(QString("test/path/1/config.xml")));
 }
 
 TEST_F(FileLocatorTests, findConfigFile_secondDir) {
     auto res = locator.findConfigFile();
     ASSERT_TRUE(res.has_value());
-    EXPECT_EQ(res.value(), qTestPath({"another", "test", "path", "config.xml"}));
+    EXPECT_EQ(res.value(), testPath(QString("another/test/path/config.xml")));
 }
 
 TEST_F(FileLocatorTests, findConfigFile_notfound) {
@@ -44,15 +44,13 @@ TEST_F(FileLocatorTests, findConfigFile_notfound) {
 TEST_F(FileLocatorTests, findStateFile_firstDir) {
     auto res = locator.findStateFile();
     ASSERT_TRUE(res.has_value());
-    std::cout << res.value().toStdString() << std::endl
-              << qTestPath({"test", "path", "1", "state.xml"}).toStdString() << std::endl;
-    EXPECT_EQ(res.value(), qTestPath({"test", "path", "1", "state.xml"}));
+    EXPECT_EQ(res.value(), testPath(QString("test/path/1/state.xml")));
 }
 
 TEST_F(FileLocatorTests, findStateFile_secondDir) {
     auto res = locator.findStateFile();
     ASSERT_TRUE(res.has_value());
-    EXPECT_EQ(res.value(), qTestPath({"another", "test", "path", "state.xml"}));
+    EXPECT_EQ(res.value(), testPath(QString("another/test/path/state.xml")));
 
 }
 
@@ -64,22 +62,22 @@ TEST_F(FileLocatorTests, findStateFile_notfound) {
 TEST_F(FileLocatorTests, findThreadLists) {
     auto res = locator.findThreadLists();
     QStringList expected = {
-        qTestPath({"test", "path", "1", "file1.threads"}),
-        qTestPath({"another", "test", "path", "file1.threads"}),
-        qTestPath({"another", "test", "path", "file2.threads"}),
-        qTestPath({"one", "more", "path", "file2.threads"})
+        testPath(QString("test/path/1/file1.threads")),
+        testPath(QString("another/test/path/file1.threads")),
+        testPath(QString("another/test/path/file2.threads")),
+        testPath(QString("one/more/path/file2.threads"))
     };
     EXPECT_EQ(res, expected);
 }
 
 TEST_F(FileLocatorTests, getPathForWritableConfigFile) {
-    EXPECT_EQ(locator.getPathForWritableConfigFile(), qTestPath({"test", "path", "1", "config.xml"}));
+    EXPECT_EQ(locator.getPathForWritableConfigFile(), testPath(QString("test/path/1/config.xml")));
 }
 
 TEST_F(FileLocatorTests, getPathForWritableStateFile) {
-    EXPECT_EQ(locator.getPathForWritableStateFile(), qTestPath({"test", "path", "1", "state.xml"}));
+    EXPECT_EQ(locator.getPathForWritableStateFile(), testPath(QString("test/path/1/state.xml")));
 }
 
 TEST_F(FileLocatorTests, getPathForWritableThreadListFile) {
-    EXPECT_EQ(locator.getPathForWritableThreadListFile("myList"), qTestPath({"test", "path", "1", "myList.threads"}));
+    EXPECT_EQ(locator.getPathForWritableThreadListFile("myList"), testPath(QString("test/path/1/myList.threads")));
 }
