@@ -18,7 +18,7 @@ While stitching the created pattern, I often made some modifications "on the fly
 Here's an example of a work currently being created with Kreuzstich:
 
 | Original picture | Kreuzstich creation |
-| :---: | :---: | :---: |
+| :---: | :---: |
 | <img src="doc/examples/torshavn0.jpg" height="200"> | <img src="doc/examples/torshavn1.jpg" height="200"> |
 
 ## Rewrite
