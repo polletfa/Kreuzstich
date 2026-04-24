@@ -1,11 +1,11 @@
 # Kreuzstich
 
-Kreuzstich is a program designed to create complex photo-realistic cross-stitch pattern by converting an actual photo into a pattern:
+Kreuzstich is a program designed to create complex photo-realistic cross-stitch patterns by converting an actual photo:
 - Resize the picture to desired dimensions,
 - Select for each pixel the best thread among a specific list (closest color),
 - Generate a grid with the thread number for each point.
 
-While this is somewhat similar to the online service provided by DMC, it has a stronger on photo-realism and doesn't limit the number
+While this is somewhat similar to the online service provided by DMC, it has a stronger focus on photo-realism and doesn't limit the number
 of threads to use.
 
 ## Initial version
