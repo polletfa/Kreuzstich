@@ -2,7 +2,7 @@ string(TIMESTAMP BUILD_TIME "%s")
 execute_process(COMMAND git rev-parse HEAD OUTPUT_VARIABLE GIT_COMMIT OUTPUT_STRIP_TRAILING_WHITESPACE)
 execute_process(COMMAND git status --porcelain OUTPUT_VARIABLE GIT_PORCELAIN OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-if(!GIT_PORCELAIN)
+if(NOT GIT_PORCELAIN STREQUAL "")
     unset(GIT_COMMIT)
 endif()
 
@@ -12,4 +12,5 @@ else()
     set(RELEASE_BUILD "false")
 endif()
 
+file(READ ${LICENSE_FILE} LICENSE)
 configure_file(${SOURCE} ${OUTPUT} @ONLY)

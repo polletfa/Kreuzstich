@@ -28,41 +28,28 @@ else()
     message(STATUS "Found genhtml: ${GENHTML}")
 endif()
 
-# Suppress Qt AUTOMOC warning for googletest targets
-foreach(target gtest gtest_main gmock gmock_main)
-  if(TARGET ${target})
-    set_target_properties(${target} PROPERTIES
-      AUTOMOC OFF
-      AUTOUIC OFF
-      AUTORCC OFF
-    )
-  endif()
-endforeach()
-
 # Sources
 
 set(SOURCES
     Mockup.hpp
     Mockup.cpp
 
-    creator/utils/Version.cpp
-    creator/utils/StringUtils.cpp
+    core/Version.cpp
+    core/ColorSpace.cpp
+    core/Thread.cpp
 
-    creator/colors/ColorSpace.cpp
-    creator/colors/Thread.cpp
-
-    creator/files/Mockup_QStandardPathsWrapper.hpp
-    creator/files/Mockup_QStandardPathsWrapper.cpp
-    creator/files/FileLocator.cpp
-    creator/files/ThreadListParser.cpp
+    data-qt/Mockup_QStandardPathsWrapper.hpp
+    data-qt/Mockup_QStandardPathsWrapper.cpp
+    data-qt/FileLocator.cpp
+    data-qt/ThreadListParser.cpp
 )
 
-# Target: unittests depends on creator, gui
+# Target: unittests depends on core, gui
 add_executable(unittests ${SOURCES})
 target_compile_definitions(unittests PRIVATE TEST_FILES="${CMAKE_SOURCE_DIR}/resources/test_files")
-target_include_directories(unittests PRIVATE ${creator_INCLUDES} ${gui_INCLUDES})
+target_include_directories(unittests PRIVATE ${core_INCLUDES} ${data-qt_INCLUDES} ${gui-qt_INCLUDES})
 target_link_libraries(unittests PRIVATE
-    creator gui
+    core data-qt gui-qt
     GTest::gtest GTest::gtest_main
 )
 

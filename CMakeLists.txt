@@ -7,10 +7,6 @@ cmake_minimum_required(VERSION 3.19)
 project(kreuzstich VERSION 1.0 LANGUAGES CXX)
 
 # Basic definitions
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE CXX_EXTENSIONS OFF)
@@ -31,8 +27,9 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
 endif()
 
 ## Components
-add_subdirectory(src/creator)    # The actual logic (the "backend" so to speak)
-add_subdirectory(src/gui)        # Standard desktop application
+add_subdirectory(src/core)       # Core logic
+add_subdirectory(src/data-qt)    # Data access layer with Qt and filesystem
+add_subdirectory(src/gui-qt)     # GUI layer with Qt (desktop application)
 
 ## Components: additional resources
 add_subdirectory(resources/threadlists)
