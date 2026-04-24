@@ -46,6 +46,9 @@ CMakeLists.txt.user*
 # Vim temporary files
 .*.swp
 
+# Draw.io backup files
+.xdp-*
+
 # Visual Studio generated files
 *.ib_pdb_index
 *.idb
