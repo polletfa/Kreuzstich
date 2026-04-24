@@ -13,6 +13,9 @@
 #include <vector>
 #include <filesystem>
 
+// Qt
+#include <QString>
+
 /**
  * Helper class for mockups
  */
@@ -24,6 +27,7 @@ public:
     const std::string& testSuite() const;
     const std::string& testName() const;
     std::filesystem::path testPath(const std::vector<std::string>& relativePath) const;
+    QString qTestPath(const std::vector<std::string>& relativePath) const;
 
 private:
     std::string m_testSuite;

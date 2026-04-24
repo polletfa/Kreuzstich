@@ -35,3 +35,7 @@ std::filesystem::path Mockup::testPath(const std::vector<std::string>& relativeP
     }
     return path;
 }
+
+QString Mockup::qTestPath(const std::vector<std::string>& relativePath) const {
+    return testPath(relativePath).string().data();
+}
