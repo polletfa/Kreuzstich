@@ -19,7 +19,7 @@ Here's an example of a work currently being created with Kreuzstich:
 
 | Original picture | Setup | Close-up |
 | :---: | :---: | :---: |
-| ![Original picture](example/torshavn0.jpg) | ![Setup](example/torshavn1.jpg) | ![Close-up](example/torshavn2.jpg) |
+| <img src="doc/example/torshavn0.jpg" height="200"> | <img src="doc/example/torshavn1.jpg" height="200"> | <img src="doc/example/torshavn2.jpg" height="200"> |
 
 ## Rewrite
 
