@@ -14,9 +14,9 @@ The initial version of Kreuzstich was rudimentary but was used to create several
 
 | Original picture | Kreuzstich creation |
 | :---: | :---: |
-| <img src="doc/examples/andrea1.original.jpg" height="200"> | <img src="doc/examples/andrea1.kreuzstich.jpg" height="200"> |
-| <img src="doc/examples/andrea2.original.jpg" height="200"> | <img src="doc/examples/andrea2.kreuzstich.jpg" height="200"> |
-| <img src="doc/examples/torshavn.original.jpg" height="200"> | <img src="doc/examples/torshavn.kreuzstich.jpg" height="200"> |
+| <img src="doc/examples/andrea1.original.jpg" width="300"> | <img src="doc/examples/andrea1.kreuzstich.jpg" width="300"> |
+| <img src="doc/examples/andrea2.original.jpg" width="300"> | <img src="doc/examples/andrea2.kreuzstich.jpg" width="300"> |
+| <img src="doc/examples/torshavn.original.jpg" width="300"> | <img src="doc/examples/torshavn.kreuzstich.jpg" width="300"> |
 
 One of the main caveat of this version is that it doesn't allow editing. It simply selects the best color for each pixel of the
 picture and may therefore create unnecessary complex patterns with lots of threads being used only for a few pixels.
