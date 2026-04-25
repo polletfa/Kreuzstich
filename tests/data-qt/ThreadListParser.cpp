@@ -39,13 +39,14 @@ TEST_F(ThreadListParserTests, found) {
     EXPECT_EQ(warnings[2].line, QString("thread 7:"));
 
     auto threads = parser.threads();
+    ColorSpace::ColorRGBA expectedColor[] = {{1, 0x23, 0x45}, {0xab, 0xcd, 0xef}, {0x11, 0x22, 0x33}};
     EXPECT_EQ(threads.size(), 3);
     EXPECT_EQ(threads[0].name(), "thread 1");
-    EXPECT_EQ(threads[0].colorString(), "012345");
+    EXPECT_EQ(threads[0].color(), expectedColor[0]);
     EXPECT_EQ(threads[1].name(), "thread 2, thread 3, thread 4");
-    EXPECT_EQ(threads[1].colorString(), "abcdef");
+    EXPECT_EQ(threads[1].color(), expectedColor[1]);
     EXPECT_EQ(threads[2].name(), "thread 6");
-    EXPECT_EQ(threads[2].colorString(), "112233");
+    EXPECT_EQ(threads[2].color(), expectedColor[2]);
 }
 
 TEST_F(ThreadListParserTests, invalidFile) {

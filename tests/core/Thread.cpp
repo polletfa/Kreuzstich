@@ -12,7 +12,6 @@ protected:
     void testConstructor(const std::string& color, bool isValid, ColorSpace::ColorRGBA expected) {
         Thread thr("thread", color);
         EXPECT_EQ(thr.name(), "thread");
-        EXPECT_EQ(thr.colorString(), color);
         if(isValid) {
             ASSERT_TRUE(thr);
             EXPECT_EQ(thr.color().red, expected.red);
@@ -26,8 +25,8 @@ protected:
 
 // --- constructor, isValid, name, color
 
-TEST_F(ThreadTests, constuctorValid)           { testConstructor("123456", true, {0x12/255., 0x34/255., 0x56/255.}); }
-TEST_F(ThreadTests, constuctorValidWithSpaces) { testConstructor("  12 34 56 ", true, {0x12/255., 0x34/255., 0x56/255.}); }
+TEST_F(ThreadTests, constuctorValid)           { testConstructor("123456", true, {0x12, 0x34, 0x56}); }
+TEST_F(ThreadTests, constuctorValidWithSpaces) { testConstructor("  12 34 56 ", true, {0x12, 0x34, 0x56}); }
 TEST_F(ThreadTests, constuctorTooShort)        { testConstructor("12345", false, {}); }
 TEST_F(ThreadTests, constuctorInvalidChar)     { testConstructor("1g3456", false, {}); }
 TEST_F(ThreadTests, constuctorInvalidInput)    { testConstructor("wrong", false, {}); }
@@ -35,21 +34,69 @@ TEST_F(ThreadTests, constuctorEmpty)           { testConstructor("      ", false
 
 // --- setSortBy, operator<
 
-TEST_F(ThreadTests, sort) {
+TEST_F(ThreadTests, sort_default) {
     // color1.saturation > color2.saturation
     // color1.lightness < color2.lightness
     Thread thr1("color1", "c8c814"), thr2("color2", "bfbf40");
 
-    // default sort: HLS
+    Thread::setSortBy(); // default is HLS ASC
     EXPECT_LT(thr1, thr2);
+}
 
-    // Change sort to HSL
-    Thread::setSortBy(Thread::HSL);
+TEST_F(ThreadTests, sort_HSL_ASC) {
+    // color1.saturation > color2.saturation
+    // color1.lightness < color2.lightness
+    Thread thr1("color1", "c8c814"), thr2("color2", "bfbf40");
+
+    Thread::setSortBy(Thread::HSL, Thread::ASC);
     EXPECT_LT(thr2, thr1);
+    Thread::setSortBy(); // reset default
+}
 
-    // Change sort back
-    Thread::setSortBy(Thread::HLS);
+TEST_F(ThreadTests, sort_HSL_DESC) {
+    // color1.saturation > color2.saturation
+    // color1.lightness < color2.lightness
+    Thread thr1("color1", "c8c814"), thr2("color2", "bfbf40");
+
+    Thread::setSortBy(Thread::HSL, Thread::DESC);
     EXPECT_LT(thr1, thr2);
+    Thread::setSortBy(); // reset default
+}
+
+TEST_F(ThreadTests, sort_HLS_ASC) {
+    // color1.saturation > color2.saturation
+    // color1.lightness < color2.lightness
+    Thread thr1("color1", "c8c814"), thr2("color2", "bfbf40");
+
+    Thread::setSortBy(Thread::HLS, Thread::ASC);
+    EXPECT_LT(thr1, thr2);
+    Thread::setSortBy(); // reset default
+}
+
+TEST_F(ThreadTests, sort_HLS_DESC) {
+    // color1.saturation > color2.saturation
+    // color1.lightness < color2.lightness
+    Thread thr1("color1", "c8c814"), thr2("color2", "bfbf40");
+
+    Thread::setSortBy(Thread::HLS, Thread::DESC);
+    EXPECT_LT(thr2, thr1);
+    Thread::setSortBy(); // reset default
+}
+
+TEST_F(ThreadTests, sort_Name_ASC) {
+    Thread thr1("color1", "c8c814"), thr2("color2", "bfbf40");
+
+    Thread::setSortBy(Thread::Name, Thread::ASC);
+    EXPECT_LT(thr1, thr2);
+    Thread::setSortBy(); // reset default
+}
+
+TEST_F(ThreadTests, sort_Name_DESC) {
+    Thread thr1("color1", "c8c814"), thr2("color2", "bfbf40");
+
+    Thread::setSortBy(Thread::Name, Thread::DESC);
+    EXPECT_LT(thr2, thr1);
+    Thread::setSortBy(); // reset default
 }
 
 // --- distance
@@ -65,8 +112,8 @@ TEST_F(ThreadTests, distanceFromThread) {
 
 TEST_F(ThreadTests, distanceFromRGB) {
     // Test values generated with http://www.brucelindbloom.com/
-    Thread thread("color1", "7b2d43");                            // rgb(123, 45, 67) == lab(30.6264, 36.0117,  4.1579)
-    ColorSpace::ColorRGBA color{12/255., 78/255., 41/255.}; // rgb( 12, 78, 41) == lab(28.6077, 29.5564, 16.3536)
+    Thread thread("color1", "7b2d43");             // rgb(123, 45, 67) == lab(30.6264, 36.0117,  4.1579)
+    ColorSpace::ColorRGBA color{12, 78, 41}; // rgb( 12, 78, 41) == lab(28.6077, 29.5564, 16.3536)
 
     EXPECT_NEAR(thread.distance(color, ColorSpace::CIE1976), 66.7232, 0.0001);
     EXPECT_NEAR(thread.distance(color, ColorSpace::CIEDE2000), 51.9866, 0.0001);

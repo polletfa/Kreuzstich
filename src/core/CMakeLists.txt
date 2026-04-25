@@ -2,6 +2,16 @@
 # Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
 # MIT License, see LICENSE file.
 
+# Requirements
+
+include(FetchContent)
+FetchContent_Declare(
+    stb
+    GIT_REPOSITORY https://github.com/nothings/stb.git
+    GIT_TAG 31c1ad3
+)
+FetchContent_MakeAvailable(stb)
+
 # Sources
 
 set(SOURCES
@@ -9,10 +19,16 @@ set(SOURCES
 
     ColorSpace.hpp
     ColorSpace.cpp
+
     Thread.hpp
     Thread.cpp
     ThreadList.hpp
     ThreadList.cpp
+
+    Selection.hpp
+    Selection.cpp
+    Picture.hpp
+    #Picture.cpp # TODO
 )
 
 # Resources
@@ -34,7 +50,7 @@ add_custom_target(version ALL
 # Target: core depends on version
 add_library(core STATIC ${SOURCES})
 add_dependencies(core version)
-target_include_directories(core PRIVATE ${CMAKE_BINARY_DIR}/generate_version/core)
+target_include_directories(core PRIVATE ${CMAKE_BINARY_DIR}/generate_version/core ${stb_SOURCE_DIR})
 
 # Export variables
 set(core_INCLUDES ${CMAKE_SOURCE_DIR}/src ${CMAKE_BINARY_DIR}/generate_version PARENT_SCOPE)

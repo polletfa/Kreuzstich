@@ -27,23 +27,23 @@ protected:
 
 TEST_F(ThreadListTests, findClosest_empty) {
     ThreadList emptyList{{}};
-    ASSERT_FALSE(emptyList.findClosest({0., 0., 0.}));
+    ASSERT_FALSE(emptyList.findClosest({0, 0, 0}));
 }
 
 TEST_F(ThreadListTests, findClosest_black) {
-    auto res = m_threads.findClosest({0., 0., 0.});
+    auto res = m_threads.findClosest({0, 0, 0});
     ASSERT_TRUE(res);
     EXPECT_EQ(res->get().name(), "DMC 310");
 }
 
 TEST_F(ThreadListTests, findClosest_white) {
-    auto res = m_threads.findClosest({1., 1., 1.});
+    auto res = m_threads.findClosest({255, 255, 255});
     ASSERT_TRUE(res);
     EXPECT_EQ(res->get().name(), "DMC BLANC");
 }
 
 TEST_F(ThreadListTests, findClosest_red) {
-    auto res = m_threads.findClosest({1., 0., 0.});
+    auto res = m_threads.findClosest({255, 0, 0});
     ASSERT_TRUE(res);
     EXPECT_EQ(res->get().name(), "DMC 608");
 }
