@@ -25,10 +25,13 @@ set(SOURCES
     ThreadList.hpp
     ThreadList.cpp
 
+    Picture.hpp
+    #Picture.cpp #TODO
+
     Selection.hpp
     Selection.cpp
-    Picture.hpp
-    #Picture.cpp # TODO
+    Pattern.hpp
+    Pattern.cpp
 )
 
 # Resources

@@ -14,16 +14,18 @@ protected:
         EXPECT_EQ(thr.name(), "thread");
         if(isValid) {
             ASSERT_TRUE(thr);
-            EXPECT_EQ(thr.color().red, expected.red);
-            EXPECT_EQ(thr.color().green, expected.green);
-            EXPECT_EQ(thr.color().blue, expected.blue);
+            EXPECT_EQ(thr.color(), expected);
+            auto expectedHSL = ColorSpace::toHSL(expected);
+            EXPECT_NEAR(thr.hsl().hue, expectedHSL.hue, 0.001);
+            EXPECT_NEAR(thr.hsl().saturation, expectedHSL.saturation, 0.001);
+            EXPECT_NEAR(thr.hsl().lightness, expectedHSL.lightness, 0.001);
         } else {
             ASSERT_FALSE(thr);
         }
     }
 };
 
-// --- constructor, isValid, name, color
+// --- constructor, isValid, name, color, hsl
 
 TEST_F(ThreadTests, constuctorValid)           { testConstructor("123456", true, {0x12, 0x34, 0x56}); }
 TEST_F(ThreadTests, constuctorValidWithSpaces) { testConstructor("  12 34 56 ", true, {0x12, 0x34, 0x56}); }
@@ -31,73 +33,6 @@ TEST_F(ThreadTests, constuctorTooShort)        { testConstructor("12345", false,
 TEST_F(ThreadTests, constuctorInvalidChar)     { testConstructor("1g3456", false, {}); }
 TEST_F(ThreadTests, constuctorInvalidInput)    { testConstructor("wrong", false, {}); }
 TEST_F(ThreadTests, constuctorEmpty)           { testConstructor("      ", false, {}); }
-
-// --- setSortBy, operator<
-
-TEST_F(ThreadTests, sort_default) {
-    // color1.saturation > color2.saturation
-    // color1.lightness < color2.lightness
-    Thread thr1("color1", "c8c814"), thr2("color2", "bfbf40");
-
-    Thread::setSortBy(); // default is HLS ASC
-    EXPECT_LT(thr1, thr2);
-}
-
-TEST_F(ThreadTests, sort_HSL_ASC) {
-    // color1.saturation > color2.saturation
-    // color1.lightness < color2.lightness
-    Thread thr1("color1", "c8c814"), thr2("color2", "bfbf40");
-
-    Thread::setSortBy(Thread::HSL, Thread::ASC);
-    EXPECT_LT(thr2, thr1);
-    Thread::setSortBy(); // reset default
-}
-
-TEST_F(ThreadTests, sort_HSL_DESC) {
-    // color1.saturation > color2.saturation
-    // color1.lightness < color2.lightness
-    Thread thr1("color1", "c8c814"), thr2("color2", "bfbf40");
-
-    Thread::setSortBy(Thread::HSL, Thread::DESC);
-    EXPECT_LT(thr1, thr2);
-    Thread::setSortBy(); // reset default
-}
-
-TEST_F(ThreadTests, sort_HLS_ASC) {
-    // color1.saturation > color2.saturation
-    // color1.lightness < color2.lightness
-    Thread thr1("color1", "c8c814"), thr2("color2", "bfbf40");
-
-    Thread::setSortBy(Thread::HLS, Thread::ASC);
-    EXPECT_LT(thr1, thr2);
-    Thread::setSortBy(); // reset default
-}
-
-TEST_F(ThreadTests, sort_HLS_DESC) {
-    // color1.saturation > color2.saturation
-    // color1.lightness < color2.lightness
-    Thread thr1("color1", "c8c814"), thr2("color2", "bfbf40");
-
-    Thread::setSortBy(Thread::HLS, Thread::DESC);
-    EXPECT_LT(thr2, thr1);
-    Thread::setSortBy(); // reset default
-}
-
-TEST_F(ThreadTests, sort_Name_ASC) {
-    Thread thr1("color1", "c8c814"), thr2("color2", "bfbf40");
-
-    Thread::setSortBy(Thread::Name, Thread::ASC);
-    EXPECT_LT(thr1, thr2);
-    Thread::setSortBy(); // reset default
-}
-
-TEST_F(ThreadTests, sort_Name_DESC) {
-    Thread thr1("color1", "c8c814"), thr2("color2", "bfbf40");
-
-    Thread::setSortBy(Thread::Name, Thread::DESC);
-    EXPECT_LT(thr2, thr1);
-    Thread::setSortBy(); // reset default
-}
 
 // --- distance
 

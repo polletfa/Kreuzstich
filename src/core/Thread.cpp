@@ -8,9 +8,6 @@
 // STL
 #include <cctype>
 
-Thread::SortBy Thread::m_sortBy = Thread::HLS;
-Thread::SortOrder Thread::m_sortOrder = Thread::ASC;
-
 Thread::Thread(const std::string& name, const std::string& rgb)
     : m_name(name)
 {
@@ -62,21 +59,8 @@ const ColorSpace::ColorRGBA& Thread::color() const {
     return m_rgb;
 }
 
-void Thread::setSortBy(Thread::SortBy sortBy, Thread::SortOrder sortOrder) {
-    m_sortBy = sortBy;
-    m_sortOrder = sortOrder;
-}
-
-bool Thread::operator<(const Thread& other) const {
-    auto first = m_sortOrder == Thread::ASC ? *this : other,
-        second = m_sortOrder == Thread::ASC ? other : *this;
-    if(m_sortBy == Thread::Name) {
-        return first.m_name < second.m_name;
-    } else if(m_sortBy == Thread::HLS) {
-        return first.m_hsl.hue < second.m_hsl.hue || first.m_hsl.lightness < second.m_hsl.lightness || first.m_hsl.saturation < second.m_hsl.saturation;
-    } else {
-        return first.m_hsl.hue < second.m_hsl.hue || first.m_hsl.saturation < second.m_hsl.saturation || first.m_hsl.lightness < second.m_hsl.lightness;
-    }
+const ColorSpace::ColorHSL& Thread::hsl() const {
+    return m_hsl;
 }
 
 double Thread::distance(const Thread& other, ColorSpace::DistanceAlgo algo) const {

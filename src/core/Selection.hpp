@@ -7,13 +7,12 @@
 #ifndef SELECTION_HPP
 #define SELECTION_HPP
 
-#include "ColorSpace.hpp"
-class Picture;
+#include "Picture.hpp"
+class Pattern;
 
 // STL
 #include <limits>
 #include <cstdlib>
-#include <vector>
 
 /**
  * Data structure for area selection.
@@ -30,29 +29,37 @@ public:
         size_t height{std::numeric_limits<size_t>::max()};
     };
 
+    /**
+     * Iterates over the list of indexes that belong to the selection
+     */
     class Iterator {
     public:
-        Iterator(Selection& m_parent, bool moveToEnd = false);
+        explicit Iterator(const Selection& m_parent);
 
-        ColorSpace::ColorRGBA& operator*();
+        size_t operator*();
         Iterator& operator++();
         bool operator!=(const Iterator& rhs) const;
 
-    private:
-        std::vector<ColorSpace::ColorRGBA>& m_pixels;
-        size_t m_width, m_height; /**< Dimensions of the picture */
+    protected:
+        size_t m_patternWidth, m_patternHeight; /**< Dimensions of the pattern to which the selection applies */
+        const ColorSpace::ColorRGBA* m_pixelBufferAddr; /**< Used only to compare iterators */
         const Rectangle& m_selection;
         size_t m_x, m_y; /**< Current position */
     };
+    class IteratorEnd: public Iterator {
+    public:
+        explicit IteratorEnd(const Selection& m_parent);
+    };
 
-    Selection(Picture& picture);
-    Selection(Picture& picture, const Rectangle& area);
+    explicit Selection(const Pattern& pattern);
+    Selection(const Pattern& pattern, const Rectangle& area);
 
-    Iterator begin(); /**< Iterate over all pixels in the selection */
-    Iterator end();   /**< Iterate over all pixels in the selection */
+    Iterator begin() const; /**< Iterate over all pixels in the selection */
+    Iterator end() const;   /**< Iterate over all pixels in the selection */
 
 private:
-    Picture& m_picture;
+    size_t m_patternWidth, m_patternHeight; /**< Dimensions of the pattern to which the selection applies */
+    const ColorSpace::ColorRGBA* m_pixelBufferAddr; /**< Used only to compare iterators */
     Rectangle m_selection;
 };
 

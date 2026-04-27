@@ -29,21 +29,13 @@ public:
 
     const std::string& name() const;
     const ColorSpace::ColorRGBA& color() const;
-
-    // sort
-    enum SortBy { HLS, HSL, Name }; /**< Default: hue, lightness, saturation */
-    enum SortOrder { ASC, DESC }; /**< Default: ascending */
-    static void setSortBy(SortBy sortBy = HLS, SortOrder sortOrder = ASC);
-    bool operator<(const Thread& other) const;
+    const ColorSpace::ColorHSL& hsl() const;
 
     // distance
     double distance(const Thread& other, ColorSpace::DistanceAlgo algo = ColorSpace::CIEDE2000) const;
     double distance(const ColorSpace::ColorRGBA& rgba, ColorSpace::DistanceAlgo algo = ColorSpace::CIEDE2000) const;
 
 private:
-    static SortBy m_sortBy;
-    static SortOrder m_sortOrder;
-
     bool m_isValid;
     std::string m_name;
     ColorSpace::ColorRGBA m_rgb; // for displaying

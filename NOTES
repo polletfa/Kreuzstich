@@ -1,3 +1,7 @@
+
+
+-----------
+
 implement parallelism:
     auto indices = std::views::iota(0, 300'000'000);
     std::for_each(std::execution::par_unseq, indices.begin(), indices.end(), [](int) {

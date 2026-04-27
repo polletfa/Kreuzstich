@@ -39,6 +39,7 @@ set(SOURCES
     core/Thread.cpp
     core/ThreadList.cpp
     #core/Selection.cpp # TODO
+    #core/Pattern.cpp # TODO
     #core/Picture.cpp # TODO
 
     data-qt/Mockup_QStandardPathsWrapper.hpp
