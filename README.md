@@ -56,7 +56,7 @@ The priority and the extend of each application is still being defined.
 ### Technical aspects
 
 The rewrite will use more modern technologies and better code quality than the initial version:
-- Modern C++ (C++20)
+- Modern C++ (C++23)
 - Qt6 instead of Qt4/5 for the desktop app
 - Angular and WebAssembly for the web version
 - Kotlin for the Android version
