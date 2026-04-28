@@ -7,7 +7,7 @@
 #ifndef SELECTION_HPP
 #define SELECTION_HPP
 
-#include "Picture.hpp"
+#include "ColorSpace.hpp"
 class Pattern;
 
 // STL

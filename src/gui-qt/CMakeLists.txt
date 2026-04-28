@@ -34,8 +34,8 @@ set_target_properties(gui-qt PROPERTIES
     AUTOMOC ON
     AUTORCC ON
 )
-target_link_libraries(gui-qt PRIVATE core data-qt)
-target_link_libraries(gui-qt PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets)
+target_link_libraries(gui-qt PUBLIC core data-qt)
+target_link_libraries(gui-qt PUBLIC Qt6::Core Qt6::Gui Qt6::Widgets)
 target_include_directories(gui-qt PRIVATE ${core_INCLUDES} ${data-qt_INCLUDES})
 qt_add_resources(gui-qt "gui-qt_resources" PREFIX "/" BASE ${CMAKE_SOURCE_DIR}/resources/ FILES ${ICONS})
 qt_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR} ${TRANSLATIONS}) # to cleanup, add: OPTIONS -no-obsolete
@@ -44,7 +44,7 @@ qt_add_resources(gui-qt "gui-qt_translations" PREFIX "/i18n/gui-qt" BASE ${CMAKE
 # Target: kreuzstich depends on gui-qt
 # (actually just qui-qt + main.cpp - separation required for unit tests)
 qt_add_executable(kreuzstich ${ENTRYPOINT})
-target_link_libraries(kreuzstich PRIVATE gui-qt Qt6::Widgets)
+target_link_libraries(kreuzstich PUBLIC gui-qt Qt6::Widgets)
 target_include_directories(kreuzstich PRIVATE ${CMAKE_SOURCE_DIR}/src)
 set_target_properties(kreuzstich PROPERTIES
     ${BUNDLE_ID_OPTION}

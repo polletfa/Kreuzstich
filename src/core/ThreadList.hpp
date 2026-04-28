@@ -17,7 +17,6 @@
 
 /**
  * Class to manage a list of threads
- * @todo findClosestInUse
  */
 class ThreadList {
 public:
@@ -40,6 +39,12 @@ public:
      * Always retuns a value unless the threadlist is empty.
      */
     OptionalRef findClosest(const ColorSpace::ColorRGBA& color) const;
+
+    /**
+     * Find thread with the clothest color among the threads with usage count > 0.
+     * Always retuns a value unless the threadlist is empty or all threads have 0 usage count
+     */
+    OptionalRef findClosestInUse(const ColorSpace::ColorRGBA& color) const;
 
     /**
      * Find exact match

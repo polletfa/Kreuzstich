@@ -50,6 +50,30 @@ ThreadList::OptionalRef ThreadList::findClosest(const ColorSpace::ColorRGBA& col
     }
 }
 
+ThreadList::OptionalRef ThreadList::findClosestInUse(const ColorSpace::ColorRGBA& color) const {
+    RefList inUse;
+    for(const auto& item: m_usage) {
+        if(item.second > 0) {
+            inUse.push_back(item.first);
+        }
+    }
+    if(inUse.empty()) {
+        return {};
+    } else {
+        const Thread* closest{&inUse[0].get()};
+        double minDistance;
+        bool minDistanceSet{false};
+        for(auto& thread: inUse) {
+            if(double distance = thread.get().distance(color); !minDistanceSet || distance < minDistance) {
+                minDistance = distance;
+                minDistanceSet = true;
+                closest = &thread.get();
+            }
+        }
+        return *closest;
+    }
+}
+
 ThreadList::OptionalRef ThreadList::findThread(const ColorSpace::ColorRGBA& color) const {
     auto found = std::find(m_threads.begin(), m_threads.end(), color);
     return found != m_threads.end() ? OptionalRef(*found) : std::nullopt;

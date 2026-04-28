@@ -10,7 +10,7 @@
 // STL
 #include <algorithm>
 
-Pattern::Pattern(const Picture::PixelBuffer& pixelBuffer, const ThreadList& threadlist, bool selectThreads)
+Pattern::Pattern(const PixelBuffer& pixelBuffer, const ThreadList& threadlist, bool selectThreads)
     : m_pixelBuffer(pixelBuffer)
     , m_threadList(threadlist)
     , m_selection(*this)
@@ -33,7 +33,7 @@ const ThreadList& Pattern::threadList() const {
     return m_threadList;
 }
 
-const Picture::PixelBuffer& Pattern::get() const {
+const Pattern::PixelBuffer& Pattern::get() const {
     return m_pixelBuffer;
 }
 
@@ -87,8 +87,8 @@ void Pattern::replaceThread(const Thread& original, const Thread& replacement) {
     m_threadList.updateUsage(original, replacement, count);
 }
 
-Picture::PixelBuffer Pattern::highlight(const Thread& hl) const {
-    Picture::PixelBuffer result{m_pixelBuffer};
+Pattern::PixelBuffer Pattern::highlight(const Thread& hl) const {
+    PixelBuffer result{m_pixelBuffer};
 
     for(size_t index: m_selection) {
         if(result.pixels[index] == hl) {

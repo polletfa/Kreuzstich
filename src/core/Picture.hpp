@@ -23,14 +23,6 @@ enum FileFormat {JPEG, PNG, BMP, TGA, PSD, HDR, PIC, GIF, PNM};
  */
 using FileBuffer = std::vector<uint8_t>;
 
-/**
- * Buffer containing a list of RGBA pixels
- */
-struct PixelBuffer {
-    std::vector<ColorSpace::ColorRGBA> pixels;
-    size_t width;
-    size_t height;
-};
 
 std::pair<PixelBuffer, FileFormat> readFile(const FileBuffer& fileContent);
 FileBuffer writeFile(const PixelBuffer& pixelBuffer, FileFormat format);

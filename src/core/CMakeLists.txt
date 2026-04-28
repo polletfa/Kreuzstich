@@ -2,16 +2,6 @@
 # Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
 # MIT License, see LICENSE file.
 
-# Requirements
-
-include(FetchContent)
-FetchContent_Declare(
-    stb
-    GIT_REPOSITORY https://github.com/nothings/stb.git
-    GIT_TAG 31c1ad3
-)
-FetchContent_MakeAvailable(stb)
-
 # Sources
 
 set(SOURCES

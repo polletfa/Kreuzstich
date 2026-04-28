@@ -101,6 +101,22 @@ TEST_F(ThreadListTests, findClosest) {
     EXPECT_EQ(res->get().name(), "2");
 }
 
+// -- findClosestInUse
+
+TEST_F(ThreadListTests, findClosestInUse_empty) {
+    ThreadList threads{{Thread{"1", "bfaa40"}}}; // usage = 0
+    ASSERT_FALSE(threads.findClosestInUse({0, 0, 0}));
+}
+
+TEST_F(ThreadListTests, findClosestInUse) {
+    auto usage = m_threads.getUsage();
+    usage[0].second = 0;
+    m_threads.setUsage(usage);
+    auto res = m_threads.findClosestInUse({0xc9, 0xc7, 0x10});
+    ASSERT_TRUE(res);
+    EXPECT_EQ(res->get().name(), "3"); // 2 is the closest, but not in use
+}
+
 // -- findThread
 
 TEST_F(ThreadListTests, findThread_found) {

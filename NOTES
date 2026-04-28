@@ -1,5 +1,4 @@
 
-
 -----------
 
 implement parallelism:
@@ -10,6 +9,6 @@ implement parallelism:
 
 requires TBB on linux:
 find_package(TBB REQUIRED)
-target_link_libraries(core PRIVATE TBB::tbb)
+target_link_libraries(core PUBLIC TBB::tbb)
 not sure about win and macos.
 doesn't work in wasm.

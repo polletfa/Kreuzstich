@@ -48,6 +48,7 @@ ThreadListParser::ThreadListParser(const QString& file)
         } else {
             m_error = Error::SUCCESS;
         }
+        ifile.close();
     } else {
         m_error = Error::OPEN_FILE_ERROR;
         m_error.message = ifile.errorString();
