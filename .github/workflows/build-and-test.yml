@@ -64,7 +64,7 @@ jobs:
 
     steps:
     - name: Install Clang 19
-      if: matrix.c_compiler == 'clang' && matrix.os == 'ubuntu-latest'
+      if: matrix.c_compiler == 'clang-19' && matrix.os == 'ubuntu-latest'
       run: |
         wget https://apt.llvm.org/llvm.sh
         chmod +x llvm.sh
