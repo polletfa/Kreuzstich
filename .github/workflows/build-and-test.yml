@@ -39,7 +39,7 @@ jobs:
             cpp_compiler: clang++
             qt_arch: linux_gcc_64
             qt_host: linux
-            extra_cmake_flags: -DCMAKE_CXX_FLAGS=-stdlib=libc++
+            extra_cmake_flags: --gcc-toolchain=/usr/lib/gcc/x86_64-linux-gnu/13
           - os: macos-latest
             c_compiler: clang
             cpp_compiler: clang++
@@ -66,9 +66,6 @@ jobs:
         target: 'desktop'
         arch: ${{ matrix.qt_arch }}
         cache: true
-
-    - name: Install libc++
-      run: sudo apt-get install -y libc++-dev libc++abi-dev
 
     - uses: actions/checkout@v6
 
