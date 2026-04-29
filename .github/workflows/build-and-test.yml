@@ -67,6 +67,9 @@ jobs:
         arch: ${{ matrix.qt_arch }}
         cache: true
 
+    - name: Install libc++
+      run: sudo apt-get install -y libc++-dev libc++abi-dev
+
     - uses: actions/checkout@v6
 
     - name: Set reusable strings
