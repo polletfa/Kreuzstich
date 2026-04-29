@@ -39,7 +39,6 @@ jobs:
             cpp_compiler: clang++
             qt_arch: linux_gcc_64
             qt_host: linux
-            extra_cmake_flags: -DCMAKE_CXX_FLAGS=--gcc-toolchain=/usr/lib/gcc/x86_64-linux-gnu/13
           - os: macos-latest
             c_compiler: clang
             cpp_compiler: clang++
@@ -58,12 +57,6 @@ jobs:
             c_compiler: gcc
 
     steps:
-    - name: Debug GCC paths
-      if: matrix.c_compiler == 'clang' && matrix.os == 'ubuntu-latest'
-      run: |
-        ls /usr/lib/gcc/x86_64-linux-gnu/
-        clang++ -v 2>&1 | head -30
-
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
@@ -90,7 +83,6 @@ jobs:
         -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
         -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-        ${{ matrix.extra_cmake_flags }}
         -S ${{ github.workspace }}
 
     - name: Build
