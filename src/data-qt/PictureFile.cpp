@@ -29,7 +29,9 @@ Pattern::PixelBuffer PictureFile::prepareImage(const QByteArray& imageFile, cons
 
 Pattern::PixelBuffer PictureFile::prepareImage(const QImage& image, const QSize& resize) {
     // resize
-    QImage scaled = image.scaled(resize.width(), resize.height());
+    QImage scaled = resize.width() != image.width() || resize.height() != image.height()
+        ? image.scaled(resize.width(), resize.height(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation)
+        : image;
 
     // Convert color space
     if(scaled.colorSpace().isValid() && scaled.colorSpace() != QColorSpace(QColorSpace::SRgb)) {

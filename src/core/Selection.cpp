@@ -21,7 +21,7 @@ size_t Selection::Iterator::operator*() {
 }
 
 Selection::Iterator& Selection::Iterator::operator++() {
-    if(m_x >= m_selection.x + m_selection.width) {
+    if(m_x + 1 >= m_selection.x + m_selection.width) {
         m_x = m_selection.x;
         ++m_y;
     } else {
@@ -38,7 +38,7 @@ bool Selection::Iterator::operator!=(const Iterator& rhs) const {
 Selection::IteratorEnd::IteratorEnd(const Selection& parent)
     : Iterator(parent)
 {
-    m_y = m_selection.height;
+    m_y = m_selection.y + m_selection.height;
 }
 
 Selection::Selection(const Pattern& pattern)
@@ -51,18 +51,17 @@ Selection::Selection(const Pattern& pattern, const Rectangle& area)
     , m_pixelBufferAddr(pattern.get().pixels.data())
     , m_selection(area)
 {
-    // ensure the selection is within the picture
-    if(m_selection.x >= m_patternWidth) {
-        m_selection.x = m_patternWidth - 1;
-    }
-    if(m_selection.y >= m_patternHeight) {
-        m_selection.y = m_patternHeight - 1;
-    }
-    if(m_selection.x + m_selection.width >= m_patternWidth) {
-        m_selection.width = m_patternWidth - m_selection.x - 1;
-    }
-    if(m_selection.y + m_selection.height >= m_patternHeight) {
-        m_selection.height = m_patternHeight - m_selection.y - 1;
+    // if x or y are outside the picture, the selection is empty
+    if(m_selection.x >= m_patternWidth || m_selection.y >= m_patternHeight) {
+        m_selection = {0, 0, 0, 0};
+    } else {
+        // if the selection is too big, shrink to fit within pattern
+        if(m_selection.x + m_selection.width >= m_patternWidth) {
+            m_selection.width = m_patternWidth - m_selection.x;
+        }
+        if(m_selection.y + m_selection.height >= m_patternHeight) {
+            m_selection.height = m_patternHeight - m_selection.y;
+        }
     }
 }
 

@@ -32,8 +32,8 @@ public:
     const ColorSpace::ColorHSL& hsl() const;
 
     // distance
-    double distance(const Thread& other, ColorSpace::DistanceAlgo algo = ColorSpace::CIEDE2000) const;
-    double distance(const ColorSpace::ColorRGBA& rgba, ColorSpace::DistanceAlgo algo = ColorSpace::CIEDE2000) const;
+    double distance(const Thread& other, ColorSpace::DistanceAlgo algo) const;
+    double distance(const ColorSpace::ColorLAB& lab, ColorSpace::DistanceAlgo algo) const;
 
 private:
     bool m_isValid;

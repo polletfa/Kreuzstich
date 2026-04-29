@@ -15,9 +15,6 @@ set(SOURCES
     ThreadList.hpp
     ThreadList.cpp
 
-    Picture.hpp
-    #Picture.cpp #TODO
-
     Selection.hpp
     Selection.cpp
     Pattern.hpp
@@ -44,6 +41,5 @@ add_custom_target(version ALL
 add_library(core STATIC ${SOURCES})
 add_dependencies(core version)
 target_include_directories(core PRIVATE ${CMAKE_BINARY_DIR}/generate_version/core ${stb_SOURCE_DIR})
-
 # Export variables
 set(core_INCLUDES ${CMAKE_SOURCE_DIR}/src ${CMAKE_BINARY_DIR}/generate_version PARENT_SCOPE)

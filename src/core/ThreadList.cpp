@@ -14,6 +14,7 @@ ThreadList::ThreadList(const std::vector<Thread>& threads)
 {
     for(const auto& thread: m_threads) {
         m_usage.push_back({thread, 0});
+        m_threadsAsRefList.push_back(thread);
     }
 }
 
@@ -32,47 +33,42 @@ ThreadList::RefList ThreadList::get(SortBy sortBy, SortOrder sortOrder) const {
     return list;
 }
 
-ThreadList::OptionalRef ThreadList::findClosest(const ColorSpace::ColorRGBA& color) const {
-    if(m_threads.empty()) {
-        return {};
-    } else {
-        const Thread* closest{&m_threads[0]};
-        double minDistance;
-        bool minDistanceSet{false};
-        for(auto& thread: m_threads) {
-            if(double distance = thread.distance(color); !minDistanceSet || distance < minDistance) {
-                minDistance = distance;
-                minDistanceSet = true;
-                closest = &thread;
-            }
-        }
-        return *closest;
-    }
+ThreadList::OptionalRef ThreadList::findClosest(const ColorSpace::ColorRGBA& color, ColorSpace::DistanceAlgo algo) const {
+    return findClosestInList(color, m_threadsAsRefList, algo);
 }
 
-ThreadList::OptionalRef ThreadList::findClosestInUse(const ColorSpace::ColorRGBA& color) const {
+ThreadList::OptionalRef ThreadList::findClosestInUse(const ColorSpace::ColorRGBA& color, ColorSpace::DistanceAlgo algo) const {
     RefList inUse;
     for(const auto& item: m_usage) {
         if(item.second > 0) {
             inUse.push_back(item.first);
         }
     }
-    if(inUse.empty()) {
+    return findClosestInList(color, inUse, algo);
+}
+
+ThreadList::OptionalRef ThreadList::findClosestInList(const ColorSpace::ColorRGBA& color, const RefList& list, ColorSpace::DistanceAlgo algo) const {
+    if(list.empty()) {
         return {};
     } else {
-        const Thread* closest{&inUse[0].get()};
+        ColorSpace::ColorLAB labColor = ColorSpace::toLAB(color);
+        const Thread* closest{nullptr};
         double minDistance;
         bool minDistanceSet{false};
-        for(auto& thread: inUse) {
-            if(double distance = thread.get().distance(color); !minDistanceSet || distance < minDistance) {
-                minDistance = distance;
+        for(auto& thread: list) {
+            if(!minDistanceSet) {
+                minDistance = thread.get().distance(labColor, algo);
                 minDistanceSet = true;
+                closest = &thread.get();
+            } else if(double distance = thread.get().distance(labColor, algo); distance < minDistance) {
+                minDistance = distance;
                 closest = &thread.get();
             }
         }
         return *closest;
     }
 }
+
 
 ThreadList::OptionalRef ThreadList::findThread(const ColorSpace::ColorRGBA& color) const {
     auto found = std::find(m_threads.begin(), m_threads.end(), color);

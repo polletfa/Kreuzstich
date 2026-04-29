@@ -67,6 +67,6 @@ double Thread::distance(const Thread& other, ColorSpace::DistanceAlgo algo) cons
     return ColorSpace::distance(m_lab, other.m_lab, algo);
 }
 
-double Thread::distance(const ColorSpace::ColorRGBA& rgba, ColorSpace::DistanceAlgo algo) const {
-    return ColorSpace::distance(m_lab, ColorSpace::toLAB(rgba), algo);
+double Thread::distance(const ColorSpace::ColorLAB& lab, ColorSpace::DistanceAlgo algo) const {
+    return ColorSpace::distance(m_lab, lab, algo);
 }

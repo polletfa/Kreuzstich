@@ -6,24 +6,31 @@
 
 #include "Pattern.hpp"
 
-
 // STL
 #include <algorithm>
+#include <unordered_map>
 
-Pattern::Pattern(const PixelBuffer& pixelBuffer, const ThreadList& threadlist, bool selectThreads)
+Pattern::Pattern(const PixelBuffer& pixelBuffer, const ThreadList& threadlist, bool selectThreads, ColorSpace::DistanceAlgo algo)
     : m_pixelBuffer(pixelBuffer)
     , m_threadList(threadlist)
     , m_selection(*this)
 {
     if(selectThreads) {
+        std::unordered_map<int, ColorSpace::ColorRGBA> cache;
         for(auto& pixel: m_pixelBuffer.pixels) {
-            auto found = m_threadList.findClosest(pixel);
-            if(found) {
-                pixel = found->get().color();
+            int cacheIndex = pixel.red<<16 | pixel.green<<8 | pixel.blue;
+            if(auto found = cache.find(cacheIndex); found != cache.end()) {
+                pixel = found->second;
+            } else {
+                auto closest = m_threadList.findClosest(pixel, algo);
+                if(closest) {
+                    pixel = closest->get().color();
+                    cache[cacheIndex] = pixel;
+                }
+                // else:
+                //    The only case where !closest is when the threadlist is empty.
+                //    This will be checked when creating a project, so we don't need to here
             }
-            // else:
-            //    The only case where !found is when the threadlist is empty.
-            //    This will be checked when creating a project, so we don't need to here
         }
         m_threadList.setUsage(computeUsage());
     }

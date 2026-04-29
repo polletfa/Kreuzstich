@@ -38,9 +38,8 @@ set(SOURCES
     core/ColorSpace.cpp
     core/Thread.cpp
     core/ThreadList.cpp
-    #core/Selection.cpp # TODO
-    #core/Pattern.cpp # TODO
-    #core/Picture.cpp # TODO
+    core/Selection.cpp
+    core/Pattern.cpp
 
     data-qt/Mockup_QStandardPathsWrapper.hpp
     data-qt/Mockup_QStandardPathsWrapper.cpp

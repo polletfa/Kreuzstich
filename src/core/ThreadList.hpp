@@ -38,13 +38,13 @@ public:
      * Find thread with the clothest color.
      * Always retuns a value unless the threadlist is empty.
      */
-    OptionalRef findClosest(const ColorSpace::ColorRGBA& color) const;
+    OptionalRef findClosest(const ColorSpace::ColorRGBA& color, ColorSpace::DistanceAlgo algo) const;
 
     /**
      * Find thread with the clothest color among the threads with usage count > 0.
      * Always retuns a value unless the threadlist is empty or all threads have 0 usage count
      */
-    OptionalRef findClosestInUse(const ColorSpace::ColorRGBA& color) const;
+    OptionalRef findClosestInUse(const ColorSpace::ColorRGBA& color, ColorSpace::DistanceAlgo algo) const;
 
     /**
      * Find exact match
@@ -68,10 +68,13 @@ public:
 
 private:
     std::vector<Thread> m_threads;
+    RefList m_threadsAsRefList;
     UsageCount m_usage;
 
     bool compareThreads(const Thread& lhs, const Thread& rhs, SortBy sortBy, SortOrder sortOrder) const;
     void sortUsage();
+
+    OptionalRef findClosestInList(const ColorSpace::ColorRGBA& color, const RefList& list, ColorSpace::DistanceAlgo algo) const;
 };
 
 #endif // THREADLIST_HPP
