@@ -58,6 +58,12 @@ jobs:
             c_compiler: gcc
 
     steps:
+    - name: Debug GCC paths
+      if: matrix.c_compiler == 'clang' && matrix.os == 'ubuntu-latest'
+      run: |
+        ls /usr/lib/gcc/x86_64-linux-gnu/
+        clang++ -v 2>&1 | head -30
+
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
