@@ -57,6 +57,13 @@ jobs:
             c_compiler: gcc
 
     steps:
+    - name: Debug Clang standard
+      if: matrix.c_compiler == 'clang' && matrix.os == 'ubuntu-latest'
+      run: |
+        echo "#include <iostream>
+        int main() { std::cout << __cplusplus << std::endl; }" > /tmp/test.cpp
+        clang++ -std=c++23 /tmp/test.cpp -o /tmp/test && /tmp/test
+
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
