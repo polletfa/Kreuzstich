@@ -35,8 +35,8 @@ jobs:
             qt_arch: linux_gcc_64
             qt_host: linux
           - os: ubuntu-latest
-            c_compiler: clang
-            cpp_compiler: clang++
+            c_compiler: clang-19
+            cpp_compiler: clang++-19
             qt_arch: linux_gcc_64
             qt_host: linux
           - os: macos-latest
@@ -57,12 +57,12 @@ jobs:
             c_compiler: gcc
 
     steps:
-    - name: Debug Clang standard
+    - name: Install Clang 19
       if: matrix.c_compiler == 'clang' && matrix.os == 'ubuntu-latest'
       run: |
-        echo "#include <iostream>
-        int main() { std::cout << __cplusplus << std::endl; }" > /tmp/test.cpp
-        clang++ -std=c++23 /tmp/test.cpp -o /tmp/test && /tmp/test
+        wget https://apt.llvm.org/llvm.sh
+        chmod +x llvm.sh
+        sudo ./llvm.sh 19
 
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
