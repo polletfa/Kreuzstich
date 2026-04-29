@@ -8,6 +8,8 @@
 // STL
 #include <sstream>
 #include <chrono>
+#include <vector>
+#include <utility>
 
 namespace Version {
 
