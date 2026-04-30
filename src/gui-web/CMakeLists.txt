@@ -23,8 +23,8 @@ add_custom_target(gui-web-npminstall DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/node_mo
 # Target: gui-web
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/out-assets/favicon.ico
-    COMMAND mkdir -p ${CMAKE_CURRENT_SOURCE_DIR}/out-assets
-    COMMAND cp ${FAVICON} ${CMAKE_CURRENT_SOURCE_DIR}/out-assets/favicon.ico
+    COMMAND cmake -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/out-assets
+    COMMAND cmake -E copy ${FAVICON} ${CMAKE_CURRENT_SOURCE_DIR}/out-assets/favicon.ico
 )
 add_custom_target(gui-web ALL
     COMMAND ${NPM} run build-$<$<CONFIG:Debug>:dev>$<$<CONFIG:Release>:prod>
