@@ -36,7 +36,7 @@ class ThreadListParser {
 public:
     explicit ThreadListParser(const QString& file);
 
-    struct Error {
+    struct [[nodiscard]] Error {
         enum ErrorEnum {
             SUCCESS,               /**< No error */
             TOO_MANY_ERRORS,       /**< More invalid lines than valid lines */
@@ -49,7 +49,7 @@ public:
         Error(ErrorEnum error): error(error) {}
     };
 
-    struct Warning {
+    struct [[nodiscard]] Warning {
         enum WarningEnum {
             INVALID_LINE,         /**< Cannot parse line */
             INVALID_COLOR         /**< Cannot parse color */
@@ -68,17 +68,17 @@ public:
      * Note: threads retuns a STL vector instead of a Qt QList because the list of thread will be
      *       passed to ThreadList from core, rather than to the Qt GUI (unlike warnings() for example).
      */
-    std::vector<Thread>& threads();
+    [[nodiscard]] std::vector<Thread>& threads();
 
     /**
      * Get the warnings (if parsing was successful).
      */
-    const QList<Warning>& warnings() const;
+    [[nodiscard]] const QList<Warning>& warnings() const;
 
     /**
      * Get the error message (if parsing was not successful).
      */
-    const Error& error() const;
+    [[nodiscard]] const Error& error() const;
 
 private:
     QString m_file;

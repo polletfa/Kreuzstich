@@ -28,10 +28,10 @@ Pattern::PixelBuffer PictureFile::prepareImage(const QByteArray& imageFile, cons
 }
 
 Pattern::PixelBuffer PictureFile::prepareImage(const QImage& image, const QSize& resize) {
-    // resize
-    QImage scaled = resize.width() != image.width() || resize.height() != image.height()
-        ? image.scaled(resize.width(), resize.height(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation)
-        : image;
+    // resize, unless resize = {0, 0} or resize = current size
+    QImage scaled = (resize.width() == 0 && resize.height() == 0) || (resize.width() == image.width() && resize.height() == image.height())
+        ? image
+        : image.scaled(resize.width(), resize.height(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
     // Convert color space
     if(scaled.colorSpace().isValid() && scaled.colorSpace() != QColorSpace(QColorSpace::SRgb)) {
@@ -48,9 +48,6 @@ Pattern::PixelBuffer PictureFile::prepareImage(const QImage& image, const QSize&
     };
 }
 
-QImage PictureFile::getImage(const Pattern::PixelBuffer& buffer) {
-    auto copy = new std::vector<ColorSpace::ColorRGBA>{buffer.pixels};
-    return QImage(reinterpret_cast<uchar*>(copy->data()), buffer.width, buffer.height, buffer.width*4, QImage::Format_RGBA8888,
-           [](void* ptr) { delete static_cast<std::vector<ColorSpace::ColorRGBA>*>(ptr); },
-           copy);
+QImage PictureFile::asImage(const Pattern::PixelBuffer& buffer) {
+    return QImage(reinterpret_cast<const uchar*>(buffer.pixels.data()), buffer.width, buffer.height, buffer.width*4, QImage::Format_RGBA8888);
 }

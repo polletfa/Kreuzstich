@@ -32,29 +32,29 @@ public:
     /**
      * Returns list of thread in the specified sort order
      */
-    RefList get(SortBy sortBy = HLS, SortOrder sortOrder = ASC) const;
+    [[nodiscard]] RefList get(SortBy sortBy = HLS, SortOrder sortOrder = ASC) const;
 
     /**
      * Find thread with the clothest color.
      * Always retuns a value unless the threadlist is empty.
      */
-    OptionalRef findClosest(const ColorSpace::ColorRGBA& color, ColorSpace::DistanceAlgo algo) const;
+    [[nodiscard]] OptionalRef findClosest(const ColorSpace::ColorRGBA& color, ColorSpace::DistanceAlgo algo) const;
 
     /**
      * Find thread with the clothest color among the threads with usage count > 0.
      * Always retuns a value unless the threadlist is empty or all threads have 0 usage count
      */
-    OptionalRef findClosestInUse(const ColorSpace::ColorRGBA& color, ColorSpace::DistanceAlgo algo) const;
+    [[nodiscard]] OptionalRef findClosestInUse(const ColorSpace::ColorRGBA& color, ColorSpace::DistanceAlgo algo) const;
 
     /**
      * Find exact match
      */
-    OptionalRef findThread(const ColorSpace::ColorRGBA& color) const;
+    [[nodiscard]] OptionalRef findThread(const ColorSpace::ColorRGBA& color) const;
 
     /**
      * Get usage cout sorted by decreasing usage
      */
-    const UsageCount& getUsage() const;
+    [[nodiscard]] const UsageCount& usage() const;
 
     /**
      * Set usage count
@@ -71,10 +71,10 @@ private:
     RefList m_threadsAsRefList;
     UsageCount m_usage;
 
-    bool compareThreads(const Thread& lhs, const Thread& rhs, SortBy sortBy, SortOrder sortOrder) const;
+    [[nodiscard]] bool compareThreads(const Thread& lhs, const Thread& rhs, SortBy sortBy, SortOrder sortOrder) const;
     void sortUsage();
 
-    OptionalRef findClosestInList(const ColorSpace::ColorRGBA& color, const RefList& list, ColorSpace::DistanceAlgo algo) const;
+    [[nodiscard]] OptionalRef findClosestInList(const ColorSpace::ColorRGBA& color, const RefList& list, ColorSpace::DistanceAlgo algo) const;
 };
 
 #endif // THREADLIST_HPP

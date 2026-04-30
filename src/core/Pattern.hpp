@@ -32,8 +32,6 @@ public:
         size_t height;
     };
 
-    constexpr static ColorSpace::ColorRGBA HIGHLIGHT{0xff, 0xff, 0, 128};
-
     /**
      * @param pixelBuffer Pixel buffer
      * @param threadlist Threadlist
@@ -46,54 +44,78 @@ public:
     /**
      * Returns the threadlist
      */
-    const ThreadList& threadList() const;
+    [[nodiscard]] const ThreadList& threadList() const;
 
     /**
      * Returns the raw pixel buffer.
      */
-    const PixelBuffer& get() const;
+    [[nodiscard]] const PixelBuffer& get() const;
 
     /**
      * Returns a specific pixel
      */
-    const ColorSpace::ColorRGBA& get(size_t x, size_t y) const;
+    [[nodiscard]] const ColorSpace::ColorRGBA& get(size_t x, size_t y) const;
+
+    /**
+     * Returns the picture as a grid (each pixel from the original picture is replaced by a square with black border)
+     */
+    [[nodiscard]] const PixelBuffer& grid() const;
 
     /**
      * Change the current selection.
+     *
+     * By default, the whole picture is selected, until this method is called with a smaller area.
+     * You can restore the default selection by calling select without parameter.
+     * @note For now we can only select a rectangle, but later more complex selection may be added.
      */
-    void select(const Selection& selection);
-
-    /**
-     * Clear the selection
-     */
-    void unselect();
+    void select(const Selection::Rectangle& selection = {});
 
     /**
      * Compute usage for current selection sorted by decreasing usage.
+     *
+     * @see select
      */
-    ThreadList::UsageCount computeUsage() const;
+    [[nodiscard]] ThreadList::UsageCount computeUsage() const;
 
     /**
      * Replace a single pixel by another thread
-     * Also updates the usage statistics in the threadlist.
      */
     void replacePixel(size_t x, size_t y, const Thread& replacement);
 
     /**
      * Replace a thread by another in the current selection
-     * Also updates the usage statistics in the threadlist.
+     *
+     * @see select
      */
     void replaceThread(const Thread& original, const Thread& replacement);
 
     /**
-     * Returns a copy of the pixel buffer where pixels in the selection with a specific thread are highlighted
+     * Create a layer to put on top of the grid to highlight a specific thread within the selection.
+     * This isn't the full grid, just the highlighting layer where the selected thread is replaced by the highlight color
+     * and all other pixels are fully tranparent.
+     *
+     * @see select
      */
-    PixelBuffer highlight(const Thread& hl) const;
+    [[nodiscard]] PixelBuffer highlight(const Thread& thread, const ColorSpace::ColorRGBA& highlight) const;
 
 private:
+    static constexpr size_t GRID_BORDER = 3; /**< border around the grid */
+    static constexpr size_t CELL_BORDER = 1; /**< border separating cells (painted over the cells, not between them) */
+    static constexpr size_t GROUP_BORDER = 3; /**< border separating groups (painted over the cells, not between them) */
+    static constexpr size_t CELL_SIZE = 10;
+    static constexpr size_t GROUP_SIZE = 10;
+    static constexpr ColorSpace::ColorRGBA BORDER_COLOR{0, 0, 0};
+
     PixelBuffer m_pixelBuffer;
+    PixelBuffer m_grid; /**< The image as a grid */
     ThreadList m_threadList;
     Selection m_selection;
+
+    void selectThreads(ColorSpace::DistanceAlgo algo);
+    void createGrid();
+
+    void drawPixelOnGrid(size_t x, size_t y);
+    void drawPixelOnGrid(size_t x, size_t y, PixelBuffer& grid, const ColorSpace::ColorRGBA& color) const;
 };
 
 #endif // PATTERN_HPP

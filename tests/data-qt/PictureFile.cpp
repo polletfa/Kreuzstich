@@ -52,13 +52,13 @@ TEST_F(PictureFileTests, prepareImage_1x1) {
     EXPECT_EQ(buffer.pixels[0].alpha, 0xff);
 }
 
-TEST_F(PictureFileTests, getImage) {
+TEST_F(PictureFileTests, asImage) {
     auto file = PictureFile::loadFile(testPathFixture(QString("3713.png")));
     ASSERT_TRUE(file.has_value());
 
     auto buffer = PictureFile::prepareImage(file.value(), {10, 5});
 
-    auto image = PictureFile::getImage(buffer);
+    auto image = PictureFile::asImage(buffer);
     EXPECT_EQ(image.width(), 10);
     EXPECT_EQ(image.height(), 5);
 

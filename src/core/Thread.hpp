@@ -27,13 +27,13 @@ public:
     bool operator==(const Thread& rhs) const;
     bool operator==(const ColorSpace::ColorRGBA& rhs) const;
 
-    const std::string& name() const;
-    const ColorSpace::ColorRGBA& color() const;
-    const ColorSpace::ColorHSL& hsl() const;
+    [[nodiscard]] const std::string& name() const;
+    [[nodiscard]] const ColorSpace::ColorRGBA& color() const;
+    [[nodiscard]] const ColorSpace::ColorHSL& hsl() const;
 
     // distance
-    double distance(const Thread& other, ColorSpace::DistanceAlgo algo) const;
-    double distance(const ColorSpace::ColorLAB& lab, ColorSpace::DistanceAlgo algo) const;
+    [[nodiscard]] double distance(const Thread& other, ColorSpace::DistanceAlgo algo) const;
+    [[nodiscard]] double distance(const ColorSpace::ColorLAB& lab, ColorSpace::DistanceAlgo algo) const;
 
 private:
     bool m_isValid;

@@ -75,7 +75,7 @@ ThreadList::OptionalRef ThreadList::findThread(const ColorSpace::ColorRGBA& colo
     return found != m_threads.end() ? OptionalRef(*found) : std::nullopt;
 }
 
-const ThreadList::UsageCount& ThreadList::getUsage() const {
+const ThreadList::UsageCount& ThreadList::usage() const {
     return m_usage;
 }
 

@@ -54,8 +54,8 @@ public:
     explicit Selection(const Pattern& pattern);
     Selection(const Pattern& pattern, const Rectangle& area);
 
-    Iterator begin() const; /**< Iterate over all pixels in the selection */
-    Iterator end() const;   /**< Iterate over all pixels in the selection */
+    [[nodiscard]] Iterator begin() const; /**< Iterate over all pixels in the selection */
+    [[nodiscard]] Iterator end() const;   /**< Iterate over all pixels in the selection */
 
 private:
     size_t m_patternWidth, m_patternHeight; /**< Dimensions of the pattern to which the selection applies */

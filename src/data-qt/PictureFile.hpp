@@ -27,22 +27,24 @@ namespace PictureFile {
  * Load a picture file without parsing (just load the content in memory)
  * Return error string on error.
  */
-std::expected<QByteArray,QString> loadFile(const QString& filePath);
+[[nodiscard]] std::expected<QByteArray,QString> loadFile(const QString& filePath);
+
+/**
+ * Prepare the image: load, resize and convert to Pattern::PixelBuffer
+ * Don't resize if resize = {0, 0}
+ */
+[[nodiscard]] Pattern::PixelBuffer prepareImage(const QByteArray& imageFile, const QSize& resize);
 
 /**
  * Prepare the image: load, resize and convert to Pattern::PixelBuffer
  */
-Pattern::PixelBuffer prepareImage(const QByteArray& imageFile, const QSize& resize);
+[[nodiscard]] Pattern::PixelBuffer prepareImage(const QImage& image, const QSize& resize);
 
 /**
- * Prepare the image: load, resize and convert to Pattern::PixelBuffer
+ * Convert a pixel buffer into a QImage. The QImage uses the original buffer.
+ * To get an independent QImage object, use QImage::copy on the result.
  */
-Pattern::PixelBuffer prepareImage(const QImage& image, const QSize& resize);
-
-/**
- * Get a QImage from a Pattern::PixelBuffer
- */
-QImage getImage(const Pattern::PixelBuffer& pixelBuffer);
+[[nodiscard]] QImage asImage(const Pattern::PixelBuffer& pixelBuffer);
 
 }
 

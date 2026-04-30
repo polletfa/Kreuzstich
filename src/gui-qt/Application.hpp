@@ -39,7 +39,7 @@ int main(int argc, char** argv);
  * - Add it in CMakeLists.txt
  * - Proceed as specified above ("add new translation strings")
  */
-std::vector<std::unique_ptr<QTranslator>> loadTranslations(QApplication& app);
+[[nodiscard]] std::vector<std::unique_ptr<QTranslator>> loadTranslations(QApplication& app);
 
 /**
  * @copydoc Version::replaceVersionVars(QString&)

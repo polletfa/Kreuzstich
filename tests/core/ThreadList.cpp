@@ -16,7 +16,7 @@ public:
                 Thread{"3", "bfbf40"}  // 60, 50%, 50%
             })
     {
-        auto usage = m_threads.getUsage();
+        auto usage = m_threads.usage();
         for(auto& item: usage) {
             if(item.first.get().name() == "1") { item.second = 20; }
             else if(item.first.get().name() == "2") { item.second = 90; }
@@ -109,7 +109,7 @@ TEST_F(ThreadListTests, findClosestInUse_empty) {
 }
 
 TEST_F(ThreadListTests, findClosestInUse) {
-    auto usage = m_threads.getUsage();
+    auto usage = m_threads.usage();
     usage[0].second = 0;
     m_threads.setUsage(usage);
     auto res = m_threads.findClosestInUse({0xc9, 0xc7, 0x10}, ColorSpace::CIEDE2000);
@@ -129,10 +129,10 @@ TEST_F(ThreadListTests, findThread_notfound) {
     ASSERT_FALSE(m_threads.findThread({1, 2, 4}));
 }
 
-// -- getUsage
+// -- usage
 
-TEST_F(ThreadListTests, getUsage) {
-    auto usage = m_threads.getUsage();
+TEST_F(ThreadListTests, usage) {
+    auto usage = m_threads.usage();
 
     EXPECT_EQ(usage.size(), m_threads.get().size());
 
@@ -149,7 +149,7 @@ TEST_F(ThreadListTests, getUsage) {
 // -- setUsage
 
 TEST_F(ThreadListTests, setUsage) {
-    auto usage = m_threads.getUsage();
+    auto usage = m_threads.usage();
 
     // change count
     for(auto& item: usage) {
@@ -160,7 +160,7 @@ TEST_F(ThreadListTests, setUsage) {
     m_threads.setUsage(usage);
 
     // reread usage
-    usage = m_threads.getUsage();
+    usage = m_threads.usage();
     EXPECT_EQ(usage[0].first.get().name(), "1");
     EXPECT_EQ(usage[0].second, 200);
 
@@ -177,7 +177,7 @@ TEST_F(ThreadListTests, updateUsage) {
     // update usage
     m_threads.updateUsage(Thread{"2", "c8c814"}, Thread{"1", "bfaa40"}, 50);
 
-    auto usage = m_threads.getUsage();
+    auto usage = m_threads.usage();
     EXPECT_EQ(usage[0].first.get().name(), "1");
     EXPECT_EQ(usage[0].second, 70);
 
