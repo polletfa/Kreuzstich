@@ -10,33 +10,33 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     strategy:
-      # Set fail-fast to false to ensure that feedback is delivered for all matrix combinations. Consider changing this to true when your workflow is stable.
       fail-fast: false
-
-      # Set up a matrix to run the following 3 configurations:
-      # 1. <Windows, Release, latest MSVC compiler toolchain on the default runner image, default generator>
-      # 2. <Linux, Release, latest GCC compiler toolchain on the default runner image, default generator>
-      # 3. <Linux, Release, latest Clang compiler toolchain on the default runner image, default generator>
-      # 4. <MacOS, Release, latest Clang compiler toolchain on the default runner image, default generator>
       matrix:
-        build_type: [Release]
         include:
-          - os: windows-latest
+          - name: Windows MVSC
+            build_type: Release
+            os: windows-latest
             c_compiler: cl
             cpp_compiler: cl
             qt_arch: win64_msvc2022_64
             qt_host: windows
-          - os: ubuntu-latest
+          - name: Linux GCC
+            build_type: Release
+            os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
             qt_arch: linux_gcc_64
             qt_host: linux
-          - os: ubuntu-latest
+          - name: Linux Clang
+            build_type: Release
+            os: ubuntu-latest
             c_compiler: clang-19
             cpp_compiler: clang++-19
             qt_arch: linux_gcc_64
             qt_host: linux
-          - os: macos-latest
+          - name: MacOS Clang
+            build_type: Release
+            os: macos-latest
             c_compiler: clang
             cpp_compiler: clang++
             qt_arch: clang_64
