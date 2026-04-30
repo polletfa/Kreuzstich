@@ -37,9 +37,10 @@ add_custom_target(version ALL
     COMMENT "Generating Version.hpp"
 )
 
-# Target: core depends on version
+# Target: core
 add_library(core STATIC ${SOURCES})
 add_dependencies(core version)
 target_include_directories(core PRIVATE ${CMAKE_BINARY_DIR}/generate_version/core ${stb_SOURCE_DIR})
+
 # Export variables
 set(core_INCLUDES ${CMAKE_SOURCE_DIR}/src ${CMAKE_BINARY_DIR}/generate_version PARENT_SCOPE)

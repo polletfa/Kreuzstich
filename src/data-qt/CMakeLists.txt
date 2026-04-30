@@ -20,7 +20,7 @@ set(SOURCES
     PictureFile.cpp
 )
 
-# Target: data-qt depends on core
+# Target: data-qt
 qt_add_library(data-qt STATIC ${SOURCES})
 target_link_libraries(data-qt PUBLIC core)
 target_link_libraries(data-qt PUBLIC Qt6::Core Qt6::Gui)

@@ -27,7 +27,7 @@ set(TRANSLATIONS
     ${CMAKE_SOURCE_DIR}/resources/i18n/gui-qt/de_DE.ts
 )
 
-# Target: gui-qt depends on core and data-qt
+# Target: gui-qt
 qt_add_library(gui-qt STATIC ${SOURCES})
 set_target_properties(gui-qt PROPERTIES
     AUTOUIC ON
@@ -41,7 +41,7 @@ qt_add_resources(gui-qt "gui-qt_resources" PREFIX "/" BASE ${CMAKE_SOURCE_DIR}/r
 qt_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR} ${TRANSLATIONS}) # to cleanup, add: OPTIONS -no-obsolete
 qt_add_resources(gui-qt "gui-qt_translations" PREFIX "/i18n/gui-qt" BASE ${CMAKE_CURRENT_BINARY_DIR} FILES ${QM_FILES})
 
-# Target: kreuzstich depends on gui-qt
+# Target: kreuzstich
 # (actually just qui-qt + main.cpp - separation required for unit tests)
 qt_add_executable(kreuzstich ${ENTRYPOINT})
 target_link_libraries(kreuzstich PUBLIC gui-qt Qt6::Widgets)

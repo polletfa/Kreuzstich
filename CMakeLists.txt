@@ -30,6 +30,7 @@ endif()
 add_subdirectory(src/core)       # Core logic
 add_subdirectory(src/data-qt)    # Data access layer with Qt and filesystem
 add_subdirectory(src/gui-qt)     # GUI layer with Qt (desktop application)
+add_subdirectory(src/gui-web)    # GUI layer for the web application
 
 ## Components: additional resources
 add_subdirectory(resources/threadlists)

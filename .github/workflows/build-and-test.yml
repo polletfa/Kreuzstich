@@ -60,6 +60,11 @@ jobs:
         arch: ${{ matrix.qt_arch }}
         cache: true
 
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+
     - uses: actions/checkout@v6
 
     - name: Set reusable strings
@@ -87,7 +92,7 @@ jobs:
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
       # Execute tests defined by the CMake configuration. Note that --build-config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-      run: ctest --build-config ${{ matrix.build_type }} --output-on-failure
+      run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }} runtests
 
   all-checks-passed:
     needs: [build]  # your matrix job name

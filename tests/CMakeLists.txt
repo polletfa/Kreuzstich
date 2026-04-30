@@ -48,7 +48,7 @@ set(SOURCES
     data-qt/PictureFile.cpp
 )
 
-# Target: unittests depends on core, data-qt, gui
+# Target: unittests
 add_executable(unittests ${SOURCES})
 target_compile_definitions(unittests PRIVATE TEST_FILES="${CMAKE_SOURCE_DIR}/resources/test_files")
 target_include_directories(unittests PRIVATE ${core_INCLUDES} ${data-qt_INCLUDES} ${gui-qt_INCLUDES})
@@ -60,6 +60,14 @@ target_link_libraries(unittests PRIVATE
 include(GoogleTest)
 gtest_discover_tests(unittests)
 
+# Target: runtests
+add_custom_target(runtests
+        COMMAND ctest --output-on-failure
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        DEPENDS unittests gui-web-test
+)
+
+# Target: coverage
 if(SKIP_COVERAGE)
     message(WARNING "Skipping code covereage (missing requirement)")
 else()
@@ -70,6 +78,6 @@ else()
         COMMAND ${LCOV} --remove coverage.info '/usr/*' '*/Qt*' '*/.qt/*' '*/tests/*' '*/gtest/*' '*/src/gtest*' --output-file coverage.info --ignore-errors inconsistent,unused
         COMMAND ${GENHTML} coverage.info --output-directory coverage_report
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        DEPENDS unittests
+        DEPENDS unittests gui-web-coverage
     )
 endif()
