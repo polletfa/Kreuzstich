@@ -18,19 +18,25 @@ constexpr double toRadians(double degrees) {
 
 }
 
+bool ColorSpace::operator==(const ColorSpace::ColorRGBA& lhs, const ColorSpace::ColorRGBA& rhs) {
+    return lhs.red == rhs.red && lhs.green == rhs.green && lhs.blue == rhs.blue && lhs.alpha == rhs.alpha;
+}
+
 ColorSpace::ColorRGBA ColorSpace::compositeRGBAOntoBackground(const ColorSpace::ColorRGBA& rgba, const ColorSpace::ColorRGBA& bg) {
     return {
-        rgba.alpha * rgba.red + (1. - rgba.alpha) * bg.red,
-        rgba.alpha * rgba.green + (1. - rgba.alpha) * bg.green,
-        rgba.alpha * rgba.blue + (1. - rgba.alpha) * bg.blue
+        static_cast<uint8_t>(std::round((rgba.alpha * rgba.red + (255 - rgba.alpha) * bg.red)/255.)),
+        static_cast<uint8_t>(std::round((rgba.alpha * rgba.green + (255 - rgba.alpha) * bg.green)/255.)),
+        static_cast<uint8_t>(std::round((rgba.alpha * rgba.blue + (255 - rgba.alpha) * bg.blue)/255.))
     };
 }
 
 ColorSpace::ColorHSL ColorSpace::toHSL(const ColorSpace::ColorRGBA& rgba) {
-    const ColorSpace::ColorRGBA& rgb = rgba.alpha == 1 ? rgba : ColorSpace::compositeRGBAOntoBackground(rgba, {});
+    const ColorSpace::ColorRGBA& rgb = rgba.alpha == 255 ? rgba : ColorSpace::compositeRGBAOntoBackground(rgba, {});
 
-    double V = std::max({rgb.red, rgb.green, rgb.blue});
-    double C = V - std::min({rgb.red, rgb.green, rgb.blue});
+    double red = rgb.red/255., green = rgb.green/255., blue = rgb.blue/255.; // normalize
+
+    double V = std::max({red, green, blue});
+    double C = V - std::min({red, green, blue});
 
     // lightness
     double L = V - C/2;
@@ -39,13 +45,13 @@ ColorSpace::ColorHSL ColorSpace::toHSL(const ColorSpace::ColorRGBA& rgba) {
     double H;
     if(C == 0) {
         H = 0;
-    } else if(V == rgb.red) {
-        if(double h = std::fmod((rgb.green - rgb.blue) / C, 6.0); h < 0) { H = 60 * (h + 6); }
+    } else if(V == red) {
+        if(double h = std::fmod((green - blue) / C, 6.0); h < 0) { H = 60 * (h + 6); }
         else { H = 60 * h; }
-    } else if(V == rgb.green) {
-        H = 60 * ((rgb.blue - rgb.red) / C + 2);
+    } else if(V == green) {
+        H = 60 * ((blue - red) / C + 2);
     } else {
-        H = 60 * ((rgb.red - rgb.green) / C + 4);
+        H = 60 * ((red - green) / C + 4);
     }
 
     // saturation
@@ -59,14 +65,14 @@ ColorSpace::ColorLAB ColorSpace::toLAB(const ColorSpace::ColorRGBA& rgba) {
 
     // Inverse sRGB companding (sRGB -> linear RGB)
     auto inverseCompanding = [](double val) { return val <= 0.04045 ? val/12.92 : std::pow((val + 0.055) / 1.055, 2.4); };
-    rgb.red = inverseCompanding(rgb.red);
-    rgb.green = inverseCompanding(rgb.green);
-    rgb.blue = inverseCompanding(rgb.blue);
+    double red = inverseCompanding(rgb.red/255.);
+    double green = inverseCompanding(rgb.green/255.);
+    double blue = inverseCompanding(rgb.blue/255.);
 
     // Linear RGB -> CIEXYZ
-    double x = 0.4124564 * rgb.red + 0.3575761 * rgb.green + 0.1804375 * rgb.blue;
-    double y = 0.2126729 * rgb.red + 0.7151522 * rgb.green + 0.0721750 * rgb.blue;
-    double z = 0.0193339 * rgb.red + 0.1191920 * rgb.green + 0.9503041 * rgb.blue;
+    double x = 0.4124564 * red + 0.3575761 * green + 0.1804375 * blue;
+    double y = 0.2126729 * red + 0.7151522 * green + 0.0721750 * blue;
+    double z = 0.0193339 * red + 0.1191920 * green + 0.9503041 * blue;
 
     // CIEXYZ -> CIELAB
     constexpr double eps = 216. / 24389;

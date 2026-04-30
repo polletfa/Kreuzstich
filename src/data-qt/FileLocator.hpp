@@ -33,34 +33,34 @@ public:
     /**
      * Go through all applicable directories and returns the first config file found (if any)
      */
-    std::optional<QString> findConfigFile();
+    [[nodiscard]] std::optional<QString> findConfigFile();
 
     /**
      * Go through all applicable directories and returns the first state file found (if any)
      */
-    std::optional<QString> findStateFile();
+    [[nodiscard]] std::optional<QString> findStateFile();
 
     /**
      * Go through all applicable directories and returns all threadlists files found (if any).
      */
-    QStringList findThreadLists();
+    [[nodiscard]] QStringList findThreadLists();
 
     /**
      * Get the path to use to write a new config file
      * (will use user-writable directory, might supersede config files in system directories)
      */
-    QString getPathForWritableConfigFile();
+    [[nodiscard]] QString getPathForWritableConfigFile();
 
     /**
      * Get the path to use to write a new state file
      * (will use user-writable directory, might supersede state files in system directories)
      */
-    QString getPathForWritableStateFile();
+    [[nodiscard]] QString getPathForWritableStateFile();
 
     /**
      * Get the path to use to write a new threadlist file
      */
-    QString getPathForWritableThreadListFile(const QString& basename);
+    [[nodiscard]] QString getPathForWritableThreadListFile(const QString& basename);
 
 private:
     constexpr static const char* CONFIG_FILE{"config.xml"};
@@ -69,9 +69,9 @@ private:
 
     std::shared_ptr<IQStandardPathsWrapper> m_standardPath;  /**< Wrapper for QStandardPaths */
 
-    std::optional<QString> findFile(QStandardPaths::StandardLocation location, const QString& basename);
-    QStringList findAllFiles(QStandardPaths::StandardLocation location, const QString& extension);
-    QString getPathForWritableFile(QStandardPaths::StandardLocation location, const QString& basename);
+    [[nodiscard]] std::optional<QString> findFile(QStandardPaths::StandardLocation location, const QString& basename);
+    [[nodiscard]] QStringList findAllFiles(QStandardPaths::StandardLocation location, const QString& extension);
+    [[nodiscard]] QString getPathForWritableFile(QStandardPaths::StandardLocation location, const QString& basename);
 };
 
 #endif // FILELOCATOR_HPP

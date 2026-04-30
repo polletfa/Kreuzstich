@@ -29,3 +29,11 @@ std::filesystem::path Mockup::testPath(const std::string& relativePath) const {
 QString Mockup::testPath(const QString& relativePath) const {
     return QString(TEST_FILES).append("/").append(m_testSuite).append("/").append(m_testName).append("/").append(relativePath);
 }
+
+std::filesystem::path Mockup::testPathFixture(const std::string& relativePath) const {
+    return std::string{TEST_FILES} + "/" + m_testSuite + "/" + relativePath;
+}
+
+QString Mockup::testPathFixture(const QString& relativePath) const {
+    return QString(TEST_FILES).append("/").append(m_testSuite).append("/").append(relativePath);
+}

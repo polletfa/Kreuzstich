@@ -37,14 +37,18 @@ set(SOURCES
     core/Version.cpp
     core/ColorSpace.cpp
     core/Thread.cpp
+    core/ThreadList.cpp
+    core/Selection.cpp
+    core/Pattern.cpp
 
     data-qt/Mockup_QStandardPathsWrapper.hpp
     data-qt/Mockup_QStandardPathsWrapper.cpp
     data-qt/FileLocator.cpp
     data-qt/ThreadListParser.cpp
+    data-qt/PictureFile.cpp
 )
 
-# Target: unittests depends on core, gui
+# Target: unittests depends on core, data-qt, gui
 add_executable(unittests ${SOURCES})
 target_compile_definitions(unittests PRIVATE TEST_FILES="${CMAKE_SOURCE_DIR}/resources/test_files")
 target_include_directories(unittests PRIVATE ${core_INCLUDES} ${data-qt_INCLUDES} ${gui-qt_INCLUDES})

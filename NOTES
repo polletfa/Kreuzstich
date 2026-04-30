@@ -1,22 +1,5 @@
-HSL sort: either HLS or HSL
- QImage: convert to sRGB when reading image, in case the image uses another profile:
-     Load the image
-     Check colorSpace().isValid()
-     If valid, convert to sRGB with convertToColorSpace
-     If not valid, assume sRGB (covers the vast majority of real-world images)
 
-
-
-Thread:
-  - might also provide list of pixel indexes where it is used ??
-
-ThreadList
-  - provide findClosest(rgbaFromPicture)
-
-the modified image would be a normal QImage with the color set after choosing a thread.
-when replacing a thread with another, picture is modified through index list. no need to go through all pictures to find pixels
-
-
+-----------
 
 implement parallelism:
     auto indices = std::views::iota(0, 300'000'000);
@@ -26,6 +9,6 @@ implement parallelism:
 
 requires TBB on linux:
 find_package(TBB REQUIRED)
-target_link_libraries(core PRIVATE TBB::tbb)
+target_link_libraries(core PUBLIC TBB::tbb)
 not sure about win and macos.
 doesn't work in wasm.

@@ -4,7 +4,7 @@
 
 # Requirements
 
-find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui)
 
 # Sources
 
@@ -16,12 +16,14 @@ set(SOURCES
     QStandardPathsWrapper.cpp
     ThreadListParser.hpp
     ThreadListParser.cpp
+    PictureFile.hpp
+    PictureFile.cpp
 )
 
 # Target: data-qt depends on core
 qt_add_library(data-qt STATIC ${SOURCES})
-target_link_libraries(data-qt PRIVATE core)
-target_link_libraries(data-qt PRIVATE Qt6::Core)
+target_link_libraries(data-qt PUBLIC core)
+target_link_libraries(data-qt PUBLIC Qt6::Core Qt6::Gui)
 target_include_directories(data-qt PRIVATE ${core_INCLUDES})
 
 # Export variables

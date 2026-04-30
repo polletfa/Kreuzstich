@@ -15,8 +15,8 @@
  */
 class QStandardPathsWrapper: public IQStandardPathsWrapper {
 public:
-    QStringList standardLocations(QStandardPaths::StandardLocation location) override;
-    QString writableLocation(QStandardPaths::StandardLocation location) override;
+    [[nodiscard]] QStringList standardLocations(QStandardPaths::StandardLocation location) override;
+    [[nodiscard]] QString writableLocation(QStandardPaths::StandardLocation location) override;
 };
 
 #endif // QSTANDARDPATHWRAPPER_HPP

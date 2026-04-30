@@ -8,10 +8,12 @@
 // STL
 #include <sstream>
 #include <chrono>
+#include <vector>
+#include <utility>
 
 namespace Version {
 
-std::string getVersionString() {
+[[nodiscard]] std::string getVersionString() {
     static std::string versionString;
     if(versionString.empty()) {
         std::ostringstream oss;
