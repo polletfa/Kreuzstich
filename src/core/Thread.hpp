@@ -15,37 +15,29 @@
  * Class representing a thread (textile thread, not computing thread!):
  * - Name and color
  * - Sort/Distance operations
- *
- * @todo add data/methods to track usage of the thread, when it is part of a project-specific threadlist
  */
 class Thread {
 public:
     /**
      * @param rgb Color with format "RRGGBB" (hexadecimal notation)
      */
-    Thread(const std::string& name, const std::string& rgb);
+    explicit Thread(const std::string& name, const std::string& rgb);
 
     operator bool() const; /**< false if the constructor fails (invalid rgb string) */
+    bool operator==(const Thread& rhs) const;
+    bool operator==(const ColorSpace::ColorRGBA& rhs) const;
 
-    const std::string& name() const;
-    const std::string& colorString() const;
-    const ColorSpace::ColorRGBA& color() const;
-
-    // sort
-    enum SortBy { HLS, HSL }; /**< Default: hue, lightness, saturation */
-    static void setSortBy(SortBy sortBy);
-    bool operator<(const Thread& other) const;
+    [[nodiscard]] const std::string& name() const;
+    [[nodiscard]] const ColorSpace::ColorRGBA& color() const;
+    [[nodiscard]] const ColorSpace::ColorHSL& hsl() const;
 
     // distance
-    double distance(const Thread& other, ColorSpace::DistanceAlgo algo = ColorSpace::CIE1976) const;
-    double distance(const ColorSpace::ColorRGBA& rgba, ColorSpace::DistanceAlgo algo = ColorSpace::CIE1976) const;
+    [[nodiscard]] double distance(const Thread& other, ColorSpace::DistanceAlgo algo) const;
+    [[nodiscard]] double distance(const ColorSpace::ColorLAB& lab, ColorSpace::DistanceAlgo algo) const;
 
 private:
-    static SortBy m_sortBy;
-
     bool m_isValid;
     std::string m_name;
-    std::string m_colorString;
     ColorSpace::ColorRGBA m_rgb; // for displaying
     ColorSpace::ColorHSL m_hsl;  // for sorting
     ColorSpace::ColorLAB m_lab;  // for distance

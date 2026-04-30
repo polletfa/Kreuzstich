@@ -14,13 +14,13 @@ The initial version of Kreuzstich was rudimentary but was used to create several
 
 | Original picture | Kreuzstich creation |
 | :---: | :---: |
-| <img src="doc/examples/andrea1.original.jpg" height="200"> | <img src="doc/examples/andrea1.kreuzstich.jpg" height="200"> |
-| <img src="doc/examples/andrea2.original.jpg" height="200"> | <img src="doc/examples/andrea2.kreuzstich.jpg" height="200"> |
-| <img src="doc/examples/torshavn.original.jpg" height="200"> | <img src="doc/examples/torshavn.kreuzstich.jpg" height="200"> |
+| <img src="doc/examples/andrea1.original.jpg" width="300"> | <img src="doc/examples/andrea1.kreuzstich.jpg" width="300"> |
+| <img src="doc/examples/andrea2.original.jpg" width="300"> | <img src="doc/examples/andrea2.kreuzstich.jpg" width="300"> |
+| <img src="doc/examples/torshavn.original.jpg" width="300"> | <img src="doc/examples/torshavn.kreuzstich.jpg" width="300"> |
 
-One of the main caveat of this version is that it doesn't allow editing. It simply selects the best color for each pixel of the
+One of the main caveats of this version is that it doesn't allow editing. It simply selects the best color for each pixel of the
 picture and may therefore create unnecessary complex patterns with lots of threads being used only for a few pixels.
-While stitching the previous projects, I often made some modifications "on the fly" be replacing or removing some threads.
+While stitching the previous projects, I often made some modifications "on the fly" by replacing or removing some threads.
 
 ## Rewrite
 
@@ -49,14 +49,14 @@ The application will also provide features to help while doing the stitching:
 The long-term objective is to develop 3 applications:
 - A desktop application for offline working.
 - A web application that will also allow to save and share the projects online
-- An Android companion app with limited features, which will be use to help during the stitching (no pattern creation/editing)
+- An Android companion app with limited features, which will be used to help during the stitching (no pattern creation/editing)
 
-The priority and the extend of each application is still being defined.
+The priority and the extent of each application is still being defined.
 
 ### Technical aspects
 
 The rewrite will use more modern technologies and better code quality than the initial version:
-- Modern C++ (C++20)
+- Modern C++ (C++23)
 - Qt6 instead of Qt4/5 for the desktop app
 - Angular and WebAssembly for the web version
 - Kotlin for the Android version

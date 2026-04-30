@@ -25,8 +25,28 @@ public:
 
     const std::string& testSuite() const;
     const std::string& testName() const;
+
+    /**
+     * Get a path to a test file for the current test
+     * <test_files>/<testsuite>/<testname>/<relativePath>
+     */
     std::filesystem::path testPath(const std::string& relativePath) const;
+    /**
+     * Get a path to a test file for the current test
+     * <test_files>/<testsuite>/<testname>/<relativePath>
+     */
     QString testPath(const QString& relativePath) const;
+
+    /**
+     * Get a path to a test file for the current test suite
+     * <test_files>/<testsuite>/<relativePath>
+     */
+    std::filesystem::path testPathFixture(const std::string& relativePath) const;
+    /**
+     * Get a path to a test file for the current test suite
+     * <test_files>/<testsuite>/<relativePath>
+     */
+    QString testPathFixture(const QString& relativePath) const;
 
 private:
     std::string m_testSuite;

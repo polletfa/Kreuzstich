@@ -18,8 +18,8 @@ class IQStandardPathsWrapper {
 public:
     virtual ~IQStandardPathsWrapper() = default;
 
-    virtual QStringList standardLocations(QStandardPaths::StandardLocation location) = 0;
-    virtual QString writableLocation(QStandardPaths::StandardLocation location) = 0;
+    [[nodiscard]] virtual QStringList standardLocations(QStandardPaths::StandardLocation location) = 0;
+    [[nodiscard]] virtual QString writableLocation(QStandardPaths::StandardLocation location) = 0;
 };
 
 #endif // IQSTANDARDPATHSWRAPPER_HPP

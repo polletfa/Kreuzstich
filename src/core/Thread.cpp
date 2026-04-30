@@ -8,10 +8,8 @@
 // STL
 #include <cctype>
 
-Thread::SortBy Thread::m_sortBy = Thread::HLS;
-
 Thread::Thread(const std::string& name, const std::string& rgb)
-    : m_name(name), m_colorString(rgb)
+    : m_name(name)
 {
     std::string rgbNoSpaces;
     for(auto ch: rgb) {
@@ -24,13 +22,13 @@ Thread::Thread(const std::string& name, const std::string& rgb)
     } else {
         try {
             size_t nred, ngreen, nblue;
-            const int red = std::stoi(std::string{rgbNoSpaces.substr(0, 2)}, &nred, 16);
-            const int green = std::stoi(std::string{rgbNoSpaces.substr(2, 2)}, &ngreen, 16);
-            const int blue = std::stoi(std::string{rgbNoSpaces.substr(4, 2)}, &nblue, 16);
+            const uint8_t red = std::stoi(std::string{rgbNoSpaces.substr(0, 2)}, &nred, 16);
+            const uint8_t green = std::stoi(std::string{rgbNoSpaces.substr(2, 2)}, &ngreen, 16);
+            const uint8_t blue = std::stoi(std::string{rgbNoSpaces.substr(4, 2)}, &nblue, 16);
             if(nred != 2 || ngreen != 2 || nblue != 2) {
                 m_isValid = false;
             } else {
-                m_rgb = {red/255., green/255., blue/255.};
+                m_rgb = {red, green, blue};
                 m_hsl = ColorSpace::toHSL(m_rgb);
                 m_lab = ColorSpace::toLAB(m_rgb);
                 m_isValid = true;
@@ -45,34 +43,30 @@ Thread::operator bool() const {
     return m_isValid;
 }
 
-const std::string& Thread::name() const {
-    return m_name;
+bool Thread::operator==(const Thread& rhs) const {
+    return m_rgb == rhs.m_rgb;
 }
 
-const std::string& Thread::colorString() const {
-    return m_colorString;
+bool Thread::operator==(const ColorSpace::ColorRGBA& rhs) const {
+    return m_rgb == rhs;
+}
+
+const std::string& Thread::name() const {
+    return m_name;
 }
 
 const ColorSpace::ColorRGBA& Thread::color() const {
     return m_rgb;
 }
 
-void Thread::setSortBy(Thread::SortBy sortBy) {
-    m_sortBy = sortBy;
-}
-
-bool Thread::operator<(const Thread& other) const {
-    if(m_sortBy == Thread::HLS) {
-        return m_hsl.hue < other.m_hsl.hue || m_hsl.lightness < other.m_hsl.lightness || m_hsl.saturation < other.m_hsl.saturation;
-    } else {
-        return m_hsl.hue < other.m_hsl.hue || m_hsl.saturation < other.m_hsl.saturation || m_hsl.lightness < other.m_hsl.lightness;
-    }
+const ColorSpace::ColorHSL& Thread::hsl() const {
+    return m_hsl;
 }
 
 double Thread::distance(const Thread& other, ColorSpace::DistanceAlgo algo) const {
     return ColorSpace::distance(m_lab, other.m_lab, algo);
 }
 
-double Thread::distance(const ColorSpace::ColorRGBA& rgba, ColorSpace::DistanceAlgo algo) const {
-    return ColorSpace::distance(m_lab, ColorSpace::toLAB(rgba), algo);
+double Thread::distance(const ColorSpace::ColorLAB& lab, ColorSpace::DistanceAlgo algo) const {
+    return ColorSpace::distance(m_lab, lab, algo);
 }
