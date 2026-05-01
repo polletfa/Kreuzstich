@@ -11,9 +11,7 @@
 #include <vector>
 #include <utility>
 
-namespace Version {
-
-[[nodiscard]] std::string getVersionString() {
+[[nodiscard]] std::string Version::getVersionString() {
     static std::string versionString;
     if(versionString.empty()) {
         std::ostringstream oss;
@@ -29,10 +27,6 @@ namespace Version {
     return versionString;
 }
 
-}
-
-const std::string Version::VERSION_STRING = Version::getVersionString();
-
 std::string Version::replaceVersionVars(std::string& str) {
     const std::string major{std::to_string(MAJOR)};
     const std::string minor{std::to_string(MINOR)};
@@ -45,7 +39,7 @@ std::string Version::replaceVersionVars(std::string& str) {
         {"$BUILD_TIME$", buildTime},
         {"$GIT_COMMIT$", GIT_COMMIT},
         {"$RELEASE_BUILD$", RELEASE_BUILD ? "true" : "false"},
-        {"$VERSION_STRING$", VERSION_STRING},
+        {"$VERSION_STRING$", getVersionString()},
         {"$LICENSE$", LICENSE}
     };
 

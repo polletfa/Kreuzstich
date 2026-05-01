@@ -11,7 +11,9 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+if(NOT EMSCRIPTEN)
+    set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+endif()
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 add_compile_definitions($<$<CONFIG:Debug>:DEBUG>)
@@ -27,14 +29,21 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
 endif()
 
 ## Components
-add_subdirectory(src/core)       # Core logic
-add_subdirectory(src/data-qt)    # Data access layer with Qt and filesystem
-add_subdirectory(src/gui-qt)     # GUI layer with Qt (desktop application)
-add_subdirectory(src/gui-web)    # GUI layer for the web application
+add_subdirectory(src/core)
+add_subdirectory(src/wrapper-wasm)
+if(NOT EMSCRIPTEN)
+    add_subdirectory(src/data-desktop)
+    add_subdirectory(src/gui-desktop)
+    add_subdirectory(src/gui-web)
+endif()
 
 ## Components: additional resources
-add_subdirectory(resources/threadlists)
+if(NOT EMSCRIPTEN)
+    add_subdirectory(resources/threadlists)
+endif()
 
 ## Unit Tests
-enable_testing()
-add_subdirectory(tests)
+if(NOT EMSCRIPTEN)
+    enable_testing()
+    add_subdirectory(tests)
+endif()

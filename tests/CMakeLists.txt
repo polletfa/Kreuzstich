@@ -41,19 +41,19 @@ set(SOURCES
     core/Selection.cpp
     core/Pattern.cpp
 
-    data-qt/Mockup_QStandardPathsWrapper.hpp
-    data-qt/Mockup_QStandardPathsWrapper.cpp
-    data-qt/FileLocator.cpp
-    data-qt/ThreadListParser.cpp
-    data-qt/PictureFile.cpp
+    data-desktop/Mockup_QStandardPathsWrapper.hpp
+    data-desktop/Mockup_QStandardPathsWrapper.cpp
+    data-desktop/FileLocator.cpp
+    data-desktop/ThreadListParser.cpp
+    data-desktop/PictureFile.cpp
 )
 
 # Target: unittests
 add_executable(unittests ${SOURCES})
 target_compile_definitions(unittests PRIVATE TEST_FILES="${CMAKE_SOURCE_DIR}/resources/test_files")
-target_include_directories(unittests PRIVATE ${core_INCLUDES} ${data-qt_INCLUDES} ${gui-qt_INCLUDES})
+target_include_directories(unittests PRIVATE ${core_INCLUDES} ${data-desktop_INCLUDES} ${gui-desktop_INCLUDES})
 target_link_libraries(unittests PRIVATE
-    core data-qt gui-qt
+    core data-desktop gui-desktop
     GTest::gtest GTest::gtest_main
 )
 

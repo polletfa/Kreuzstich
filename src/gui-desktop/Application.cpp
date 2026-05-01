@@ -39,7 +39,7 @@ std::vector<std::unique_ptr<QTranslator>> Application::loadTranslations(QApplica
 
     const QStringList uiLanguages = QLocale::system().uiLanguages();
 
-    for(QString prefix: {":/i18n/gui-qt/", "qtbase_"}) {
+    for(QString prefix: {":/i18n/gui-desktop/", "qtbase_"}) {
         auto translator = std::make_unique<QTranslator>();
         for(const QString &locale : uiLanguages) {
             const QString name = QLocale(locale).name();

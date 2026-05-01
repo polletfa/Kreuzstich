@@ -8,8 +8,8 @@
 #include "../Mockup.hpp"
 
 #include "core/Pattern.hpp"
-#include "data-qt/PictureFile.hpp"
-#include "data-qt/ThreadListParser.hpp"
+#include "data-desktop/PictureFile.hpp"
+#include "data-desktop/ThreadListParser.hpp"
 
 class PatternTests : public testing::Test, public Mockup {
 public:

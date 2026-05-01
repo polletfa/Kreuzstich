@@ -22,11 +22,16 @@ constexpr int MINOR{@MINOR@};
 constexpr time_t BUILD_TIME{@BUILD_TIME@};
 constexpr std::string_view GIT_COMMIT{"@GIT_COMMIT@"};
 constexpr bool RELEASE_BUILD{@RELEASE_BUILD@};
-extern const std::string VERSION_STRING;
 constexpr std::string_view LICENSE{R"(@LICENSE@)"};
 
 /**
- * Replace all the variables ("$VARNAME$") with their content (in-place)
+ * Get version string
+ */
+[[nodiscard]] std::string getVersionString();
+
+/**
+ * Replace all the variables ("$VARNAME$") with their content (in-place).
+ * Variables are all the constants in Version + VERSION_STRING for the result of getVersionString
  */
 std::string replaceVersionVars(std::string& str);
 }

@@ -8,7 +8,7 @@
 
 #include "../Mockup.hpp"
 
-#include "data-qt/IQStandardPathsWrapper.hpp"
+#include "data-desktop/IQStandardPathsWrapper.hpp"
 
 /**
  * Mockup for QStandardPathsWrapper.

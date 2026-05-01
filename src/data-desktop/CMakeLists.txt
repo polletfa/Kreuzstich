@@ -20,11 +20,11 @@ set(SOURCES
     PictureFile.cpp
 )
 
-# Target: data-qt
-qt_add_library(data-qt STATIC ${SOURCES})
-target_link_libraries(data-qt PUBLIC core)
-target_link_libraries(data-qt PUBLIC Qt6::Core Qt6::Gui)
-target_include_directories(data-qt PRIVATE ${core_INCLUDES})
+# Target: data-desktop
+qt_add_library(data-desktop STATIC ${SOURCES})
+target_link_libraries(data-desktop PUBLIC core)
+target_link_libraries(data-desktop PUBLIC Qt6::Core Qt6::Gui)
+target_include_directories(data-desktop PRIVATE ${core_INCLUDES})
 
 # Export variables
-set(data-qt_INCLUDES ${CMAKE_SOURCE_DIR}/src PARENT_SCOPE)
+set(data-desktop_INCLUDES ${CMAKE_SOURCE_DIR}/src PARENT_SCOPE)

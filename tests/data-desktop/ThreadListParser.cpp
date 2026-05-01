@@ -7,7 +7,7 @@
 
 #include "../Mockup.hpp"
 
-#include "data-qt/ThreadListParser.hpp"
+#include "data-desktop/ThreadListParser.hpp"
 
 /**
  * For each test, test files are provided under:

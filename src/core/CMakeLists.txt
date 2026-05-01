@@ -25,7 +25,7 @@ set(SOURCES
 set(LICENSE_FILE ${CMAKE_SOURCE_DIR}/LICENSE)
 
 # Target: version
-add_custom_target(version ALL
+add_custom_target(core-version ALL
     COMMAND ${CMAKE_COMMAND}
     -DSOURCE=${CMAKE_CURRENT_SOURCE_DIR}/Version.hpp.in
     -DOUTPUT=${CMAKE_BINARY_DIR}/generate_version/core/Version.hpp
@@ -39,7 +39,7 @@ add_custom_target(version ALL
 
 # Target: core
 add_library(core STATIC ${SOURCES})
-add_dependencies(core version)
+add_dependencies(core core-version)
 target_include_directories(core PRIVATE ${CMAKE_BINARY_DIR}/generate_version/core ${stb_SOURCE_DIR})
 
 # Export variables

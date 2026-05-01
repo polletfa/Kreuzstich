@@ -16,7 +16,7 @@ TEST(VersionTest, replaceVersionVars) {
         << "(mno)" << std::to_string(Version::BUILD_TIME)
         << "(pqr)" << Version::GIT_COMMIT
         << "(stu)" << ( Version::RELEASE_BUILD ? "true" : "false" )
-        << "(vwx)" << Version::VERSION_STRING
+        << "(vwx)" << Version::getVersionString()
         << "(yz0)" << Version::NAME // multiple occurrences
         << "(123)" << Version::LICENSE
         << "(456)";
@@ -26,12 +26,6 @@ TEST(VersionTest, replaceVersionVars) {
 
     Version::replaceVersionVars(testStr);
     EXPECT_EQ(testStr, oss.str());
-}
-
-// --- Check that VERSION_STRING is set
-
-TEST(VersionTest, VERSION_STRING) {
-    EXPECT_FALSE(Version::VERSION_STRING.empty());
 }
 
 // --- Check that LICENSE is loaded properly

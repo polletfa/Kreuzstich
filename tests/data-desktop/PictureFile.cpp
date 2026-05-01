@@ -7,7 +7,7 @@
 #include <gtest/gtest.h>
 #include "../Mockup.hpp"
 
-#include "data-qt/PictureFile.hpp"
+#include "data-desktop/PictureFile.hpp"
 
 class PictureFileTests: public testing::Test, public Mockup {
 protected:

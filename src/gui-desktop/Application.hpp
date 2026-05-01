@@ -26,7 +26,7 @@ int main(int argc, char** argv);
  * Internationalization is done through the QtLinguist tool.
  * All strings requiring translation must be wrapped inside tr() (literal strings only)
  *
- * The translation files are provided in resources/i18n/gui-qt/LOCALE.ts and are build
+ * The translation files are provided in resources/i18n/gui-desktop/LOCALE.ts and are build
  * directly into the binary as a resource.
  *
  * To add new translation strings:

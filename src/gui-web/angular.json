@@ -11,6 +11,12 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+          "flat": false,
+          "path": "src/app/components"
+        },
+        "@schematics/angular:service": {
+          "flat": false,
+          "path": "src/app/services"
         }
       },
       "root": "",
@@ -30,7 +36,7 @@
               },
               {
                 "glob": "**/*",
-                "input": "out-assets"
+                "input": "build/assets"
               }
             ],
             "styles": [

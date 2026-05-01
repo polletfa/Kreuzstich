@@ -6,7 +6,7 @@
 #include <gtest/gtest.h>
 #include "Mockup_QStandardPathsWrapper.hpp"
 
-#include "data-qt/FileLocator.hpp"
+#include "data-desktop/FileLocator.hpp"
 
 #include <iostream>
 /**

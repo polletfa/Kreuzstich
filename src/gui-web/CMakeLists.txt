@@ -8,7 +8,10 @@ find_program(NPM npm REQUIRED)
 
 # Resources
 
-set(FAVICON ${CMAKE_SOURCE_DIR}/resources/icons/icon.ico)
+set(RESOURCES
+    ${CMAKE_SOURCE_DIR}/resources/icons/favicon.ico
+    ${wrapper-wasm_ASSETS}
+)
 
 # Target: gui-web-npminstall
 add_custom_command(
@@ -20,19 +23,27 @@ add_custom_command(
 )
 add_custom_target(gui-web-npminstall DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/node_modules/.package-lock.json)
 
-# Target: gui-web
-add_custom_command(
-    OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/out-assets/favicon.ico
-    COMMAND cmake -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/out-assets
-    COMMAND cmake -E copy ${FAVICON} ${CMAKE_CURRENT_SOURCE_DIR}/out-assets/favicon.ico
+# Target: gui-web-resources
+add_custom_target(gui-web-resources
+    COMMAND cmake -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/build/assets
+    COMMAND cmake -E copy ${RESOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/build/assets/
+    COMMENT "Copy resources"
 )
+
+# Target: gui-web-declarations
+add_custom_target(gui-web-declarations
+    COMMAND cmake -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/build/src
+    COMMAND cmake -E copy ${wrapper-wasm_DECLARATIONS} ${CMAKE_CURRENT_SOURCE_DIR}/build/src/
+    COMMENT "Copy resources"
+)
+
+# Target: gui-web
 add_custom_target(gui-web ALL
     COMMAND ${NPM} run build-$<$<CONFIG:Debug>:dev>$<$<CONFIG:Release>:prod>
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/out-assets/favicon.ico
     COMMENT "Building Angular app..."
 )
-add_dependencies(gui-web gui-web-npminstall)
+add_dependencies(gui-web gui-web-npminstall gui-web-resources gui-web-declarations)
 
 # Target: gui-web-test
 add_custom_target(gui-web-test
