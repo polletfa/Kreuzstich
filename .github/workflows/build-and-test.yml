@@ -114,7 +114,9 @@ jobs:
     # Note: Vitest Test Report is created automatically
 
     - name: debug
-      run: find ${{ github.workspace }}/build/test-results -name "*.xml"
+      run: |
+          find ${{ github.workspace }}/build/test-results -name "*.xml"
+          cat ${{ github.workspace }}/build/test-results/unittests.xml
       if: always()
 
     - name: Google Test Report Header
