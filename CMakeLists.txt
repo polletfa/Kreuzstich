@@ -24,7 +24,7 @@ add_link_options($<$<CONFIG:Debug>:--coverage>)
 
 list(APPEND CMAKE_CTEST_ARGUMENTS "--output-on-failure")
 
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
     add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 endif()
 

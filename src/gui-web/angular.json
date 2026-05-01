@@ -39,8 +39,7 @@
                                 "input": "build/assets"
                             }
                         ],
-                        "styles": ["src/styles.scss"],
-                        "webWorkerTsConfig": "tsconfig.worker.json"
+                        "styles": ["src/styles.scss"]
                     },
                     "configurations": {
                         "production": {
@@ -79,10 +78,7 @@
                     "defaultConfiguration": "development"
                 },
                 "test": {
-                    "builder": "@angular/build:unit-test",
-                    "options": {
-                        "webWorkerTsConfig": "tsconfig.worker.json"
-                    }
+                    "builder": "@angular/build:unit-test"
                 }
             }
         }
