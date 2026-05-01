@@ -105,6 +105,13 @@ jobs:
     # Test                                                                      #
     #############################################################################
 
+    - name: debug-pre
+      run: |
+          ls -l ${{ github.workspace }}/build/test-results | wc -l
+          cat ${{ github.workspace }}/build/test-results/unittests.xml
+          cat ${{ github.workspace }}/build/test-results/unittests_3.xml
+      if: always()
+
     - name: Test
       working-directory: ${{ github.workspace }}/build
       run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} --target runtests
