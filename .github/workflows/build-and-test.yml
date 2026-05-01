@@ -105,7 +105,7 @@ jobs:
       working-directory: ${{ github.workspace }}/build
       run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} --target runtests
       env:
-        GTEST_OUTPUT: xml:unittests.xml
+        GTEST_OUTPUT: xml:${{ github.workspace }}/build/unittests.xml
 
       # Note: Vitest Test Report is created automatically
     - name: Google Test Report
