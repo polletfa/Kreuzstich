@@ -108,7 +108,6 @@ jobs:
     - name: Test
       working-directory: ${{ github.workspace }}/build
       run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} --target runtests
-      shell: bash
       env:
         GTEST_OUTPUT: xml:${{ github.workspace }}/build/test-results/
 
@@ -118,7 +117,6 @@ jobs:
       run: |
           ls -l ${{ github.workspace }}/build/test-results | wc -l
           cat ${{ github.workspace }}/build/test-results/unittests.xml
-      shell: bash
       if: always()
 
     - name: Google Test Report Header
