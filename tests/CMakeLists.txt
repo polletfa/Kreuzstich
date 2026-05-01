@@ -67,6 +67,13 @@ add_custom_target(runtests
         DEPENDS unittests gui-web-test
 )
 
+# Target: runtests-xml
+add_custom_target(runtests-xml
+        COMMAND ctest --output-on-failure --output-junit unittests-results.xml
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        DEPENDS unittests gui-web-test
+)
+
 # Target: coverage
 if(SKIP_COVERAGE)
     message(WARNING "Skipping code covereage (missing requirement)")
