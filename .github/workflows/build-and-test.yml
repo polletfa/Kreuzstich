@@ -107,6 +107,10 @@ jobs:
       env:
         GTEST_OUTPUT: xml:${{ github.workspace }}/build/unittests.xml
 
+    - name: Check test output
+      run: ls -la ${{ github.workspace }}/build/unittests.xml
+      if: always()
+
       # Note: Vitest Test Report is created automatically
     - name: Google Test Report
       uses: test-summary/action@v2
