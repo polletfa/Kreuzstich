@@ -107,7 +107,7 @@ jobs:
 
     - name: Test
       working-directory: ${{ github.workspace }}/build
-      run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} --target runtests-xml
+      run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} --target runtests
 
     # Note: Vitest Test Report is created automatically
 

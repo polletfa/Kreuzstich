@@ -1,15 +1,2 @@
 TODO test wrapper-wasm bindings?
-
------------
-
-implement parallelism:
-    auto indices = std::views::iota(0, 300'000'000);
-    std::for_each(std::execution::par_unseq, indices.begin(), indices.end(), [](int) {
-        testDistance({70, 90,  -8}, {79, 95, 10}, ColorSpace::CIEDE2000, 9.2152);
-    });
-
-requires TBB on linux:
-find_package(TBB REQUIRED)
-target_link_libraries(core PUBLIC TBB::tbb)
-not sure about win and macos.
-doesn't work in wasm.
+TODO avoid rebuild of version every time. with ci, it's enough if build_time is not recreated everytime. maybe just a special version for development

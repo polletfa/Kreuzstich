@@ -62,13 +62,6 @@ gtest_discover_tests(unittests)
 
 # Target: runtests
 add_custom_target(runtests
-        COMMAND ctest --output-on-failure
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        DEPENDS unittests gui-web-test
-)
-
-# Target: runtests-xml
-add_custom_target(runtests-xml
         COMMAND ctest --output-on-failure --output-junit unittests-results.xml
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         DEPENDS unittests gui-web-test
