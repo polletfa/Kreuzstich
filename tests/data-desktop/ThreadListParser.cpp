@@ -23,7 +23,7 @@ protected:
 TEST_F(ThreadListParserTests, fileNotFound) {
     ThreadListParser parser{testPath(QString("file_not_found"))};
     ASSERT_FALSE(parser);
-    EXPECT_EQ(parser.error().error, ThreadListParser::Error::OPEN_FILE_ERROR);
+    EXPECT_EQ(parser.error().error, ThreadListParser::ErrorCode::OPEN_FILE_ERROR);
 }
 
 TEST_F(ThreadListParserTests, found) {
@@ -31,11 +31,11 @@ TEST_F(ThreadListParserTests, found) {
     ASSERT_TRUE(parser);
 
     auto warnings = parser.warnings();
-    EXPECT_EQ(warnings[0].warning, ThreadListParser::Warning::INVALID_LINE);
+    EXPECT_EQ(warnings[0].warning, ThreadListParser::WarningCode::INVALID_LINE);
     EXPECT_EQ(warnings[0].line, QString("invalid"));
-    EXPECT_EQ(warnings[1].warning, ThreadListParser::Warning::INVALID_COLOR);
+    EXPECT_EQ(warnings[1].warning, ThreadListParser::WarningCode::INVALID_COLOR);
     EXPECT_EQ(warnings[1].line, QString("thread 5: invalid color"));
-    EXPECT_EQ(warnings[2].warning, ThreadListParser::Warning::INVALID_COLOR);
+    EXPECT_EQ(warnings[2].warning, ThreadListParser::WarningCode::INVALID_COLOR);
     EXPECT_EQ(warnings[2].line, QString("thread 7:"));
 
     auto threads = parser.threads();
@@ -52,11 +52,11 @@ TEST_F(ThreadListParserTests, found) {
 TEST_F(ThreadListParserTests, invalidFile) {
     ThreadListParser parser{testPath(QString("invalid.threads"))};
     ASSERT_FALSE(parser);
-    EXPECT_EQ(parser.error().error, ThreadListParser::Error::TOO_MANY_ERRORS);
+    EXPECT_EQ(parser.error().error, ThreadListParser::ErrorCode::TOO_MANY_ERRORS);
 }
 
 TEST_F(ThreadListParserTests, emptyFile) {
     ThreadListParser parser{testPath(QString("empty.threads"))};
     ASSERT_FALSE(parser);
-    EXPECT_EQ(parser.error().error, ThreadListParser::Error::NO_DEFINITION_FOUND);
+    EXPECT_EQ(parser.error().error, ThreadListParser::ErrorCode::NO_DEFINITION_FOUND);
 }

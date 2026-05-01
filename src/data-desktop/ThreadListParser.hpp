@@ -36,24 +36,26 @@ class ThreadListParser {
 public:
     explicit ThreadListParser(const QString& file);
 
+    enum class ErrorCode {
+        SUCCESS,               /**< No error */
+        TOO_MANY_ERRORS,       /**< More invalid lines than valid lines */
+        NO_DEFINITION_FOUND,   /**< Not a single thread definition found in the file (either empty or only invalid lines) */
+        OPEN_FILE_ERROR        /**< Cannot open file */
+    };
     struct [[nodiscard]] Error {
-        enum ErrorEnum {
-            SUCCESS,               /**< No error */
-            TOO_MANY_ERRORS,       /**< More invalid lines than valid lines */
-            NO_DEFINITION_FOUND,   /**< Not a single thread definition found in the file (either empty or only invalid lines) */
-            OPEN_FILE_ERROR        /**< Cannot open file */
-        } error;
+        ErrorCode error;
         QString message{};         /**< Some errors may provide an additional message (system errors only, for example OPEN_FILE_ERROR).
                                         In this case, the error message will be in the language of the system locale */
 
-        Error(ErrorEnum error): error(error) {}
+        Error(ErrorCode error): error(error) {}
     };
 
+    enum class WarningCode {
+        INVALID_LINE,         /**< Cannot parse line */
+        INVALID_COLOR         /**< Cannot parse color */
+    };
     struct [[nodiscard]] Warning {
-        enum WarningEnum {
-            INVALID_LINE,         /**< Cannot parse line */
-            INVALID_COLOR         /**< Cannot parse color */
-        } warning;
+        WarningCode warning;
         QString line;             /**< Invalid line that caused the warning */
     };
 
@@ -85,7 +87,7 @@ private:
 
     std::vector<Thread> m_threads;
     QList<Warning> m_warnings;
-    Error m_error{Error::SUCCESS};
+    Error m_error{ErrorCode::SUCCESS};
 };
 
 #endif // THREADLISTPARSER_HPP

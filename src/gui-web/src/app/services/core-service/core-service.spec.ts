@@ -4,7 +4,6 @@
   MIT License, see LICENSE file.
 */
 
-// todo
 import { TestBed } from '@angular/core/testing';
 
 import { CoreService } from './core-service';
@@ -20,4 +19,6 @@ describe('CoreService', () => {
     it('should be created', () => {
         expect(service).toBeTruthy();
     });
+
+    // todo test get?
 });

@@ -41,8 +41,8 @@ TEST_F(ThreadTests, distanceFromThread) {
     Thread thr1("color1", "7b2d43"), // rgb(123, 45, 67) == lab(30.6264, 36.0117,  4.1579)
         thr2("color2", "0c4e29");    // rgb( 12, 78, 41) == lab(28.6077, -29.5564, 16.3536)
 
-    EXPECT_NEAR(thr1.distance(thr2, ColorSpace::CIE1976), 66.7232, 0.0001);
-    EXPECT_NEAR(thr1.distance(thr2, ColorSpace::CIEDE2000), 51.9866, 0.0001);
+    EXPECT_NEAR(thr1.distance(thr2, ColorSpace::DistanceAlgo::CIE1976), 66.7232, 0.0001);
+    EXPECT_NEAR(thr1.distance(thr2, ColorSpace::DistanceAlgo::CIEDE2000), 51.9866, 0.0001);
 }
 
 TEST_F(ThreadTests, distanceFromLAB) {
@@ -50,6 +50,6 @@ TEST_F(ThreadTests, distanceFromLAB) {
     Thread thread("color1", "7b2d43");             // rgb(123, 45, 67) == lab(30.6264, 36.0117,  4.1579)
     ColorSpace::ColorLAB color{28.6077, -29.5564, 16.3536};
 
-    EXPECT_NEAR(thread.distance(color, ColorSpace::CIE1976), 66.7232, 0.0001);
-    EXPECT_NEAR(thread.distance(color, ColorSpace::CIEDE2000), 51.9866, 0.0001);
+    EXPECT_NEAR(thread.distance(color, ColorSpace::DistanceAlgo::CIE1976), 66.7232, 0.0001);
+    EXPECT_NEAR(thread.distance(color, ColorSpace::DistanceAlgo::CIEDE2000), 51.9866, 0.0001);
 }

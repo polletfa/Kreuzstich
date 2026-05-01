@@ -5,7 +5,8 @@
 */
 
 interface Core {
-  Version: Version;
+    Version: Version;
+    ColorSpace: ColorSpace;
 };
 
-declare function CoreModule(opts?: object): Promise<any>;
+declare function CoreModule(opts?: object): Promise<Core>;

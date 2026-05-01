@@ -4,8 +4,6 @@
   MIT License, see LICENSE file.
 */
 
-//todo
-
 import { TestBed } from '@angular/core/testing';
 import { MainComponent } from './main-component';
 

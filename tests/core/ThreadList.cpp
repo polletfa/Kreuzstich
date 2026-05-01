@@ -92,11 +92,11 @@ TEST_F(ThreadListTests, get_Name_DESC) {
 
 TEST_F(ThreadListTests, findClosest_empty) {
     ThreadList emptyList{{}};
-    ASSERT_FALSE(emptyList.findClosest({0, 0, 0}, ColorSpace::CIEDE2000));
+    ASSERT_FALSE(emptyList.findClosest({0, 0, 0}, ColorSpace::DistanceAlgo::CIEDE2000));
 }
 
 TEST_F(ThreadListTests, findClosest) {
-    auto res = m_threads.findClosest({0xc9, 0xc7, 0x10}, ColorSpace::CIEDE2000);
+    auto res = m_threads.findClosest({0xc9, 0xc7, 0x10}, ColorSpace::DistanceAlgo::CIEDE2000);
     ASSERT_TRUE(res);
     EXPECT_EQ(res->get().name(), "2");
 }
@@ -105,14 +105,14 @@ TEST_F(ThreadListTests, findClosest) {
 
 TEST_F(ThreadListTests, findClosestInUse_empty) {
     ThreadList threads{{Thread{"1", "bfaa40"}}}; // usage = 0
-    ASSERT_FALSE(threads.findClosestInUse({0, 0, 0}, ColorSpace::CIEDE2000));
+    ASSERT_FALSE(threads.findClosestInUse({0, 0, 0}, ColorSpace::DistanceAlgo::CIEDE2000));
 }
 
 TEST_F(ThreadListTests, findClosestInUse) {
     auto usage = m_threads.usage();
     usage[0].second = 0;
     m_threads.setUsage(usage);
-    auto res = m_threads.findClosestInUse({0xc9, 0xc7, 0x10}, ColorSpace::CIEDE2000);
+    auto res = m_threads.findClosestInUse({0xc9, 0xc7, 0x10}, ColorSpace::DistanceAlgo::CIEDE2000);
     ASSERT_TRUE(res);
     EXPECT_EQ(res->get().name(), "3"); // 2 is the closest, but not in use
 }

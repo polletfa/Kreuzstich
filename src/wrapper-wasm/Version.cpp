@@ -8,7 +8,7 @@
 
 #include "core/Version.hpp"
 
-EMSCRIPTEN_BINDINGS(Core) {
+EMSCRIPTEN_BINDINGS(Version) {
     emscripten::constant("Version_NAME", std::string{Version::NAME});
     emscripten::constant("Version_WEBSITE", std::string{Version::WEBSITE});
     emscripten::constant("Version_MAJOR", Version::MAJOR);

@@ -12,15 +12,20 @@ endif()
 
 set(SOURCES
     Version.cpp
+    ColorSpace.cpp
+    Thread.cpp
 )
 
 set(NAMESPACES
     Version.namespace.js
+    ColorSpace.namespace.js
 )
 
 set(DECLARATIONS
     Version.d.ts
+    ColorSpace.d.ts
     Core.d.ts
+    Thread.d.ts
 )
 
 #

@@ -27,7 +27,7 @@ ThreadListParser::ThreadListParser(const QString& file)
                 continue; // ignore line (empty or comment only)
             }
             if(auto pos = vline.indexOf(':'); pos < 0) {
-                m_warnings.push_back({Warning::INVALID_LINE, vline.toString()});
+                m_warnings.push_back({WarningCode::INVALID_LINE, vline.toString()});
                 continue; // ignore line
             } else {
                 QStringView name = vline.left(pos).trimmed();
@@ -35,28 +35,28 @@ ThreadListParser::ThreadListParser(const QString& file)
 
                 Thread thread{name.toString().toStdString(), rgb.toString().toStdString()};
                 if(!thread) {
-                    m_warnings.push_back({Warning::INVALID_COLOR, vline.toString()});
+                    m_warnings.push_back({WarningCode::INVALID_COLOR, vline.toString()});
                     continue; // ignore line
                 }
                 m_threads.push_back(thread);
             }
         }
         if(m_warnings.size() > static_cast<qsizetype>(m_threads.size())) {
-            m_error = Error::TOO_MANY_ERRORS;
+            m_error = ErrorCode::TOO_MANY_ERRORS;
         } else if(m_threads.empty()) {
-            m_error = Error::NO_DEFINITION_FOUND;
+            m_error = ErrorCode::NO_DEFINITION_FOUND;
         } else {
-            m_error = Error::SUCCESS;
+            m_error = ErrorCode::SUCCESS;
         }
         ifile.close();
     } else {
-        m_error = Error::OPEN_FILE_ERROR;
+        m_error = ErrorCode::OPEN_FILE_ERROR;
         m_error.message = ifile.errorString();
     }
 }
 
 ThreadListParser::operator bool() const {
-    return m_error.error == Error::SUCCESS;
+    return m_error.error == ErrorCode::SUCCESS;
 }
 
 std::vector<Thread>& ThreadListParser::threads() {

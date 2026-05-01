@@ -5,15 +5,15 @@
 */
 
 interface Version {
-  NAME: string,
-  WEBSITE: string,
-  MAJOR: number,
-  MINOR: number,
-  BUILD_TIME: number,
-  GIT_COMMIT: string,
-  RELEASE_BUILD: boolean,
-  LICENSE: string,
+    NAME: string,
+    WEBSITE: string,
+    MAJOR: number,
+    MINOR: number,
+    BUILD_TIME: number,
+    GIT_COMMIT: string,
+    RELEASE_BUILD: boolean,
+    LICENSE: string,
 
-  getVersionString: ()=>void
-  replaceVersionVars: (string)=>string
-};
+    getVersionString: ()=>void
+    replaceVersionVars: (string)=>string
+}

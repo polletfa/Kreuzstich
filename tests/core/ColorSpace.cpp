@@ -66,12 +66,12 @@ TEST_F(ColorSpaceTests, toLAB_3) { testToLAB({255, 120,  0, 153}, {77.5767, 22.6
 // --- distance
 // Test values generated with http://www.brucelindbloom.com/
 
-TEST_F(ColorSpaceTests, distance_CIE1976_1) { testDistance({64, 12, -48}, {79, 95, 10}, ColorSpace::CIE1976, 102.3621); }
-TEST_F(ColorSpaceTests, distance_CIE1976_2) { testDistance({64, 90, -48}, {79, 95, 10}, ColorSpace::CIE1976, 60.1165); }
-TEST_F(ColorSpaceTests, distance_CIE1976_3) { testDistance({64, 90,  -8}, {79, 95, 10}, ColorSpace::CIE1976, 23.9582); }
-TEST_F(ColorSpaceTests, distance_CIE1976_4) { testDistance({70, 90,  -8}, {79, 95, 10}, ColorSpace::CIE1976, 20.7364); }
+TEST_F(ColorSpaceTests, distance_CIE1976_1) { testDistance({64, 12, -48}, {79, 95, 10}, ColorSpace::DistanceAlgo::CIE1976, 102.3621); }
+TEST_F(ColorSpaceTests, distance_CIE1976_2) { testDistance({64, 90, -48}, {79, 95, 10}, ColorSpace::DistanceAlgo::CIE1976, 60.1165); }
+TEST_F(ColorSpaceTests, distance_CIE1976_3) { testDistance({64, 90,  -8}, {79, 95, 10}, ColorSpace::DistanceAlgo::CIE1976, 23.9582); }
+TEST_F(ColorSpaceTests, distance_CIE1976_4) { testDistance({70, 90,  -8}, {79, 95, 10}, ColorSpace::DistanceAlgo::CIE1976, 20.7364); }
 
-TEST_F(ColorSpaceTests, distance_CIEDE2000_1) { testDistance({64, 12, -48}, {79, 95, 10}, ColorSpace::CIEDE2000, 42.9367); }
-TEST_F(ColorSpaceTests, distance_CIEDE2000_2) { testDistance({64, 90, -48}, {79, 95, 10}, ColorSpace::CIEDE2000, 21.7480); }
-TEST_F(ColorSpaceTests, distance_CIEDE2000_3) { testDistance({64, 90,  -8}, {79, 95, 10}, ColorSpace::CIEDE2000, 13.0841); }
-TEST_F(ColorSpaceTests, distance_CIEDE2000_4) { testDistance({70, 90,  -8}, {79, 95, 10}, ColorSpace::CIEDE2000, 9.2152); }
+TEST_F(ColorSpaceTests, distance_CIEDE2000_1) { testDistance({64, 12, -48}, {79, 95, 10}, ColorSpace::DistanceAlgo::CIEDE2000, 42.9367); }
+TEST_F(ColorSpaceTests, distance_CIEDE2000_2) { testDistance({64, 90, -48}, {79, 95, 10}, ColorSpace::DistanceAlgo::CIEDE2000, 21.7480); }
+TEST_F(ColorSpaceTests, distance_CIEDE2000_3) { testDistance({64, 90,  -8}, {79, 95, 10}, ColorSpace::DistanceAlgo::CIEDE2000, 13.0841); }
+TEST_F(ColorSpaceTests, distance_CIEDE2000_4) { testDistance({70, 90,  -8}, {79, 95, 10}, ColorSpace::DistanceAlgo::CIEDE2000, 9.2152); }
