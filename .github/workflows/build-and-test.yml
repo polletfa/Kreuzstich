@@ -111,7 +111,7 @@ jobs:
     - name: Google Test Report
       uses: test-summary/action@v2
       with:
-        paths: "unittests.xml"
+        paths: "${{ github.workspace }}/build/unittests.xml"
       if: always()
 
   #############################################################################
