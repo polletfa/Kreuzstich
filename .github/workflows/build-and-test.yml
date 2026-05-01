@@ -116,7 +116,7 @@ jobs:
 
     - name: debug
       run: |
-          ls -l ${{ github.workspace }}/build/test-results
+          ls -l ${{ github.workspace }}/build/test-results | wc -l
           cat ${{ github.workspace }}/build/test-results/unittests.xml
       shell: bash
       if: always()
