@@ -105,17 +105,18 @@ jobs:
       working-directory: ${{ github.workspace }}/build
       run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} --target runtests
       env:
-        GTEST_OUTPUT: xml:${{ github.workspace }}/build/unittests.xml
+        GTEST_OUTPUT: xml:${{ github.workspace }}/build/test-results/
 
-    - name: Check test output
-      run: cat ${{ github.workspace }}/build/unittests.xml
+    - name: Google Test Report Header
+      run: echo "## Google Test Report" >> $GITHUB_STEP_SUMMARY
+      shell: bash
       if: always()
 
       # Note: Vitest Test Report is created automatically
     - name: Google Test Report
       uses: test-summary/action@v2
       with:
-        paths: "${{ github.workspace }}/build/unittests.xml"
+        paths: "${{ github.workspace }}/build/test-results/*.xml"
       if: always()
 
   #############################################################################
