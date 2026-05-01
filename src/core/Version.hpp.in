@@ -27,7 +27,7 @@ constexpr std::string_view LICENSE{R"(@LICENSE@)"};
 /**
  * Get version string
  */
-[[nodiscard]] std::string getVersionString();
+[[nodiscard]] const std::string& getVersionString();
 
 /**
  * Replace all the variables ("$VARNAME$") with their content (in-place).

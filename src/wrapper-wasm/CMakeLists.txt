@@ -34,6 +34,7 @@ if(NOT EMSCRIPTEN)
         CMAKE_ARGS
         -DCMAKE_TOOLCHAIN_FILE=$ENV{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
         -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+        -G "Ninja"
         BUILD_ALWAYS TRUE
         INSTALL_COMMAND ""
     )

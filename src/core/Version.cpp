@@ -11,7 +11,7 @@
 #include <vector>
 #include <utility>
 
-[[nodiscard]] std::string Version::getVersionString() {
+[[nodiscard]] const std::string& Version::getVersionString() {
     static std::string versionString;
     if(versionString.empty()) {
         std::ostringstream oss;
