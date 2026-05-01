@@ -84,7 +84,7 @@ jobs:
         actions-cache-folder: 'emsdk-cache'
 
     #############################################################################
-    # Configure, build and test                                                 #
+    # Configure and build                                                       #
     #############################################################################
 
     - name: Checkout
@@ -101,6 +101,10 @@ jobs:
     - name: Build
       run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }}
 
+    #############################################################################
+    # Test                                                                      #
+    #############################################################################
+
     - name: Test
       working-directory: ${{ github.workspace }}/build
       run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} --target runtests
@@ -108,6 +112,10 @@ jobs:
         GTEST_OUTPUT: xml:${{ github.workspace }}/build/test-results/
 
     # Note: Vitest Test Report is created automatically
+
+    - name: debug
+      run: find ${{ github.workspace }}/build/test-results -name "*.xml"
+      if: always()
 
     - name: Google Test Report Header
       run: echo "## Google Test Report" >> $GITHUB_STEP_SUMMARY
