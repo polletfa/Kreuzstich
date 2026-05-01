@@ -10,7 +10,6 @@ find_program(NPM npm REQUIRED)
 
 set(RESOURCES
     ${CMAKE_SOURCE_DIR}/resources/icons/favicon.ico
-    ${wrapper-wasm_ASSETS}
 )
 
 # Target: gui-web-npminstall
@@ -30,12 +29,15 @@ add_custom_target(gui-web-resources
     COMMENT "Copy resources"
 )
 
-# Target: gui-web-declarations
-add_custom_target(gui-web-declarations
+# Target: gui-web-wasm
+add_custom_target(gui-web-wasm
     COMMAND cmake -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/build/src
     COMMAND cmake -E copy ${wrapper-wasm_DECLARATIONS} ${CMAKE_CURRENT_SOURCE_DIR}/build/src/
-    COMMENT "Copy resources"
+    COMMAND cmake -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/build/assets
+    COMMAND cmake -E copy ${wrapper-wasm_ASSETS} ${CMAKE_CURRENT_SOURCE_DIR}/build/assets/
+    COMMENT "Copy WASM files"
 )
+add_dependencies(gui-web-wasm wrapper-wasm)
 
 # Target: gui-web
 add_custom_target(gui-web ALL
@@ -43,7 +45,7 @@ add_custom_target(gui-web ALL
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     COMMENT "Building Angular app..."
 )
-add_dependencies(gui-web gui-web-npminstall gui-web-resources gui-web-declarations)
+add_dependencies(gui-web gui-web-npminstall gui-web-resources gui-web-wasm)
 
 # Target: gui-web-test
 add_custom_target(gui-web-test
