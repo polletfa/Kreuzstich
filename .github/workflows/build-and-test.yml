@@ -103,7 +103,14 @@ jobs:
 
     - name: Test
       working-directory: ${{ github.workspace }}/build
-      run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} --target runtests
+      run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} -DGTEST_OUTPUT=xml:unittests.xml --target runtests
+
+      # Note: Vitest Test Report is created automatically
+    - name: Google Test Report
+      uses: test-summary/action@v2
+      with:
+        paths: "unittests.xml"
+      if: always()
 
   #############################################################################
   # Summary job                                                               #
