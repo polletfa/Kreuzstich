@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: Windows, MVSC
+          - name: Build (Windows, MVSC)
             build_type: Release
             os: windows-latest
             c_compiler: cl
@@ -26,7 +26,7 @@ jobs:
             qt_arch: win64_msvc2022_64
             qt_host: windows
 
-          - name: Linux, GCC
+          - name: Build (Linux, GCC)
             build_type: Release
             os: ubuntu-latest
             c_compiler: gcc
@@ -34,7 +34,7 @@ jobs:
             qt_arch: linux_gcc_64
             qt_host: linux
 
-          - name: Linux, clang
+          - name: Build (Linux, clang)
             build_type: Release
             os: ubuntu-latest
             c_compiler: clang-19
@@ -42,7 +42,7 @@ jobs:
             qt_arch: linux_gcc_64
             qt_host: linux
 
-          - name: MacOS, clang
+          - name: Build (MacOS, clang)
             build_type: Release
             os: macos-latest
             c_compiler: clang
@@ -81,6 +81,7 @@ jobs:
       uses: mymindstorm/setup-emsdk@v14
       with:
         version: 5.0.7
+        actions-cache-folder: 'emsdk-cache'
 
     #############################################################################
     # Configure, build and test                                                 #

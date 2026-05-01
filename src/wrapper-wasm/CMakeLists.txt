@@ -28,13 +28,18 @@ set(DECLARATIONS
 if(NOT EMSCRIPTEN)
     # Target: wrapper-wasm
     include(ExternalProject)
+    if(WIN32)
+        set(WASM_GENERATOR "Ninja")
+    else()
+        set(WASM_GENERATOR "Unix Makefiles")
+    endif()
     ExternalProject_Add(wrapper-wasm
         SOURCE_DIR "${CMAKE_SOURCE_DIR}"
         BINARY_DIR "${CMAKE_BINARY_DIR}/wasm"
+        CMAKE_GENERATOR "${WASM_GENERATOR}"
         CMAKE_ARGS
         -DCMAKE_TOOLCHAIN_FILE=$ENV{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
         -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
-        -G "Ninja"
         BUILD_ALWAYS TRUE
         INSTALL_COMMAND ""
     )
