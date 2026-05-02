@@ -22,11 +22,12 @@ add_compile_options($<$<CONFIG:Debug>:-O0>)
 add_compile_options($<$<CONFIG:Debug>:-g>)
 add_link_options($<$<CONFIG:Debug>:--coverage>)
 
-list(APPEND CMAKE_CTEST_ARGUMENTS "--output-on-failure")
-
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
     add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 endif()
+
+list(APPEND CMAKE_CTEST_ARGUMENTS "--output-on-failure")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/tools")
 
 ## Components
 add_subdirectory(src/core)

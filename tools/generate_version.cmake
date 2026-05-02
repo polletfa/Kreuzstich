@@ -1,16 +1,21 @@
-string(TIMESTAMP BUILD_TIME "%s")
-execute_process(COMMAND git rev-parse HEAD OUTPUT_VARIABLE GIT_COMMIT OUTPUT_STRIP_TRAILING_WHITESPACE)
-execute_process(COMMAND git status --porcelain OUTPUT_VARIABLE GIT_PORCELAIN OUTPUT_STRIP_TRAILING_WHITESPACE)
+# Kreuzstich
+# Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
 
-if(NOT GIT_PORCELAIN STREQUAL "")
-    unset(GIT_COMMIT)
-endif()
+function(generate_version INPUT OUTPUT)
+    message(STATUS "Generating ${OUTPUT}")
 
-if(IS_RELEASE_BUILD)
-    set(RELEASE_BUILD "true")
-else()
-    set(RELEASE_BUILD "false")
-endif()
+    # LICENSE
+    file(READ ${CMAKE_SOURCE_DIR}/LICENSE LICENSE)
 
-file(READ ${LICENSE_FILE} LICENSE)
-configure_file(${SOURCE} ${OUTPUT} @ONLY)
+    # GIT_COMMIT
+    execute_process(COMMAND git rev-parse HEAD OUTPUT_VARIABLE GIT_COMMIT OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
+    execute_process(COMMAND git status --porcelain OUTPUT_VARIABLE GIT_PORCELAIN OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
+
+    if(NOT GIT_PORCELAIN STREQUAL "")
+        unset(GIT_COMMIT)
+    endif()
+
+    # Configure
+    configure_file(${INPUT} ${OUTPUT} @ONLY)
+endfunction()

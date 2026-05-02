@@ -17,11 +17,17 @@
 namespace Version {
 constexpr std::string_view NAME{"Kreuzstich"};
 constexpr std::string_view WEBSITE{"https://github.com/polletfa/Kreuzstich"};
-constexpr int MAJOR{@MAJOR@};
-constexpr int MINOR{@MINOR@};
-constexpr time_t BUILD_TIME{@BUILD_TIME@};
+constexpr int MAJOR{@PROJECT_VERSION_MAJOR@};
+constexpr int MINOR{@PROJECT_VERSION_MINOR@};
+constexpr std::string_view BUILD_TIME{@CMAKE_BUILD_TIMESTAMP@};
 constexpr std::string_view GIT_COMMIT{"@GIT_COMMIT@"};
-constexpr bool RELEASE_BUILD{@RELEASE_BUILD@};
+constexpr bool RELEASE_BUILD{
+#ifdef DEBUG
+    false
+#else
+    true
+#endif
+};
 constexpr std::string_view LICENSE{R"(@LICENSE@)"};
 
 /**

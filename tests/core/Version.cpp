@@ -13,7 +13,7 @@ TEST(VersionTest, replaceVersionVars) {
         << "(def)" << Version::WEBSITE
         << "(ghi)" << std::to_string(Version::MAJOR)
         << "(jkl)" << std::to_string(Version::MINOR)
-        << "(mno)" << std::to_string(Version::BUILD_TIME)
+        << "(mno)" << Version::BUILD_TIME
         << "(pqr)" << Version::GIT_COMMIT
         << "(stu)" << ( Version::RELEASE_BUILD ? "true" : "false" )
         << "(vwx)" << Version::getVersionString()

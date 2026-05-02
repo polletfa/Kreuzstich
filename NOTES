@@ -1,2 +1,1 @@
 TODO test wrapper-wasm bindings?
-TODO avoid rebuild of version every time. with ci, it's enough if build_time is not recreated everytime. maybe just a special version for development
