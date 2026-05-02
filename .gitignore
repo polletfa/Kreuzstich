@@ -82,7 +82,10 @@ CMakeLists.txt.user*
 .pch/
 .rcc/
 .uic/
-/_build*/
+build/
+coverage/
+test-results/
+node_modules/
 
 # User-config: clangd
 compile_commands.json

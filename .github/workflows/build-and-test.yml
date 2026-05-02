@@ -109,18 +109,44 @@ jobs:
       working-directory: ${{ github.workspace }}/build
       run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} --target runtests
 
-    # Note: Vitest Test Report is created automatically
-
-    - name: Google Test Report Header
-      run: echo "## Google Test Report" >> $GITHUB_STEP_SUMMARY
-      shell: bash
-      if: always()
-
-    - name: Google Test Report
+    - name: Test Report
       uses: test-summary/action@v2
       with:
-        paths: "${{ github.workspace }}/build/unittests-results.xml"
+        paths: "build/test-results/*.xml"
       if: always()
+
+    #############################################################################
+    # Install and upload artifacts                                              #
+    #############################################################################
+
+    - name: Install
+      run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} --target install
+
+    - name: Artifact name suffix
+      run: echo "ARTIFACT_SUFFIX=${{ matrix.os }}-${{ matrix.c_compiler }}-${GITHUB_SHA::8}" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Upload dist/
+      uses: actions/upload-artifact@v4
+      with:
+          name: dist-${{ env.ARTIFACT_SUFFIX }}
+          path: build/dist
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      with:
+          name: test-results-${{ env.ARTIFACT_SUFFIX }}
+          path: build/test-results
+
+    - name: Upload build files on failure
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+          retention-days: 1
+          name: build-${{ env.ARTIFACT_SUFFIX }}
+          path: |
+              build
+              src/gui-web/build
 
   #############################################################################
   # Summary job                                                               #

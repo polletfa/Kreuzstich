@@ -46,15 +46,16 @@ add_custom_target(gui-web ALL
     COMMENT "Building Angular app..."
 )
 add_dependencies(gui-web gui-web-npminstall gui-web-resources gui-web-wasm)
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dist/gui-web/ DESTINATION gui-web)
 
-# Target: gui-web-test
-add_custom_target(gui-web-test
+# Target: gui-web-tests
+add_custom_target(gui-web-tests
     COMMAND ${NPM} run test
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-# Target: gui-web-coverage
-add_custom_target(gui-web-coverage
+# Target: gui-web-tests-coverage
+add_custom_target(gui-web-tests-coverage
     COMMAND ${NPM} run coverage
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )

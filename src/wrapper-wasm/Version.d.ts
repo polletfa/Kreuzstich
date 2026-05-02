@@ -9,7 +9,7 @@ interface Version {
     WEBSITE: string,
     MAJOR: number,
     MINOR: number,
-    BUILD_TIME: number,
+    BUILD_TIME: string,
     GIT_COMMIT: string,
     RELEASE_BUILD: boolean,
     LICENSE: string,

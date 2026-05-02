@@ -18,8 +18,8 @@ if [ "$MODE" != "debug" -a "$MODE" != "release" ]; then
     echo "  coverage     Build, run test and create coverage report"
     exit 1
 fi
-cmake -B _build/$MODE -DCMAKE_BUILD_TYPE=$MODE
+cmake -B build/$MODE -DCMAKE_BUILD_TYPE=$MODE
 (
-    cd _build/$MODE
+    cd build/$MODE
     make $*
 )

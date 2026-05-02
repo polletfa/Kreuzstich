@@ -11,6 +11,7 @@ FetchContent_Declare(
     URL https://github.com/google/googletest/archive/refs/tags/v1.15.2.tar.gz
 )
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+set(INSTALL_GTEST OFF)
 FetchContent_MakeAvailable(googletest)
 
 find_program(LCOV lcov)
@@ -28,56 +29,43 @@ else()
     message(STATUS "Found genhtml: ${GENHTML}")
 endif()
 
-# Sources
-
-set(SOURCES
-    Mockup.hpp
-    Mockup.cpp
-
-    core/Version.cpp
-    core/ColorSpace.cpp
-    core/Thread.cpp
-    core/ThreadList.cpp
-    core/Selection.cpp
-    core/Pattern.cpp
-
-    data-desktop/Mockup_QStandardPathsWrapper.hpp
-    data-desktop/Mockup_QStandardPathsWrapper.cpp
-    data-desktop/FileLocator.cpp
-    data-desktop/ThreadListParser.cpp
-    data-desktop/PictureFile.cpp
-)
-
-# Target: unittests
-add_executable(unittests ${SOURCES})
-target_compile_definitions(unittests PRIVATE TEST_FILES="${CMAKE_SOURCE_DIR}/resources/test_files")
-target_include_directories(unittests PRIVATE ${core_INCLUDES} ${data-desktop_INCLUDES} ${gui-desktop_INCLUDES})
-target_link_libraries(unittests PRIVATE
-    core data-desktop gui-desktop
-    GTest::gtest GTest::gtest_main
-)
-
-include(GoogleTest)
-gtest_discover_tests(unittests)
+# Subdirectories
+add_subdirectory(testbase)
+add_subdirectory(core)
+add_subdirectory(data-desktop)
+add_subdirectory(wrapper-wasm)
 
 # Target: runtests
 add_custom_target(runtests
-        COMMAND ctest --output-on-failure --output-junit unittests-results.xml
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        DEPENDS unittests gui-web-test
+    COMMAND ctest
+    -j4
+    --output-on-failure
+    --output-junit ${CMAKE_BINARY_DIR}/test-results/cpp-components.xml
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/src/gui-web/build/test-results/gui-web.xml ${CMAKE_BINARY_DIR}/test-results/
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/tests/wrapper-wasm/test-results/wrapper-wasm.xml ${CMAKE_BINARY_DIR}/test-results/
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    DEPENDS
+        core-tests
+        data-desktop-tests
+        wrapper-wasm-tests
+        gui-web-tests
 )
 
 # Target: coverage
 if(SKIP_COVERAGE)
-    message(WARNING "Skipping code covereage (missing requirement)")
+    message(WARNING "Skipping code coverage (missing requirement)")
 else()
     add_custom_target(coverage
         COMMAND ${LCOV} --zerocounters --directory ${CMAKE_BINARY_DIR}
-        COMMAND ctest --output-on-failure
+        COMMAND ctest -j4
         COMMAND ${LCOV} --capture --directory ${CMAKE_BINARY_DIR} --output-file coverage.info --ignore-errors inconsistent
         COMMAND ${LCOV} --remove coverage.info '/usr/*' '*/Qt*' '*/.qt/*' '*/tests/*' '*/gtest/*' '*/src/gtest*' --output-file coverage.info --ignore-errors inconsistent,unused
-        COMMAND ${GENHTML} coverage.info --output-directory coverage_report
+        COMMAND ${GENHTML} coverage.info --output-directory coverage_report/cpp-components
+        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/src/gui-web/coverage/gui-web ${CMAKE_BINARY_DIR}/coverage_report/gui-web
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        DEPENDS unittests gui-web-coverage
+        DEPENDS
+            core-tests
+            data-desktop-tests
+            gui-web-tests-coverage
     )
 endif()
