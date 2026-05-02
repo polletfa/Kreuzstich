@@ -9,6 +9,8 @@ jobs:
   build:
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
+    permissions:
+        contents: read
 
     #############################################################################
     # Build matrix                                                              #
@@ -125,6 +127,7 @@ jobs:
   all-checks-passed:
     needs: [build]
     runs-on: ubuntu-latest
+    permissions: {}
     if: always()
     steps:
       - name: Check all matrix jobs passed
