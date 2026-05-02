@@ -53,39 +53,11 @@ jobs:
     steps:
 
     #############################################################################
-    # Install requirements                                                      #
+    # Build                                                                     #
     #############################################################################
 
-    - name: Install Clang 19
-      if: matrix.c_compiler == 'clang-19' && matrix.os == 'ubuntu-latest'
-      run: |
-        wget https://apt.llvm.org/llvm.sh
-        chmod +x llvm.sh
-        sudo ./llvm.sh 19
-
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v4
-      with:
-        version: '6.10.2'
-        host: ${{ matrix.qt_host }}
-        target: 'desktop'
-        arch: ${{ matrix.qt_arch }}
-        cache: true
-
-    - name: Install Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '22'
-
-    - name: Install EMSDK
-      uses: mymindstorm/setup-emsdk@v14
-      with:
-        version: 5.0.7
-        actions-cache-folder: 'emsdk-cache'
-
-    #############################################################################
-    # Configure and build                                                       #
-    #############################################################################
+    - name: Install dependencies
+      uses: ./.github/actions/install-dependencies
 
     - name: Checkout
       uses: actions/checkout@v6
