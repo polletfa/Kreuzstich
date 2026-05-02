@@ -1,7 +1,6 @@
 name: Build and Test (multiple platforms)
 
 on:
-  push:
   pull_request:
   workflow_dispatch:
 
@@ -9,6 +8,8 @@ jobs:
   build:
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
+    permissions:
+        contents: read
 
     #############################################################################
     # Build matrix                                                              #
@@ -19,76 +20,46 @@ jobs:
       matrix:
         include:
           - name: Build (Windows, MVSC)
+            config: windows
             build_type: Release
             os: windows-latest
             c_compiler: cl
             cpp_compiler: cl
-            qt_arch: win64_msvc2022_64
-            qt_host: windows
 
           - name: Build (Linux, GCC)
+            config: linux-gcc
             build_type: Release
             os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
-            qt_arch: linux_gcc_64
-            qt_host: linux
 
           - name: Build (Linux, clang)
+            config: linux-clang
             build_type: Release
             os: ubuntu-latest
             c_compiler: clang-19
             cpp_compiler: clang++-19
-            qt_arch: linux_gcc_64
-            qt_host: linux
 
           - name: Build (MacOS, clang)
+            config: macos
             build_type: Release
             os: macos-latest
             c_compiler: clang
             cpp_compiler: clang++
-            qt_arch: clang_64
-            qt_host: mac
 
     steps:
 
     #############################################################################
-    # Install requirements                                                      #
-    #############################################################################
-
-    - name: Install Clang 19
-      if: matrix.c_compiler == 'clang-19' && matrix.os == 'ubuntu-latest'
-      run: |
-        wget https://apt.llvm.org/llvm.sh
-        chmod +x llvm.sh
-        sudo ./llvm.sh 19
-
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v4
-      with:
-        version: '6.10.2'
-        host: ${{ matrix.qt_host }}
-        target: 'desktop'
-        arch: ${{ matrix.qt_arch }}
-        cache: true
-
-    - name: Install Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '22'
-
-    - name: Install EMSDK
-      uses: mymindstorm/setup-emsdk@v14
-      with:
-        version: 5.0.7
-        actions-cache-folder: 'emsdk-cache'
-
-    #############################################################################
-    # Configure and build                                                       #
+    # Build                                                                     #
     #############################################################################
 
     - name: Checkout
       uses: actions/checkout@v6
+
+    - name: Install dependencies
+      uses: ./.github/actions/install-dependencies
+      with:
+          config: ${{ matrix.config }}
 
     - name: Configure CMake
       run: >
@@ -152,9 +123,10 @@ jobs:
   # Summary job                                                               #
   #############################################################################
 
-  all-checks-passed:
+  build-all-checks-passed:
     needs: [build]
     runs-on: ubuntu-latest
+    permissions: {}
     if: always()
     steps:
       - name: Check all matrix jobs passed

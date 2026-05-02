@@ -1,0 +1,59 @@
+name: Install dependencies
+
+inputs:
+    config:
+        description: windows, linux-gcc, linux-clang, macos
+        required: true
+
+runs:
+    using: composite
+    steps:
+        - name: Set variables
+          shell: bash
+          run: |
+              case ${{ inputs.config }} in
+              windows)
+                echo "QT_HOST=windows" >> $GITHUB_ENV
+                echo "QT_ARCH=win64_msvc2022_64" >> $GITHUB_ENV
+                ;;
+              linux-gcc | linux-clang)
+                echo "QT_HOST=linux" >> $GITHUB_ENV
+                echo "QT_ARCH=linux_gcc_64" >> $GITHUB_ENV
+                ;;
+              macos)
+                echo "QT_HOST=mac" >> $GITHUB_ENV
+                echo "QT_ARCH=clang_64" >> $GITHUB_ENV
+                ;;
+              *)
+                echo "::error::Invalid config selected"
+                exit 1
+                ;;
+              esac
+
+        - name: Install Clang 19
+          if: ${{ inputs.config == 'linux-clang' }}
+          shell: bash
+          run: |
+              wget https://apt.llvm.org/llvm.sh
+              chmod +x llvm.sh
+              sudo ./llvm.sh 19
+
+        - name: Install Qt
+          uses: jurplel/install-qt-action@v4
+          with:
+              version: '6.10.2'
+              host: ${{ env.QT_HOST }}
+              arch: ${{ env.QT_ARCH }}
+              target: 'desktop'
+              cache: true
+
+        - name: Install Node.js
+          uses: actions/setup-node@v4
+          with:
+              node-version: '22'
+
+        - name: Install EMSDK
+          uses: mymindstorm/setup-emsdk@v14
+          with:
+              version: 5.0.7
+              actions-cache-folder: 'emsdk-cache'

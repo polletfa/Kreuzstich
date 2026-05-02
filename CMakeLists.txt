@@ -36,6 +36,8 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
     add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 endif()
 
+set(CODEQL_CPP_TARGETS "")
+
 ## Components
 
 add_subdirectory(src/core)
@@ -62,7 +64,9 @@ endif()
 ## Install
 include(generate_version)
 generate_version(${CMAKE_SOURCE_DIR}/tools/VERSION.in ${CMAKE_BINARY_DIR}/VERSION)
-install(FILES README.md DESTINATION .)
-install(FILES LICENSE DESTINATION .)
 install(FILES ${CMAKE_BINARY_DIR}/VERSION DESTINATION .)
-install(DIRECTORY doc/ DESTINATION doc PATTERN ".*" EXCLUDE)
+install(FILES LICENSE DESTINATION .)
+
+## For CodeQL we need a target to compile C++ components only
+add_custom_target(codeql-cpp-build)
+add_dependencies(codeql-cpp-build ${CODEQL_CPP_TARGETS})
