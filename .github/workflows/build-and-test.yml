@@ -19,36 +19,32 @@ jobs:
       matrix:
         include:
           - name: Build (Windows, MVSC)
+            config: windows
             build_type: Release
             os: windows-latest
             c_compiler: cl
             cpp_compiler: cl
-            qt_arch: win64_msvc2022_64
-            qt_host: windows
 
           - name: Build (Linux, GCC)
+            config: linux-gcc
             build_type: Release
             os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
-            qt_arch: linux_gcc_64
-            qt_host: linux
 
           - name: Build (Linux, clang)
+            config: linux-clang
             build_type: Release
             os: ubuntu-latest
             c_compiler: clang-19
             cpp_compiler: clang++-19
-            qt_arch: linux_gcc_64
-            qt_host: linux
 
           - name: Build (MacOS, clang)
+            config: macos
             build_type: Release
             os: macos-latest
             c_compiler: clang
             cpp_compiler: clang++
-            qt_arch: clang_64
-            qt_host: mac
 
     steps:
 
@@ -61,6 +57,8 @@ jobs:
 
     - name: Install dependencies
       uses: ./.github/actions/install-dependencies
+      with:
+          config: ${{ matrix.config }}
 
     - name: Configure CMake
       run: >
