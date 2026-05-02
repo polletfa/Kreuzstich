@@ -7,6 +7,7 @@
 interface Core {
     Version: Version;
     ColorSpace: ColorSpace;
+    Thread: Thread;
 };
 
 declare function CoreModule(opts?: object): Promise<Core>;

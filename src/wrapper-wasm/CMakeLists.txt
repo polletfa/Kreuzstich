@@ -11,9 +11,9 @@ endif()
 # Sources
 
 set(SOURCES
-    Version.cpp
-    ColorSpace.cpp
-    Thread.cpp
+    Version.bindings.cpp
+    ColorSpace.bindings.cpp
+    Thread.bindings.cpp
 )
 
 set(NAMESPACES

@@ -4,12 +4,13 @@
   MIT License, see LICENSE file.
 */
 
-class Thread {
-    constructor(name: string, rgb: string);
+interface Thread {
+    new(name: string, rgb: string): Thread;
+    delete(): void;
     isValid(): bool;
     equals(color: Thread|ColorSpace.ColorRGBA): bool;
     name(): string;
     color(): ColorSpace.ColorRGBA;
     hsl(): ColorSpace.ColorHSL;
-    distance(color: Thread|ColorSpace.ColorLAB): number;
+    distance(color: Thread|ColorSpace.ColorLAB, algo: DistanceAlgo): number;
 }

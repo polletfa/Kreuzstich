@@ -13,7 +13,7 @@ EMSCRIPTEN_BINDINGS(Version) {
     emscripten::constant("Version_WEBSITE", std::string{Version::WEBSITE});
     emscripten::constant("Version_MAJOR", Version::MAJOR);
     emscripten::constant("Version_MINOR", Version::MINOR);
-    emscripten::constant("Version_BUILD_TIME", Version::BUILD_TIME);
+    emscripten::constant("Version_BUILD_TIME", std::string{Version::BUILD_TIME});
     emscripten::constant("Version_GIT_COMMIT", std::string{Version::GIT_COMMIT});
     emscripten::constant("Version_RELEASE_BUILD", Version::RELEASE_BUILD);
     emscripten::constant("Version_LICENSE", std::string{Version::LICENSE});
