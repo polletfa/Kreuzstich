@@ -111,15 +111,12 @@ jobs:
 
     # Note: Vitest Test Report is created automatically
 
-    - name: Google Test Report Header
-      run: echo "## Google Test Report" >> $GITHUB_STEP_SUMMARY
-      shell: bash
-      if: always()
-
-    - name: Google Test Report
+    - name: Test Report
       uses: test-summary/action@v2
       with:
-        paths: "${{ github.workspace }}/build/unittests-results.xml"
+        paths: |
+            "${{ github.workspace }}/build/unittests-results.xml"
+            "${{ github.workspace }}/src/gui-web/build/test-results/vitest.xml"
       if: always()
 
   #############################################################################
