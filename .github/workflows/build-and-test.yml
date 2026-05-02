@@ -56,11 +56,11 @@ jobs:
     # Build                                                                     #
     #############################################################################
 
-    - name: Install dependencies
-      uses: ./.github/actions/install-dependencies
-
     - name: Checkout
       uses: actions/checkout@v6
+
+    - name: Install dependencies
+      uses: ./.github/actions/install-dependencies
 
     - name: Configure CMake
       run: >
