@@ -122,16 +122,20 @@ jobs:
     - name: Install
       run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} --target install
 
+    - name: Artifact name suffix
+      run: echo "ARTIFACT_SUFFIX=${{ matrix.os }}-${{ matrix.c_compiler }}-${GITHUB_SHA::8}" >> $GITHUB_ENV
+      shell: bash
+
     - name: Upload dist/
       uses: actions/upload-artifact@v4
       with:
-          name: dist-${{ matrix.os }}-${{ matrix.c_compiler }}-${{ github.sha }}
+          name: dist-${{ env.ARTIFACT_SUFFIX }}
           path: ${{ github.workspace }}/build/dist
 
     - name: Upload test results
       uses: actions/upload-artifact@v4
       with:
-          name: test-results-${{ matrix.os }}-${{ matrix.c_compiler }}-${{ github.sha }}
+          name: test-results-${{ env.ARTIFACT_SUFFIX }}
           path: ${{ github.workspace }}/build/test-results
 
     - name: Upload build files on failure
@@ -139,7 +143,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
           retention-days: 1
-          name: build-${{ matrix.os }}-${{ matrix.c_compiler }}-${{ github.sha }}
+          name: build-${{ env.ARTIFACT_SUFFIX }}
           path: |
               ${{ github.workspace }}/build
               ${{ github.workspace }}/src/gui-web/build
