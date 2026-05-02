@@ -30,7 +30,7 @@ endif()
 
 # Definitions
 
-set(CTEST_ARGS -j4 --output-on-failure --output-junit unittests-results.xml)
+set(CTEST_ARGS -j4 --output-on-failure --output-junit ${CMAKE_BINARY_DIR}/unittests-results.xml)
 
 # Subdirectories
 add_subdirectory(testbase)
