@@ -112,7 +112,7 @@ jobs:
     - name: Test Report
       uses: test-summary/action@v2
       with:
-        paths: "${{ github.workspace }}/build/test-results/**/*.xml"
+        paths: "${{ github.workspace }}/build/test-results/*.xml"
       if: always()
 
     #############################################################################
