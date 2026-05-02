@@ -31,6 +31,7 @@ generate_version(${CMAKE_CURRENT_SOURCE_DIR}/Version.hpp.in ${CMAKE_BINARY_DIR}/
 
 # Target: core
 add_library(core STATIC ${SOURCES})
+set(CODEQL_CPP_TARGETS ${CODEQL_CPP_TARGETS} core PARENT_SCOPE)
 target_include_directories(core PRIVATE ${CMAKE_BINARY_DIR}/generate_version/core ${stb_SOURCE_DIR})
 
 # Export variables

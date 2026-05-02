@@ -48,6 +48,7 @@ if(NOT EMSCRIPTEN)
         BUILD_ALWAYS TRUE
         INSTALL_COMMAND ""
     )
+    set(CODEQL_CPP_TARGETS ${CODEQL_CPP_TARGETS} wrapper-wasm PARENT_SCOPE)
 
     # Export variables
     set(wrapper-wasm_ASSETS ${CMAKE_BINARY_DIR}/wasm/core.wasm ${CMAKE_BINARY_DIR}/wasm/core.js PARENT_SCOPE)

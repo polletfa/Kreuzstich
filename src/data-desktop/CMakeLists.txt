@@ -22,6 +22,7 @@ set(SOURCES
 
 # Target: data-desktop
 qt_add_library(data-desktop STATIC ${SOURCES})
+set(CODEQL_CPP_TARGETS ${CODEQL_CPP_TARGETS} data-desktop PARENT_SCOPE)
 target_link_libraries(data-desktop PUBLIC core)
 target_link_libraries(data-desktop PUBLIC Qt6::Core Qt6::Gui)
 target_include_directories(data-desktop PRIVATE ${core_INCLUDES})
