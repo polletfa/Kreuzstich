@@ -5,7 +5,7 @@
 */
 
 #include <gtest/gtest.h>
-#include "../Mockup.hpp"
+#include "Mockup.hpp"
 
 #include "data-desktop/PictureFile.hpp"
 

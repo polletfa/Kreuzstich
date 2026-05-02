@@ -28,43 +28,28 @@ else()
     message(STATUS "Found genhtml: ${GENHTML}")
 endif()
 
-# Sources
+# Definitions
 
-set(SOURCES
-    Mockup.hpp
-    Mockup.cpp
+set(CTEST_ARGS -j4 --output-on-failure --output-junit unittests-results.xml)
 
-    core/Version.cpp
-    core/ColorSpace.cpp
-    core/Thread.cpp
-    core/ThreadList.cpp
-    core/Selection.cpp
-    core/Pattern.cpp
+# Subdirectories
+add_subdirectory(testbase)
+add_subdirectory(core)
+add_subdirectory(data-desktop)
 
-    data-desktop/Mockup_QStandardPathsWrapper.hpp
-    data-desktop/Mockup_QStandardPathsWrapper.cpp
-    data-desktop/FileLocator.cpp
-    data-desktop/ThreadListParser.cpp
-    data-desktop/PictureFile.cpp
+# Target: alltests
+add_custom_target(alltests)
+add_dependencies(alltests
+    core-tests
+    data-desktop-tests
+    gui-web-test  # defined in src/gui-web (Angular tests)
 )
-
-# Target: unittests
-add_executable(unittests ${SOURCES})
-target_compile_definitions(unittests PRIVATE TEST_FILES="${CMAKE_SOURCE_DIR}/resources/test_files")
-target_include_directories(unittests PRIVATE ${core_INCLUDES} ${data-desktop_INCLUDES} ${gui-desktop_INCLUDES})
-target_link_libraries(unittests PRIVATE
-    core data-desktop gui-desktop
-    GTest::gtest GTest::gtest_main
-)
-
-include(GoogleTest)
-gtest_discover_tests(unittests)
 
 # Target: runtests
 add_custom_target(runtests
-        COMMAND ctest --output-on-failure --output-junit unittests-results.xml
+        COMMAND ctest ${CTEST_ARGS}
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        DEPENDS unittests gui-web-test
+        DEPENDS alltests
 )
 
 # Target: coverage
@@ -73,11 +58,11 @@ if(SKIP_COVERAGE)
 else()
     add_custom_target(coverage
         COMMAND ${LCOV} --zerocounters --directory ${CMAKE_BINARY_DIR}
-        COMMAND ctest --output-on-failure
+        COMMAND ctest ${CTEST_ARGS}
         COMMAND ${LCOV} --capture --directory ${CMAKE_BINARY_DIR} --output-file coverage.info --ignore-errors inconsistent
         COMMAND ${LCOV} --remove coverage.info '/usr/*' '*/Qt*' '*/.qt/*' '*/tests/*' '*/gtest/*' '*/src/gtest*' --output-file coverage.info --ignore-errors inconsistent,unused
         COMMAND ${GENHTML} coverage.info --output-directory coverage_report
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        DEPENDS unittests gui-web-coverage
+        DEPENDS alltests
     )
 endif()

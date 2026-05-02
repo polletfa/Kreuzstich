@@ -4,18 +4,17 @@
   MIT License, see LICENSE file.
 */
 #include <gtest/gtest.h>
-#include "Mockup_QStandardPathsWrapper.hpp"
+#include "QStandardPathsWrapper.mock.hpp"
 
 #include "data-desktop/FileLocator.hpp"
 
-#include <iostream>
 /**
  * For each test, test files are provided under:
  * - resources/test_files/TEST_SUITE_NAME/TEST_NAME.
  */
 class FileLocatorTests: public testing::Test, public Mockup {
 protected:
-    std::shared_ptr<Mockup_QStandardPathsWrapper> mockStandardPaths{std::make_shared<Mockup_QStandardPathsWrapper>()};
+    std::shared_ptr<QStandardPathsWrapper_mock> mockStandardPaths{std::make_shared<QStandardPathsWrapper_mock>()};
     FileLocator locator{mockStandardPaths};
 
     void SetUp() override {
