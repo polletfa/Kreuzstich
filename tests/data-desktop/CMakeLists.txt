@@ -22,6 +22,4 @@ target_link_libraries(data-desktop-tests PRIVATE
 )
 
 include(GoogleTest)
-gtest_discover_tests(data-desktop-tests
-    PROPERTIES ENVIRONMENT "GTEST_OUTPUT=xml:${CMAKE_BINARY_DIR}/test-results/data-desktop.xml"
-)
+gtest_discover_tests(data-desktop-tests)

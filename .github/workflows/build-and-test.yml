@@ -128,13 +128,13 @@ jobs:
     - name: Upload dist/
       uses: actions/upload-artifact@v4
       with:
-          name: dist-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.c_compiler }}-${{ github.sha }}
+          name: dist-${{ matrix.os }}-${{ matrix.c_compiler }}-${{ github.sha }}
           path: ${{ github.workspace }}/build/dist
 
     - name: Upload test results
       uses: actions/upload-artifact@v4
       with:
-          name: test-results-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.c_compiler }}-${{ github.sha }}
+          name: test-results-${{ matrix.os }}-${{ matrix.c_compiler }}-${{ github.sha }}
           path: |
             ${{ github.workspace }}/build/unittests-results.xml
             ${{ github.workspace }}/src/gui-web/build/test-results/gui-web.xml
@@ -144,7 +144,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
           retention-days: 1
-          name: build-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.c_compiler }}-${{ github.sha }}
+          name: build-${{ matrix.os }}-${{ matrix.c_compiler }}-${{ github.sha }}
           path: |
               ${{ github.workspace }}/build
               ${{ github.workspace }}/src/gui-web/build
