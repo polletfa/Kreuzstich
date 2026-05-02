@@ -57,7 +57,7 @@ jobs:
     - name: Build C++ targets
       if: matrix.language == 'c-cpp'
       shell: bash
-      run: cmake --build ${{ github.workspace }}/build --config Release codeql-cpp-build
+      run: cmake --build ${{ github.workspace }}/build --config Release --target codeql-cpp-build
 
     #############################################################################
     # Run                                                                       #
