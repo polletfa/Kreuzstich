@@ -27,9 +27,9 @@ jobs:
         - language: actions
           build-mode: none
         - language: c-cpp
-          build-mode: manual
-        - language: javascript-typescript
-          build-mode: none
+          build-mode: autobuild
+        # - language: javascript-typescript
+        #   build-mode: none
         # - language: java-kotlin
         #   build-mode: autobuild
 
@@ -42,22 +42,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Install dependencies
-      if: matrix.language == 'c-cpp'
-      uses: ./.github/actions/install-dependencies
-      with:
-          config: 'linux-gcc'
-
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v4
       with:
         languages: ${{ matrix.language }}
         build-mode: ${{ matrix.build-mode }}
-
-    - name: Build C++ targets
-      if: matrix.language == 'c-cpp'
-      shell: bash
-      run: cmake --build ${{ github.workspace }}/build --config Release codeql-cpp-build
 
     #############################################################################
     # Run                                                                       #
