@@ -28,10 +28,6 @@ else()
     message(STATUS "Found genhtml: ${GENHTML}")
 endif()
 
-# Definitions
-
-set(CTEST_ARGS -j4 --output-on-failure --output-junit ${CMAKE_BINARY_DIR}/unittests-results.xml)
-
 # Subdirectories
 add_subdirectory(testbase)
 add_subdirectory(core)
@@ -47,9 +43,12 @@ add_dependencies(alltests
 
 # Target: runtests
 add_custom_target(runtests
-        COMMAND ctest ${CTEST_ARGS}
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        DEPENDS alltests
+    COMMAND ctest
+    -j4
+    --output-on-failure
+    --output-junit ${CMAKE_BINARY_DIR}/unittests-results.xml
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    DEPENDS alltests VERBATIM
 )
 
 # Target: coverage
@@ -58,7 +57,7 @@ if(SKIP_COVERAGE)
 else()
     add_custom_target(coverage
         COMMAND ${LCOV} --zerocounters --directory ${CMAKE_BINARY_DIR}
-        COMMAND ctest ${CTEST_ARGS}
+        COMMAND ctest -j4
         COMMAND ${LCOV} --capture --directory ${CMAKE_BINARY_DIR} --output-file coverage.info --ignore-errors inconsistent
         COMMAND ${LCOV} --remove coverage.info '/usr/*' '*/Qt*' '*/.qt/*' '*/tests/*' '*/gtest/*' '*/src/gtest*' --output-file coverage.info --ignore-errors inconsistent,unused
         COMMAND ${GENHTML} coverage.info --output-directory coverage_report
