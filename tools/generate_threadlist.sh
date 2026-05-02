@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Kreuzstich
+# Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
 NAME="$1"
 SOURCE="$2"
 INTERMEDIATE="$3"

@@ -70,7 +70,7 @@ struct ColorLAB {
  */
 [[nodiscard]] ColorLAB toLAB(const ColorRGBA& rgba);
 
-enum DistanceAlgo { CIE1976, CIEDE2000 }; /**< Algorithms for distance computation */
+enum class DistanceAlgo { CIE1976, CIEDE2000 }; /**< Algorithms for distance computation */
 
 /**
  * Compute the distance between two colors in the LAB space using CIEDE2000
@@ -78,7 +78,7 @@ enum DistanceAlgo { CIE1976, CIEDE2000 }; /**< Algorithms for distance computati
  * See:
  * - http://www.brucelindbloom.com/
  */
-[[nodiscard]] double distance(const ColorLAB& color1, const ColorLAB& color2, DistanceAlgo algo = CIEDE2000);
+[[nodiscard]] double distance(const ColorLAB& color1, const ColorLAB& color2, DistanceAlgo algo);
 
 }
 

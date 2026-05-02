@@ -89,7 +89,7 @@ ColorSpace::ColorLAB ColorSpace::toLAB(const ColorSpace::ColorRGBA& rgba) {
 }
 
 double ColorSpace::distance(const ColorSpace::ColorLAB& color1, const ColorSpace::ColorLAB& color2, DistanceAlgo algo) {
-    if(algo == CIE1976) {
+    if(algo == DistanceAlgo::CIE1976) {
         return std::sqrt(
                          (color1.lightness - color2.lightness) * (color1.lightness - color2.lightness)
                          + (color1.a - color2.a) * (color1.a - color2.a)

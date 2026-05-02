@@ -56,4 +56,5 @@ else()
     add_custom_target(threadlists ALL DEPENDS ${THREADLISTS_FILES}
         COMMENT "Building threadlists"
     )
+    install(FILES ${THREADLISTS_FILES} DESTINATION threadlists)
 endif()
