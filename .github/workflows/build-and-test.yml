@@ -117,14 +117,44 @@ jobs:
             ${{ github.workspace }}/src/gui-web/build/test-results/vitest.xml
       if: always()
 
-    # - name: Upload build files on failure
-    #   if: failure()
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #       name: debug-artifacts
-    #       path: |
-    #           ${{ github.workspace }}/build
-    #           ${{ github.workspace }}/src/gui-web/build
+    #############################################################################
+    # Install and upload artifacts                                              #
+    #############################################################################
+
+    - name: Install
+      run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} --target install
+
+    - name: Upload dist/
+      uses: actions/upload-artifact@v4
+      with:
+          path: ${{ github.workspace }}/build/dist
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      with:
+          path: |
+            ${{ github.workspace }}/build/unittests-results.xml
+            ${{ github.workspace }}/src/gui-web/build/test-results/vitest.xml
+
+    - name: Upload build files on failure
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+          retention-days: 1
+          name: debug-artifacts-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.c_compiler }}
+          path: |
+              ${{ github.workspace }}/build
+              ${{ github.workspace }}/src/gui-web/build
+
+    - name: Upload build files on failure
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+          retention-days: 1
+          name: debug-artifacts-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.c_compiler }}
+          path: |
+              ${{ github.workspace }}/build
+              ${{ github.workspace }}/src/gui-web/build
 
   #############################################################################
   # Summary job                                                               #

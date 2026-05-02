@@ -15,11 +15,11 @@
  * Some constants providing informations about version and build
  */
 namespace Version {
-constexpr std::string_view NAME{"Kreuzstich"};
-constexpr std::string_view WEBSITE{"https://github.com/polletfa/Kreuzstich"};
+constexpr std::string_view NAME{"@CMAKE_PROJECT_NAME@"};
+constexpr std::string_view WEBSITE{"@CMAKE_PROJECT_HOMEPAGE_URL@"};
 constexpr int MAJOR{@PROJECT_VERSION_MAJOR@};
 constexpr int MINOR{@PROJECT_VERSION_MINOR@};
-constexpr std::string_view BUILD_TIME{@CMAKE_BUILD_TIMESTAMP@};
+constexpr std::string_view BUILD_TIME{"@CMAKE_BUILD_TIMESTAMP@"};
 constexpr std::string_view GIT_COMMIT{"@GIT_COMMIT@"};
 constexpr bool RELEASE_BUILD{
 #ifdef DEBUG
