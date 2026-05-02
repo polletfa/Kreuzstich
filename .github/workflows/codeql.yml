@@ -67,3 +67,19 @@ jobs:
       uses: github/codeql-action/analyze@v4
       with:
         category: "/language:${{matrix.language}}"
+
+  #############################################################################
+  # Summary job                                                               #
+  #############################################################################
+
+  analyse-all-checks-passed:
+    needs: [analyze]
+    runs-on: ubuntu-latest
+    permissions: {}
+    if: always()
+    steps:
+      - name: Check all matrix jobs passed
+        run: |
+          if [ "${{ needs.analyze.result }}" != "success" ]; then
+          exit 1
+          fi

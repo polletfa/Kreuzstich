@@ -124,7 +124,7 @@ jobs:
   # Summary job                                                               #
   #############################################################################
 
-  all-checks-passed:
+  build-all-checks-passed:
     needs: [build]
     runs-on: ubuntu-latest
     permissions: {}
