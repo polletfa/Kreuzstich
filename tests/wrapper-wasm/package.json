@@ -1,0 +1,13 @@
+{
+  "name": "wrapper-wasm-tests",
+  "type": "module",
+  "scripts": {
+    "test-watch": "vitest",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.8",
+    "@vitest/coverage-v8": "^4.1.5"
+  }
+}

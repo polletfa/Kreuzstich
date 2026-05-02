@@ -85,7 +85,7 @@ else()
         --bind
         -sMODULARIZE=1
         -sEXPORT_NAME=CoreModule
-        -sENVIRONMENT=web
+        -sENVIRONMENT=node,web
         -sALLOW_MEMORY_GROWTH=1
         -sFILESYSTEM=0
         "SHELL:--post-js ${CMAKE_BINARY_DIR}/namespaces.js"

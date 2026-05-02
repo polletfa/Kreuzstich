@@ -33,28 +33,27 @@ endif()
 add_subdirectory(testbase)
 add_subdirectory(core)
 add_subdirectory(data-desktop)
-
-# Target: alltests
-add_custom_target(alltests)
-add_dependencies(alltests
-    core-tests
-    data-desktop-tests
-    gui-web-test  # defined in src/gui-web (Angular tests)
-)
+add_subdirectory(wrapper-wasm)
 
 # Target: runtests
 add_custom_target(runtests
     COMMAND ctest
     -j4
     --output-on-failure
-    --output-junit ${CMAKE_BINARY_DIR}/unittests-results.xml
+    --output-junit ${CMAKE_BINARY_DIR}/test-results/cpp-components.xml
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/src/gui-web/build/test-results/gui-web.xml ${CMAKE_BINARY_DIR}/test-results/
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/tests/wrapper-wasm/test-results/wrapper-wasm.xml ${CMAKE_BINARY_DIR}/test-results/
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    DEPENDS alltests VERBATIM
+    DEPENDS
+        core-tests
+        data-desktop-tests
+        wrapper-wasm-tests
+        gui-web-tests
 )
 
 # Target: coverage
 if(SKIP_COVERAGE)
-    message(WARNING "Skipping code covereage (missing requirement)")
+    message(WARNING "Skipping code coverage (missing requirement)")
 else()
     add_custom_target(coverage
         COMMAND ${LCOV} --zerocounters --directory ${CMAKE_BINARY_DIR}
@@ -63,6 +62,10 @@ else()
         COMMAND ${LCOV} --remove coverage.info '/usr/*' '*/Qt*' '*/.qt/*' '*/tests/*' '*/gtest/*' '*/src/gtest*' --output-file coverage.info --ignore-errors inconsistent,unused
         COMMAND ${GENHTML} coverage.info --output-directory coverage_report
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        DEPENDS alltests
+        DEPENDS
+            core-tests
+            data-desktop-tests
+            wrapper-wasm-tests-coverage
+            gui-web-tests-coverage
     )
 endif()

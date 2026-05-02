@@ -112,10 +112,7 @@ jobs:
     - name: Test Report
       uses: test-summary/action@v2
       with:
-        paths: |
-            ${{ github.workspace }}/build/test-results
-            ${{ github.workspace }}/build/unittests-results.xml
-            ${{ github.workspace }}/src/gui-web/build/test-results/gui-web.xml
+        paths: ${{ github.workspace }}/build/test-results
       if: always()
 
     #############################################################################
@@ -135,9 +132,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
           name: test-results-${{ matrix.os }}-${{ matrix.c_compiler }}-${{ github.sha }}
-          path: |
-            ${{ github.workspace }}/build/unittests-results.xml
-            ${{ github.workspace }}/src/gui-web/build/test-results/gui-web.xml
+          path: ${{ github.workspace }}/build/test-results
 
     - name: Upload build files on failure
       if: failure()

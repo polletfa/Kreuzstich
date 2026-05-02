@@ -2,10 +2,11 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
     test: {
+        environment: 'node',
         reporters: [
             'default',
             ['github-actions', { jobSummary: { enabled: false } }],
-            ['junit', { outputFile: 'build/test-results/gui-web.xml' }],
+            ['junit', { outputFile: 'test-results/wrapper-wasm.xml' }],
         ],
     },
 });
