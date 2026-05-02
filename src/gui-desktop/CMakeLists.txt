@@ -44,6 +44,7 @@ qt_add_resources(gui-desktop "gui-desktop_translations" PREFIX "/i18n/gui-deskto
 # Target: gui-desktop-executable
 # (actually just qui-desktop + main.cpp - separation required for unit tests)
 qt_add_executable(gui-desktop-executable ${ENTRYPOINT})
+set(CODEQL_CPP_TARGETS ${CODEQL_CPP_TARGETS} gui-desktop-executable PARENT_SCOPE)
 target_link_libraries(gui-desktop-executable PUBLIC gui-desktop Qt6::Widgets)
 set_target_properties(gui-desktop-executable PROPERTIES
     OUTPUT_NAME kreuzstich
