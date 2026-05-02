@@ -117,6 +117,10 @@ jobs:
             "${{ github.workspace }}/src/gui-web/build/test-results/vitest.xml"
       if: always()
 
+    - name: Setup tmate session on failure
+      if: failure()
+      uses: mxschmitt/action-tmate@v3
+
   #############################################################################
   # Summary job                                                               #
   #############################################################################
