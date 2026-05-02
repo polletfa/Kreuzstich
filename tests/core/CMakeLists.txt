@@ -22,4 +22,6 @@ target_link_libraries(core-tests PRIVATE
 )
 
 include(GoogleTest)
-gtest_discover_tests(core-tests)
+gtest_discover_tests(core-tests
+    PROPERTIES ENVIRONMENT "GTEST_OUTPUT=xml:${CMAKE_BINARY_DIR}/test-results/core.xml"
+)

@@ -5,7 +5,7 @@ export default defineConfig({
     reporters: [
       'default',
       ['github-actions', { jobSummary: { enabled: false } }],
-      ['junit', { outputFile: 'build/test-results/vitest.xml' }],
+      ['junit', { outputFile: 'build/test-results/gui-web.xml' }],
     ],
   },
 });

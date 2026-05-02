@@ -113,8 +113,9 @@ jobs:
       uses: test-summary/action@v2
       with:
         paths: |
+            ${{ github.workspace }}/build/test-results
             ${{ github.workspace }}/build/unittests-results.xml
-            ${{ github.workspace }}/src/gui-web/build/test-results/vitest.xml
+            ${{ github.workspace }}/src/gui-web/build/test-results/gui-web.xml
       if: always()
 
     #############################################################################
@@ -136,7 +137,7 @@ jobs:
           name: test-results-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.c_compiler }}-${{ github.sha }}
           path: |
             ${{ github.workspace }}/build/unittests-results.xml
-            ${{ github.workspace }}/src/gui-web/build/test-results/vitest.xml
+            ${{ github.workspace }}/src/gui-web/build/test-results/gui-web.xml
 
     - name: Upload build files on failure
       if: failure()
