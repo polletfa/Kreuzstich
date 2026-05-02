@@ -21,7 +21,7 @@ runs:
                 echo "QT_ARCH=linux_gcc_64" >> $GITHUB_ENV
                 ;;
               macos)
-                echo "QT_HOST=macos" >> $GITHUB_ENV
+                echo "QT_HOST=mac" >> $GITHUB_ENV
                 echo "QT_ARCH=clang_64" >> $GITHUB_ENV
                 ;;
               *)
