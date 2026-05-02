@@ -117,9 +117,14 @@ jobs:
             "${{ github.workspace }}/src/gui-web/build/test-results/vitest.xml"
       if: always()
 
-    - name: Setup tmate session on failure
+    - name: Upload build files on failure
       if: failure()
-      uses: mxschmitt/action-tmate@v3
+      uses: actions/upload-artifact@v4
+      with:
+          name: debug-artifacts
+          path: |
+              ${{ github.workspace }}/build
+              ${{ github.workspace }}/src/gui-web/build
 
   #############################################################################
   # Summary job                                                               #
