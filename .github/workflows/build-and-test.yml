@@ -113,18 +113,18 @@ jobs:
       uses: test-summary/action@v2
       with:
         paths: |
-            "${{ github.workspace }}/build/unittests-results.xml"
-            "${{ github.workspace }}/src/gui-web/build/test-results/vitest.xml"
+            ${{ github.workspace }}/build/unittests-results.xml
+            ${{ github.workspace }}/src/gui-web/build/test-results/vitest.xml
       if: always()
 
-    - name: Upload build files on failure
-      if: failure()
-      uses: actions/upload-artifact@v4
-      with:
-          name: debug-artifacts
-          path: |
-              ${{ github.workspace }}/build
-              ${{ github.workspace }}/src/gui-web/build
+    # - name: Upload build files on failure
+    #   if: failure()
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #       name: debug-artifacts
+    #       path: |
+    #           ${{ github.workspace }}/build
+    #           ${{ github.workspace }}/src/gui-web/build
 
   #############################################################################
   # Summary job                                                               #
