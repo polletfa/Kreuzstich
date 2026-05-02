@@ -60,12 +60,12 @@ else()
         COMMAND ctest -j4
         COMMAND ${LCOV} --capture --directory ${CMAKE_BINARY_DIR} --output-file coverage.info --ignore-errors inconsistent
         COMMAND ${LCOV} --remove coverage.info '/usr/*' '*/Qt*' '*/.qt/*' '*/tests/*' '*/gtest/*' '*/src/gtest*' --output-file coverage.info --ignore-errors inconsistent,unused
-        COMMAND ${GENHTML} coverage.info --output-directory coverage_report
+        COMMAND ${GENHTML} coverage.info --output-directory coverage_report/cpp-components
+        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/src/gui-web/coverage/gui-web ${CMAKE_BINARY_DIR}/coverage_report/gui-web
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         DEPENDS
             core-tests
             data-desktop-tests
-            wrapper-wasm-tests-coverage
             gui-web-tests-coverage
     )
 endif()

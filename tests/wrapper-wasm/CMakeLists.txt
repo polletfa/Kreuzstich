@@ -30,9 +30,3 @@ add_custom_target(wrapper-wasm-tests ALL
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 add_dependencies(wrapper-wasm-tests wrapper-wasm-tests-npminstall wrapper-wasm-tests-wasm)
-
-# Target: wrapper-wasm-coverage
-add_custom_target(gui-web-coverage
-    COMMAND ${NPM} run coverage
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-)
