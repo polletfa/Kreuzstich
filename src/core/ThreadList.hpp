@@ -26,13 +26,13 @@ public:
 
     explicit ThreadList(const std::vector<Thread>& threads);
 
-    enum SortBy { HLS, HSL, Name };
-    enum SortOrder { ASC, DESC };
+    enum class SortBy { HLS, HSL, Name };
+    enum class SortOrder { ASC, DESC };
 
     /**
      * Returns list of thread in the specified sort order
      */
-    [[nodiscard]] RefList get(SortBy sortBy = HLS, SortOrder sortOrder = ASC) const;
+    [[nodiscard]] RefList get(SortBy sortBy = SortBy::HLS, SortOrder sortOrder = SortOrder::ASC) const;
 
     /**
      * Find thread with the clothest color.

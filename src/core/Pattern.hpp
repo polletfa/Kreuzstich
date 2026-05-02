@@ -39,7 +39,7 @@ public:
      *                      Set to false when loading a saved pattern (colors already selected).
      * @param algo Algorithm to use for distance calculations.
      */
-    Pattern(const PixelBuffer& pixelBuffer, const ThreadList& threadlist, bool selectThreads = true, ColorSpace::DistanceAlgo algo = ColorSpace::CIEDE2000);
+    Pattern(const PixelBuffer& pixelBuffer, const ThreadList& threadlist, bool selectThreads = true, ColorSpace::DistanceAlgo algo = ColorSpace::DistanceAlgo::CIEDE2000);
 
     /**
      * Returns the threadlist
