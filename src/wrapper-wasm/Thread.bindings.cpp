@@ -16,22 +16,12 @@ EMSCRIPTEN_BINDINGS(Thread) {
     emscripten::class_<Thread>("Thread")
         .constructor<const std::string&, const std::string&>()
         .function("isValid", &Thread::operator bool)
-        .function("equals", emscripten::optional_override([](Thread& instance, emscripten::val param) {
-            if(isThread(param)) {
-                return instance.operator==(param.as<Thread>());
-            } else {
-                return instance.operator==(param.as<ColorSpace::ColorRGBA>());
-            }
-        }))
+        .function("equalsToThread", emscripten::select_overload<bool(const Thread&)const>(&Thread::operator==))
+        .function("equalsToColorRGBA", emscripten::select_overload<bool(const ColorSpace::ColorRGBA&)const>(&Thread::operator==))
         .function("name", &Thread::name)
         .function("color", &Thread::color)
         .function("hsl", &Thread::hsl)
-        .function("distance", emscripten::optional_override([](Thread& instance, emscripten::val color, ColorSpace::DistanceAlgo algo) {
-            if(isThread(color)) {
-                return instance.distance(color.as<Thread>(), algo);
-            } else {
-                return instance.distance(color.as<ColorSpace::ColorLAB>(), algo);
-            }
-        }))
+        .function("distanceFromThread", emscripten::select_overload<double(const Thread&, ColorSpace::DistanceAlgo)const>(&Thread::distance))
+        .function("distanceFromColorLAB", emscripten::select_overload<double(const ColorSpace::ColorLAB&, ColorSpace::DistanceAlgo)const>(&Thread::distance))
         ;
 }

@@ -9,7 +9,7 @@
     ]
   },
   "include": [
-    "build/src/core.d.ts",
+    "build/wrapper-wasm/*.ts",
     "src/**/*.d.ts",
     "src/**/*.spec.ts"
   ]

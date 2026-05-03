@@ -6,11 +6,25 @@
 
 import { TestBed } from '@angular/core/testing';
 import { MainComponent } from './main-component';
+import { CORE_LOADER } from '@services/core-service/core-service';
+
+const mockCore = {
+    Version: {
+        getVersionString: vi.fn().mockReturnValue('mocked')
+    },
+    ColorSpace: {
+        compositeRGBAOntoBackground: vi.fn(),
+        distance: vi.fn()
+    }
+};
 
 describe('MainComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [MainComponent],
+            providers: [
+                { provide: CORE_LOADER, useValue: () => Promise.resolve(mockCore) }
+            ]
         }).compileComponents();
     });
 

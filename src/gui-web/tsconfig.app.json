@@ -7,8 +7,8 @@
     "types": []
   },
   "include": [
-    "build/src/core.d.ts",
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "build/wrapper-wasm/*.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts"

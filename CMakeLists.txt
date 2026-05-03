@@ -14,11 +14,12 @@ project(Kreuzstich
 
 if(NOT EMSCRIPTEN)
     set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+    list(APPEND CMAKE_CTEST_ARGUMENTS "--output-on-failure")
 endif()
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/tools")
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/dist)
-list(APPEND CMAKE_CTEST_ARGUMENTS "--output-on-failure")
 
 # Project-wide definitions: C++
 
@@ -38,35 +39,31 @@ endif()
 
 set(CODEQL_CPP_TARGETS "")
 
-## Components
+## Components (native + wasm builds)
 
 add_subdirectory(src/core)
 add_subdirectory(src/wrapper-wasm)
+
 if(NOT EMSCRIPTEN)
+    # Components (native build only)
     add_subdirectory(src/data-desktop)
     add_subdirectory(src/gui-desktop)
     add_subdirectory(src/gui-web)
-endif()
 
-## Components: additional resources
-
-if(NOT EMSCRIPTEN)
+    ## Components: additional resources
     add_subdirectory(resources/threadlists)
-endif()
 
-## Unit Tests
-
-if(NOT EMSCRIPTEN)
+    ## Unit Tests
     enable_testing()
     add_subdirectory(tests)
+
+    ## Install
+    include(generate_version)
+    generate_version(${CMAKE_SOURCE_DIR}/tools/VERSION.in ${CMAKE_BINARY_DIR}/VERSION)
+    install(FILES ${CMAKE_BINARY_DIR}/VERSION DESTINATION .)
+    install(FILES LICENSE DESTINATION .)
+
+    ## For CodeQL we need a target to compile C++ components only
+    add_custom_target(codeql-cpp-build)
+    add_dependencies(codeql-cpp-build ${CODEQL_CPP_TARGETS})
 endif()
-
-## Install
-include(generate_version)
-generate_version(${CMAKE_SOURCE_DIR}/tools/VERSION.in ${CMAKE_BINARY_DIR}/VERSION)
-install(FILES ${CMAKE_BINARY_DIR}/VERSION DESTINATION .)
-install(FILES LICENSE DESTINATION .)
-
-## For CodeQL we need a target to compile C++ components only
-add_custom_target(codeql-cpp-build)
-add_dependencies(codeql-cpp-build ${CODEQL_CPP_TARGETS})

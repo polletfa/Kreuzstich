@@ -4,33 +4,31 @@
   MIT License, see LICENSE file.
 */
 
-import { Injectable } from '@angular/core';
+import { Injectable, InjectionToken, inject } from '@angular/core';
+import * as Core from '@wrapper-wasm';
+
+type CoreLoader = () => Promise<Core.Module>;
+export const CORE_LOADER = new InjectionToken<CoreLoader>('CORE_LOADER');
 
 @Injectable({
     providedIn: 'root',
 })
 export class CoreService {
-    private module?: Core;
-    private loading?: Promise<Core>;
+    private loader = inject(CORE_LOADER);
+    private module?: Core.Module;
+    private loading?: Promise<Core.Module>;
 
-    public async get(): Promise<Core> {
+    public async get(): Promise<Core.Module> {
         if (this.module) return Promise.resolve(this.module);
         if (this.loading) return this.loading;
 
         this.loading = new Promise((resolve, reject) => {
-            const script = document.createElement('script');
-            script.src = 'core.js';
-            script.onload = () => {
-                CoreModule({ locateFile: (file: string) => `${file}` })
-                    .then(m => {
-                        this.module = m;
-                        console.log("Core loaded: " + this.module?.Version.getVersionString(), this.module);
-                        resolve(m);
-                    })
-                    .catch(reject);
-            };
-            script.onerror = reject;
-            document.body.appendChild(script);
+            this.loader()
+                .then(m => {
+                    this.module = m;
+                    console.log("Core loaded: " + this.module?.Version.getVersionString(), this.module);
+                    resolve(m);
+                });
         });
 
         return this.loading;

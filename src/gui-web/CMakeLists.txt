@@ -24,18 +24,18 @@ add_custom_target(gui-web-npminstall DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/node_mo
 
 # Target: gui-web-resources
 add_custom_target(gui-web-resources
-    COMMAND cmake -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/build/assets
-    COMMAND cmake -E copy ${RESOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/build/assets/
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/build/assets
+    COMMAND ${CMAKE_COMMAND} -E copy ${RESOURCES} ${CMAKE_CURRENT_SOURCE_DIR}/build/assets/
     COMMENT "Copy resources"
 )
 
 # Target: gui-web-wasm
 add_custom_target(gui-web-wasm
-    COMMAND cmake -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/build/src
-    COMMAND cmake -E copy ${wrapper-wasm_DECLARATIONS} ${CMAKE_CURRENT_SOURCE_DIR}/build/src/
-    COMMAND cmake -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/build/assets
-    COMMAND cmake -E copy ${wrapper-wasm_ASSETS} ${CMAKE_CURRENT_SOURCE_DIR}/build/assets/
-    COMMENT "Copy WASM files"
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/build
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${wrapper-wasm_DIR}/web ${CMAKE_CURRENT_SOURCE_DIR}/build/wrapper-wasm
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${wrapper-wasm_DIR}/lib ${CMAKE_CURRENT_SOURCE_DIR}/build/wrapper-wasm
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    COMMENT "Copy wrapper-wasm"
 )
 add_dependencies(gui-web-wasm wrapper-wasm)
 
@@ -53,9 +53,18 @@ add_custom_target(gui-web-tests
     COMMAND ${NPM} run test
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
+add_dependencies(gui-web-tests gui-web-npminstall gui-web-resources gui-web-wasm)
 
 # Target: gui-web-tests-coverage
 add_custom_target(gui-web-tests-coverage
     COMMAND ${NPM} run coverage
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+)
+add_dependencies(gui-web-tests-coverage gui-web-npminstall gui-web-resources gui-web-wasm)
+
+set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_CLEAN_FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/node_modules/
+    ${CMAKE_CURRENT_SOURCE_DIR}/build/
+    ${CMAKE_CURRENT_SOURCE_DIR}/dist/
+    ${CMAKE_CURRENT_SOURCE_DIR}/coverage/
 )

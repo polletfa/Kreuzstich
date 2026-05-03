@@ -18,15 +18,30 @@ add_custom_target(wrapper-wasm-tests-npminstall DEPENDS ${CMAKE_CURRENT_SOURCE_D
 
 # Target: wrapper-wasm-tests-wasm
 add_custom_target(wrapper-wasm-tests-wasm
-    COMMAND cmake -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/build
-    COMMAND cmake -E copy ${wrapper-wasm_ASSETS} ${wrapper-wasm_DECLARATIONS} ${CMAKE_CURRENT_SOURCE_DIR}/build
-    COMMENT "Copy WASM files"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${wrapper-wasm_DIR}/node ${CMAKE_CURRENT_SOURCE_DIR}/build/wrapper-wasm
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${wrapper-wasm_DIR}/lib ${CMAKE_CURRENT_SOURCE_DIR}/build/wrapper-wasm
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    COMMENT "Copy wrapper-wasm"
 )
 add_dependencies(wrapper-wasm-tests-wasm wrapper-wasm)
 
 # Target: wrapper-wasm-tests
-add_custom_target(wrapper-wasm-tests ALL
+add_custom_target(wrapper-wasm-tests
+    COMMAND ${NPM} run tsc   # check types before running tests
     COMMAND ${NPM} run test
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 add_dependencies(wrapper-wasm-tests wrapper-wasm-tests-npminstall wrapper-wasm-tests-wasm)
+
+# Target: wrapper-wasm-tests-coverage
+add_custom_target(wrapper-wasm-tests-coverage
+    COMMAND ${NPM} run coverage
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+)
+add_dependencies(wrapper-wasm-tests-coverage wrapper-wasm-tests-npminstall wrapper-wasm-tests-wasm)
+
+set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_CLEAN_FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/node_modules/
+    ${CMAKE_CURRENT_SOURCE_DIR}/build
+    ${CMAKE_CURRENT_SOURCE_DIR}/coverage
+)

@@ -7,7 +7,7 @@
     "moduleResolution": "bundler"
   },
   "include": [
-    "build/core.d.ts",
+    "build/*.ts",
     "*.test.ts"
   ]
 }

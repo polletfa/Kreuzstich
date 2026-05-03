@@ -7,12 +7,12 @@
 // Note: we only check the bindings, not the functionality, which is tested directly in the core component.
 
 import { describe, it, expect, beforeAll, beforeEach, afterEach } from 'vitest';
-import loadModule from './build/core.js';
+import * as Core from './build/wrapper-wasm';
 
-let core: Core;
+let core: Core.Module;
 
 beforeAll(async () => {
-    core = await loadModule();
+    core = await Core.load();
 });
 
 describe('Version', () => {
