@@ -16,16 +16,11 @@ set(SOURCES
     Thread.bindings.cpp
 )
 
-set(NAMESPACES
-    Version.namespace.js
-    ColorSpace.namespace.js
-)
-
-set(DECLARATIONS
-    Version.d.ts
-    ColorSpace.d.ts
-    Core.d.ts
-    Thread.d.ts
+set(LIB_SOURCES
+    index.ts
+    Version.ts
+    ColorSpace.ts
+    Thread.ts
 )
 
 #
@@ -46,59 +41,49 @@ if(NOT EMSCRIPTEN)
         -DCMAKE_TOOLCHAIN_FILE=$ENV{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
         -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
         BUILD_ALWAYS TRUE
-        INSTALL_COMMAND ""
     )
     set(CODEQL_CPP_TARGETS ${CODEQL_CPP_TARGETS} wrapper-wasm PARENT_SCOPE)
 
     # Export variables
-    set(wrapper-wasm_ASSETS ${CMAKE_BINARY_DIR}/wasm/core.wasm ${CMAKE_BINARY_DIR}/wasm/core.js PARENT_SCOPE)
-    set(wrapper-wasm_DECLARATIONS ${CMAKE_BINARY_DIR}/wasm/core.d.ts PARENT_SCOPE)
+    set(wrapper-wasm_DIR ${CMAKE_BINARY_DIR}/wasm/dist PARENT_SCOPE)
 else()
-    # Target: wrapper-wasm-namespaces
-    add_custom_target(wrapper-wasm-namespaces
-        COMMAND ${CMAKE_COMMAND}
-        -DSOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}
-        -DINPUT="${NAMESPACES}"
-        -DOUTPUT=${CMAKE_BINARY_DIR}/namespaces.js
-        -P ${CMAKE_SOURCE_DIR}/tools/merge_files.cmake
-        DEPENDS ${NAMESPACES}
-        COMMENT "Generating namespaces.js"
-    )
+    function(add_wasm_target TARGET_NAME ENVIRONMENT)
+        add_executable(${TARGET_NAME} ${SOURCES})
+        target_include_directories(${TARGET_NAME} PRIVATE ${core_INCLUDES})
+        target_link_libraries(${TARGET_NAME} PRIVATE core)
 
-    # Target: wrapper-wasm-declarations
-    add_custom_target(wrapper-wasm-declarations
-        COMMAND ${CMAKE_COMMAND}
-        -DSOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}
-        -DINPUT="${DECLARATIONS}"
-        -DOUTPUT=${CMAKE_BINARY_DIR}/core.d.ts
-        -P ${CMAKE_SOURCE_DIR}/tools/merge_files.cmake
-        DEPENDS ${DECLARATIONS}
-        COMMENT "Generating core.d.ts"
-    )
+        target_link_options(${TARGET_NAME} PRIVATE
+            --bind
+            -sMODULARIZE=1
+            -sENVIRONMENT=${ENVIRONMENT}
+            -sALLOW_MEMORY_GROWTH=1
+            -sFILESYSTEM=0
+            "SHELL:--emit-tsd ${CMAKE_BINARY_DIR}/wrapper-wasm.d.ts"
+
+            $<$<CONFIG:Debug>:-sASSERTIONS=2>
+            $<$<CONFIG:Debug>:-sSAFE_HEAP=1>
+            $<$<CONFIG:Debug>:-g>
+
+            $<$<CONFIG:Release>:-O3>
+        )
+        set_target_properties(${TARGET_NAME} PROPERTIES
+            SUFFIX ".js"
+            OUTPUT_NAME wrapper-wasm
+            RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${ENVIRONMENT}
+        )
+    endfunction()
+
+    # Target: wrapper-wasm-node
+    add_wasm_target(wrapper-wasm-node node)
+
+    # Target: wrapper-wasm-web
+    add_wasm_target(wrapper-wasm-web web)
 
     # Target: wrapper-wasm
-    add_executable(wrapper-wasm ${SOURCES})
-    add_dependencies(wrapper-wasm wrapper-wasm-namespaces wrapper-wasm-declarations)
-    target_include_directories(wrapper-wasm PRIVATE ${core_INCLUDES})
-    target_link_libraries(wrapper-wasm PRIVATE core)
+    add_custom_target(wrapper-wasm)
+    add_dependencies(wrapper-wasm wrapper-wasm-node wrapper-wasm-web)
 
-    target_link_options(wrapper-wasm PRIVATE
-        --bind
-        -sMODULARIZE=1
-        -sEXPORT_NAME=CoreModule
-        -sENVIRONMENT=node,web
-        -sALLOW_MEMORY_GROWTH=1
-        -sFILESYSTEM=0
-        "SHELL:--post-js ${CMAKE_BINARY_DIR}/namespaces.js"
-
-        $<$<CONFIG:Debug>:-sASSERTIONS=2>
-        $<$<CONFIG:Debug>:-sSAFE_HEAP=1>
-        $<$<CONFIG:Debug>:-g>
-
-        $<$<CONFIG:Release>:-O3>
-    )
-    set_target_properties(wrapper-wasm PROPERTIES
-        OUTPUT_NAME core
-        SUFFIX ".js"
-    )
+    install(DIRECTORY ${CMAKE_BINARY_DIR}/node DESTINATION .)
+    install(DIRECTORY ${CMAKE_BINARY_DIR}/web DESTINATION .)
+    install(FILES ${LIB_SOURCES} ${CMAKE_BINARY_DIR}/wrapper-wasm.d.ts DESTINATION lib)
 endif()

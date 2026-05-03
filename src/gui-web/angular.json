@@ -37,6 +37,10 @@
                             {
                                 "glob": "**/*",
                                 "input": "build/assets"
+                            },
+                            {
+                                "glob": "wrapper-wasm.wasm",
+                                "input": "build/wrapper-wasm"
                             }
                         ],
                         "styles": ["src/styles.scss"]

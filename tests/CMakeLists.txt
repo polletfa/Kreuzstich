@@ -41,14 +41,13 @@ add_custom_target(runtests
     -j4
     --output-on-failure
     --output-junit ${CMAKE_BINARY_DIR}/test-results/cpp-components.xml
-    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/src/gui-web/build/test-results/gui-web.xml ${CMAKE_BINARY_DIR}/test-results/
-    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/tests/wrapper-wasm/test-results/wrapper-wasm.xml ${CMAKE_BINARY_DIR}/test-results/
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    DEPENDS
-        core-tests
-        data-desktop-tests
-        wrapper-wasm-tests
-        gui-web-tests
+)
+add_dependencies(runtests
+    core-tests
+    data-desktop-tests
+    wrapper-wasm-tests
+    gui-web-tests
 )
 
 # Target: coverage
@@ -61,11 +60,12 @@ else()
         COMMAND ${LCOV} --capture --directory ${CMAKE_BINARY_DIR} --output-file coverage.info --ignore-errors inconsistent
         COMMAND ${LCOV} --remove coverage.info '/usr/*' '*/Qt*' '*/.qt/*' '*/tests/*' '*/gtest/*' '*/src/gtest*' --output-file coverage.info --ignore-errors inconsistent,unused
         COMMAND ${GENHTML} coverage.info --output-directory coverage_report/cpp-components
-        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/src/gui-web/coverage/gui-web ${CMAKE_BINARY_DIR}/coverage_report/gui-web
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        DEPENDS
-            core-tests
-            data-desktop-tests
-            gui-web-tests-coverage
+    )
+    add_dependencies(coverage
+        core-tests
+        data-desktop-tests
+        wrapper-wasm-tests-coverage
+        gui-web-tests-coverage
     )
 endif()

@@ -7,27 +7,31 @@
 // Note: we only check the bindings, not the functionality, which is tested directly in the core component.
 
 import { describe, it, expect, beforeAll, beforeEach, afterEach } from 'vitest';
-import loadModule from './build/core.js';
+import * as Core from './build/wrapper-wasm';
 
-let core: Core;
+let core: Core.Module;
 
 beforeAll(async () => {
-    core = await loadModule();
+    core = await Core.load();
 });
 
 describe('Thread', () => {
-    let thread: Thread;
+    let thread: Core.Thread;
 
     beforeEach(() => {
         thread = new core.Thread("Test", "7b2d43");
     });
 
     afterEach(() => {
-        thread.delete();
+        if(!thread.isDeleted()) {
+            thread.delete();
+        }
     });
 
-    it('delete exists', () => {
-        expect("delete" in thread).toBe(true);
+    it('delete/isDeleted', () => {
+        expect(thread.isDeleted()).toBe(false);
+        thread.delete();
+        expect(thread.isDeleted()).toBe(true);
     });
 
     it('isValid', () => {

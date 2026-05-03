@@ -4,10 +4,12 @@
   "scripts": {
     "test-watch": "vitest",
     "test": "vitest run",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "tsc": "tsc"
   },
   "devDependencies": {
-    "vitest": "^4.0.8",
-    "@vitest/coverage-v8": "^4.1.5"
+    "@vitest/coverage-v8": "^4.1.5",
+    "typescript": "^6.0.3",
+    "vitest": "^4.0.8"
   }
 }

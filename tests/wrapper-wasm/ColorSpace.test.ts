@@ -7,12 +7,12 @@
 // Note: we only check the bindings, not the functionality, which is tested directly in the core component.
 
 import { describe, it, expect, beforeAll } from 'vitest';
-import loadModule from './build/core.js';
+import * as Core from './build/wrapper-wasm';
 
-let core: Core;
+let core: Core.Module;
 
 beforeAll(async () => {
-    core = await loadModule();
+    core = await Core.load();
 });
 
 describe('ColorSpace', () => {
@@ -42,6 +42,8 @@ describe('ColorSpace', () => {
     it('distance', () => {
         expect(core.ColorSpace.distance({lightness: 64, a: 12, b: -48}, {lightness: 79, a: 95, b: 10}, "CIE1976")).toBeCloseTo(102.3621);
         expect(core.ColorSpace.distance({lightness: 64, a: 12, b: -48}, {lightness: 79, a: 95, b: 10}, "CIEDE2000")).toBeCloseTo(42.9367);
-        expect(core.ColorSpace.distance({lightness: 64, a: 12, b: -48}, {lightness: 79, a: 95, b: 10}, "wrong")).toBeCloseTo(102.3621); // with wrong enum, default to CIE1976, which is fine
+        // with wrong enum, default to CIE1976, which is fine
+        // but it will cause a TypeScript error anyway
+        expect(core.ColorSpace.distance({lightness: 64, a: 12, b: -48}, {lightness: 79, a: 95, b: 10}, "wrong" as Core.ColorSpace.DistanceAlgo)).toBeCloseTo(102.3621);
     });
 });
