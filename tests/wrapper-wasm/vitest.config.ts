@@ -8,5 +8,10 @@ export default defineConfig({
             ['github-actions', { jobSummary: { enabled: false } }],
             ['junit', { outputFile: 'test-results/wrapper-wasm.xml' }],
         ],
+        coverage: {
+            exclude: [
+                'wrapper-wasm.js'
+            ]
+        }
     },
 });

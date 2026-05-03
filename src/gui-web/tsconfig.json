@@ -4,6 +4,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "strict": true,
+    "preserveSymlinks": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -17,7 +18,8 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/app/components/*"],
-      "@services/*": ["src/app/services/*"]
+      "@services/*": ["src/app/services/*"],
+      "@wrapper-wasm": ["build/wrapper-wasm"]
     }
   },
   "angularCompilerOptions": {

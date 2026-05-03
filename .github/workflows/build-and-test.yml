@@ -94,18 +94,21 @@ jobs:
       run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} --target install
 
     - name: Artifact name suffix
+      if: always()
       run: echo "ARTIFACT_SUFFIX=${{ matrix.os }}-${{ matrix.c_compiler }}-${GITHUB_SHA::8}" >> $GITHUB_ENV
       shell: bash
 
     - name: Upload dist/
       uses: actions/upload-artifact@v4
       with:
+          retention-days: 15
           name: dist-${{ env.ARTIFACT_SUFFIX }}
           path: build/dist
 
     - name: Upload test results
       uses: actions/upload-artifact@v4
       with:
+          retention-days: 15
           name: test-results-${{ env.ARTIFACT_SUFFIX }}
           path: build/test-results
 
@@ -118,6 +121,7 @@ jobs:
           path: |
               build
               src/gui-web/build
+              tests/wrapper-wasm/build
 
   #############################################################################
   # Summary job                                                               #
