@@ -118,6 +118,7 @@ jobs:
           path: |
               build
               src/gui-web/build
+              test/wrapper-wasm/build
 
   #############################################################################
   # Summary job                                                               #
