@@ -29,7 +29,7 @@ add_dependencies(wrapper-wasm-tests-wasm wrapper-wasm)
 add_custom_target(wrapper-wasm-tests
     COMMAND ${NPM} run tsc   # check types before running tests
     COMMAND ${NPM} run test
-    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/tests/wrapper-wasm/test-results/wrapper-wasm.xml ${CMAKE_BINARY_DIR}/test-results/
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/test-results/wrapper-wasm.xml ${CMAKE_BINARY_DIR}/test-results/wrapper-wasm.xml
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 add_dependencies(wrapper-wasm-tests wrapper-wasm-tests-npminstall wrapper-wasm-tests-wasm)
@@ -37,7 +37,7 @@ add_dependencies(wrapper-wasm-tests wrapper-wasm-tests-npminstall wrapper-wasm-t
 # Target: wrapper-wasm-tests-coverage
 add_custom_target(wrapper-wasm-tests-coverage
     COMMAND ${NPM} run coverage
-    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/tests/wrapper-wasm/coverage ${CMAKE_BINARY_DIR}/coverage_report/wrapper-wasm
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/coverage ${CMAKE_BINARY_DIR}/coverage_report/wrapper-wasm
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 add_dependencies(wrapper-wasm-tests-coverage wrapper-wasm-tests-npminstall wrapper-wasm-tests-wasm)
