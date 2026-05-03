@@ -1,6 +1,6 @@
 /*
   Kreuzstich
-  Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+  Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
   MIT License, see LICENSE file.
 */
 
@@ -8,11 +8,13 @@ import * as wasm from './wrapper-wasm';
 import { Version } from './Version';
 import { ColorSpace } from './ColorSpace'
 import { Thread, ThreadConstructor } from './Thread';
+import { ThreadList, ThreadListConstructor } from './ThreadList';
 
 export {
     Version,
     ColorSpace,
-    Thread
+    Thread,
+    ThreadList
 };
 
 export class Module {
@@ -20,11 +22,13 @@ export class Module {
         this.Version = Version(core);
         this.ColorSpace = ColorSpace(core);
         this.Thread = ThreadConstructor(core);
+        this.ThreadList = ThreadListConstructor(core);
     }
 
     Version: Version;
     ColorSpace: ColorSpace;
     Thread: ThreadConstructor;
+    ThreadList: ThreadListConstructor;
 }
 
 export async function load(locateFile?: (file:string)=>string): Promise<Module> {

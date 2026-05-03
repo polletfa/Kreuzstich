@@ -1,5 +1,8 @@
-/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+/*
+  Kreuzstich
+  Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+  MIT License, see LICENSE file.
+*/
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -15,6 +18,7 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "preserve",
+    "lib": ["ESNext", "DOM"],
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/app/components/*"],
