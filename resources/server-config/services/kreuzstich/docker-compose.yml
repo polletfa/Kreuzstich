@@ -1,0 +1,70 @@
+# Kreuzstich
+# Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
+networks:
+  kreuzstich-backend:
+    internal: true
+  kreuzstich:
+    internal: true
+
+services:
+  kreuzstich-database:
+    container_name: kreuzstich-database
+    image: postgres:18
+    environment:
+      - POSTGRES_USER=kreuzstich
+      - POSTGRES_PASSWORD=kreuzstich
+      - POSTGRES_DB=kreuzstich
+    networks:
+      - kreuzstich-backend
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+      - ./database:/var/lib/postgresql/data
+    restart: always
+
+  kreuzstich-api:
+    container_name: kreuzstich-api
+    depends_on:
+      - kreuzstich-database
+    image: kreuzstich-data-web
+    build:
+      dockerfile_inline: |
+        FROM node:22.22.2-alpine3.23
+        WORKDIR /usr/share/kreuzstich-data-web
+        CMD ["node", "index.js"]
+    environment:
+      - KREUZSTICH_DATA_WEB_LOGDIR=/var/log/kreuzstich-data-web/
+      - KREUZSTICH_DATA_WEB_PORT=80
+      - KREUZSTICH_DATA_WEB_DB_HOST=kreuzstich-database
+      - KREUZSTICH_DATA_WEB_DB_DB=kreuzstich
+      - KREUZSTICH_DATA_WEB_DB_USER=kreuzstich
+      - KREUZSTICH_DATA_WEB_DB_PASSWORD=kreuzstich
+    networks:
+        - kreuzstich-backend
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+      - ./data/backend:/usr/share/kreuzstich-data-web/
+      - ./logs/api:/var/log/kreuzstich-data-web/
+    restart: always
+
+  kreuzstich:
+    container_name: kreuzstich
+    depends_on:
+      - kreuzstich-api
+    image: nginx:1.29.3
+    networks:
+      - kreuzstich
+      - kreuzstich-backend
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+      - ./config/nginx.conf:/etc/nginx/nginx.conf
+      - ./data/frontend:/usr/share/nginx/html
+      - ./logs/nginx:/var/log/nginx
+    restart: always
