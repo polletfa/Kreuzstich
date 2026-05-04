@@ -1,0 +1,35 @@
+# Kreuzstich
+# Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
+networks:
+  nginx:
+
+include:
+  - ./services/kreuzstich/docker-compose.yml
+
+services:
+  # nginx acting as a reverse proxy
+  nginx:
+    container_name: nginx
+    depends_on:
+      - kreuzstich
+    image: nginx:1.29.3
+    networks:
+      - nginx
+      - kreuzstich
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+      - /etc/letsencrypt/:/etc/letsencrypt:ro
+
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/services.conf.d:/etc/nginx/services.conf.d
+      - ./nginx/domains.conf.d:/etc/nginx/domains.conf.d
+
+      - ./nginx/logs:/var/log/nginx
+    restart: always
