@@ -25,6 +25,7 @@ struct ColorRGBA {
     uint8_t blue{255};
     uint8_t alpha{255};
 };
+static_assert(sizeof(ColorRGBA) == 4);
 bool operator==(const ColorRGBA& lhs, const ColorRGBA& rhs);
 
 /**
