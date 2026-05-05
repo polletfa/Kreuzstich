@@ -3,21 +3,21 @@
 # MIT License, see LICENSE file.
 
 networks:
-  kreuzstich-backend:
+  kreuzstich-prod-backend:
     internal: true
-  kreuzstich:
+  kreuzstich-prod:
     internal: true
 
 services:
-  kreuzstich-database:
-    container_name: kreuzstich-database
+  kreuzstich-prod-database:
+    container_name: kreuzstich-prod-database
     image: postgres:18
     environment:
       - POSTGRES_USER=kreuzstich
       - POSTGRES_PASSWORD=kreuzstich
       - POSTGRES_DB=kreuzstich
     networks:
-      - kreuzstich-backend
+      - kreuzstich-prod-backend
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
@@ -25,41 +25,41 @@ services:
       - ./database:/var/lib/postgresql/data
     restart: always
 
-  kreuzstich-api:
-    container_name: kreuzstich-api
+  kreuzstich-prod-api:
+    container_name: kreuzstich-prod-api
     depends_on:
-      - kreuzstich-database
-    image: kreuzstich-data-web
+      - kreuzstich-prod-database
+    image: kreuzstich-prod
     build:
       dockerfile_inline: |
         FROM node:22.22.2-alpine3.23
-        WORKDIR /usr/share/kreuzstich-data-web
+        WORKDIR /usr/share/kreuzstich
         CMD ["node", "index.js"]
     environment:
-      - KREUZSTICH_DATA_WEB_LOGDIR=/var/log/kreuzstich-data-web/
+      - KREUZSTICH_DATA_WEB_LOGDIR=/var/log/kreuzstich/
       - KREUZSTICH_DATA_WEB_PORT=80
-      - KREUZSTICH_DATA_WEB_DB_HOST=kreuzstich-database
+      - KREUZSTICH_DATA_WEB_DB_HOST=kreuzstich-prod-database
       - KREUZSTICH_DATA_WEB_DB_DB=kreuzstich
       - KREUZSTICH_DATA_WEB_DB_USER=kreuzstich
       - KREUZSTICH_DATA_WEB_DB_PASSWORD=kreuzstich
     networks:
-        - kreuzstich-backend
+        - kreuzstich-prod-backend
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
 
-      - ./data/backend:/usr/share/kreuzstich-data-web/
-      - ./logs/api:/var/log/kreuzstich-data-web/
+      - ./data/backend:/usr/share/kreuzstich/
+      - ./logs/api:/var/log/kreuzstich/
     restart: always
 
   kreuzstich:
-    container_name: kreuzstich
+    container_name: kreuzstich-prod
     depends_on:
-      - kreuzstich-api
+      - kreuzstich-prod-api
     image: nginx:1.29.3
     networks:
-      - kreuzstich
-      - kreuzstich-backend
+      - kreuzstich-prod
+      - kreuzstich-prod-backend
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
