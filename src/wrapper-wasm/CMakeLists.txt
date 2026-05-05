@@ -26,22 +26,37 @@ set(LIB_SOURCES
 #
 
 if(NOT EMSCRIPTEN)
-    # Target: wrapper-wasm
     include(ExternalProject)
     if(WIN32)
         set(WASM_GENERATOR "Ninja")
     else()
         set(WASM_GENERATOR "Unix Makefiles")
     endif()
-    ExternalProject_Add(wrapper-wasm
+    # Target: wrapper-wasm-node
+    ExternalProject_Add(wrapper-wasm-node
         SOURCE_DIR "${CMAKE_SOURCE_DIR}"
         BINARY_DIR "${CMAKE_BINARY_DIR}/wasm"
         CMAKE_GENERATOR "${WASM_GENERATOR}"
         CMAKE_ARGS
         -DCMAKE_TOOLCHAIN_FILE=$ENV{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
         -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+        --target wrapper-wasm-node
         BUILD_ALWAYS TRUE
     )
+    # Target: wrapper-wasm-web
+    ExternalProject_Add(wrapper-wasm-web
+        SOURCE_DIR "${CMAKE_SOURCE_DIR}"
+        BINARY_DIR "${CMAKE_BINARY_DIR}/wasm"
+        CMAKE_GENERATOR "${WASM_GENERATOR}"
+        CMAKE_ARGS
+        -DCMAKE_TOOLCHAIN_FILE=$ENV{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
+        -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+        --target wrapper-wasm-web
+        BUILD_ALWAYS TRUE
+    )
+    # Target: wrapper-wasm
+    add_custom_target(wrapper-wasm)
+    add_dependencies(wrapper-wasm wrapper-wasm-node wrapper-wasm-web)
     set(CODEQL_CPP_TARGETS ${CODEQL_CPP_TARGETS} wrapper-wasm PARENT_SCOPE)
 
     # Export variables
