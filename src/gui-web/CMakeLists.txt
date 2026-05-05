@@ -37,7 +37,7 @@ add_custom_target(gui-web-wasm
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     COMMENT "Copy wrapper-wasm"
 )
-add_dependencies(gui-web-wasm wrapper-wasm-web)
+add_dependencies(gui-web-wasm wrapper-wasm)
 
 # Target: gui-web
 add_custom_target(gui-web ALL

@@ -23,7 +23,7 @@ add_custom_target(wrapper-wasm-tests-wasm
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     COMMENT "Copy wrapper-wasm"
 )
-add_dependencies(wrapper-wasm-tests-wasm wrapper-wasm-node)
+add_dependencies(wrapper-wasm-tests-wasm wrapper-wasm)
 
 # Target: wrapper-wasm-tests
 add_custom_target(wrapper-wasm-tests
