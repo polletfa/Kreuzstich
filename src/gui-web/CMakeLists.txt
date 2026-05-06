@@ -51,6 +51,7 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dist/gui-web/ DESTINATION gui-web)
 # Target: gui-web-tests
 add_custom_target(gui-web-tests
     COMMAND ${NPM} run test
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/test-results
     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/build/test-results/gui-web.xml ${CMAKE_BINARY_DIR}/test-results/gui-web.xml
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
