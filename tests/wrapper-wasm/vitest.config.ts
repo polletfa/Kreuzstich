@@ -1,3 +1,9 @@
+/*
+  Kreuzstich
+  Copyright (c) 2020, 2026 Fabien Pollet <polletfa@posteo.de>
+  MIT License, see LICENSE file.
+*/
+
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({

@@ -1,6 +1,6 @@
 /*
   Kreuzstich
-  Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+  Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
   MIT License, see LICENSE file.
 */
 
@@ -8,6 +8,11 @@ import { TestBed } from '@angular/core/testing';
 import { MainComponent } from './main-component';
 import { CORE_LOADER } from '@services/core-service/core-service';
 
+const mockThread = class {
+    delete = vi.fn();
+    [Symbol.dispose]() { this.delete(); }
+    name = vi.fn().mockReturnValue("mock");
+}
 const mockCore = {
     Version: {
         getVersionString: vi.fn().mockReturnValue('mocked')
@@ -15,6 +20,17 @@ const mockCore = {
     ColorSpace: {
         compositeRGBAOntoBackground: vi.fn(),
         distance: vi.fn()
+    },
+    Thread: mockThread,
+    ThreadList: class {
+        delete = vi.fn();
+        [Symbol.dispose]() { this.delete(); }
+
+        get = vi.fn().mockReturnValue([
+            new mockThread(),
+            new mockThread()
+        ]);
+        findClosest = vi.fn().mockReturnValue(new mockThread());
     }
 };
 
