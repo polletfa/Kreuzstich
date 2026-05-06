@@ -1,16 +1,12 @@
 /*
   Kreuzstich
-  Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+  Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
   MIT License, see LICENSE file.
 */
 
 #include <emscripten/bind.h>
 
 #include "core/Thread.hpp"
-
-bool isThread(emscripten::val param) {
-    return param.instanceof(emscripten::val::module_property("Thread"));
-}
 
 EMSCRIPTEN_BINDINGS(Thread) {
     emscripten::class_<Thread>("Thread")

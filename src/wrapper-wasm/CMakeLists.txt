@@ -1,5 +1,5 @@
 # Kreuzstich
-# Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+# Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
 # MIT License, see LICENSE file.
 
 # Requirements
@@ -14,6 +14,7 @@ set(SOURCES
     Version.bindings.cpp
     ColorSpace.bindings.cpp
     Thread.bindings.cpp
+    ThreadList.bindings.cpp
 )
 
 set(LIB_SOURCES
@@ -21,6 +22,7 @@ set(LIB_SOURCES
     Version.ts
     ColorSpace.ts
     Thread.ts
+    ThreadList.ts
 )
 
 #

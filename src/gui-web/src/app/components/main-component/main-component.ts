@@ -1,6 +1,6 @@
 /*
   Kreuzstich
-  Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+  Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
   MIT License, see LICENSE file.
 */
 
@@ -22,11 +22,33 @@ export class MainComponent implements OnInit {
     constructor(private coreService: CoreService) {}
 
     public async ngOnInit() {
-         this.core = await this.coreService.get();
+        this.core = await this.coreService.get();
+
+        const start = Date.now();
 
         const rgba: Core.ColorSpace.ColorRGBA = {red: 59, green: 130, blue: 246, alpha: 204};
         const bg: Core.ColorSpace.ColorRGBA = {red: 1, green: 2, blue: 3, alpha: 255};
         console.log("test", this.core.ColorSpace.compositeRGBAOntoBackground(rgba, bg));
         console.log("distance", this.core.ColorSpace.distance({lightness: 64, a: 12, b: -48}, {lightness: 79, a: 95, b: 10}, "CIE1976"));
+
+        const threads = [
+            new this.core.Thread("black", "000000"),
+            new this.core.Thread("white", "ffffff"),
+            new this.core.Thread("red", "ff0000"),
+            new this.core.Thread("green", "00ff00"),
+            new this.core.Thread("blue", "0000ff")
+        ];
+
+
+        try {
+            using list = new this.core.ThreadList(threads);
+            console.log(list.get("HSL", "ASC").map(t => t.name()));
+            console.log(list.get("HSL", "DESC").map(t => t.name()));
+            console.log(`closest to a00000: ${list.findClosest({red: 0xa0, green: 0, blue: 0, alpha: 255}, "CIEDE2000")?.name()}`);
+        } finally {
+            threads.forEach(t => t.delete());
+        }
+
+        console.log((Date.now() - start) + " ms");
     }
 }

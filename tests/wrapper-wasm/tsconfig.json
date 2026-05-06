@@ -1,9 +1,15 @@
+/*
+  Kreuzstich
+  Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+  MIT License, see LICENSE file.
+*/
 {
   "compileOnSave": false,
   "compilerOptions": {
     "strict": true,
     "target": "ES2022",
     "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
     "moduleResolution": "bundler"
   },
   "include": [

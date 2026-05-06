@@ -1,4 +1,8 @@
-/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/*
+  Kreuzstich
+  Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+  MIT License, see LICENSE file.
+*/
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {
@@ -6,5 +10,8 @@
         "lib": ["es2018", "webworker"],
         "types": []
     },
-    "include": ["src/**/*.worker.ts"]
+  "include": [
+    "build/wrapper-wasm/*.ts",
+    "src/**/*.worker.ts"
+  ]
 }

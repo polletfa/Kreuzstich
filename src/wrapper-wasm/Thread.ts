@@ -1,6 +1,6 @@
 /*
   Kreuzstich
-  Copyright (c) 2013-2020, 2026 Fabien Pollet <polletfa@posteo.de>
+  Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
   MIT License, see LICENSE file.
 */
 
@@ -12,6 +12,8 @@ export class Thread {
 
     delete() { this.obj.delete(); }
     isDeleted(): boolean { return this.obj.isDeleted(); }
+    ptr(): wasm.Thread { return this.obj; }
+    [Symbol.dispose]() { this.delete(); }
 
     isValid(): boolean {  return this.obj.isValid(); }
 
