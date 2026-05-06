@@ -113,7 +113,7 @@ jobs:
           path: build/test-results
 
     - name: Upload build files on failure
-      #if: failure()
+      if: failure()
       uses: actions/upload-artifact@v4
       with:
           retention-days: 1

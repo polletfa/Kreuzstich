@@ -5,11 +5,16 @@
 # Requirements
 
 find_program(NPM npm REQUIRED)
+if(WIN32)
+    set(NPM_EXECUTABLE cmd /c "${NPM}")
+else()
+    set(NPM_EXECUTABLE "${NPM}")
+endif()
 
 # Target: wrapper-wasm-tests-npminstall
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/node_modules/.package-lock.json
-    COMMAND ${NPM} install
+    COMMAND ${NPM_EXECUTABLE} install
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/package.json
     COMMENT "Installing dependencies..."
@@ -27,8 +32,8 @@ add_dependencies(wrapper-wasm-tests-wasm wrapper-wasm)
 
 # Target: wrapper-wasm-tests
 add_custom_target(wrapper-wasm-tests
-    COMMAND ${NPM} run tsc   # check types before running tests
-    COMMAND ${NPM} run test
+    COMMAND ${NPM_EXECUTABLE} run tsc   # check types before running tests
+    COMMAND ${NPM_EXECUTABLE} run test
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/test-results
     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/test-results/wrapper-wasm.xml ${CMAKE_BINARY_DIR}/test-results/wrapper-wasm.xml
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
@@ -37,7 +42,7 @@ add_dependencies(wrapper-wasm-tests wrapper-wasm-tests-npminstall wrapper-wasm-t
 
 # Target: wrapper-wasm-tests-coverage
 add_custom_target(wrapper-wasm-tests-coverage
-    COMMAND ${NPM} run coverage
+    COMMAND ${NPM_EXECUTABLE} run coverage
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/coverage ${CMAKE_BINARY_DIR}/coverage_report/wrapper-wasm
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )

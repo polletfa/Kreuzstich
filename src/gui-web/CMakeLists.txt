@@ -5,6 +5,11 @@
 # Requirements
 
 find_program(NPM npm REQUIRED)
+if(WIN32)
+    set(NPM_EXECUTABLE cmd /c "${NPM}")
+else()
+    set(NPM_EXECUTABLE "${NPM}")
+endif()
 
 # Resources
 
@@ -15,7 +20,7 @@ set(RESOURCES
 # Target: gui-web-npminstall
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/node_modules/.package-lock.json
-    COMMAND ${NPM} install
+    COMMAND ${NPM_EXECUTABLE} install
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/package.json
     COMMENT "Installing Angular dependencies..."
@@ -41,7 +46,7 @@ add_dependencies(gui-web-wasm wrapper-wasm)
 
 # Target: gui-web
 add_custom_target(gui-web ALL
-    COMMAND ${NPM} run build-$<$<CONFIG:Debug>:dev>$<$<CONFIG:Release>:prod>
+    COMMAND ${NPM_EXECUTABLE} run build-$<$<CONFIG:Debug>:dev>$<$<CONFIG:Release>:prod>
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     COMMENT "Building Angular app..."
 )
@@ -50,7 +55,7 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dist/gui-web/ DESTINATION gui-web)
 
 # Target: gui-web-tests
 add_custom_target(gui-web-tests
-    COMMAND ${NPM} run test
+    COMMAND ${NPM_EXECUTABLE} run test
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/test-results
     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/build/test-results/gui-web.xml ${CMAKE_BINARY_DIR}/test-results/gui-web.xml
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
@@ -59,7 +64,7 @@ add_dependencies(gui-web-tests gui-web-npminstall gui-web-resources gui-web-wasm
 
 # Target: gui-web-tests-coverage
 add_custom_target(gui-web-tests-coverage
-    COMMAND ${NPM} run coverage
+    COMMAND ${NPM_EXECUTABLE} run coverage
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/coverage/gui-web ${CMAKE_BINARY_DIR}/coverage_report/gui-web
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
