@@ -12,7 +12,7 @@ export class Thread {
 
     delete() { this.obj.delete(); }
     isDeleted(): boolean { return this.obj.isDeleted(); }
-    ptr(): wasm.Thread { return this.obj; }
+    wasm(): wasm.Thread { return this.obj; }
     [Symbol.dispose]() { this.delete(); }
 
     isValid(): boolean {  return this.obj.isValid(); }
