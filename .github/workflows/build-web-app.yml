@@ -7,6 +7,7 @@ name: Build Web App
 on:
   push:
     branches: [ "main", "develop" ]
+  workflow_dispatch:
 
 jobs:
   build:
