@@ -26,9 +26,12 @@ jobs:
     - name: Build
       run: ./make release gui-web-install
 
+      - name: Artifact name suffix
+        run: echo "ARTIFACT_SUFFIX=${GITHUB_SHA::8}" >> $GITHUB_ENV
+
     - name: Upload
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
           retention-days: 7
-          name: gui-web-${GITHUB_SHA::8}
+          name: gui-web-${{ env.ARTIFACT_SUFFIX }}
           path: build/release/dist
