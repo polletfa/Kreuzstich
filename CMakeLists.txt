@@ -47,6 +47,7 @@ add_subdirectory(src/wrapper-wasm)
 if(NOT EMSCRIPTEN)
     # Components (native build only)
     add_subdirectory(src/data-desktop)
+    add_subdirectory(src/data-web)
     add_subdirectory(src/gui-desktop)
     add_subdirectory(src/gui-web)
 
