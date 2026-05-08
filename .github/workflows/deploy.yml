@@ -10,6 +10,10 @@ on:
     types:
       - completed
 
+permissions:
+  content: read
+  packages: write
+
 jobs:
   deploy:
     if: |
@@ -19,9 +23,10 @@ jobs:
     steps:
       - name: Determine environment
         id: env
+        env:
+          BRANCH: ${{ github.event.workflow_run.head_branch }}
+          BUILD_SHA: ${{ github.event.workflow_run.head_sha }}
         run: |
-          BRANCH="${{ github.event.workflow_run.head_branch }}"
-          BUILD_SHA="${{ github.event.workflow_run.head_sha }}"
           echo "ARTIFACT=dist-ubuntu-latest-gcc-${BUILD_SHA::8}" >> $GITHUB_ENV
           if [[ "$BRANCH" == "main" ]]; then
             echo "ENVIRONMENT=prod" >> $GITHUB_ENV
