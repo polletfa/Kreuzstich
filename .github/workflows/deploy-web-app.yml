@@ -18,7 +18,8 @@ jobs:
     permissions:
         contents: read
     outputs:
-        artifact: ${{ steps.artifact.outputs.artifact }}
+        artifact: ${{ steps.vars.outputs.artifact }}
+        sha: ${{ steps.vars.outputs.sha }}
     steps:
     - name: Checkout
       uses: actions/checkout@v6
@@ -31,9 +32,11 @@ jobs:
     - name: Build
       run: ./make release gui-web-install
 
-    - name: Artifact name
-      id: artifact
-      run: echo "ARTIFACT=gui-web-${GITHUB_SHA::8}" >> $GITHUB_OUTPUT
+    - name: Output variables
+      id: vars
+      run: |
+        echo "SHA=${GITHUB_SHA}" >> $GITHUB_OUTPUT
+        echo "ARTIFACT=gui-web-${GITHUB_SHA::8}" >> $GITHUB_OUTPUT
 
     - name: Upload
       uses: actions/upload-artifact@v6
@@ -89,7 +92,7 @@ jobs:
           push: true
           tags: |
             ghcr.io/polletfa/kreuzstich-${{ env.ENVIRONMENT }}-api:latest
-            ghcr.io/polletfa/kreuzstich-${{ env.ENVIRONMENT }}-api:${{ env.GITHUB_SHA }}
+            ghcr.io/polletfa/kreuzstich-${{ env.ENVIRONMENT }}-api:${{ needs.build.outputs.sha }}
 
       - name: Build docker image for frontend
         uses: docker/build-push-action@v7
@@ -99,7 +102,7 @@ jobs:
           push: true
           tags: |
             ghcr.io/polletfa/kreuzstich-${{ env.ENVIRONMENT }}:latest
-            ghcr.io/polletfa/kreuzstich-${{ env.ENVIRONMENT }}:${{ env.GITHUB_SHA }}
+            ghcr.io/polletfa/kreuzstich-${{ env.ENVIRONMENT }}:${{ needs.build.outputs.sha }}
 
       - name: Clean up old images (kreuzstich-api)
         uses: actions/delete-package-versions@v5
