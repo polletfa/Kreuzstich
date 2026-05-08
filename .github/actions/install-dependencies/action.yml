@@ -8,10 +8,6 @@ inputs:
     config:
         description: windows, linux-gcc, linux-clang, macos
         required: true
-    target:
-        description: all, gui-web, gui-desktop
-        required: false
-        default: all
 
 runs:
     using: composite
@@ -47,7 +43,6 @@ runs:
               sudo ./llvm.sh 19
 
         - name: Install Qt
-          if: ${{ inputs.target == 'all' || inputs.target == 'gui-desktop' }}
           uses: jurplel/install-qt-action@v4
           with:
               version: '6.10.2'
@@ -57,13 +52,11 @@ runs:
               cache: true
 
         - name: Install Node.js
-          if: ${{ inputs.target == 'all' || inputs.target == 'gui-web' }}
           uses: actions/setup-node@v4
           with:
               node-version: '22'
 
         - name: Install EMSDK
-          if: ${{ inputs.target == 'all' || inputs.target == 'gui-web' }}
           uses: mymindstorm/setup-emsdk@v14
           with:
               version: 5.0.7
