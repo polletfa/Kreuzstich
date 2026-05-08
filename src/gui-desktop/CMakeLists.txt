@@ -64,7 +64,7 @@ install(TARGETS gui-desktop-executable
 add_custom_target(gui-desktop-install
     COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component common
     COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component desktop-app
-    DEPENDS gui-desktop-executable threadlists
+    DEPENDS gui-desktop-executable
 )
 
 # Export variables

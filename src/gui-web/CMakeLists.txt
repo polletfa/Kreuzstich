@@ -58,7 +58,7 @@ install(DIRECTORY ${CMAKE_SOURCE_DIR}/resources/docker DESTINATION . COMPONENT w
 add_custom_target(gui-web-install
     COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component common
     COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component web-app
-    DEPENDS gui-web threadlists
+    DEPENDS gui-web
 )
 
 # Target: gui-web-tests
