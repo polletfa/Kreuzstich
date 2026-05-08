@@ -86,6 +86,7 @@ build/
 coverage/
 test-results/
 node_modules/
+emsdk-cache/
 
 # User-config: clangd
 compile_commands.json

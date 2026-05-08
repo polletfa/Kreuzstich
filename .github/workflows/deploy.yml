@@ -36,7 +36,7 @@ jobs:
           fi
 
       - name: Download build artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: ${{ env.ARTIFACT }}
           path: dist
@@ -48,14 +48,14 @@ jobs:
         run: cp nginx.${{ env.ENVIRONMENT }}.conf nginx.conf
 
       - name: Log in to ghcr.io
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build docker image for api service
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./dist/docker/kreuzstich-api/Dockerfile
@@ -65,7 +65,7 @@ jobs:
             ghcr.io/polletfa/kreuzstich-${{ env.ENVIRONMENT }}-api:${{ github.event.workflow_run.head_sha }}
 
       - name: Build docker image for frontend
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./dist/docker/kreuzstich/Dockerfile
