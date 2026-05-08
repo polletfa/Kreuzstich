@@ -1,0 +1,37 @@
+# Kreuzstich
+# Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
+name: Build Web App
+
+on:
+  push:
+    branches: [ "develop" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+        contents: read
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6
+
+    - name: Install dependencies
+      uses: ./.github/actions/install-dependencies
+      with:
+          config: linux-gcc
+
+    - name: Build
+      run: ./make release gui-web-install
+
+    - name: Artifact name suffix
+      run: echo "ARTIFACT_SUFFIX=${GITHUB_SHA::8}" >> $GITHUB_ENV
+
+    - name: Upload
+      uses: actions/upload-artifact@v6
+      with:
+          retention-days: 7
+          name: gui-web-${{ env.ARTIFACT_SUFFIX }}
+          path: build/release/dist
