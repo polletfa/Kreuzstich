@@ -46,7 +46,7 @@ services:
       - ./logs/api:/var/log/kreuzstich/
     restart: always
 
-  kreuzstich:
+  kreuzstich-prod:
     container_name: kreuzstich-prod
     depends_on:
       - kreuzstich-prod-api
