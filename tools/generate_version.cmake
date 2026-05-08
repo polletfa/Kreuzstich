@@ -6,7 +6,7 @@ function(generate_version INPUT OUTPUT)
     message(STATUS "Generating ${OUTPUT}")
 
     # BUILD_TIME
-    string(TIMESTAMP CURRENT_TIME "%Y-%m-%dT%H:%M:%SZ" UTC)
+    string(TIMESTAMP BUILD_TIME "%Y-%m-%dT%H:%M:%SZ" UTC)
 
     # LICENSE
     file(READ ${CMAKE_SOURCE_DIR}/LICENSE LICENSE)
@@ -19,10 +19,12 @@ function(generate_version INPUT OUTPUT)
     # GIT_COMMIT
     execute_process(COMMAND git rev-parse HEAD OUTPUT_VARIABLE GIT_COMMIT OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
     execute_process(COMMAND git status --porcelain OUTPUT_VARIABLE GIT_PORCELAIN OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
-
+    message(STATUS "porcelain ${GIT_PORCELAIN}")
+    message(STATUS "commit before ${GIT_COMMIT}")
     if(NOT GIT_PORCELAIN STREQUAL "")
         unset(GIT_COMMIT)
     endif()
+    message(STATUS "commit after: ${GIT_COMMIT}")
 
     # Configure
     configure_file(${INPUT} ${OUTPUT} @ONLY)
