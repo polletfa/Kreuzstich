@@ -1,0 +1,98 @@
+# Kreuzstich
+# Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: ["Build and Test (multiple platforms)"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Determine environment
+        id: env
+        run: |
+          BRANCH="${{ github.event.workflow_run.head_branch }}"
+          BUILD_SHA="${{ github.event.workflow_run.head_sha }}"
+          echo "ARTIFACT=dist-ubuntu-latest-gcc-${BUILD_SHA::8}" >> $GITHUB_ENV
+          if [[ "$BRANCH" == "main" ]]; then
+            echo "ENVIRONMENT=prod" >> $GITHUB_ENV
+          elif [[ "$BRANCH" == "develop" ]]; then
+            echo "ENVIRONMENT=int" >> $GITHUB_ENV
+          else
+            echo "Unsupported branch: $BRANCH"
+            exit 1
+          fi
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT }}
+          path: dist
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Select docker/kreuzstich/nginx.conf
+        working-directory: ${{ github.workspace }}/dist/docker/kreuzstich
+        run: cp nginx.${{ env.ENVIRONMENT }}.conf nginx.conf
+
+      - name: Log in to ghcr.io
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build docker image for api service
+        uses: docker/build-push-action@v6
+        with:
+          context: dist
+          file: ./dist/docker/kreuzstich-api/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/polletfa/kreuzstich-${{ env.ENVIRONMENT }}-api:latest
+            ghcr.io/polletfa/kreuzstich-${{ env.ENVIRONMENT }}-api:${{ github.event.workflow_run.head_sha }}
+
+      - name: Build docker image for frontend
+        uses: docker/build-push-action@v6
+        with:
+          context: dist
+          file: ./dist/docker/kreuzstich/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/polletfa/kreuzstich-${{ env.ENVIRONMENT }}:latest
+            ghcr.io/polletfa/kreuzstich-${{ env.ENVIRONMENT }}:${{ github.event.workflow_run.head_sha }}
+
+      - name: Clean up old images (kreuzstich-api)
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: kreuzstich-${{ env.ENVIRONMENT }}-api
+          package-type: container
+          min-versions-to-keep: 5
+
+      - name: Clean up old images (kreuzstich)
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: kreuzstich-${{ env.ENVIRONMENT }}
+          package-type: container
+          min-versions-to-keep: 5
+
+      - name: Deploy
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ vars.SSH_HOST }}
+          port: ${{ vars.SSH_PORT }}
+          username: ${{ vars.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /srv/
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            docker compose pull kreuzstich-${{ env.ENVIRONMENT }} kreuzstich-${{ env.ENVIRONMENT }}-api
+            docker compose up -d kreuzstich-${{ env.ENVIRONMENT }} kreuzstich-${{ env.ENVIRONMENT }}-api
+            docker image prune -f
