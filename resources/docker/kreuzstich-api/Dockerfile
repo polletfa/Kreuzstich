@@ -3,4 +3,4 @@ WORKDIR /usr/share/kreuzstich
 
 #todo copy files
 #CMD ["node", "index.js"]
-CMD ["sleep", "infinity"]  #todo remove
+CMD ["sleep", "infinity"]
