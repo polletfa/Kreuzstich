@@ -51,14 +51,14 @@ add_custom_target(gui-web ALL
     COMMENT "Building Angular app..."
 )
 add_dependencies(gui-web gui-web-npminstall gui-web-resources gui-web-wasm)
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dist/gui-web/ DESTINATION gui-web COMPONENT gui-web)
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/resources/docker DESTINATION . COMPONENT gui-web)
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dist/gui-web/ DESTINATION gui-web COMPONENT web-app)
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/resources/docker DESTINATION . COMPONENT web-app)
 
 # Target: gui-web-install
 add_custom_target(gui-web-install
     COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component common
-    COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component gui-web
-    DEPENDS gui-web
+    COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component web-app
+    DEPENDS gui-web threadlists
 )
 
 # Target: gui-web-tests

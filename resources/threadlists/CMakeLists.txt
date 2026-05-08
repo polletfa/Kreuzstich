@@ -43,18 +43,22 @@ else()
             list(APPEND SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/${NAME}/${SRC})
         endforeach()
         set(INTERMEDIATE ${CMAKE_BINARY_DIR}/generate_threadlists/${NAME})
-        set(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/${NAME}.threads)
+        set(OUTPUT_base ${CMAKE_CURRENT_SOURCE_DIR}/${NAME})
+        set(OUTPUT_threads ${OUTPUT_base}.threads)
+        set(OUTPUT_sql ${OUTPUT_base}.sql)
         add_custom_command(
-            OUTPUT ${OUTPUT}
+            OUTPUT ${OUTPUT_threads} ${OUTPUT_sql}
             COMMAND ${CMAKE_SOURCE_DIR}/tools/generate_threadlist.sh
-            ${THREADLISTS_NAME_${NAME}} ${CMAKE_CURRENT_SOURCE_DIR}/${NAME} ${INTERMEDIATE} ${OUTPUT}
+            ${THREADLISTS_NAME_${NAME}} ${CMAKE_CURRENT_SOURCE_DIR}/${NAME} ${INTERMEDIATE} ${OUTPUT_base}
             DEPENDS ${SOURCES}
-            COMMENT "Generating ${NAME}.threads"
+            COMMENT "Generating ${NAME}"
         )
-        list(APPEND THREADLISTS_FILES ${OUTPUT})
+        list(APPEND THREADLISTS_FILES ${OUTPUT_threads})
+        list(APPEND THREADLISTS_SQL ${OUTPUT_sql})
     endforeach()
     add_custom_target(threadlists ALL DEPENDS ${THREADLISTS_FILES}
         COMMENT "Building threadlists"
     )
-    install(FILES ${THREADLISTS_FILES} DESTINATION threadlists COMPONENT threadlists)
+    install(FILES ${THREADLISTS_FILES} DESTINATION threadlists COMPONENT desktop-app)
+    install(FILES ${THREADLISTS_SQL} DESTINATION sql/threadlists COMPONENT web-app)
 endif()

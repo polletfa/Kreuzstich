@@ -47,11 +47,11 @@ The application will also provide features to help while doing the stitching:
 ### Objective
 
 The long-term objective is to develop 3 applications:
-- A desktop application for offline working.
-- A web application that will also allow to save and share the projects online
+- A web application that will also allow to create and share their projects online.
 - An Android companion app with limited features, which will be used to help during the stitching (no pattern creation/editing)
+- A desktop application for offline working.
 
-The priority and the extent of each application is still being defined.
+The priority is the web application for now.
 
 ### Technical aspects
 

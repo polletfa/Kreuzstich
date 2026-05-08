@@ -130,4 +130,5 @@ jobs:
             echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             docker compose pull kreuzstich-${{ env.ENVIRONMENT }} kreuzstich-${{ env.ENVIRONMENT }}-api
             docker compose up -d kreuzstich-${{ env.ENVIRONMENT }} kreuzstich-${{ env.ENVIRONMENT }}-api
+            docker container prune -f
             docker image prune -f
