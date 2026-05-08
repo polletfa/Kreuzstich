@@ -22,7 +22,6 @@ jobs:
       uses: ./.github/actions/install-dependencies
       with:
           config: linux-gcc
-          target: gui-web
 
     - name: Build
       run: ./make release gui-web-install
