@@ -60,9 +60,8 @@ if(NOT EMSCRIPTEN)
     ## Install
     include(generate_version)
     generate_version(${CMAKE_SOURCE_DIR}/tools/VERSION.in ${CMAKE_BINARY_DIR}/VERSION)
-    install(FILES ${CMAKE_BINARY_DIR}/VERSION DESTINATION .)
-    install(FILES ${CMAKE_SOURCE_DIR}/LICENSE DESTINATION .)
-    install(DIRECTORY ${CMAKE_SOURCE_DIR}/resources/docker DESTINATION .)
+    install(FILES ${CMAKE_BINARY_DIR}/VERSION DESTINATION . COMPONENT common)
+    install(FILES ${CMAKE_SOURCE_DIR}/LICENSE DESTINATION . COMPONENT common)
 
     ## For CodeQL we need a target to compile C++ components only
     add_custom_target(codeql-cpp-build)

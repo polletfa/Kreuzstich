@@ -1,0 +1,34 @@
+# Kreuzstich
+# Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
+name: Build Web App
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+        contents: read
+
+    - name: Checkout
+      uses: actions/checkout@v6
+
+    - name: Install dependencies
+      uses: ./.github/actions/install-dependencies
+      with:
+          config: linux-gcc
+          target: gui-web
+
+    - name: Build
+      run: ./make release gui-web-install
+
+    - name: Upload
+      uses: actions/upload-artifact@v4
+      with:
+          retention-days: 7
+          name: gui-web-${GITHUB_SHA::8}
+          path: build/release/dist
