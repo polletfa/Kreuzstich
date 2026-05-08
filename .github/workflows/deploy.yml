@@ -6,7 +6,7 @@ name: Deploy
 
 on:
   workflow_run:
-    workflows: ["Build and Test (multiple platforms)"]
+    workflows: ["Build Web App"]
     types:
       - completed
 
@@ -16,10 +16,7 @@ permissions:
 
 jobs:
   deploy:
-    if: |
-      github.event.workflow_run.conclusion == 'success' &&
-      github.event.workflow_run.event == 'push' &&
-      ( github.event.workflow_run.head_branch == 'main' || github.event.workflow_run.head_branch == 'develop' )
+    if: github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Determine environment
@@ -28,7 +25,7 @@ jobs:
           BRANCH: ${{ github.event.workflow_run.head_branch }}
           BUILD_SHA: ${{ github.event.workflow_run.head_sha }}
         run: |
-          echo "ARTIFACT=dist-ubuntu-latest-gcc-${BUILD_SHA::8}" >> $GITHUB_ENV
+          echo "ARTIFACT=gui-web-${BUILD_SHA::8}" >> $GITHUB_ENV
           if [[ "$BRANCH" == "main" ]]; then
             echo "ENVIRONMENT=prod" >> $GITHUB_ENV
           elif [[ "$BRANCH" == "develop" ]]; then
@@ -60,7 +57,7 @@ jobs:
       - name: Build docker image for api service
         uses: docker/build-push-action@v6
         with:
-          context: dist
+          context: .
           file: ./dist/docker/kreuzstich-api/Dockerfile
           push: true
           tags: |
@@ -70,7 +67,7 @@ jobs:
       - name: Build docker image for frontend
         uses: docker/build-push-action@v6
         with:
-          context: dist
+          context: .
           file: ./dist/docker/kreuzstich/Dockerfile
           push: true
           tags: |
