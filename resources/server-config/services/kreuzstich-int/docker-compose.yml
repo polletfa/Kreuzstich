@@ -22,7 +22,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
 
-      - ./database:/var/lib/postgresql/data
+      - ./database:/var/lib/postgresql
     restart: always
 
   kreuzstich-int-api:
@@ -46,7 +46,7 @@ services:
       - ./logs/api:/var/log/kreuzstich/
     restart: always
 
-  kreuzstich:
+  kreuzstich-int:
     container_name: kreuzstich-int
     depends_on:
       - kreuzstich-int-api
