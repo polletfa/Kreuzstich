@@ -58,13 +58,13 @@ runs:
 
         - name: Install Node.js
           if: ${{ inputs.target == 'all' || inputs.target == 'gui-web' }}
-          uses: actions/setup-node@v4
+          uses: actions/setup-node@v6
           with:
               node-version: '22'
 
         - name: Install EMSDK
           if: ${{ inputs.target == 'all' || inputs.target == 'gui-web' }}
-          uses: mymindstorm/setup-emsdk@v14
+          uses: emscripten-core/setup-emsdk@v15
           with:
               version: 5.0.7
               actions-cache-folder: 'emsdk-cache'
