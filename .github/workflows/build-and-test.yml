@@ -1,7 +1,14 @@
+# Kreuzstich
+# Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
 name: Build and Test (multiple platforms)
 
 on:
+  push:
+    branches: [ "main", "develop" ]
   pull_request:
+    branches: [ "main", "develop" ]
   workflow_dispatch:
 
 jobs:
