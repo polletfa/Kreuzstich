@@ -1,10 +1,14 @@
+# Kreuzstich
+# Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
 name: "CodeQL"
 
 on:
   pull_request:
     branches: [ "develop" ]
-  #schedule:
-  #  - cron: '21 9 * * 1'       # Not necessary at the moment
+#  schedule:
+#    - cron: '21 9 * * 1'
 
 jobs:
   analyze:
@@ -25,9 +29,9 @@ jobs:
         - language: actions
           build-mode: none
         - language: c-cpp
-          build-mode: autobuild
-        # - language: javascript-typescript
-        #   build-mode: none
+          build-mode: manual
+        - language: javascript-typescript
+          build-mode: none
         # - language: java-kotlin
         #   build-mode: autobuild
 
@@ -40,11 +44,22 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Install dependencies
+      if: matrix.language == 'c-cpp'
+      uses: ./.github/actions/install-dependencies
+      with:
+          config: 'linux-gcc'
+
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v4
       with:
         languages: ${{ matrix.language }}
         build-mode: ${{ matrix.build-mode }}
+
+    - name: Build C++ targets
+      if: matrix.language == 'c-cpp'
+      shell: bash
+      run: ./make release codeql-cpp-build
 
     #############################################################################
     # Run                                                                       #
@@ -54,3 +69,19 @@ jobs:
       uses: github/codeql-action/analyze@v4
       with:
         category: "/language:${{matrix.language}}"
+
+  #############################################################################
+  # Summary job                                                               #
+  #############################################################################
+
+  analyse-all-checks-passed:
+    needs: [analyze]
+    runs-on: ubuntu-latest
+    permissions: {}
+    if: always()
+    steps:
+      - name: Check all matrix jobs passed
+        run: |
+          if [ "${{ needs.analyze.result }}" != "success" ]; then
+          exit 1
+          fi

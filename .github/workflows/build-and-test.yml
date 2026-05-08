@@ -1,95 +1,141 @@
+# Kreuzstich
+# Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
 name: Build and Test (multiple platforms)
 
 on:
+  pull_request:
+    branches: [ "develop" ]
   workflow_dispatch:
 
 jobs:
   build:
-    name: ${{ matrix.name }}
+    name: Build and Test (${{ matrix.name }})
     runs-on: ${{ matrix.os }}
+    permissions:
+        contents: read
+
+    #############################################################################
+    # Build matrix                                                              #
+    #############################################################################
 
     strategy:
       fail-fast: false
       matrix:
         include:
-          - name: Windows MVSC
+          - name: Windows, MVSC
+            config: windows
             build_type: Release
             os: windows-latest
             c_compiler: cl
             cpp_compiler: cl
-            qt_arch: win64_msvc2022_64
-            qt_host: windows
-          - name: Linux GCC
+
+          - name: Linux, GCC
+            config: linux-gcc
             build_type: Release
             os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
-            qt_arch: linux_gcc_64
-            qt_host: linux
-          - name: Linux Clang
+
+          - name: Linux, clang
+            config: linux-clang
             build_type: Release
             os: ubuntu-latest
             c_compiler: clang-19
             cpp_compiler: clang++-19
-            qt_arch: linux_gcc_64
-            qt_host: linux
-          - name: MacOS Clang
+
+          - name: MacOS, clang
+            config: macos
             build_type: Release
             os: macos-latest
             c_compiler: clang
             cpp_compiler: clang++
-            qt_arch: clang_64
-            qt_host: mac
 
     steps:
-    - name: Install Clang 19
-      if: matrix.c_compiler == 'clang-19' && matrix.os == 'ubuntu-latest'
-      run: |
-        wget https://apt.llvm.org/llvm.sh
-        chmod +x llvm.sh
-        sudo ./llvm.sh 19
 
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v4
+    #############################################################################
+    # Build                                                                     #
+    #############################################################################
+
+    - name: Checkout
+      uses: actions/checkout@v6
+
+    - name: Install dependencies
+      uses: ./.github/actions/install-dependencies
       with:
-        version: '6.10.2'
-        host: ${{ matrix.qt_host }}
-        target: 'desktop'
-        arch: ${{ matrix.qt_arch }}
-        cache: true
-
-    - uses: actions/checkout@v6
-
-    - name: Set reusable strings
-      # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
-      id: strings
-      shell: bash
-      run: |
-        echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+          config: ${{ matrix.config }}
 
     - name: Configure CMake
-      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: >
-        cmake -B ${{ steps.strings.outputs.build-output-dir }}
+        cmake -B ${{ github.workspace }}/build
         -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
         -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         -S ${{ github.workspace }}
 
     - name: Build
-      # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
-      run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+      run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }}
+
+    #############################################################################
+    # Test                                                                      #
+    #############################################################################
 
     - name: Test
-      working-directory: ${{ steps.strings.outputs.build-output-dir }}
-      # Execute tests defined by the CMake configuration. Note that --build-config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
-      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-      run: ctest --build-config ${{ matrix.build_type }} --output-on-failure
+      working-directory: ${{ github.workspace }}/build
+      run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} --target runtests
 
-  all-checks-passed:
-    needs: [build]  # your matrix job name
+    - name: Test Report
+      uses: test-summary/action@v2
+      with:
+        paths: "build/test-results/*.xml"
+      if: always()
+
+    #############################################################################
+    # Install and upload artifacts                                              #
+    #############################################################################
+
+    - name: Install
+      run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} --target install
+
+    - name: Artifact name suffix
+      if: always()
+      run: echo "ARTIFACT_SUFFIX=${{ matrix.os }}-${{ matrix.c_compiler }}-${GITHUB_SHA::8}" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Upload dist/
+      uses: actions/upload-artifact@v6
+      with:
+          retention-days: 7
+          name: dist-${{ env.ARTIFACT_SUFFIX }}
+          path: build/dist
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v6
+      with:
+          retention-days: 7
+          name: test-results-${{ env.ARTIFACT_SUFFIX }}
+          path: build/test-results
+
+    - name: Upload build files on failure
+      if: failure()
+      uses: actions/upload-artifact@v6
+      with:
+          retention-days: 1
+          name: build-${{ env.ARTIFACT_SUFFIX }}
+          path: |
+              build
+              src/gui-web/build
+              tests/wrapper-wasm/build
+
+  #############################################################################
+  # Summary job                                                               #
+  #############################################################################
+
+  build-all-checks-passed:
+    needs: [build]
     runs-on: ubuntu-latest
+    permissions: {}
     if: always()
     steps:
       - name: Check all matrix jobs passed
