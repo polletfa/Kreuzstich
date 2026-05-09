@@ -20,6 +20,14 @@ function(generate_version INPUT OUTPUT)
         unset(GIT_COMMIT)
     endif()
 
+    # Other variables relevant for versioning:
+    # - BUILD_TIME
+    # - CMAKE_PROJECT_NAME
+    # - CMAKE_PROJECT_HOMEPAGE_URL
+    # - PROJECT_VERSION_MAJOR
+    # - PROJECT_VERSION_MINOR
+    # - CMAKE_BUILD_TYPE
+
     # Configure
     configure_file(${INPUT} ${OUTPUT} @ONLY)
 endfunction()
