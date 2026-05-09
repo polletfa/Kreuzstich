@@ -7,10 +7,11 @@
 import { TestBed } from '@angular/core/testing';
 import { CoreService } from './core-service';
 import { CORE_LOADER } from '@services/core-service/core-service';
+import { Version } from '@version';
 
 const mockCore = {
     Version: {
-        getVersionString: vi.fn().mockReturnValue('mocked')
+        getVersionString: vi.fn().mockReturnValue(Version.getVersionString())
     }
 };
 

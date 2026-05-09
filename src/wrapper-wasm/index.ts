@@ -18,7 +18,7 @@ export {
 };
 
 export class Module {
-    constructor(private core: wasm.MainModule) {
+    constructor(core: wasm.MainModule) {
         this.Version = Version(core);
         this.ColorSpace = ColorSpace(core);
         this.Thread = ThreadConstructor(core);

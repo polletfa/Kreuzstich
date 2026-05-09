@@ -17,6 +17,10 @@ set(RESOURCES
     ${CMAKE_SOURCE_DIR}/resources/icons/favicon.ico
 )
 
+# Version
+include(generate_version)
+generate_version(${CMAKE_CURRENT_SOURCE_DIR}/src/app/constants/version.constants.ts.in ${CMAKE_CURRENT_SOURCE_DIR}/build/version.constants.ts)
+
 # Target: gui-web-npminstall
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/node_modules/.package-lock.json
@@ -53,13 +57,7 @@ add_custom_target(gui-web ALL
 add_dependencies(gui-web gui-web-npminstall gui-web-resources gui-web-wasm)
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dist/gui-web/ DESTINATION gui-web COMPONENT web-app)
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/resources/docker DESTINATION . COMPONENT web-app)
-
-# Target: gui-web-install
-add_custom_target(gui-web-install
-    COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component common
-    COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component web-app
-    DEPENDS gui-web threadlists
-)
+add_dependencies(install-web-app gui-web)
 
 # Target: gui-web-tests
 add_custom_target(gui-web-tests

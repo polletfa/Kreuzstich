@@ -8,7 +8,6 @@
 
 import { describe, it, expect, beforeAll, beforeEach, afterEach } from 'vitest';
 import * as Core from './build/wrapper-wasm';
-
 let core: Core.Module;
 
 beforeAll(async () => {

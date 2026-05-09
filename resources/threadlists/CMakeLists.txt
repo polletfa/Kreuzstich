@@ -61,4 +61,7 @@ else()
     )
     install(FILES ${THREADLISTS_FILES} DESTINATION threadlists COMPONENT desktop-app)
     install(FILES ${THREADLISTS_SQL} DESTINATION sql/threadlists COMPONENT web-app)
+
+    add_dependencies(install-web-app threadlists)
+    add_dependencies(install-desktop-app threadlists)
 endif()
