@@ -5,9 +5,6 @@
 function(generate_version INPUT OUTPUT)
     message(STATUS "Generating ${OUTPUT}")
 
-    # BUILD_TIME
-    string(TIMESTAMP BUILD_TIME "%Y-%m-%dT%H:%M:%SZ" UTC)
-
     # LICENSE
     file(READ ${CMAKE_SOURCE_DIR}/LICENSE LICENSE)
 
@@ -22,6 +19,14 @@ function(generate_version INPUT OUTPUT)
     if(NOT GIT_PORCELAIN STREQUAL "")
         unset(GIT_COMMIT)
     endif()
+
+    # Other variables relevant for versioning:
+    # - BUILD_TIME
+    # - CMAKE_PROJECT_NAME
+    # - CMAKE_PROJECT_HOMEPAGE_URL
+    # - PROJECT_VERSION_MAJOR
+    # - PROJECT_VERSION_MINOR
+    # - CMAKE_BUILD_TYPE
 
     # Configure
     configure_file(${INPUT} ${OUTPUT} @ONLY)
