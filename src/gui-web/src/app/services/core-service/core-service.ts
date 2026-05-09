@@ -22,7 +22,7 @@ export class CoreService {
         if (this.module) return Promise.resolve(this.module);
         if (this.loading) return this.loading;
 
-        this.loading = new Promise((resolve, reject) => {
+        this.loading = new Promise((resolve) => {
             this.loader()
                 .then(m => {
                     this.module = m;

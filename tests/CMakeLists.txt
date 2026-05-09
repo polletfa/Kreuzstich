@@ -46,6 +46,7 @@ add_custom_target(runtests
 add_dependencies(runtests
     core-tests
     data-desktop-tests
+    data-web-tests
     wrapper-wasm-tests
     gui-web-tests
 )
@@ -65,6 +66,7 @@ else()
     add_dependencies(coverage
         core-tests
         data-desktop-tests
+        data-web-tests-coverage
         wrapper-wasm-tests-coverage
         gui-web-tests-coverage
     )

@@ -59,13 +59,7 @@ install(TARGETS gui-desktop-executable
     RUNTIME DESTINATION gui-desktop
     BUNDLE DESTINATION gui-desktop
 )
-
-# Target: gui-desktop-install
-add_custom_target(gui-desktop-install
-    COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component common
-    COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component desktop-app
-    DEPENDS gui-desktop-executable threadlists
-)
+add_dependencies(install-desktop-app gui-desktop-executable)
 
 # Export variables
 set(gui-desktop_INCLUDES ${CMAKE_SOURCE_DIR}/src PARENT_SCOPE)

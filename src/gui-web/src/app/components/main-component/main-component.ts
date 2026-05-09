@@ -8,6 +8,7 @@ import { Component, signal, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import type * as Core from '@wrapper-wasm';
 import { CoreService } from '@services/core-service/core-service';
+import { Version } from '@version';
 
 @Component({
     selector: 'app-root',
@@ -23,6 +24,14 @@ export class MainComponent implements OnInit {
 
     public async ngOnInit() {
         this.core = await this.coreService.get();
+
+        if(Version.getVersionString() == this.core.Version.getVersionString()) {
+            console.log("gui-web and core have the same version.");
+        } else {
+            throw new Error("Version mismatch between gui-web and core:\n"
+                +"gui-web: " + Version.getVersionString() + "\n"
+                +"core: " + this.core.Version.getVersionString());
+        }
 
         const start = Date.now();
 
