@@ -56,7 +56,7 @@ export class Server {
      * May throw
      */
     public start(): void {
-        this.server.listen({port: this.config.port}, (err) => {
+        this.server.listen({port: this.config.port, host: '0.0.0.0'}, (err) => {
             if(err) {
                 this.server.log.error(err);
                 throw new Error('Could not start server.');
