@@ -5,9 +5,6 @@
 function(generate_version INPUT OUTPUT)
     message(STATUS "Generating ${OUTPUT}")
 
-    # BUILD_TIME
-    string(TIMESTAMP BUILD_TIME "%Y-%m-%dT%H:%M:%SZ" UTC)
-
     # LICENSE
     file(READ ${CMAKE_SOURCE_DIR}/LICENSE LICENSE)
 
