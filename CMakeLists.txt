@@ -39,6 +39,26 @@ endif()
 
 set(CODEQL_CPP_TARGETS "")
 
+if(NOT EMSCRIPTEN)
+    ## Install
+    include(generate_version)
+    generate_version(${CMAKE_SOURCE_DIR}/tools/VERSION.in ${CMAKE_BINARY_DIR}/VERSION)
+    install(FILES ${CMAKE_BINARY_DIR}/VERSION DESTINATION . COMPONENT common)
+    install(FILES ${CMAKE_SOURCE_DIR}/LICENSE DESTINATION . COMPONENT common)
+
+    # Target: install-web-app
+    add_custom_target(install-web-app
+        COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component common
+        COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component web-app
+    )
+
+    # Target: install-desktop-app
+    add_custom_target(install-desktop-app
+        COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component common
+        COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component desktop-app
+    )
+endif()
+
 ## Components (native + wasm builds)
 
 add_subdirectory(src/core)
@@ -57,12 +77,6 @@ if(NOT EMSCRIPTEN)
     ## Unit Tests
     enable_testing()
     add_subdirectory(tests)
-
-    ## Install
-    include(generate_version)
-    generate_version(${CMAKE_SOURCE_DIR}/tools/VERSION.in ${CMAKE_BINARY_DIR}/VERSION)
-    install(FILES ${CMAKE_BINARY_DIR}/VERSION DESTINATION . COMPONENT common)
-    install(FILES ${CMAKE_SOURCE_DIR}/LICENSE DESTINATION . COMPONENT common)
 
     ## For CodeQL we need a target to compile C++ components only
     add_custom_target(codeql-cpp-build)

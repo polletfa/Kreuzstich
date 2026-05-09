@@ -30,7 +30,7 @@ jobs:
           config: linux-gcc
 
     - name: Build
-      run: ./make release gui-web-install
+      run: ./make release install-web-app
 
     - name: Output variables
       id: vars
