@@ -6,9 +6,12 @@
 
 import { Component, signal, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
 import type * as Core from '@wrapper-wasm';
-import { CoreService } from '@services/core-service/core-service';
 import { Version } from '@version';
+
+import { CoreService } from '@services/core-service/core-service';
+import { DataService } from '@services/data-service/data-service';
 
 @Component({
     selector: 'app-root',
@@ -20,21 +23,46 @@ export class MainComponent implements OnInit {
     private core?: Core.Module;
     protected readonly title = signal('gui-web');
 
-    constructor(private coreService: CoreService) {}
+    private coreVersion: string = '';
+    private dataVersion: string = '';
+    private guiVersion: string = Version.getVersionString();
+
+    constructor(
+        private coreService: CoreService,
+        private dataService: DataService
+    ) {}
 
     public async ngOnInit() {
         this.core = await this.coreService.get();
 
-        if(Version.getVersionString() == this.core.Version.getVersionString()) {
-            console.log("gui-web and core have the same version.");
-        } else {
-            throw new Error("Version mismatch between gui-web and core:\n"
-                +"gui-web: " + Version.getVersionString() + "\n"
-                +"core: " + this.core.Version.getVersionString());
+        await Promise.all([
+            this.coreService.get()
+                .then(core => {
+                    this.core = core;
+                    this.coreVersion = core.Version.getVersionString();
+                })
+                .catch(error => {
+                    console.error(error);
+                }),
+            this.dataService.getVersion()
+                .then(version => {
+                    this.dataVersion = version.VERSION_STRING;
+                })
+                .catch(error => {
+                    console.error(error);
+                })
+        ]);
+
+        console.log('Versions:');
+        console.log('- Core: ' + this.coreVersion);
+        console.log('- Data: ' + this.dataVersion);
+        console.log('- Gui: ' + this.guiVersion);
+        if(this.coreVersion !== this.guiVersion || this.dataVersion !== this.guiVersion) {
+            console.error('Version mismatch!');
         }
 
+        // tests
         const start = Date.now();
-
         const rgba: Core.ColorSpace.ColorRGBA = {red: 59, green: 130, blue: 246, alpha: 204};
         const bg: Core.ColorSpace.ColorRGBA = {red: 1, green: 2, blue: 3, alpha: 255};
         console.log("test", this.core.ColorSpace.compositeRGBAOntoBackground(rgba, bg));

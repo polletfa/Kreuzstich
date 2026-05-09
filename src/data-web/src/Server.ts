@@ -5,6 +5,7 @@
 */
 
 import Fastify from 'fastify';
+import cors from '@fastify/cors';
 import pinoPretty from 'pino-pretty';
 import FileStreamRotator from 'file-stream-rotator';
 import pino from 'pino';
@@ -42,10 +43,12 @@ export class Server {
             }
         });
 
+        if(Version.get().BUILD_TYPE == 'Debug') {
+            this.server.register(cors, {origin: 'http://localhost:4200'}); // angular frontend
+        }
+
         // Routing
-        this.server.get('/version', async () => {
-            return { versionString: Version.getVersionString() };
-        });
+        this.server.get('/version', Version.get);
     }
 
     public get(): FastifyInstance {

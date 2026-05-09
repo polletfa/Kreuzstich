@@ -31,10 +31,12 @@
 
     "paths": {
       "@version": ["./build/Version.ts"],
+      "@api/*": ["./api/*"],
     }
   },
   "include": [
-    "./src/**/*.ts"
+    "./src/**/*.ts",
+    "./api/**/*.ts"
   ],
   "exclude": [
     "./src/**/*.test.ts"

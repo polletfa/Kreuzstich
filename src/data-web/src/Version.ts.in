@@ -4,20 +4,31 @@
   MIT License, see LICENSE file.
 */
 
-export class Version {
-    static readonly NAME: string = "@CMAKE_PROJECT_NAME@";
-    static readonly WEBSITE: string = "@CMAKE_PROJECT_HOMEPAGE_URL@";
-    static readonly MAJOR: number = @PROJECT_VERSION_MAJOR@;
-    static readonly MINOR: number = @PROJECT_VERSION_MINOR@;
-    static readonly BUILD_TIME: string = "@BUILD_TIME@";
-    static readonly GIT_COMMIT: string = "@GIT_COMMIT@";
-    static readonly BUILD_TYPE: string = "@CMAKE_BUILD_TYPE@";
-    static readonly LICENSE: string = String.raw`@LICENSE@`;
+import type * as api from '@api/Version';
 
-    public static getVersionString(): string {
-        return `${Version.NAME} ${Version.MAJOR}.${Version.MINOR}`
-            + ` ${Version.GIT_COMMIT ? Version.GIT_COMMIT.substr(0, 8) : "dev-build"}`
-            + `${Version.BUILD_TYPE == "Debug" ? " debug-build" : ""}`
-            + `${Version.BUILD_TIME ? " " + Version.BUILD_TIME : ""}`;
+export class Version {
+    private static version: api.GetVersionResponse|undefined;
+
+    public static get(): api.GetVersionResponse {
+        if(Version.version) {
+            return Version.version;
+        } else {
+            Version.version = {
+                NAME: "@CMAKE_PROJECT_NAME@",
+                WEBSITE: "@CMAKE_PROJECT_HOMEPAGE_URL@",
+                MAJOR: @PROJECT_VERSION_MAJOR@,
+                MINOR: @PROJECT_VERSION_MINOR@,
+                BUILD_TIME: "@BUILD_TIME@",
+                GIT_COMMIT: "@GIT_COMMIT@",
+                BUILD_TYPE: "@CMAKE_BUILD_TYPE@",
+                LICENSE: String.raw`@LICENSE@`,
+                VERSION_STRING: ''
+            };
+            Version.version.VERSION_STRING = `${Version.version.NAME} ${Version.version.MAJOR}.${Version.version.MINOR}`
+                + ` ${Version.version.GIT_COMMIT ? Version.version.GIT_COMMIT.substr(0, 8) : "dev-build"}`
+                + `${Version.version.BUILD_TYPE == "Debug" ? " debug-build" : ""}`
+                + `${Version.version.BUILD_TIME ? " " + Version.version.BUILD_TIME : ""}`;
+            return Version.version;
+        }
     }
-};
+}

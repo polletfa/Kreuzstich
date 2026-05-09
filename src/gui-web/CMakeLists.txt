@@ -50,7 +50,7 @@ add_dependencies(gui-web-wasm wrapper-wasm)
 
 # Target: gui-web
 add_custom_target(gui-web ALL
-    COMMAND ${NPM_EXECUTABLE} run build-$<$<CONFIG:Debug>:dev>$<$<CONFIG:Release>:prod>
+    COMMAND ${NPM_EXECUTABLE} run build-$<$<CONFIG:Debug>:debug>$<$<CONFIG:Release>:release>
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     COMMENT "Building Angular app..."
 )

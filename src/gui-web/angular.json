@@ -51,7 +51,11 @@
                         "styles": ["src/styles.scss"]
                     },
                     "configurations": {
-                        "production": {
+                        "release": {
+                            "fileReplacements": [{
+                                "replace": "src/environments/environment.ts",
+                                "with": "src/environments/environment.release.ts"
+                            }],
                             "budgets": [
                                 {
                                     "type": "initial",
@@ -66,25 +70,25 @@
                             ],
                             "outputHashing": "all"
                         },
-                        "development": {
+                        "debug": {
                             "optimization": false,
                             "extractLicenses": false,
                             "sourceMap": true
                         }
                     },
-                    "defaultConfiguration": "production"
+                    "defaultConfiguration": "debug"
                 },
                 "serve": {
                     "builder": "@angular/build:dev-server",
                     "configurations": {
-                        "production": {
-                            "buildTarget": "gui-web:build:production"
+                        "release": {
+                            "buildTarget": "gui-web:build:release"
                         },
-                        "development": {
-                            "buildTarget": "gui-web:build:development"
+                        "debug": {
+                            "buildTarget": "gui-web:build:debug"
                         }
                     },
-                    "defaultConfiguration": "development"
+                    "defaultConfiguration": "debug"
                 },
                 "test": {
                   "builder": "@angular/build:unit-test",
