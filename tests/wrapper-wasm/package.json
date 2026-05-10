@@ -3,9 +3,9 @@
   "type": "module",
   "scripts": {
     "test-watch": "vitest",
-    "test": "vitest run",
+    "test": "tsc --noEmit && vitest run",
     "coverage": "vitest run --coverage",
-    "tsc": "tsc"
+    "check": "tsc --noEmit"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^4.1.5",

@@ -65,6 +65,8 @@ else()
             $<$<CONFIG:Debug>:-sASSERTIONS=2>
             $<$<CONFIG:Debug>:-sSAFE_HEAP=1>
             $<$<CONFIG:Debug>:-g>
+            $<$<CONFIG:Debug>:-fexceptions>
+            $<$<CONFIG:Debug>:-sEXCEPTION_CATCHING_ALLOWED=all>
 
             $<$<CONFIG:Release>:-O3>
         )
