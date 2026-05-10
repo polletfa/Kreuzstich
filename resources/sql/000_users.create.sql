@@ -3,8 +3,8 @@
 -- MIT License, see LICENSE file.
 
 CREATE TABLE IF NOT EXISTS users (
-       id    SERIAL PRIMARY KEY,
-       name  TEXT   NOT NULL UNIQUE CHECK (id = 1 OR name <> ''),
-       email TEXT   NOT NULL UNIQUE CHECK (id = 1 OR email <> '')
+       id       SERIAL PRIMARY KEY,
+       email    TEXT   NOT NULL UNIQUE CHECK (email <> ''),
+       name     TEXT   NOT NULL CHECK (name <> ''),
+       password TEXT   NOT NULL CHECK (password <> '')
 );
-INSERT INTO users(name, email) SELECT '', '' WHERE NOT EXISTS (SELECT 1 FROM users); -- system user

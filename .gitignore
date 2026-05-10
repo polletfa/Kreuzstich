@@ -95,8 +95,10 @@ compile_commands.json
 .clangd
 .cache
 
-# dotenv
-.env
-
 # npm
 audit.json
+
+# secrets
+.env
+secrets.env
+*.secrets.env

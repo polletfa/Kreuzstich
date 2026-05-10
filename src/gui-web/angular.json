@@ -52,10 +52,6 @@
                     },
                     "configurations": {
                         "release": {
-                            "fileReplacements": [{
-                                "replace": "src/environments/environment.ts",
-                                "with": "src/environments/environment.release.ts"
-                            }],
                             "budgets": [
                                 {
                                     "type": "initial",
@@ -88,7 +84,10 @@
                             "buildTarget": "gui-web:build:debug"
                         }
                     },
-                    "defaultConfiguration": "debug"
+                    "defaultConfiguration": "debug",
+                    "options": {
+                        "proxyConfig": "proxy.conf.json"
+                    }
                 },
                 "test": {
                   "builder": "@angular/build:unit-test",

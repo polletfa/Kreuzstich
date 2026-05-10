@@ -6,9 +6,8 @@
 
 import { z } from 'zod';
 
-/**
- * Response schema for /version
- */
+// ------------------------------------------------------------------------- GET /version
+
 export const GetVersionResponseSchema = z.object({
     NAME: z.string(),
     WEBSITE: z.string(),
@@ -20,7 +19,4 @@ export const GetVersionResponseSchema = z.object({
     LICENSE: z.string(),
     VERSION_STRING: z.string()
 });
-/**
- * Response for /version
- */
 export type GetVersionResponse = z.infer<typeof GetVersionResponseSchema>;

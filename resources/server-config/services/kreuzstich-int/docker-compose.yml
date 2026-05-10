@@ -30,6 +30,10 @@ services:
     depends_on:
       - kreuzstich-int-database
     image: ghcr.io/polletfa/kreuzstich-int-api:latest
+    env_file:
+      # For environment variables that should not be committed:
+      # - KREUZSTICH_DATA_WEB_JWT_SECRET
+      - ./secrets.env
     environment:
       - KREUZSTICH_DATA_WEB_LOGDIR=/var/log/kreuzstich/
       - KREUZSTICH_DATA_WEB_PORT=80

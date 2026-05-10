@@ -4,33 +4,50 @@
   MIT License, see LICENSE file.
 */
 
-import { Component, signal, OnInit } from '@angular/core';
+import { Component, effect, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms';
 
 import type * as Core from '@wrapper-wasm';
 import { Version } from '@version';
 
 import { CoreService } from '@services/core-service/core-service';
 import { DataService } from '@services/data-service/data-service';
+import { UserService } from '@services/user-service/user-service';
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet],
+    imports: [
+        RouterOutlet,
+        MatProgressSpinnerModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        FormsModule
+    ],
     templateUrl: './main-component.html',
     styleUrl: './main-component.scss'
 })
 export class MainComponent implements OnInit {
     private core?: Core.Module;
-    protected readonly title = signal('gui-web');
 
     private coreVersion: string = '';
     private dataVersion: string = '';
     private guiVersion: string = Version.getVersionString();
 
+    public persistentLogin = true;
+
     constructor(
         private coreService: CoreService,
-        private dataService: DataService
-    ) {}
+        private dataService: DataService,
+        public userService: UserService
+    ) {
+        effect(() => {
+            console.log('User changed: ', this.userService.user());
+        });
+    }
 
     public async ngOnInit() {
         this.core = await this.coreService.get();
@@ -87,5 +104,15 @@ export class MainComponent implements OnInit {
         }
 
         console.log((Date.now() - start) + " ms");
+
+        console.log(this.userService.user());
+    }
+
+    public onTest() {
+        if(this.userService.user()) {
+            this.userService.logout();
+        } else {
+            this.userService.login({email: 'polletfa@posteo.de', password: 'test', persist: this.persistentLogin});
+        }
     }
 }

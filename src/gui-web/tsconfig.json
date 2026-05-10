@@ -25,7 +25,7 @@
       "@components/*": ["./src/app/components/*"],
       "@services/*": ["./src/app/services/*"],
       "@constants/*": ["./src/app/constants/*"],
-      "@api/*": ["../data-web/api/*" ],
+      "@api/*": ["../data-web/src/types/api/*" ],
       "@version": ["./build/version.constants.ts"],
       "@environment": ["./src/environments/environment.ts"],
       "@wrapper-wasm": ["./build/wrapper-wasm"],
