@@ -34,6 +34,15 @@ describe('Thread', () => {
         expect(thread.isDeleted()).toBe(true);
     });
 
+    it('Symbol.dispose', () => {
+        let ref;
+        {
+            using newThread = new core.Thread('test', '000000');
+            ref = newThread
+        }
+        expect(ref.isDeleted()).toBe(true); // deleted when newThread went out of scope
+    });
+
     it('isValid', () => {
         expect(thread.isValid()).toBe(true);
     });
