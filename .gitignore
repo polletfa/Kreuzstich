@@ -86,8 +86,17 @@ build/
 coverage/
 test-results/
 node_modules/
+emsdk-cache/
+dist/
+.angular/
 
 # User-config: clangd
 compile_commands.json
 .clangd
 .cache
+
+# dotenv
+.env
+
+# npm
+audit.json

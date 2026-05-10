@@ -21,6 +21,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/tools")
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/dist)
 
+string(TIMESTAMP BUILD_TIME "%Y-%m-%dT%H:%M:%SZ" UTC)
+
 # Project-wide definitions: C++
 
 set(CMAKE_CXX_STANDARD 23)
@@ -39,6 +41,26 @@ endif()
 
 set(CODEQL_CPP_TARGETS "")
 
+if(NOT EMSCRIPTEN)
+    ## Install
+    include(generate_version)
+    generate_version(${CMAKE_SOURCE_DIR}/tools/VERSION.in ${CMAKE_BINARY_DIR}/VERSION)
+    install(FILES ${CMAKE_BINARY_DIR}/VERSION DESTINATION . COMPONENT common)
+    install(FILES ${CMAKE_SOURCE_DIR}/LICENSE DESTINATION . COMPONENT common)
+
+    # Target: install-web-app
+    add_custom_target(install-web-app
+        COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component common
+        COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component web-app
+    )
+
+    # Target: install-desktop-app
+    add_custom_target(install-desktop-app
+        COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component common
+        COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component desktop-app
+    )
+endif()
+
 ## Components (native + wasm builds)
 
 add_subdirectory(src/core)
@@ -47,6 +69,7 @@ add_subdirectory(src/wrapper-wasm)
 if(NOT EMSCRIPTEN)
     # Components (native build only)
     add_subdirectory(src/data-desktop)
+    add_subdirectory(src/data-web)
     add_subdirectory(src/gui-desktop)
     add_subdirectory(src/gui-web)
 
@@ -56,12 +79,6 @@ if(NOT EMSCRIPTEN)
     ## Unit Tests
     enable_testing()
     add_subdirectory(tests)
-
-    ## Install
-    include(generate_version)
-    generate_version(${CMAKE_SOURCE_DIR}/tools/VERSION.in ${CMAKE_BINARY_DIR}/VERSION)
-    install(FILES ${CMAKE_BINARY_DIR}/VERSION DESTINATION .)
-    install(FILES LICENSE DESTINATION .)
 
     ## For CodeQL we need a target to compile C++ components only
     add_custom_target(codeql-cpp-build)

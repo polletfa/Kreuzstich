@@ -1,0 +1,134 @@
+# Kreuzstich
+# Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
+name: Deploy Web App
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  workflow_dispatch:
+
+jobs:
+  #############################################################################
+  # Build                                                                     #
+  #############################################################################
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+        contents: read
+    outputs:
+        artifact: ${{ steps.vars.outputs.artifact }}
+        sha: ${{ steps.vars.outputs.sha }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6
+
+    - name: Install dependencies
+      uses: ./.github/actions/install-dependencies
+      with:
+          config: linux-gcc
+
+    - name: Build
+      run: ./make release install-web-app
+
+    - name: Output variables
+      id: vars
+      run: |
+        echo "SHA=${GITHUB_SHA}" >> $GITHUB_OUTPUT
+        echo "ARTIFACT=gui-web-${GITHUB_SHA::8}" >> $GITHUB_OUTPUT
+
+    - name: Upload
+      uses: actions/upload-artifact@v6
+      with:
+          retention-days: 7
+          name: ${{ steps.vars.outputs.artifact }}
+          path: build/release/dist
+
+  #############################################################################
+  # Deploy                                                                    #
+  #############################################################################
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    steps:
+      - name: Environment
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          if [[ "$BRANCH" == "main" ]]; then
+            echo "ENVIRONMENT=prod" >> $GITHUB_ENV
+          elif [[ "$BRANCH" == "develop" ]]; then
+            echo "ENVIRONMENT=int" >> $GITHUB_ENV
+          else
+            echo "Unsupported branch: $BRANCH"
+            exit 1
+          fi
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: ${{ needs.build.outputs.artifact }}
+          path: dist
+
+      - name: Select docker/kreuzstich/nginx.conf
+        working-directory: ${{ github.workspace }}/dist/docker/kreuzstich
+        run: cp nginx.${{ env.ENVIRONMENT }}.conf nginx.conf
+
+      - name: Log in to ghcr.io
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build docker image for api service
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: ./dist/docker/kreuzstich-api/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/polletfa/kreuzstich-${{ env.ENVIRONMENT }}-api:latest
+            ghcr.io/polletfa/kreuzstich-${{ env.ENVIRONMENT }}-api:${{ needs.build.outputs.sha }}
+
+      - name: Build docker image for frontend
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: ./dist/docker/kreuzstich/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/polletfa/kreuzstich-${{ env.ENVIRONMENT }}:latest
+            ghcr.io/polletfa/kreuzstich-${{ env.ENVIRONMENT }}:${{ needs.build.outputs.sha }}
+
+      - name: Clean up old images (kreuzstich-api)
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: kreuzstich-${{ env.ENVIRONMENT }}-api
+          package-type: container
+          min-versions-to-keep: 5
+
+      - name: Clean up old images (kreuzstich)
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: kreuzstich-${{ env.ENVIRONMENT }}
+          package-type: container
+          min-versions-to-keep: 5
+
+      - name: Deploy
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ vars.SSH_HOST }}
+          port: ${{ vars.SSH_PORT }}
+          username: ${{ vars.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /srv/
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            docker compose pull kreuzstich-${{ env.ENVIRONMENT }} kreuzstich-${{ env.ENVIRONMENT }}-api
+            docker compose up -d kreuzstich-${{ env.ENVIRONMENT }} kreuzstich-${{ env.ENVIRONMENT }}-api
+            docker container prune -f
+            docker image prune -f

@@ -1,9 +1,17 @@
+# Kreuzstich
+# Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
 name: Install dependencies
 
 inputs:
     config:
         description: windows, linux-gcc, linux-clang, macos
         required: true
+    target:
+        description: all, gui-web, gui-desktop
+        required: false
+        default: all
 
 runs:
     using: composite
@@ -39,6 +47,7 @@ runs:
               sudo ./llvm.sh 19
 
         - name: Install Qt
+          if: ${{ inputs.target == 'all' || inputs.target == 'gui-desktop' }}
           uses: jurplel/install-qt-action@v4
           with:
               version: '6.10.2'
@@ -48,12 +57,14 @@ runs:
               cache: true
 
         - name: Install Node.js
-          uses: actions/setup-node@v4
+          if: ${{ inputs.target == 'all' || inputs.target == 'gui-web' }}
+          uses: actions/setup-node@v6
           with:
               node-version: '22'
 
         - name: Install EMSDK
-          uses: mymindstorm/setup-emsdk@v14
+          if: ${{ inputs.target == 'all' || inputs.target == 'gui-web' }}
+          uses: emscripten-core/setup-emsdk@v15
           with:
               version: 5.0.7
               actions-cache-folder: 'emsdk-cache'

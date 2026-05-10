@@ -5,18 +5,22 @@
 */
 
 import { defineConfig } from 'vitest/config'
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
+    plugins: [tsconfigPaths()],
     test: {
         environment: 'node',
+        silent: true,
         reporters: [
             'default',
             ['github-actions', { jobSummary: { enabled: false } }],
-            ['junit', { outputFile: 'build/test-results/wrapper-wasm.xml' }],
+            ['junit', { outputFile: 'build/test-results/data-web.xml' }],
         ],
         coverage: {
-            include: ['build/**/*.ts'],
-            exclude: ['*.d.ts']
+            exclude: [
+                'build'
+            ]
         }
     },
 });

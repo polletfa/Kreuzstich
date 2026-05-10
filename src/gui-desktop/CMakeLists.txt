@@ -55,9 +55,11 @@ set_target_properties(gui-desktop-executable PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 install(TARGETS gui-desktop-executable
+    COMPONENT desktop-app
     RUNTIME DESTINATION gui-desktop
     BUNDLE DESTINATION gui-desktop
 )
+add_dependencies(install-desktop-app gui-desktop-executable)
 
 # Export variables
 set(gui-desktop_INCLUDES ${CMAKE_SOURCE_DIR}/src PARENT_SCOPE)

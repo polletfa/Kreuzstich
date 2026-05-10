@@ -1,12 +1,17 @@
+# Kreuzstich
+# Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
 name: Build and Test (multiple platforms)
 
 on:
   pull_request:
+    branches: [ "main", "develop" ]
   workflow_dispatch:
 
 jobs:
   build:
-    name: ${{ matrix.name }}
+    name: Build and Test (${{ matrix.name }})
     runs-on: ${{ matrix.os }}
     permissions:
         contents: read
@@ -19,28 +24,28 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: Build (Windows, MVSC)
+          - name: Windows, MVSC
             config: windows
             build_type: Release
             os: windows-latest
             c_compiler: cl
             cpp_compiler: cl
 
-          - name: Build (Linux, GCC)
+          - name: Linux, GCC
             config: linux-gcc
             build_type: Release
             os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
 
-          - name: Build (Linux, clang)
+          - name: Linux, clang
             config: linux-clang
             build_type: Release
             os: ubuntu-latest
             c_compiler: clang-19
             cpp_compiler: clang++-19
 
-          - name: Build (MacOS, clang)
+          - name: MacOS, clang
             config: macos
             build_type: Release
             os: macos-latest
@@ -99,22 +104,22 @@ jobs:
       shell: bash
 
     - name: Upload dist/
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
-          retention-days: 15
+          retention-days: 7
           name: dist-${{ env.ARTIFACT_SUFFIX }}
           path: build/dist
 
     - name: Upload test results
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
-          retention-days: 15
+          retention-days: 7
           name: test-results-${{ env.ARTIFACT_SUFFIX }}
           path: build/test-results
 
     - name: Upload build files on failure
       if: failure()
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
           retention-days: 1
           name: build-${{ env.ARTIFACT_SUFFIX }}

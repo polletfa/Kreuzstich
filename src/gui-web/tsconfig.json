@@ -8,10 +8,12 @@
   "compilerOptions": {
     "strict": true,
     "preserveSymlinks": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "noPropertyAccessFromIndexSignature": true,
     "skipLibCheck": true,
     "isolatedModules": true,
     "experimentalDecorators": true,
@@ -23,6 +25,8 @@
     "paths": {
       "@components/*": ["src/app/components/*"],
       "@services/*": ["src/app/services/*"],
+      "@constants/*": ["src/app/constants/*"],
+      "@version": ["build/version.constants.ts"],
       "@wrapper-wasm": ["build/wrapper-wasm"]
     }
   },
