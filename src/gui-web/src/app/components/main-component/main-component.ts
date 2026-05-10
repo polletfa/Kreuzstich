@@ -32,7 +32,7 @@ import { UserService } from '@services/user-service/user-service';
 })
 export class MainComponent implements OnInit {
     private core?: Core.Module;
-in
+
     private coreVersion: string = '';
     private dataVersion: string = '';
     private guiVersion: string = Version.getVersionString();
