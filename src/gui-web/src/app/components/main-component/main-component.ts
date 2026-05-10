@@ -1,13 +1,10 @@
-/*
-  Kreuzstich
-  Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
-  MIT License, see LICENSE file.
-*/
-
 import { Component, effect, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 
@@ -19,20 +16,23 @@ import { DataService } from '@services/data-service/data-service';
 import { UserService } from '@services/user-service/user-service';
 
 @Component({
-    selector: 'app-root',
+    selector: 'app-main-component',
+    templateUrl: './main-component.html',
+    styleUrl: './main-component.scss',
     imports: [
-        RouterOutlet,
-        MatProgressSpinnerModule,
+        MatToolbarModule,
         MatButtonModule,
+        MatSidenavModule,
+        MatListModule,
+        MatIconModule,
+        MatProgressSpinnerModule,
         MatCheckboxModule,
         FormsModule
     ],
-    templateUrl: './main-component.html',
-    styleUrl: './main-component.scss'
 })
 export class MainComponent implements OnInit {
     private core?: Core.Module;
-
+in
     private coreVersion: string = '';
     private dataVersion: string = '';
     private guiVersion: string = Version.getVersionString();

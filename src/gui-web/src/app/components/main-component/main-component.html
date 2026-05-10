@@ -1,15 +1,34 @@
-<!--
-  Kreuzstich
-  Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
-  MIT License, see LICENSE file.
--->
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav
+        #drawer
+        class="sidenav"
+        fixedInViewport
+        role="navigation"
+        mode="side"
+        opened="true"
+    >
+        <mat-toolbar>Menu</mat-toolbar>
+        <mat-nav-list>
+            <a mat-list-item href="#">Link 1</a>
+            <a mat-list-item href="#">Link 2</a>
+            <a mat-list-item href="#">Link 3</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <span>gui-web</span>
+        </mat-toolbar>
 
-@if(!userService.isReady()) {
-<mat-progress-spinner mode="indeterminate"/>
-} @else {
+        <!-- todo tests -->
+        @if(!userService.isReady()) {
+        <mat-progress-spinner mode="indeterminate"/>
+        } @else {
 
-<button mat-raised-button color="primary" (click)="onTest()">@if (!userService.user()) { Login } @else { Logout }</button>
-@if(!userService.user()) { <br/><mat-checkbox [(ngModel)]="persistentLogin">Stay logged in</mat-checkbox> }
-<router-outlet />
+        @if(userService.user()) { <div>Hello {{ userService.user()?.name }}!</div> }
+        <button mat-raised-button color="primary" (click)="onTest()">@if (!userService.user()) { Login } @else { Logout }</button>
+        @if(!userService.user()) { <br/><mat-checkbox [(ngModel)]="persistentLogin">Stay logged in</mat-checkbox> }
 
-}
+        }
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
