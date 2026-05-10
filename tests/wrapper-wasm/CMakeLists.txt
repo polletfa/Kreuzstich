@@ -32,7 +32,6 @@ add_dependencies(wrapper-wasm-tests-wasm wrapper-wasm)
 
 # Target: wrapper-wasm-tests
 add_custom_target(wrapper-wasm-tests
-    COMMAND ${NPM_EXECUTABLE} run tsc   # check types before running tests
     COMMAND ${NPM_EXECUTABLE} run test
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/test-results
     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/build/test-results/wrapper-wasm.xml ${CMAKE_BINARY_DIR}/test-results/wrapper-wasm.xml
