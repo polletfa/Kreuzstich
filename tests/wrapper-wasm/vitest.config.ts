@@ -15,9 +15,8 @@ export default defineConfig({
             ['junit', { outputFile: 'test-results/wrapper-wasm.xml' }],
         ],
         coverage: {
-            exclude: [
-                'wrapper-wasm.js'
-            ]
+            include: ['build/**/*.ts'],
+            exclude: ['*.d.ts']
         }
     },
 });

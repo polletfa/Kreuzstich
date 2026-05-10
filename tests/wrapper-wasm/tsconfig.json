@@ -13,7 +13,7 @@
     "moduleResolution": "bundler"
   },
   "include": [
-    "build/*.ts",
+    "build/**/*.ts",
     "*.test.ts"
   ]
 }

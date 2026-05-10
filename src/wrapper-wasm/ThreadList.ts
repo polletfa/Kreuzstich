@@ -8,6 +8,15 @@ import type * as wasm from './wrapper-wasm';
 import { Thread } from './Thread';
 import { ColorSpace } from './ColorSpace';
 
+/**
+ * Used for references to Thread that should not be deleted (no ownership)
+ */
+export class ThreadRef extends Thread {
+    override delete(): void {
+        throw new Error('Object is not deletable.');
+    }
+}
+
 export namespace ThreadList {
     export type SortBy = "HLS"|"HSL"|"Name";
     export type SortOrder = "ASC"|"DESC";
@@ -17,12 +26,6 @@ export namespace ThreadList {
         count: number;
     }[];
 }
-
-
-/**
- * Used for references to Thread that should not be deleted (no ownership)
- */
-export type ThreadRef = Omit<Thread, 'delete'|'isDeleted'>;
 
 export class ThreadList {
     constructor(private obj: wasm.ThreadList, private core: wasm.MainModule) {}
@@ -37,22 +40,22 @@ export class ThreadList {
         for(let i = 0; i < list.size(); ++i) {
             const item = list.get(i);
             if(item) {
-                outList.push(new Thread(item));
+                outList.push(new ThreadRef(item));
             }
         }
         return outList;
     }
     findClosest(color: ColorSpace.ColorRGBA, algo: ColorSpace.DistanceAlgo): ThreadRef|undefined {
         const res = this.obj.findClosest(color, algo);
-        return res ? new Thread(res) : undefined;
+        return res ? new ThreadRef(res) : undefined;
     }
     findClosestInUse(color: ColorSpace.ColorRGBA, algo: ColorSpace.DistanceAlgo): ThreadRef|undefined {
         const res = this.obj.findClosestInUse(color, algo);
-        return res ? new Thread(res) : undefined;
+        return res ? new ThreadRef(res) : undefined;
     }
     findThread(color: ColorSpace.ColorRGBA): ThreadRef|undefined {
         const res = this.obj.findThread(color);
-        return res ? new Thread(res) : undefined;
+        return res ? new ThreadRef(res) : undefined;
     }
     usage(): ThreadList.UsageCount {
         using list = this.obj.usage();
@@ -60,7 +63,7 @@ export class ThreadList {
         for(let i = 0; i < list.size(); ++i) {
             const item = list.get(i);
             if(item) {
-                outList.push({thread: new Thread(item.thread), count: item.count});
+                outList.push({thread: new ThreadRef(item.thread), count: item.count});
             }
         }
         return outList;
