@@ -25,7 +25,6 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
 
       - /etc/letsencrypt/:/etc/letsencrypt:ro
