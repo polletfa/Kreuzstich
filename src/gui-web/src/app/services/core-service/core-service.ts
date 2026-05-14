@@ -10,6 +10,9 @@ import * as Core from '@wrapper-wasm';
 type CoreLoader = () => Promise<Core.Module>;
 export const CORE_LOADER = new InjectionToken<CoreLoader>('CORE_LOADER');
 
+/**
+ * Service to access the core library
+ */
 @Injectable({
     providedIn: 'root',
 })

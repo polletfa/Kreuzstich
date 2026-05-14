@@ -46,20 +46,26 @@ The application will also provide features to help while doing the stitching:
 
 ### Objective
 
-The long-term objective is to develop 3 applications:
-- A web application that will also allow to create and share their projects online.
-- An Android companion app with limited features, which will be used to help during the stitching (no pattern creation/editing)
-- A desktop application for offline working.
+The main objective is to provide a web application that will allow users to create and share their projects online.
 
-The priority is the web application for now.
+However other applications could be added in the future, so the architecture has been designed with that possibility in mind:
+- A desktop application for both offline (with files) and online (by connecting to the server) work.
+- An Android companion app with limited features, which will be used to help during the stitching (no pattern creation/editing).
+- Alternatively, a PWA version of the website could be provided instead of an app.
 
 ### Technical aspects
 
 The rewrite will use more modern technologies and better code quality than the initial version:
 - Modern C++ (C++23)
-- Qt6 instead of Qt4/5 for the desktop app
 - Angular and WebAssembly for the web version
+- Unit tests with Google Test (C++) and Vitest (TypeScript)
+
+And for future applications:
+- Qt6 instead of Qt4/5 for the desktop app
 - Kotlin for the Android version
-- Unit tests with Google Test
 
 ![architecture overview](doc/architecture-overview.svg)
+
+### Developer documentation
+
+* [Developer documentation](doc/index.md)

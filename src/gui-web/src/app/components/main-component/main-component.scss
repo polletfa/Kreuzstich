@@ -3,3 +3,21 @@
   Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
   MIT License, see LICENSE file.
 */
+
+.sidenav-container {
+    height: 100%;
+}
+
+.sidenav {
+    width: 200px;
+}
+
+.sidenav .mat-toolbar {
+    background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}

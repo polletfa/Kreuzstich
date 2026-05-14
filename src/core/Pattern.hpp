@@ -54,7 +54,7 @@ public:
     /**
      * Returns a specific pixel
      */
-    [[nodiscard]] const ColorSpace::ColorRGBA& get(size_t x, size_t y) const;
+    [[nodiscard]] const ColorSpace::ColorRGBA& operator[](size_t x, size_t y) const;
 
     /**
      * Returns the picture as a grid (each pixel from the original picture is replaced by a square with black border)

@@ -116,11 +116,11 @@ function preToSQL {
                     echo ";"
                     firstinblock=y
                 else
-                    echo "INSERT INTO threadlists(user_id, name) VALUES(1, '$NAME');"
+                    echo "INSERT INTO threadlists(user_id, name) VALUES(NULL, '$NAME');"
                     echo
                 fi
                 echo "-- $linevalue"
-                echo "WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = '$NAME')"
+                echo "WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = '$NAME')"
                 echo "INSERT INTO threads(list_id,name,color) VALUES";
                 blockopen=y
                 ;;
