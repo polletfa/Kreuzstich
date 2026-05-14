@@ -12,11 +12,6 @@ import type { ZodTypeProvider } from 'fastify-type-provider-zod';
 import type { FastifyInstance, RawServerDefault, FastifyBaseLogger } from 'fastify';
 import type { IncomingMessage, ServerResponse } from 'http';
 
-import pino from 'pino';
-import pinoPretty from 'pino-pretty';
-import FileStreamRotator from 'file-stream-rotator';
-import type { StreamEntry } from 'pino';
-
 import pgPromise from 'pg-promise';
 import type { IDatabase } from 'pg-promise';
 
@@ -24,7 +19,6 @@ import { ConfigService } from './ConfigService';
 import { UserService } from './UserService';
 import { ThreadListService } from './ThreadListService';
 import { Version } from '@version';
-import { LOG_RETENTION } from './PrivacyOptions';
 
 export type Database = IDatabase<{}>;
 export type Server = FastifyInstance<RawServerDefault, IncomingMessage, ServerResponse, FastifyBaseLogger, ZodTypeProvider>;
@@ -82,25 +76,20 @@ export class Application {
     }
 
     private initServer(disableLogs: boolean): Server {
-        // Logger
-        const logStreams: StreamEntry[] = [
-            { stream: pinoPretty({translateTime: "SYS:standard"}) }
-        ];
-        if(this.configService.logDir) {
-            logStreams.push({ stream: FileStreamRotator.getStream({
-                filename: this.configService.logDir + '/data-web.%DATE%.log',
-                frequency: 'daily',
-                date_format: 'YYYY-MM-DD',
-                max_logs: LOG_RETENTION
-            })});
-        }
-        const loggers = pino.multistream(logStreams);
-
         // Init HTTP server
         const server = Fastify({
             logger: disableLogs ? false : {
                 level: 'info',
-                stream: loggers
+                base: null,
+                serializers: {
+                    req(request) {
+                        return {
+                            method: request.method,
+                            url: request.url,
+                            hostname: request.hostname
+                        }
+                    }
+                }
             }
         }).withTypeProvider<ZodTypeProvider>();
 

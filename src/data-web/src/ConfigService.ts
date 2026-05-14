@@ -9,7 +9,6 @@ type NumberProperty = {type: 'number', required: boolean, default?: number, valu
 
 export class ConfigService {
     private properties: {[key: string]: StringProperty|NumberProperty} = {
-        LOGDIR:      {type: 'string', required: false                },
         PORT:        {type: 'number', required: true                 },
         DB_HOST:     {type: 'string', required: true                 },
         DB_PORT:     {type: 'number', required: false, default: 5432 },
@@ -40,9 +39,6 @@ export class ConfigService {
         }
     }
 
-    public get logDir(): string|undefined {
-        return (this.properties['LOGDIR'] as StringProperty).value;
-    }
     public get port(): number {
         return (this.properties['PORT'] as NumberProperty).value as number;
     }

@@ -34,7 +34,6 @@ services:
       # - KREUZSTICH_DATA_WEB_JWT_SECRET
       - ./secrets.env
     environment:
-      - KREUZSTICH_DATA_WEB_LOGDIR=/var/log/kreuzstich/
       - KREUZSTICH_DATA_WEB_PORT=80
       - KREUZSTICH_DATA_WEB_DB_HOST=kreuzstich-int-database
       - KREUZSTICH_DATA_WEB_DB_DB=kreuzstich
@@ -44,8 +43,6 @@ services:
         - kreuzstich-int-backend
     volumes:
       - /etc/localtime:/etc/localtime:ro
-
-      - ./logs/api:/var/log/kreuzstich/
     restart: always
 
   kreuzstich-int:
@@ -58,6 +55,4 @@ services:
       - kreuzstich-int-backend
     volumes:
       - /etc/localtime:/etc/localtime:ro
-
-      - ./logs/nginx:/var/log/nginx
     restart: always
