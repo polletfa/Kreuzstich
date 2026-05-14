@@ -65,3 +65,7 @@ And for future applications:
 - Kotlin for the Android version
 
 ![architecture overview](doc/architecture-overview.svg)
+
+### Developer documentation
+
+* [Developer documentation](doc/index.md)
