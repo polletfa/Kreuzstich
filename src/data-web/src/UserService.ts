@@ -7,12 +7,13 @@
 import type { FastifyReply } from 'fastify';
 import bcrypt from 'bcryptjs';
 
-import type { Server, Authenticator, Database } from './Application';
+import type { Server, Database } from '@services/Application';
+import { AuthHelper } from '@services/AuthHelper';
 import * as api from '@api/User';
 import * as db from '@db';
 
 export class UserService {
-    constructor(private server: Server, private authenticate: Authenticator, private db: Database) {}
+    constructor(private server: Server, private db: Database) {}
 
     /**
      * Register routes for the service
@@ -23,7 +24,7 @@ export class UserService {
         server.get('/logout', (_, response) => this.logout(response));
 
         // protected
-        server.get('/status', { onRequest: this.authenticate }, (request) => request.user);
+        server.get('/status', { onRequest: AuthHelper.authenticate }, (request) => request.user);
     }
 
     private async login(request: api.PostUserLoginRequest, response: FastifyReply): Promise<api.PostUserLoginResponse> {

@@ -9,13 +9,16 @@ import { z } from 'zod';
 import type { GenericResponse } from '@api/Generic';
 import { GenericResponseSchema } from '@api/Generic';
 
-// ------------------------------------------------------------------------- GET /user/status
-
-export const GetUserStatusResponseSchema = z.object({
+export const UserSchema = z.object({
     id: z.number(),
     email: z.string(),
     name: z.string()
-}).optional();
+});
+export type User = z.infer<typeof UserSchema>;
+
+// ------------------------------------------------------------------------- GET /user/status
+
+export const GetUserStatusResponseSchema = UserSchema.optional();
 export type GetUserStatusResponse = z.infer<typeof GetUserStatusResponseSchema>;
 
 // ------------------------------------------------------------------------- POST /user/login

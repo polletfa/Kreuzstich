@@ -20,6 +20,6 @@ export interface Thread {
 
 export interface ThreadList {
     id: number,
-    user_id: number|undefined,
+    user_id: number|null,
     name: string
 }

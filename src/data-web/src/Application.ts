@@ -9,7 +9,7 @@ import jwt from '@fastify/jwt';
 import cookie from '@fastify/cookie';
 import { serializerCompiler, validatorCompiler } from 'fastify-type-provider-zod';
 import type { ZodTypeProvider } from 'fastify-type-provider-zod';
-import type { FastifyInstance, FastifyReply, FastifyRequest, RawServerDefault, FastifyBaseLogger } from 'fastify';
+import type { FastifyInstance, RawServerDefault, FastifyBaseLogger } from 'fastify';
 import type { IncomingMessage, ServerResponse } from 'http';
 
 import pino from 'pino';
@@ -20,13 +20,14 @@ import type { StreamEntry } from 'pino';
 import pgPromise from 'pg-promise';
 import type { IDatabase } from 'pg-promise';
 
-import { ConfigService } from './ConfigService';
-import { UserService } from './UserService';
+import { ConfigService } from '@services/ConfigService';
+import { UserService } from '@services/UserService';
+import { ThreadListService } from '@services/ThreadListService';
 import { Version } from '@version';
+import { LOG_RETENTION } from '@services/PrivacyOptions';
 
 export type Database = IDatabase<{}>;
 export type Server = FastifyInstance<RawServerDefault, IncomingMessage, ServerResponse, FastifyBaseLogger, ZodTypeProvider>;
-export type Authenticator = (request: FastifyRequest, response: FastifyReply) => Promise<void>;
 
 export class Application {
     private server: Server;
@@ -37,11 +38,13 @@ export class Application {
     // services
     private configService = new ConfigService(); /**< May throw */
     private userService;
+    private threadListsService;
 
     constructor(disableLogs = false) {
         this.database = this.initDatabase();
         this.server = this.initServer(disableLogs);
-        this.userService = new UserService(this.server, this.authenticate.bind(this), this.database);
+        this.userService = new UserService(this.server, this.database);
+        this.threadListsService = new ThreadListService(this.server, this.database);
 
         this.routes();
     }
@@ -65,6 +68,7 @@ export class Application {
     private routes() {
         this.server.get('/version', Version.get);
         this.server.register(this.userService.routes.bind(this.userService), { prefix: '/user' });
+        this.server.register(this.threadListsService.routes.bind(this.threadListsService), { prefix: '/threadLists' });
     }
 
     private initDatabase(): Database {
@@ -87,7 +91,7 @@ export class Application {
                 filename: this.configService.logDir + '/data-web.%DATE%.log',
                 frequency: 'daily',
                 date_format: 'YYYY-MM-DD',
-                max_logs: '90d'
+                max_logs: LOG_RETENTION
             })});
         }
         const loggers = pino.multistream(logStreams);
@@ -115,13 +119,5 @@ export class Application {
         });
 
         return server;
-    }
-
-    private async authenticate(request: FastifyRequest, response: FastifyReply): Promise<void> {
-        try {
-            await request.jwtVerify();
-        } catch (err) {
-            response.code(401).send({ error: 'Unauthorized' });
-        }
     }
 }
