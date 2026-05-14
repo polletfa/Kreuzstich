@@ -20,10 +20,10 @@
 --          Color Variations, Effet Lumière, Perlé Métallisé as well as
 --          gradiant-color threads for Mouliné & Perlé have not been included.
 
-INSERT INTO threadlists(user_id, name) VALUES(1, 'DMC');
+INSERT INTO threadlists(user_id, name) VALUES(NULL, 'DMC');
 
 -- 01
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 3713', 'DCB9B4'),
     ((SELECT id FROM list), 'DMC 761', 'DAA5A1'),
@@ -50,7 +50,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 814', '6A101B')
 ;
 -- 02
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 894', 'E5838E'),
     ((SELECT id FROM list), 'DMC 893', 'E55260'),
@@ -75,7 +75,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 326', 'BA101A')
 ;
 -- 03
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 151', 'CE979D'),
     ((SELECT id FROM list), 'DMC 3354', 'CA7C85'),
@@ -105,7 +105,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 915', '750722')
 ;
 -- 04
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 225', 'C5A094'),
     ((SELECT id FROM list), 'DMC 224', 'BE7E73'),
@@ -131,7 +131,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 154', '2F1421')
 ;
 -- 05
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 211', 'A088A9'),
     ((SELECT id FROM list), 'DMC 210', '956BA0'),
@@ -160,7 +160,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 791', '16153D')
 ;
 -- 06
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 3840', '9FB1C8'),
     ((SELECT id FROM list), 'DMC 3839', '6C86BD'),
@@ -186,7 +186,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 3844', '009AC6')
 ;
 -- 07
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 159', 'A2A3B3'),
     ((SELECT id FROM list), 'DMC 160', '7E87A7'),
@@ -211,7 +211,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 3750', '25384F')
 ;
 -- 08
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 828', 'A5B8B4'),
     ((SELECT id FROM list), 'DMC 3761', '94B6BB'),
@@ -241,7 +241,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 3847', '125652')
 ;
 -- 09
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 964', '83BDAF'),
     ((SELECT id FROM list), 'DMC 959', '44AD9A'),
@@ -271,7 +271,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 500', '222E25')
 ;
 -- 10
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 955', '8AB488'),
     ((SELECT id FROM list), 'DMC 954', '62A26C'),
@@ -300,7 +300,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 895', '212D19')
 ;
 -- 11
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 704', '8FBB4A'),
     ((SELECT id FROM list), 'DMC 703', '79B14E'),
@@ -329,7 +329,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 520', '475A3F')
 ;
 -- 12
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 3364', '8E975F'),
     ((SELECT id FROM list), 'DMC 3363', '6A8156'),
@@ -357,7 +357,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 829', '8D4D18')
 ;
 -- 13
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 613', 'C5B291'),
     ((SELECT id FROM list), 'DMC 612', 'B59460'),
@@ -387,7 +387,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 3852', 'CC8508')
 ;
 -- 14
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 445', 'DED361'),
     ((SELECT id FROM list), 'DMC 307', 'EED20B'),
@@ -416,7 +416,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 606', 'DC0B00')
 ;
 -- 15
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 951', 'CDA888'),
     ((SELECT id FROM list), 'DMC 3856', 'D4965D'),
@@ -442,7 +442,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 3853', 'D14A01')
 ;
 -- 16
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 3827', 'D59E5C'),
     ((SELECT id FROM list), 'DMC 977', 'DA9036'),
@@ -470,7 +470,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 632', '923C2A')
 ;
 -- 17
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 453', 'ACA09C'),
     ((SELECT id FROM list), 'DMC 452', '9C8584'),
@@ -497,7 +497,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 3031', '442820')
 ;
 -- 18
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC B5200', 'C7C8CE'),
     ((SELECT id FROM list), 'DMC BLANC', 'C7C8C5'),
@@ -526,7 +526,7 @@ INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 838', '3C241E')
 ;
 -- 19
-WITH list AS (SELECT id FROM threadlists WHERE user_id = 1 AND name = 'DMC')
+WITH list AS (SELECT id FROM threadlists WHERE user_id IS NULL AND name = 'DMC')
 INSERT INTO threads(list_id,name,color) VALUES
     ((SELECT id FROM list), 'DMC 3072', 'A2A79D'),
     ((SELECT id FROM list), 'DMC 648', '908A7D'),

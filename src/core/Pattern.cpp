@@ -30,7 +30,7 @@ const Pattern::PixelBuffer& Pattern::get() const {
     return m_pixelBuffer;
 }
 
-const ColorSpace::ColorRGBA& Pattern::get(size_t x, size_t y) const {
+const ColorSpace::ColorRGBA& Pattern::operator[](size_t x, size_t y) const {
     return m_pixelBuffer.pixels[y * m_pixelBuffer.width + x];
 }
 
@@ -49,7 +49,7 @@ ThreadList::UsageCount Pattern::computeUsage() const {
     }
 
     for(size_t index: m_selection) {
-        auto found = std::find_if(usage.begin(), usage.end(), [&](auto& val)->bool {
+        auto found = std::find_if(usage.begin(), usage.end(), [&](auto& val) {
             return val.first.get().color() == m_pixelBuffer.pixels[index];
         });
         if(found != usage.end()) {
@@ -125,7 +125,7 @@ void Pattern::createGrid() {
 }
 
 void Pattern::drawPixelOnGrid(size_t x, size_t y) {
-    drawPixelOnGrid(x, y, m_grid, get(x, y));
+    drawPixelOnGrid(x, y, m_grid, (*this)[x, y]);
 }
 
 void Pattern::drawPixelOnGrid(size_t x, size_t y, PixelBuffer& grid, const ColorSpace::ColorRGBA& color) const {

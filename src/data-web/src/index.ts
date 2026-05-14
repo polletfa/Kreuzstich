@@ -6,10 +6,10 @@
 
 import 'dotenv/config';
 
-import { Server } from './Server';
+import { Application } from './Application';
 
 try {
-    new Server().start();
+    new Application().start();
 } catch(error) {
     console.error(error instanceof Error ? error.message : error);
     process.exit(1);

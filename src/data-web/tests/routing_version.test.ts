@@ -8,9 +8,9 @@
 // todo just a test for now!
 import { describe, it, expect, beforeAll, beforeEach } from 'vitest';
 
-import { Server } from '../src/Server';
+import { Application } from '../src/Application';
 
-let server: Server;
+let app: Application;
 
 beforeAll(() => {
     //todo maybe create a testbase file or something. We will probably need this for lots of tests
@@ -20,15 +20,16 @@ beforeAll(() => {
     process.env.KREUZSTICH_DATA_WEB_DB_DB="test";
     process.env.KREUZSTICH_DATA_WEB_DB_USER="test";
     process.env.KREUZSTICH_DATA_WEB_DB_PASSWORD="test";
+    process.env.KREUZSTICH_DATA_WEB_JWT_SECRET="test";
 });
 
 beforeEach(async () => {
-    server = new Server(/* disableLogs: */ true);
+    app = new Application(/* disableLogs: */ true);
 });
 
 describe('Routing /version', () => {
     it('/version', async () => {
-        const response = await server.get().inject({
+        const response = await app.get().inject({
             method: 'GET',
             url: '/version'
         });

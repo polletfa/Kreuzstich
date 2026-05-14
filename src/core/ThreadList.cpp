@@ -12,21 +12,24 @@
 ThreadList::ThreadList(const std::vector<Thread>& threads)
     : m_threads(threads)
 {
+    m_usage.reserve(threads.size());
+    m_threadsAsRefList.reserve(threads.size());
     for(const auto& thread: m_threads) {
-        m_usage.push_back({thread, 0});
-        m_threadsAsRefList.push_back(thread);
+        m_usage.push_back({std::cref(thread), 0});
+        m_threadsAsRefList.push_back(std::cref(thread));
     }
 }
 
 ThreadList::RefList ThreadList::get(SortBy sortBy, SortOrder sortOrder) const {
     // init list with references
     RefList list;
+    list.reserve(m_threads.size());
     for(const auto& thread: m_threads) {
-        list.push_back(thread);
+        list.push_back(std::cref(thread));
     }
 
     // sort
-    std::sort(list.begin(), list.end(), [=, this](const Thread& lhs, const Thread& rhs)->bool {
+    std::sort(list.begin(), list.end(), [&](const Thread& lhs, const Thread& rhs) {
         return compareThreads(lhs, rhs, sortBy, sortOrder);
     });
 
@@ -39,6 +42,7 @@ ThreadList::OptionalRef ThreadList::findClosest(const ColorSpace::ColorRGBA& col
 
 ThreadList::OptionalRef ThreadList::findClosestInUse(const ColorSpace::ColorRGBA& color, ColorSpace::DistanceAlgo algo) const {
     RefList inUse;
+    inUse.reserve(m_usage.size());
     for(const auto& item: m_usage) {
         if(item.second > 0) {
             inUse.push_back(item.first);

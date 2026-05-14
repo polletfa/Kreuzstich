@@ -31,6 +31,7 @@
 
     "paths": {
       "@version": ["./build/Version.ts"],
+      "@datatypes/*": ["./src/types/*"]
     }
   },
   "include": [

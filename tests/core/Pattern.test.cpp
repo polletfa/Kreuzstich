@@ -1,3 +1,4 @@
+
 /*
   Kreuzstich
   Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
@@ -55,8 +56,8 @@ TEST_F(PatternTests, get) {
     auto buffer = pattern.get();
     EXPECT_EQ(buffer.width, 300);
     EXPECT_EQ(buffer.height, 225);
-    EXPECT_EQ(pattern.get(10,5), buffer.pixels[5*300 + 10]);
-    EXPECT_EQ(pattern.get(100,75), buffer.pixels[75*300 + 100]);
+    EXPECT_EQ((pattern[10,5]), buffer.pixels[5*300 + 10]);
+    EXPECT_EQ((pattern[100,75]), buffer.pixels[75*300 + 100]);
 }
 
 TEST_F(PatternTests, grid) {
@@ -105,14 +106,14 @@ TEST_F(PatternTests, replacePixel) {
     bool found = false;
     for(size_t x = 0; x < pattern.get().width; ++x) {
         for(size_t y = 0; y < pattern.get().height; ++y) {
-            if(pattern.get(x, y) == usage[0].first.get().color()) {
+            if(pattern[x, y] == usage[0].first.get().color()) {
                 found = true;
 
                 // replace pixel with the color from usage[1]
                 pattern.replacePixel(x, y, usage[1].first.get());
 
                 // check pixel and new usage
-                EXPECT_EQ(pattern.get(x, y), usage[1].first.get().color());
+                EXPECT_EQ((pattern[x, y]), usage[1].first.get().color());
                 EXPECT_EQ(pattern.threadList().usage()[0].second, usage[0].second - 1);
                 EXPECT_EQ(pattern.threadList().usage()[1].second, usage[1].second + 1);
                 break;

@@ -5,7 +5,15 @@
 */
 
 import { TestBed } from '@angular/core/testing';
+
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+
 import { MainComponent } from './main-component';
+
 import { CORE_LOADER } from '@services/core-service/core-service';
 import { Version } from '@version';
 
@@ -38,7 +46,14 @@ const mockCore = {
 describe('MainComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [MainComponent],
+            imports: [
+                MainComponent,
+                MatButtonModule,
+                MatIconModule,
+                MatListModule,
+                MatSidenavModule,
+                MatToolbarModule
+            ],
             providers: [
                 { provide: CORE_LOADER, useValue: () => Promise.resolve(mockCore) }
             ]
@@ -49,12 +64,5 @@ describe('MainComponent', () => {
         const fixture = TestBed.createComponent(MainComponent);
         const app = fixture.componentInstance;
         expect(app).toBeTruthy();
-    });
-
-    it('should render title', async () => {
-        const fixture = TestBed.createComponent(MainComponent);
-        await fixture.whenStable();
-        const compiled = fixture.nativeElement as HTMLElement;
-        expect(compiled.querySelector('h1')?.textContent).toContain('Hello, gui-web');
     });
 });
