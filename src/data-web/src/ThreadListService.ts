@@ -27,7 +27,7 @@ export class ThreadListService {
                 : await this.db.manyOrNone<db.ThreadList>('SELECT * FROM threadlists WHERE user_id IS NULL;');
             return {success: true, data: res};
         } catch(error) {
-            this.server.log.error(error);
+            this.server.log.error('Database error: ${error.message}');
         }
         return {success: false};
     }
