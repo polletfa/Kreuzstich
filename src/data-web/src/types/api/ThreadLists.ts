@@ -4,7 +4,7 @@
   MIT License, see LICENSE file.
 */
 
-import { z } from 'zod';
+import * as z from 'zod/v4';
 
 import { GenericResponseSchema } from '@datatypes/api/Generic';
 import * as db from '@datatypes/db';

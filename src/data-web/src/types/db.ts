@@ -4,7 +4,7 @@
   MIT License, see LICENSE file.
 */
 
-import { z } from 'zod';
+import * as z from 'zod/v4';
 
 export const UserSchema = z.object({
     id: z.number(),

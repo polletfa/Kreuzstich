@@ -54,7 +54,7 @@ add_custom_target(gui-web ALL
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     COMMENT "Building Angular app..."
 )
-add_dependencies(gui-web gui-web-npminstall gui-web-resources gui-web-wasm)
+add_dependencies(gui-web gui-web-npminstall gui-web-resources gui-web-wasm data-web) # Note: also requires data-web, because it imports files from there
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dist/gui-web/ DESTINATION gui-web COMPONENT web-app)
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/resources/docker DESTINATION . COMPONENT web-app)
 add_dependencies(install-web-app gui-web)
