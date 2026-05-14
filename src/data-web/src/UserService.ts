@@ -7,10 +7,10 @@
 import type { FastifyReply } from 'fastify';
 import bcrypt from 'bcryptjs';
 
-import type { Server, Database } from '@services/Application';
-import { AuthHelper } from '@services/AuthHelper';
-import * as api from '@api/User';
-import * as db from '@db';
+import type { Server, Database } from './Application';
+import { AuthHelper } from './AuthHelper';
+import * as api from '@datatypes/api/User';
+import * as db from '@datatypes/db';
 
 export class UserService {
     constructor(private server: Server, private db: Database) {}

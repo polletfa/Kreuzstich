@@ -6,7 +6,7 @@
 
 import type { FastifyReply, FastifyRequest } from 'fastify';
 
-import { UserSchema } from '@api/User';
+import { UserSchema } from '@datatypes/api/User';
 
 export class AuthHelper {
     /**

@@ -4,7 +4,7 @@
   MIT License, see LICENSE file.
 */
 
-import type * as api from '@api/Version';
+import type * as api from '@types/api/Version';
 
 export class Version {
     private static version: api.GetVersionResponse|undefined;

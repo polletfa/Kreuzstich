@@ -6,14 +6,11 @@
 
 import { z } from 'zod';
 
-import type { GenericResponse } from '@api/Generic';
-import { GenericResponseSchema } from '@api/Generic';
+import type { GenericResponse } from '@datatypes/api/Generic';
+import { GenericResponseSchema } from '@datatypes/api/Generic';
+import * as db from '@datatypes/db';
 
-export const UserSchema = z.object({
-    id: z.number(),
-    email: z.string(),
-    name: z.string()
-});
+export const UserSchema = db.UserSchema.omit({password: true});
 export type User = z.infer<typeof UserSchema>;
 
 // ------------------------------------------------------------------------- GET /user/status
@@ -23,11 +20,9 @@ export type GetUserStatusResponse = z.infer<typeof GetUserStatusResponseSchema>;
 
 // ------------------------------------------------------------------------- POST /user/login
 
-export const PostUserLoginRequestSchema = z.object({
-    email: z.string(),
-    password: z.string(),
-    persist: z.boolean()
-});
+export const PostUserLoginRequestSchema = db.UserSchema
+    .pick({email: true, password: true})
+    .extend({persist: z.boolean()});
 export type PostUserLoginRequest = z.infer<typeof PostUserLoginRequestSchema>;
 
 export const PostUserLoginResponseSchema = GetUserStatusResponseSchema;

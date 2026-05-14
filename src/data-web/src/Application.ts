@@ -20,11 +20,11 @@ import type { StreamEntry } from 'pino';
 import pgPromise from 'pg-promise';
 import type { IDatabase } from 'pg-promise';
 
-import { ConfigService } from '@services/ConfigService';
-import { UserService } from '@services/UserService';
-import { ThreadListService } from '@services/ThreadListService';
+import { ConfigService } from './ConfigService';
+import { UserService } from './UserService';
+import { ThreadListService } from './ThreadListService';
 import { Version } from '@version';
-import { LOG_RETENTION } from '@services/PrivacyOptions';
+import { LOG_RETENTION } from './PrivacyOptions';
 
 export type Database = IDatabase<{}>;
 export type Server = FastifyInstance<RawServerDefault, IncomingMessage, ServerResponse, FastifyBaseLogger, ZodTypeProvider>;

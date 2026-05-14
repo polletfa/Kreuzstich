@@ -4,11 +4,11 @@
   MIT License, see LICENSE file.
 */
 
-import type { Server, Database } from '@services/Application';
-import type { User } from '@api/User';
-import { AuthHelper } from '@services/AuthHelper';
-import * as api from '@api/ThreadLists';
-import * as db from '@db';
+import type { Server, Database } from './Application';
+import type { User } from '@datatypes/api/User';
+import { AuthHelper } from './AuthHelper';
+import * as api from '@datatypes/api/ThreadLists';
+import * as db from '@datatypes/db';
 
 export class ThreadListService {
     constructor(private server: Server, private db: Database) {}
@@ -25,7 +25,7 @@ export class ThreadListService {
             const res = user
                 ? await this.db.manyOrNone<db.ThreadList>('SELECT * FROM threadlists WHERE user_id = $1 OR user_id IS NULL;', [user.id])
                 : await this.db.manyOrNone<db.ThreadList>('SELECT * FROM threadlists WHERE user_id IS NULL;');
-            return {success: true, data: res.map(entry => ({id: entry.id, isCustom: entry.user_id !== null, name: entry.name}))};
+            return {success: true, data: res};
         } catch(error) {
             this.server.log.error(error);
         }

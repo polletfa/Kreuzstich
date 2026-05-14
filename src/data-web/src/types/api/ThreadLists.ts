@@ -6,15 +6,12 @@
 
 import { z } from 'zod';
 
-import { GenericResponseSchema } from '@api/Generic';
+import { GenericResponseSchema } from '@datatypes/api/Generic';
+import * as db from '@datatypes/db';
 
 // ------------------------------------------------------------------------- GET /threadlists
 
 export const GetThreadListsResponseSchema = GenericResponseSchema.extend({
-    data: z.array(z.object({
-        id: z.number(),
-        isCustom: z.boolean(),
-        name: z.string()
-    })).optional()
+    data: z.array(db.ThreadListSchema).optional()
 });
 export type GetThreadListsResponse = z.infer<typeof GetThreadListsResponseSchema>;

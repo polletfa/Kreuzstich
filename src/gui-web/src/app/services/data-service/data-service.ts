@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { ZodType } from 'zod';
 
-import * as api from '@api/Version';
+import * as api from '@datatypes/api/Version';
 
 /**
  * Service to communicate with the data-web component (backend)

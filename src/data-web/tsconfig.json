@@ -31,9 +31,7 @@
 
     "paths": {
       "@version": ["./build/Version.ts"],
-      "@services/*": ["./src/*"],
-      "@api/*": ["./src/types/api/*"],
-      "@db": ["./src/types/db.ts"],
+      "@datatypes/*": ["./src/types/*"]
     }
   },
   "include": [

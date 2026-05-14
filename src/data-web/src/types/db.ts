@@ -4,22 +4,27 @@
   MIT License, see LICENSE file.
 */
 
-export interface User {
-    id: number,
-    email: string,
-    name: string,
-    password: string
-}
+import { z } from 'zod';
 
-export interface Thread {
-    id: number,
-    list_id: number,
-    name: string,
-    color: string
-}
+export const UserSchema = z.object({
+    id: z.number(),
+    email: z.string(),
+    name: z.string(),
+    password: z.string()
+});
+export type User = z.infer<typeof UserSchema>;
 
-export interface ThreadList {
-    id: number,
-    user_id: number|null,
-    name: string
-}
+export const ThreadSchema = z.object({
+    id: z.number(),
+    list_id: z.number(),
+    name: z.string(),
+    color: z.string()
+});
+export type Thread = z.infer<typeof ThreadSchema>;
+
+export const ThreadListSchema = z.object({
+    id: z.number(),
+    user_id: z.number().nullable(),
+    name: z.string()
+});
+export type ThreadList = z.infer<typeof ThreadListSchema>;

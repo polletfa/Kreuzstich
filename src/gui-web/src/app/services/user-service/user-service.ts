@@ -2,7 +2,7 @@ import { Injectable, signal, computed } from '@angular/core';
 
 import { DataService } from '@services/data-service/data-service';
 
-import * as api from '@api/User';
+import * as api from '@datatypes/api/User';
 
 /**
  * Service for login and user management

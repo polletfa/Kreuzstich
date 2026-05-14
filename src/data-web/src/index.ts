@@ -6,7 +6,7 @@
 
 import 'dotenv/config';
 
-import { Application } from '@services/Application';
+import { Application } from './Application';
 
 try {
     new Application().start();
