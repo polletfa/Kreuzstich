@@ -1,3 +1,9 @@
+/*
+  Kreuzstich
+  Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+  MIT License, see LICENSE file.
+*/
+
 import { Component, effect, OnInit } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';

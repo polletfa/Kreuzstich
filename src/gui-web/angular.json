@@ -51,7 +51,7 @@
                         "styles": ["src/styles.scss"]
                     },
                     "configurations": {
-                        "release": {
+                        "production": {
                             "budgets": [
                                 {
                                     "type": "initial",
@@ -66,25 +66,25 @@
                             ],
                             "outputHashing": "all"
                         },
-                        "debug": {
+                        "development": {
                             "optimization": false,
                             "extractLicenses": false,
                             "sourceMap": true
                         }
                     },
-                    "defaultConfiguration": "debug"
+                    "defaultConfiguration": "development"
                 },
                 "serve": {
                     "builder": "@angular/build:dev-server",
                     "configurations": {
-                        "release": {
-                            "buildTarget": "gui-web:build:release"
+                        "production": {
+                            "buildTarget": "gui-web:build:production"
                         },
-                        "debug": {
-                            "buildTarget": "gui-web:build:debug"
+                        "development": {
+                            "buildTarget": "gui-web:build:development"
                         }
                     },
-                    "defaultConfiguration": "debug",
+                    "defaultConfiguration": "development",
                     "options": {
                         "proxyConfig": "proxy.conf.json"
                     }
