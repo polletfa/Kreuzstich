@@ -3,8 +3,6 @@
 ## Objective
 
 The objective of this document is to provide guidelines for development and deployment to ensure compliance with the European Union's General Data Protection Regulation.
-We don't have the resources to check or ensure compliance with data protection legislations from other jurisdictions but we believe that complying with GDPR
-will be sufficient to automatically ensure compliance with other legislations, so we don't plan to restrict access to the European Union.
 
 Our primary compliance target is the GDPR, as the project is based in the EU. We have not conducted a full assessment of other jurisdictions' data protection laws.
 Given the privacy-first approach of this project, we believe the risk of non-compliance with other regulations is low, but this has not been formally verified.
