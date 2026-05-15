@@ -6,7 +6,7 @@
 ## Legal requirements
 
 * [Data Processing Guidelines](DataProcessingGuidelines.md)
-* [Record of Processing Activities](RecordOfProcessingActivities.md)
+* [Record of Processing Activities](RecordOfProcessingActivities.md) -- TBD
 * [Impressum](Impressum.md)
-* [Privacy Policy](PrivacyPolicy.md)
-* [Terms of Service](TermsOfService.md)
+* [Privacy Policy](PrivacyPolicy.md) -- TBD
+* [Terms of Service](TermsOfService.md) -- TBD
