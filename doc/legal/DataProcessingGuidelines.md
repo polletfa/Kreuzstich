@@ -183,6 +183,7 @@ Repeated violations may result in account suspension.
 
 ## Related documents
 
+- [Data Retention Schedule](DataRetentionSchedule.md)
 - [Privacy Policy](PrivacyPolicy.md) (art. 13/14 GDPR)
 - [Record of Processing Activities](RecordOfProcessingActivities.md) (art. 30 GDPR)
 
