@@ -98,6 +98,7 @@ Data will not be transferred or sold to any third party beyond what is necessary
    - Account suspension
    - Data breach notification (Art. 34 GDPR)
    - Changes in privacy policy (Art. 13/14 GDPR)
+   - Changes in terms of service
 - Account management emails cannot be opted out, since they are either technical or legal requirements.
 - Any other email (for example notifications or newsletters) may only be sent with the explicit permission of the user, configurable in the user profile (art. 7 GDPR).
 - Any optional email shall be disabled by default and must be explicitly subscribed by the user (opt-in).

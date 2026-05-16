@@ -3,10 +3,15 @@
 * [Install the backend server](InstallServer.md)
 * [Access the database](AccessDatabase.md)
 
-## Legal requirements
+## Legal
+
+### Internal
 
 * [Data Processing Guidelines](legal/DataProcessingGuidelines.md)
+* [Data Retention Schedule](legal/DataRetentionSchedule.md)
 * [Record of Processing Activities](legal/RecordOfProcessingActivities.md)
+
+### Public
 * [Impressum](legal/Impressum.md)
 * [Privacy Policy](legal/PrivacyPolicy.md) [(de)](legal/PrivacyPolicy.de.md)
 * [Terms of Service](legal/TermsOfService.md) [(de)](legal/TermsOfService.de.md)
