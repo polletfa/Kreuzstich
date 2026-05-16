@@ -36,6 +36,6 @@ fi
 
 ssh -T -L "$port":"$container_ip":5432 "$connection_string" '
 echo "You can now connect to kreuzstich-'"$environment"'-database with:"
-echo -e "\033[33;1m     PGPASSWORD=kreuzstich psql -h localhost -p '"$port"' -U kreuzstich -d kreuzstich\033[0m"
+echo -e "\033[33;1m     PGPASSWORD=database-password psql -h localhost -p '"$port"' -U kreuzstich -d kreuzstich\033[0m"
 echo "Terminate this session (CTRL+C) to close the connection."
 sleep infinity'

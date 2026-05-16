@@ -12,9 +12,14 @@ services:
   kreuzstich-int-database:
     container_name: kreuzstich-int-database
     image: postgres:18
+    env_file:
+      # For environment variables that should not be committed:
+      # - POSTGRES_PASSWORD (kreuzstich-int-database)
+      # - KREUZSTICH_DATA_WEB_DB_PASSWORD (kreuzstich-int-api)
+      # - KREUZSTICH_DATA_WEB_JWT_SECRET (kreuzstich-int-api)
+      - ./secrets.env
     environment:
       - POSTGRES_USER=kreuzstich
-      - POSTGRES_PASSWORD=kreuzstich
       - POSTGRES_DB=kreuzstich
     networks:
       - kreuzstich-int-backend
@@ -31,14 +36,15 @@ services:
     image: ghcr.io/polletfa/kreuzstich-int-api:latest
     env_file:
       # For environment variables that should not be committed:
-      # - KREUZSTICH_DATA_WEB_JWT_SECRET
+      # - POSTGRES_PASSWORD (kreuzstich-int-database)
+      # - KREUZSTICH_DATA_WEB_DB_PASSWORD (kreuzstich-int-api)
+      # - KREUZSTICH_DATA_WEB_JWT_SECRET (kreuzstich-int-api)
       - ./secrets.env
     environment:
       - KREUZSTICH_DATA_WEB_PORT=80
       - KREUZSTICH_DATA_WEB_DB_HOST=kreuzstich-int-database
       - KREUZSTICH_DATA_WEB_DB_DB=kreuzstich
       - KREUZSTICH_DATA_WEB_DB_USER=kreuzstich
-      - KREUZSTICH_DATA_WEB_DB_PASSWORD=kreuzstich
     networks:
         - kreuzstich-int-backend
     volumes:

@@ -13,11 +13,9 @@ To that extent, use the script `tools/ssh-tunnel-to-db.sh`:
 - port: Port to use on localhost to tunnel through. Default: 5432.
 
 You can then connect to the database at `localhost:port`.
-Database, username and password are `kreuzstich`.
+Database and username are `kreuzstich`. The password is defined in the secrets.env file
+on the server.
 
 ```
-PGPASSWORD=kreuzstich psql -h localhost -p 5432 -U kreuzstich -d kreuzstich
+PGPASSWORD=database-password psql -h localhost -p 5432 -U kreuzstich -d kreuzstich
 ```
-
-Note: We don't treat the database credentials as critical because the database
-      is not accessible from the internet and requires SSH access to the server.

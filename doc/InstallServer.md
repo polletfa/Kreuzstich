@@ -25,8 +25,24 @@ On your local machine, execute the following steps:
 
 ## Install
 
-Log into the server as root and execute:
+1. Log into the server
 
-```
-/srv/install.sh
-```
+2. Create /srv/services/kreuzstich-int/secrets.env and /srv/services/kreuzstich-prod/secrets.env.
+   Use different passwords/tokens for INT and PROD:
+   ```
+   #
+   # For the database container
+   #
+   POSTGRES_PASSWORD=random-password-for-database
+
+   #
+   # For the api container
+   #
+   KREUZSTICH_DATA_WEB_DB_PASSWORD=random-password-for-database
+   KREUZSTICH_DATA_WEB_JWT_SECRET=random-token
+   ```
+
+3. Install and launch:
+   ```
+   /srv/install.sh
+   ```
