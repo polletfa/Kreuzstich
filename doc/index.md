@@ -18,5 +18,5 @@
 
 ## Administrative
 
-* [Corporate Mission Statement](CorporateMissionStatement.md) [(de)](CorporateMissionStatement.de.md)
+* [Corporate Mission Statement](admin/CorporateMissionStatement.md) [(de)](admin/CorporateMissionStatement.de.md)
 * [Budget](admin/Budget.md)
