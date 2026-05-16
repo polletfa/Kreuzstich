@@ -32,7 +32,7 @@ Data will not be transferred or sold to any third party beyond what is necessary
 
 ### URLs and cookies
 
-- URLs, especially for API calls, shall not contain any token or user ID.
+- URLs, especially for API calls, shall not contain any token, user ID or resource ID that can be linked to a user (no REST API, user/resource IDs in POST requests only).
 - User identification shall be done through a HTTP-only session cookie.
 - The session cookie shall expire when the user closes the browser, unless the user selected "Keep me logged in" during the logging process.
 - If the user selected "Keep me logged in", the session cookie shall expire after 30 days at most.
@@ -56,6 +56,9 @@ Data will not be transferred or sold to any third party beyond what is necessary
 - Backend/Database logs:
    - Database queries shall not be logged.
    - On error, only log `error.message`, never the full error object, which contains the full query.
+   - Never log user id, authentication tokens, or user input.
+- Backend/additional logs:
+   - Error messages, information messages for debugging purposes
    - Never log user id, authentication tokens, or user input.
 - Logs are managed by docker.
 - On deployment, old containers are removed, including the associated logs (so logs are only retained since the last deployment)
@@ -88,11 +91,13 @@ Data will not be transferred or sold to any third party beyond what is necessary
 
 ### Emails
 
-- Emails may be sent for account management purposes:
+- Emails may be sent for account management and legal purposes:
    - Confirmation of account creation
    - Password recovery
    - Account deletion
-   - Data breach notification
+   - Account suspension
+   - Data breach notification (Art. 34 GDPR)
+   - Changes in privacy policy (Art. 13/14 GDPR)
 - Account management emails cannot be opted out, since they are either technical or legal requirements.
 - Any other email (for example notifications or newsletters) may only be sent with the explicit permission of the user, configurable in the user profile (art. 7 GDPR).
 - Any optional email shall be disabled by default and must be explicitly subscribed by the user (opt-in).
@@ -115,6 +120,50 @@ Data will not be transferred or sold to any third party beyond what is necessary
 - In case of a suspected breach, the responsible authority will be notified within 72 hours (art. 33 GDPR).
 - The responsible authority is the [Landesbeauftragte für Datenschutz Brandenburg](https://www.lda.brandenburg.de/).
 
+### Illegal Content and ToS Violations Response Procedure
+
+#### Serious illegal content (CSAM, terrorism, hate speech)
+
+In the event that content suspected to be child sexual abuse material (CSAM),
+terrorism-related content, or content inciting violence or hatred (§ 130 StGB)
+is discovered:
+
+- **Immediately suspend the content** – make it inaccessible to all users, including the owner. Do not delete it.
+- **Immediately suspend the user account** – prevent the user from uploading further content or deleting their account. Do not delete it.
+- **Preserve all associated account data** – do not delete the account or any associated metadata.
+- **Report immediately to the appropriate authority:**
+   - CSAM → [Bundeskriminalamt](https://www.bka.de)
+   - Terrorism-related content → [Bundeskriminalamt](https://www.bka.de)
+   - Hate speech / incitement to violence → [Staatsanwaltschaft Potsdam](https://staatsanwaltschaften.brandenburg.de/sta/de/sta-potsdam/)
+- **Follow law enforcement instructions** regarding evidence preservation and deletion. Do not delete the content or backups until explicitly
+   authorized to do so.
+- **Document everything** – record what was found, when, what actions were taken, and when.
+
+Note: Do not copy or download the content. Suspending it in place preserves it as evidence without active possession.
+
+#### Other ToS violations
+
+In the event that content violating the Terms of Service is discovered:
+
+- **Public explicit content** – set visibility to private and notify the user.
+   This is considered a mistake rather than a violation.
+
+- **Copyright infringement or non-consensual images of real people** – immediately suspend the content and notify the user by email, explaining
+   the violation and the action taken. The user may appeal within 30 days by contacting mail@kreuzstich.art.
+   If the appeal is successful, the content will be restored. Otherwise it will be deleted after 30 days.
+
+- **Document all actions taken**, including what was found, when, and what was done.
+
+Repeated violations may result in account suspension.
+
+#### Suspended accounts
+
+- Accounts suspended due to serious illegal content cannot be deleted by the user. Accounts will only be deleted after instructed to do so by the authorities.
+- Accounts suspended due to repeated violations without police involvement may not be reactivated by the user, but they may be deleted.
+  If the user does not request deletion, the account will be automatically deleted after 1 year.
+  One month before deletion, the user shall be sent a warning.
+  The account may be reenabled by the operator after an appeal by the user.
+
 ### External providers
 
 - GitHub, Inc.
@@ -123,13 +172,9 @@ Data will not be transferred or sold to any third party beyond what is necessary
    - SSH credentials (secrets)
    - No personal data, not GDPR relevant
 - STRATO GmbH
-   - Virtual server
-   - Datacenter located in Germany
+   - Virtual server, backups
+   - Datacenters located in Germany
    - [Data processing agreement](DPA.strato.pdf) signed on the 12th May 2026 (art. 28 GDPR).
-- Acronis International GmbH
-   - Backups
-   - Acronis has datacenters outside the European Union but backups are stored encrypted.
-   - Sub-contractor of STRATO GmbH, covered by the same DPA (art. 28 GDPR).
 - Heinlein Hosting GmbH
    - Email service mailbox.org
    - Datacenters in Germany
@@ -148,6 +193,7 @@ The following GDPR articles are relevant to this document:
 - **Art. 7** – Conditions for consent
 - **Art. 13/14** – Information obligations
 - **Art. 17** – Right to erasure
+- **Art. 17.3** – Exceptions to the right to erasure
 - **Art. 25** – Privacy by design and by default
 - **Art. 28** – Data Processing Agreements
 - **Art. 30** – Record of Processing Activities
