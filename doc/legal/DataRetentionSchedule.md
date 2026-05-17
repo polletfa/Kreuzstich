@@ -16,3 +16,8 @@ It is a quick reference companion to the [Data Processing Guidelines](DataProces
 | User content (suspended, ToS) | 30 days | Restored if appeal successful, otherwise deleted |
 | User content (suspended, illegal) | Until authorized by law enforcement | Cannot be deleted by user |
 | Backups | Max 90 days | Includes residual copies of deleted data. Backups containing illegal content must be purged after authorization by law enforcement. |
+
+## Related documents
+
+- [Data Processing Guidelines](DataProcessingGuidelines.md)
+- [Record of Processing Activities](RecordOfProcessingActivities.md)

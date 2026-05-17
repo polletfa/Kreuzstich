@@ -62,7 +62,7 @@ https://kreuzstich.art
 ## Related Documents
 
 - [Data Processing Guidelines](DataProcessingGuidelines.md)
-- [Privacy Policy](PrivacyPolicy.md) (Art. 13/14 GDPR)
+- [Data Retention Schedule](DataRetentionSchedule.md)
 
 ## GDPR Reference
 
