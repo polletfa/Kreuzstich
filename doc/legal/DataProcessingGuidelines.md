@@ -74,7 +74,10 @@ Data will not be transferred or sold to any third party beyond what is necessary
   The recommended workflow in this case would be to either use a library to strip EXIF data, or to proceed as follow:
    - Load the picture into a raw pixel buffer,
    - Generate new picture from the raw pixel buffer.
-- Visibility of patterns shall be private by default, unless set to public by the user (art. 25 GDPR).
+- Visibility of patterns can be private, adult users only, or public.
+- Visibility of patterns shall be private by default, unless set otherwise by the user (art. 25 GDPR).
+- Patterns with adult content cannot be shared publicly, but can be shared with adult users who consent to see this type of content (see next section).
+  Selecting the appropriate visibility is the responsibility of the user (no automatic detection of adult content, no moderation before publishing).
 
 ### User accounts and guest access
 
@@ -88,6 +91,8 @@ Data will not be transferred or sold to any third party beyond what is necessary
   - The account shall not be visible anymore, but the data shall be retained for a maximum of 1 year.
   - One month before deletion, the user shall be sent a warning.
   - If the user logs in during the retention period, the account may then be reactivated upon confirmation by the user.
+- Users can consent to viewing adult content. By doing so, they declare that they are legally allowed to do so. This option is disabled by default and must
+  be set explicitly.
 
 ### Emails
 
@@ -146,10 +151,10 @@ Note: Do not copy or download the content. Suspending it in place preserves it a
 
 In the event that content violating the Terms of Service is discovered:
 
-- **Public explicit content** – set visibility to private and notify the user.
+- **Public explicit content** – set visibility to _adult users only_ and notify the user.
    This is considered a mistake rather than a violation.
 
-- **Copyright infringement or non-consensual images of real people** – immediately suspend the content and notify the user by email, explaining
+- **Copyright infringement, non-consensual images of real people or discriminatory content** – immediately suspend the content and notify the user by email, explaining
    the violation and the action taken. The user may appeal within 30 days by contacting mail@kreuzstich.art.
    If the appeal is successful, the content will be restored. Otherwise it will be deleted after 30 days.
 

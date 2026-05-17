@@ -4,16 +4,12 @@
 
 We take your privacy seriously. This policy explains what data we collect, why we collect it, and what we do with it.
 
----
-
 ## Who is responsible for your data
 
 Fabien Pollet\
 Heinrich-Heine-Straße 19\
 14641 Nauen, Germany\
 mail@kreuzstich.art
-
----
 
 ## What data we collect and why
 
@@ -33,6 +29,7 @@ These logs contain no personal information and are automatically deleted on ever
 If you use Kreuzstich without registering, any data you create (such as patterns) is stored locally in your browser using IndexedDB.
 This data never leaves your device and is never transmitted to or accessible by us.
 Note that this data will be lost if you clear your browser storage, and we have no way to recover it.
+Content marked as adult-only is not accessible to non-registered users.
 
 ### If you create an account
 
@@ -40,6 +37,8 @@ We ask for:
 - **Email address** – to identify your account and send you account-related notifications.
 - **Username** – to identify you on the platform.
 - **Password** – stored as a secure hash, we never see your actual password.
+
+By default, you will not be shown content marked as adult-only. You can explicitly allow adult content in the user profile.
 
 Everything else (profile information, social links, etc.) is entirely optional and only collected if you choose to provide it.
 
@@ -50,9 +49,8 @@ If you upload a photo to create a pattern, the original photo file is never stor
 Only the pattern data is kept: a resized version of the image with its original colors, and the pattern itself with the selected thread colors.
 All metadata (including GPS and device information) is stripped from uploaded images.
 
+Content visibility can be set to private, adult users only, or public. See our [Terms of Service](TermsOfService.md) for details on content restrictions.
 By default, your content is private and only visible to you, unless you explicitly choose to make it public.
-
----
 
 ## Legal basis for processing your data
 
@@ -62,16 +60,12 @@ We process your data based on the following legal grounds (Art. 6 GDPR):
 - **Legitimate interest (Art. 6.1.f)** – minimal server logs are kept for technical operation and error monitoring.
 - **Consent (Art. 6.1.a)** – any optional emails (notifications, newsletters) are only sent with your explicit opt-in.
 
----
-
 ## How long we keep your data
 
 - **Server logs**: deleted on every deployment or when the size limit is reached (10 MB per server component), whichever comes first.
 - **Account data and content**: kept for as long as your account exists.
 - **After account deletion**: data is removed immediately, though residual copies may remain in encrypted backups for up to 90 days.
 - **After account disabling**: data is retained for up to 1 year so you can reactivate your account, then permanently deleted. You will receive a warning email one month before deletion.
-
----
 
 ## Who we share your data with
 
@@ -84,8 +78,6 @@ We use the following service providers to operate the platform:
 
 Both providers are based in Germany and operate under EU data protection law.
 
----
-
 ## Cookies
 
 We use a single cookie to keep you logged in. It contains no personal information – just a random session token that lets the server recognize your browser.
@@ -94,8 +86,6 @@ We use a single cookie to keep you logged in. It contains no personal informatio
 - If you select "Keep me logged in", the cookie expires after 30 days.
 
 We do not use any tracking, advertising, or analytics cookies.
-
----
 
 ## Your rights
 
@@ -113,14 +103,10 @@ To exercise any of these rights, contact us at mail@kreuzstich.art. We will resp
 
 You also have the right to lodge a complaint with the supervisory authority: [Landesbeauftragte für Datenschutz Brandenburg](https://www.lda.brandenburg.de/)
 
----
-
 ## Changes to this policy
 
 If we make significant changes to this policy, we will notify registered users by email.
 The "last updated" date at the top of this page will always reflect the most recent version.
-
----
 
 ## Contact
 

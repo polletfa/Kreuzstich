@@ -40,7 +40,7 @@ https://kreuzstich.art
 ### 3. User Accounts
 
 - **Purpose**: Authentication and identification of registered users, enabling access to user-specific features and persistent storage of user-generated content.
-- **Data categories**: Email address, username, hashed password, account status and metadata (e.g. account creation date, disabled/suspended status)
+- **Data categories**: Email address, username, hashed password, adult content setting, account status and metadata (e.g. account creation date, disabled/suspended status)
 - **Data subjects**: Registered users
 - **Retention**: For the duration of the account. On deletion, data is removed immediately (except residual copies in backups, retained for up to 90 days). On disabling, data is retained for up to 1 year, then deleted.
 - **Legal basis**: Contract performance – Art. 6.1.b GDPR (account creation constitutes a service agreement)
