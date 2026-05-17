@@ -1,4 +1,4 @@
 # Unternehmensleitbild
 
-Wir verpflichten uns nachdrücklich zur Verbesserung der Menschheit, zum Weltfrieden und zum Kreuzstich.
-Unser Leitbild in Kurzform: Tu kein Böses (aber wirklich, nicht wie dieses andere Unternehmen, du weißt schon welches).
+Wir bleiben fest verpflichtet zur Verbesserung der Menschheit, zum Weltfrieden und zum Kreuzstich.
+Unser Leitbild in Kurzform: Sei nicht böse (aber wirklich, nicht wie diese Suchmaschinenunternehmen, du weißt schon welches).

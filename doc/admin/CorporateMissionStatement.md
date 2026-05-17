@@ -1,4 +1,4 @@
 # Corporate Mission Statement
 
-We strongly commit to the bettering of humanity, peace on earth and cross-stitching.
-Our mission statement in short: Do no evil (but for real, not like that other company, you know who I mean).
+We remain deeply committed to the bettering of humanity, peace on earth and cross-stitching.
+Our mission statement in short: Don't be evil (but for real, not like that search engine company, you know who I mean).
