@@ -72,7 +72,8 @@ EMSCRIPTEN_BINDINGS(ThreadList) {
         ;
 
     emscripten::class_<ThreadList>("ThreadList")
-        .constructor<const std::vector<Thread>&>()
+        .constructor<const std::string&,const std::vector<Thread>&>()
+        .function("name", &ThreadList::name)
         .function("get", emscripten::optional_override([](const ThreadList& instance, ThreadList::SortBy sortBy, ThreadList::SortOrder sortOrder)->RefListWASM {
             return toWASM(instance.get(sortBy, sortOrder));
         }))

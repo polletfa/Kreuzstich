@@ -32,6 +32,9 @@ set(THREADLISTS_SOURCES_DMC
 set(THREADLISTS_NAME_DMC DMC)
 
 # Target: threadlists
+# Note: the threadlists are generated once and committed in the repository. We don't need to generate them
+#       on each build, so we don't add the target to ALL or define dependencies. The target needs to be
+#       called explicitely when modifying the threadlists.
 
 if(SKIP_THREADLISTS)
     message(WARNING "Skipping threadlists (missing requirement)")
@@ -60,8 +63,5 @@ else()
         COMMENT "Building threadlists"
     )
     install(FILES ${THREADLISTS_FILES} DESTINATION threadlists COMPONENT desktop-app)
-    install(FILES ${THREADLISTS_SQL} DESTINATION sql/threadlists COMPONENT web-app)
-
-    add_dependencies(install-web-app threadlists)
-    add_dependencies(install-desktop-app threadlists)
+    # Note: we don't need to install the sql files, because they are included directly in the build of data-web
 endif()

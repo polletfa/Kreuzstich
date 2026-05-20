@@ -20,6 +20,7 @@ import { Version } from '@version';
 import { CoreService } from '@services/core-service/core-service';
 import { DataService } from '@services/data-service/data-service';
 import { UserService } from '@services/user-service/user-service';
+import { ThreadListService } from '@services/thread-list-service/thread-list-service';
 
 @Component({
     selector: 'app-main-component',
@@ -48,6 +49,7 @@ export class MainComponent implements OnInit {
     constructor(
         private coreService: CoreService,
         private dataService: DataService,
+        private threadListsService: ThreadListService,
         public userService: UserService
     ) {
         effect(() => {
@@ -91,22 +93,13 @@ export class MainComponent implements OnInit {
         console.log("test", this.core.ColorSpace.compositeRGBAOntoBackground(rgba, bg));
         console.log("distance", this.core.ColorSpace.distance({lightness: 64, a: 12, b: -48}, {lightness: 79, a: 95, b: 10}, "CIE1976"));
 
-        const threads = [
-            new this.core.Thread("black", "000000"),
-            new this.core.Thread("white", "ffffff"),
-            new this.core.Thread("red", "ff0000"),
-            new this.core.Thread("green", "00ff00"),
-            new this.core.Thread("blue", "0000ff")
-        ];
+        const lists = await this.threadListsService.get();
+        const dmc = lists?.find(i => i.name() === 'DMC');
 
-
-        try {
-            using list = new this.core.ThreadList(threads);
-            console.log(list.get("HSL", "ASC").map(t => t.name()));
-            console.log(list.get("HSL", "DESC").map(t => t.name()));
-            console.log(`closest to a00000: ${list.findClosest({red: 0xa0, green: 0, blue: 0, alpha: 255}, "CIEDE2000")?.name()}`);
-        } finally {
-            threads.forEach(t => t.delete());
+        if(dmc) {
+            console.log(dmc.get("HSL", "ASC").map(t => t.name()));
+            console.log(dmc.get("HSL", "DESC").map(t => t.name()));
+            console.log(`closest to a00000: ${dmc.findClosest({red: 0xa0, green: 0, blue: 0, alpha: 255}, "CIEDE2000")?.name()}`);
         }
 
         console.log((Date.now() - start) + " ms");
@@ -118,7 +111,7 @@ export class MainComponent implements OnInit {
         if(this.userService.user()) {
             this.userService.logout();
         } else {
-            this.userService.login({email: 'polletfa@posteo.de', password: 'test', persist: this.persistentLogin});
+            this.userService.login({email: 'mail@kreuzstich.art', password: 'test', persist: this.persistentLogin});
         }
     }
 }

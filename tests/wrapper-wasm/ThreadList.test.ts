@@ -24,7 +24,7 @@ describe('ThreadList', () => {
             new core.Thread("red", "ff0000"),
             new core.Thread("white", "ffffff")
         ];
-        list = new core.ThreadList(threads);
+        list = new core.ThreadList('test', threads);
         for(const thr of threads) {
             thr.delete();
         }
@@ -45,10 +45,14 @@ describe('ThreadList', () => {
     it('Symbol.dispose', () => {
         let ref;
         {
-            using newList = new core.ThreadList([]);
+            using newList = new core.ThreadList('empty', []);
             ref = newList
         }
         expect(ref.isDeleted()).toBe(true); // deleted when newList went out of scope
+    });
+
+    it('name', () => {
+        expect(list.name()).toBe('test');
     });
 
     it('get', () => {

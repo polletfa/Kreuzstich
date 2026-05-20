@@ -8,6 +8,9 @@ import type { FastifyReply, FastifyRequest } from 'fastify';
 
 import { UserSchema } from '@datatypes/api/User';
 
+/**
+ * Helpers to check authentication status on HTTP requests
+ */
 export class AuthHelper {
     /**
      * Authenticate and reject (HTTP 401) if the user is not authenticated. Use with onRequest hook.

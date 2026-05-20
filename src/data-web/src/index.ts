@@ -6,11 +6,13 @@
 
 import 'dotenv/config';
 
+import { Helpers } from './Helpers';
 import { Application } from './Application';
 
 try {
-    new Application().start();
+    Application.instance.initDatabaseTables();
+    Application.instance.start();
 } catch(error) {
-    console.error(error instanceof Error ? error.message : error);
+    console.error(Helpers.errorToString(error));
     process.exit(1);
 }
