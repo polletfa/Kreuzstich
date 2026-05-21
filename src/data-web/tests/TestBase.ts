@@ -29,5 +29,21 @@ export class TestBase {
         const schema = `test_${suite}_${Date.now()}`;
         await Application.instance.database.query(`CREATE SCHEMA ${schema}; SET search_path TO ${schema};`);
         await Application.instance.initDatabaseTables();
+        await Application.instance.database.query(`INSERT INTO users(email, name, password) VALUES(
+            'test@kreuzstich.art', 'test user', '$2b$10$ZRGfENwLyrvD9/50ozR/Bu572DM53/cyJKgUx08XjC/e9SUcmIRzK')
+        ;`);
+    }
+
+    public async login(): Promise<string> {
+        const loginResp = await Application.instance.server.inject({
+            method: 'POST',
+            url: '/user/login',
+            payload: {
+                email: 'test@kreuzstich.art',
+                password: 'test',
+                persist: false
+            }
+        });
+        return loginResp.cookies[0].value;
     }
 }

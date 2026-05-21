@@ -8,43 +8,63 @@ import { defineConfig } from 'vitest/config'
 import fs from 'fs/promises';
 import path from 'path';
 import loadSqlFile from './sqlPlugin';
+import { walk } from 'estree-walker';
 
 const vitestSqlPlugin = {
     name: 'vitest-sql-loader-with-attributes',
 
-    // extract import attributes and add to resolved path (in the form a url query parameters)
-    resolveId(source: string, importer: string | undefined, options: any) {
-        if (source.endsWith('.sql')) {
-            const resolution = path.resolve(importer ? path.dirname(importer) : process.cwd(), source);
-            const attributes = options?.attributes || options?.importAttributes || {};
-            if (Object.keys(attributes).length > 0) {
-                const queryParams = new URLSearchParams(attributes).toString();
-                return `${resolution}?${queryParams}`;
-            }
-
-            return resolution;
-        }
-        return null;
-    },
-
-    // implement sql plugin
     async transform(code: string, id: string) {
-        if (!id.includes('.sql')) return null;
+        // vitest strip the import attributes so we need a workaround:
+        // - we search the importing files for imports with attributes and replace them by using query parameters instead (?param=value)
+        if (/\.(js|ts|jsx|tsx|mts)$/.test(id) && code.includes('.sql')) {
+            const replacements: {
+                index: number,
+                length: number,
+                replacement: string
+            }[] = [];
 
-        // extract import attribues
-        const [filePath, queryString] = id.split('?');
-        const queryParams = new URLSearchParams(queryString || '');
-        const withAttributes: Record<string, string> = {};
-        queryParams.forEach((value, key) => {
-            withAttributes[key] = value;
-        });
+            // parse and "walk" nodes
+            const ast = this.parse(code);
+            walk(ast, {
+                enter(node: any) {
+                    // sql imports with attributes
+                    if (node.type === 'ImportDeclaration' && node.source.value.includes('.sql') && Array.isArray(node.attributes) && node.attributes.length > 0) {
+                        const attributes: Record<string, string> = {};
+                        for (const attr of node.attributes) {
+                            attributes[attr.key.name] = attr.value.value;
+                        }
 
-        // call sqlPlugin
-        return {
-            code: await loadSqlFile(filePath, withAttributes),
-            map: null,
-        };
-    },
+                        replacements.push({
+                            index: node.source.start,
+                            length: node.end - node.source.start,
+                            replacement: `"${node.source.value}?${new URLSearchParams(attributes).toString()}";`
+                        });
+                    }
+                }
+            });
+            // replace from end to start (to avoid index shifting on replace)
+            if(replacements.length>0) {
+                const sorted = replacements.sort((a,b) => b.index - a.index);
+                for(const repl of sorted) {
+                    code = code.slice(0, repl.index) + repl.replacement + code.slice(repl.index + repl.length);
+                }
+                return {code, map: null};
+            }
+        }
+
+        // Now we can intercept *.sql imports
+        if (id.includes('.sql?') || id.endsWith('.sql')) {
+            const [filePath, queryString] = id.split('?');
+            const withAttributes = Object.fromEntries(new URLSearchParams(queryString || '').entries());
+
+            return {
+                code: await loadSqlFile(filePath, withAttributes),
+                map: null,
+            };
+        }
+
+        return null;
+    }
 };
 
 export default defineConfig({
@@ -55,7 +75,7 @@ export default defineConfig({
         environment: 'node',
         silent: true,
         reporters: [
-            'default',
+            'tree',
             ['github-actions', { jobSummary: { enabled: false } }],
             ['junit', { outputFile: 'build/test-results/data-web.xml' }],
         ],

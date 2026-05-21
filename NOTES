@@ -1,7 +1,7 @@
-todo unit tests data-web: finish (ThreadLists)
 todo unit tests gui-web
 
 todo add to devdoc:
 - cmake target threadlists (not automatic)
 - unit tests for data-web: start/stop test db
 - data-web: sql
+- short explanation about build and test commands (cmake + npm)

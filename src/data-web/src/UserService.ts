@@ -30,7 +30,7 @@ export class UserService {
         server.get('/logout', (_, response) => this.logout(response));
 
         // protected
-        server.get('/status', { onRequest: AuthHelper.authenticate }, (request) => request.user);
+        server.get('/status', { onRequest: AuthHelper.authenticate }, (request) => ({ success: true, data: request.user}));
     }
 
     /**
@@ -50,15 +50,16 @@ export class UserService {
                     path: '/',
                     maxAge: request.persist ? 60*60*24*30 : undefined
                 });
-                return tokenPayload;
+                return {success: true, data: tokenPayload};
             } else {
-                response.code(401).send({ error: 'Unauthorized' });
+                response.code(401);
+                return {success: false, error: 'Unauthorized' };
             }
         } catch(error) {
             this.server.log.error(Helpers.errorToString(error));
-            response.code(500).send({ error: Helpers.errorToString(error) });
+            response.code(500);
+            return {success: false, error: Helpers.errorToString(error) };
         }
-        return undefined;
     }
 
     /**

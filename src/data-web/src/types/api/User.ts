@@ -15,7 +15,9 @@ export type User = z.infer<typeof UserSchema>;
 
 // ------------------------------------------------------------------------- GET /user/status
 
-export const GetUserStatusResponseSchema = UserSchema.optional();
+export const GetUserStatusResponseSchema = GenericResponseSchema.extend({
+    data: UserSchema.optional()
+});
 export type GetUserStatusResponse = z.infer<typeof GetUserStatusResponseSchema>;
 
 // ------------------------------------------------------------------------- POST /user/login

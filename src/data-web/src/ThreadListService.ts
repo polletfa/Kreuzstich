@@ -4,6 +4,8 @@
   MIT License, see LICENSE file.
 */
 
+import type { FastifyReply } from 'fastify';
+
 import { Helpers } from './Helpers';
 import type { Server, Database } from './Application';
 import type { User } from '@datatypes/api/User';
@@ -24,21 +26,24 @@ export class ThreadListService {
      * Register routes for the service
      */
     public async routes(server: Server) {
-        server.get('/', { onRequest: AuthHelper.authenticateNoFail }, (request) => this.getLists(request.user as User|undefined));
+        server.get('/', { onRequest: AuthHelper.authenticateNoFail }, (request, response) => this.getLists(request.user as User|undefined, response));
     }
 
     /**
      * Get all lists accessible to the specified user
      */
-    private async getLists(user: User|undefined): Promise<api.GetThreadListsResponse> {
+    private async getLists(user: User|undefined, response: FastifyReply): Promise<api.GetThreadListsResponse> {
         try {
+            this.server.log.info(user);
+            this.server.log.info(getUserThreadLists);
             const res = user
                 ? await this.db.manyOrNone<db.ThreadListFull>(getUserThreadLists, [user.id])
                 : await this.db.manyOrNone<db.ThreadListFull>(getThreadLists);
             return {success: true, data: res};
         } catch(error) {
-            this.server.log.error(`Database error: ${Helpers.errorToString(error)}`);
+            this.server.log.error(Helpers.errorToString(error));
+            response.code(500);
+            return {success: false, error: Helpers.errorToString(error)};
         }
-        return {success: false};
     }
 }

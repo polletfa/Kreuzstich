@@ -19,7 +19,7 @@ export class AuthHelper {
         try {
             await AuthHelper.decodeJwt(request);
         } catch (err) {
-            response.code(401).send({ error: 'Unauthorized' });
+            response.code(401).send({ success: false, error: 'Unauthorized' });
         }
     }
 

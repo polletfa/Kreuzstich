@@ -27,7 +27,7 @@ import { Version } from '@version';
 import createUsers from '@sql/create.users.sql';
 import createThreadlists from '@sql/create.threadlists.sql';
 import createThreads from '@sql/create.threads.sql';
-import doesThreadListExist from '@sql/doesThreadlistexist.sql';
+import doesThreadListExist from '@sql/doesThreadListExist.sql';
 
 // Built-in threadlists
 import dmc from '@threadlists/DMC.sql';
