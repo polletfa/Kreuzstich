@@ -7,6 +7,9 @@
 type StringProperty = {type: 'string', required: boolean, default?: string, value?: string};
 type NumberProperty = {type: 'number', required: boolean, default?: number, value?: number};
 
+/**
+ * Service to retrieve configuration from environment.
+ */
 export class ConfigService {
     private properties: {[key: string]: StringProperty|NumberProperty} = {
         PORT:        {type: 'number', required: true                 },
@@ -23,9 +26,6 @@ export class ConfigService {
         // validate
 
         for(const prop in this.properties) {
-            if(!this.properties[prop]) {
-                continue;
-            }
             const value = process.env[this.prefix + prop] == '' ? undefined : process.env[this.prefix + prop];
             if(this.properties[prop].required && !value) {
                 throw new Error(`Missing environment variable ${this.prefix}${prop}`);
@@ -34,8 +34,10 @@ export class ConfigService {
                 if(Number.isNaN(asNum)) {
                     throw new Error(`Invalid value for environment variable ${this.prefix}${prop} (not a number): ${value}`);
                 }
+                this.properties[prop].value = asNum;
+            } else {
+                this.properties[prop].value = value && value !== '' ? value : this.properties[prop].default;
             }
-            this.properties[prop].value = value && value !== '' ? value : this.properties[prop].default;
         }
     }
 

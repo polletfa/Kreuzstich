@@ -1,4 +1,3 @@
-
 /*
   Kreuzstich
   Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
@@ -15,7 +14,7 @@
 class PatternTests : public testing::Test, public Mockup {
 public:
     PatternTests()
-        : list({})
+        : list("", {})
     {
         Mockup::SetUp();
         // load original.jpg
@@ -24,7 +23,7 @@ public:
         selected = loadPicture(testPathFixture(QString("selected.png")));
         // load threadlist
         ThreadListParser parser(testPathFixture(QString("list.threads")));
-        list = ThreadList{parser.threads()};
+        list = ThreadList{"", parser.threads()};
     }
 
 protected:

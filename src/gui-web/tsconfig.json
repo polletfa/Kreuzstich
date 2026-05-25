@@ -29,6 +29,7 @@
       "@version": ["./build/version.constants.ts"],
       "@environment": ["./src/environments/environment.ts"],
       "@wrapper-wasm": ["./build/wrapper-wasm"],
+      "@tests/*": ["./tests/*"]
     }
   },
   "angularCompilerOptions": {

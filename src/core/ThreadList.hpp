@@ -10,6 +10,7 @@
 #include "Thread.hpp"
 
 // STL
+#include <string>
 #include <vector>
 #include <optional>
 #include <functional>
@@ -24,10 +25,12 @@ public:
     using UsageCount = std::vector<std::pair<std::reference_wrapper<const Thread>, size_t>>;
     using OptionalRef = std::optional<std::reference_wrapper<const Thread>>;
 
-    explicit ThreadList(const std::vector<Thread>& threads);
+    explicit ThreadList(const std::string& name, const std::vector<Thread>& threads);
 
     enum class SortBy { HLS, HSL, Name };
     enum class SortOrder { ASC, DESC };
+
+    const std::string& name() const;
 
     /**
      * Returns list of thread in the specified sort order
@@ -67,6 +70,7 @@ public:
     void updateUsage(const Thread& origin, const Thread& replacement, size_t count);
 
 private:
+    std::string m_name;
     std::vector<Thread> m_threads;
     RefList m_threadsAsRefList;
     UsageCount m_usage;

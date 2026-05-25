@@ -31,13 +31,15 @@
 
     "paths": {
       "@version": ["./build/Version.ts"],
-      "@datatypes/*": ["./src/types/*"]
+      "@datatypes/*": ["./src/types/*"],
+      "@sql/*": ["./src/sql/*"],
+      "@threadlists/*": ["../../resources/threadlists/*"]
     }
   },
   "include": [
     "./src/**/*.ts"
   ],
   "exclude": [
-    "./src/**/*.test.ts"
+    "./tests/**/*.test.ts"
   ]
 }

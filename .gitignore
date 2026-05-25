@@ -90,6 +90,9 @@ emsdk-cache/
 dist/
 .angular/
 
+# emacs
+.dir-locals.el
+
 # User-config: clangd
 compile_commands.json
 .clangd

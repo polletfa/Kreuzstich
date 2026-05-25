@@ -7,13 +7,13 @@
 import { TestBed } from '@angular/core/testing';
 import { CoreService } from './core-service';
 import { CORE_LOADER } from '@services/core-service/core-service';
-import { Version } from '@version';
 
 const mockCore = {
     Version: {
-        getVersionString: vi.fn().mockReturnValue(Version.getVersionString())
+        getVersionString: vi.fn().mockReturnValue('test')
     }
 };
+const mockCoreLoader = vi.fn().mockReturnValue(Promise.resolve(mockCore));
 
 describe('CoreService', () => {
     let service: CoreService;
@@ -21,19 +21,30 @@ describe('CoreService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
-                { provide: CORE_LOADER, useValue: () => Promise.resolve(mockCore) }
+                { provide: CORE_LOADER, useValue: mockCoreLoader }
             ]
         });
         service = TestBed.inject(CoreService);
+
+        vi.clearAllMocks();
     });
 
     it('should be created', () => {
         expect(service).toBeTruthy();
     });
 
-    it('get', () => {
-        service.get();
+    it('get', async () => {
+        const core = await service.get();
+        expect(core.Version.getVersionString()).toBe('test');
     });
 
-    // todo test get?
+    it('get: core is loaded only once', async () => {
+        expect(mockCoreLoader).toHaveBeenCalledTimes(0);
+
+        await service.get();
+        expect(mockCoreLoader).toHaveBeenCalledTimes(1);
+
+        await service.get();
+        expect(mockCoreLoader).toHaveBeenCalledTimes(1); // still only once
+    });
 });

@@ -19,7 +19,7 @@ public:
         : pattern(Pattern::PixelBuffer{
                 std::vector<ColorSpace::ColorRGBA>(50, {0xff, 0xff, 0xff}),
                 10,5
-            }, ThreadList{std::vector<Thread>{}}, false)
+            }, ThreadList{"", std::vector<Thread>{}}, false)
     {}
 
 protected:

@@ -39,8 +39,6 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
     add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 endif()
 
-set(CODEQL_CPP_TARGETS "")
-
 if(NOT EMSCRIPTEN)
     ## Install
     include(generate_version)
@@ -61,13 +59,16 @@ if(NOT EMSCRIPTEN)
     )
 endif()
 
-## Components (native + wasm builds)
+## WASM build only
+if(EMSCRIPTEN)
+    add_subdirectory(src/core)
+    add_subdirectory(src/wrapper-wasm)
 
-add_subdirectory(src/core)
-add_subdirectory(src/wrapper-wasm)
-
-if(NOT EMSCRIPTEN)
-    # Components (native build only)
+## Standard build
+else()
+    # Components
+    add_subdirectory(src/core)
+    add_subdirectory(src/wrapper-wasm)
     add_subdirectory(src/data-desktop)
     add_subdirectory(src/data-web)
     add_subdirectory(src/gui-desktop)
@@ -80,7 +81,29 @@ if(NOT EMSCRIPTEN)
     enable_testing()
     add_subdirectory(tests)
 
-    ## For CodeQL we need a target to compile C++ components only
-    add_custom_target(codeql-cpp-build)
-    add_dependencies(codeql-cpp-build ${CODEQL_CPP_TARGETS})
+    ## Build C++ components only
+    add_custom_target(build-cpp)
+    add_dependencies(build-cpp
+        core
+        wrapper-wasm
+        data-desktop
+        gui-desktop
+    )
+
+    ## Build native components only
+    add_custom_target(build-native)
+    add_dependencies(build-native
+        core
+        data-desktop
+        gui-desktop
+    )
+
+    ## Build web components only
+    add_custom_target(build-web)
+    add_dependencies(build-web
+        wrapper-wasm
+        data-web
+        gui-web
+    )
+
 endif()

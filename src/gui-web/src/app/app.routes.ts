@@ -5,5 +5,10 @@
 */
 
 import { Routes } from '@angular/router';
+import { DesignerComponent } from '@components/designer-component/designer-component';
+import { PageNotFoundComponent } from '@components/page-not-found-component/page-not-found-component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+    {path: '', component: DesignerComponent},
+    {path: '**', component: PageNotFoundComponent}
+];

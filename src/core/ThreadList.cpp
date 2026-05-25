@@ -9,8 +9,9 @@
 // STL
 #include <algorithm>
 
-ThreadList::ThreadList(const std::vector<Thread>& threads)
-    : m_threads(threads)
+ThreadList::ThreadList(const std::string& name, const std::vector<Thread>& threads)
+    : m_name(name)
+    , m_threads(threads)
 {
     m_usage.reserve(threads.size());
     m_threadsAsRefList.reserve(threads.size());
@@ -18,6 +19,10 @@ ThreadList::ThreadList(const std::vector<Thread>& threads)
         m_usage.push_back({std::cref(thread), 0});
         m_threadsAsRefList.push_back(std::cref(thread));
     }
+}
+
+const std::string& ThreadList::name() const {
+    return m_name;
 }
 
 ThreadList::RefList ThreadList::get(SortBy sortBy, SortOrder sortOrder) const {

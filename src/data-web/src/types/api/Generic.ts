@@ -10,7 +10,8 @@ import * as z from 'zod/v4';
  * Generic response schema
  */
 export const GenericResponseSchema = z.object({
-    success: z.boolean()
+    success: z.boolean(),
+    error: z.string().optional()
 });
 /**
  * Generic response

@@ -12,6 +12,6 @@ import * as db from '@datatypes/db';
 // ------------------------------------------------------------------------- GET /threadlists
 
 export const GetThreadListsResponseSchema = GenericResponseSchema.extend({
-    data: z.array(db.ThreadListSchema).optional()
+    data: z.array(db.ThreadListFullSchema).optional()
 });
 export type GetThreadListsResponse = z.infer<typeof GetThreadListsResponseSchema>;

@@ -13,5 +13,10 @@ export default defineConfig({
             ['github-actions', { jobSummary: { enabled: false } }],
             ['junit', { outputFile: 'build/test-results/gui-web.xml' }],
         ],
+        coverage: {
+            exclude: [
+                'tests',
+            ]
+        }
     }
 });

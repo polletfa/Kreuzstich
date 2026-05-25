@@ -59,7 +59,7 @@ jobs:
     - name: Build C++ targets
       if: matrix.language == 'c-cpp'
       shell: bash
-      run: ./make release codeql-cpp-build
+      run: ./make release build-cpp
 
     #############################################################################
     # Run                                                                       #

@@ -6,16 +6,15 @@
     "start": "node dist/index.cjs",
     "test-watch": "vitest",
     "test": "vitest run",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "start:db:tests": "docker compose -f tests/docker-compose.yml up -d",
+    "stop:db:tests": "docker compose -f tests/docker-compose.yml down"
   },
   "devDependencies": {
     "@types/node": "^25.6.2",
     "@vitest/coverage-v8": "^4.1.5",
-    "install": "^0.13.0",
-    "npm": "^11.14.1",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3",
-    "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.0.8"
   },
   "dependencies": {

@@ -1,8 +1,7 @@
-todo unit tests data-web
 todo unit tests gui-web
-todo write the code for /api/threadlist and then document a bit
-todo maybe start writing some rudimentary developer documentation
 
-
-todo important for developers: privacy concerns: don't use tokens or user id in http requests. don't log user input, don't log sql query or results with user data -> don't log full sql errors
-todo create privacy document with infos for developers + privacy policy for users
+todo add to devdoc:
+- cmake target threadlists (not automatic)
+- unit tests for data-web: start/stop test db
+- data-web: sql
+- short explanation about build and test commands (cmake + npm)

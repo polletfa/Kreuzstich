@@ -73,9 +73,9 @@ jobs:
           name: ${{ needs.build.outputs.artifact }}
           path: dist
 
-      - name: Select docker/kreuzstich/nginx.conf
+      - name: Generate docker/kreuzstich/nginx.conf
         working-directory: ${{ github.workspace }}/dist/docker/kreuzstich
-        run: cp nginx.${{ env.ENVIRONMENT }}.conf nginx.conf
+        run: envsubst '${ENVIRONMENT}' < nginx.conf.in > nginx.conf
 
       - name: Log in to ghcr.io
         uses: docker/login-action@v4

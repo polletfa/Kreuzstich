@@ -35,12 +35,14 @@ add_dependencies(data-web data-web-npminstall)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/dist/index.cjs DESTINATION data-web COMPONENT web-app)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/package.json DESTINATION data-web COMPONENT web-app)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/package-lock.json DESTINATION data-web COMPONENT web-app)
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/resources/sql DESTINATION . COMPONENT web-app)
 add_dependencies(install-web-app data-web)
 
 # Target: data-web-tests
 add_custom_target(data-web-tests
+    COMMAND ${NPM_EXECUTABLE} run start:db:tests
+    COMMAND ${CMAKE_COMMAND} -E sleep 5
     COMMAND ${NPM_EXECUTABLE} run test
+    COMMAND ${NPM_EXECUTABLE} run stop:db:tests
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/test-results
     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/build/test-results/data-web.xml ${CMAKE_BINARY_DIR}/test-results/data-web.xml
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
