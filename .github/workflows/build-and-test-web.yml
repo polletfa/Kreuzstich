@@ -12,6 +12,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Build and Test Web Components
     permissions:
         contents: read
 
@@ -38,7 +39,7 @@ jobs:
 
     - name: Test
       working-directory: ${{ github.workspace }}/build
-      run: cmake --build ${{ github.workspace }}/build --config release --target runtests-web
+      run: ./make release runtests-web
 
     - name: Test Report
       uses: test-summary/action@v2
