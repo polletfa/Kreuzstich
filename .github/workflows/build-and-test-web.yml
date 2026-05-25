@@ -59,7 +59,7 @@ jobs:
       with:
           retention-days: 7
           name: test-results-${{ env.ARTIFACT_SUFFIX }}
-          path: build/test-results
+          path: build/release/test-results
 
     - name: Upload build files on failure
       if: failure()
