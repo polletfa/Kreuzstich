@@ -41,7 +41,6 @@ endif()
 
 # Target: core
 add_library(core STATIC ${SOURCES})
-set(CODEQL_CPP_TARGETS ${CODEQL_CPP_TARGETS} core PARENT_SCOPE)
 target_include_directories(core PRIVATE "${CMAKE_BINARY_DIR}/generate_version/core")
 
 if(EMSCRIPTEN)

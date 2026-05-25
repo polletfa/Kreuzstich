@@ -44,7 +44,6 @@ if(NOT EMSCRIPTEN)
         -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
         BUILD_ALWAYS TRUE
     )
-    set(CODEQL_CPP_TARGETS ${CODEQL_CPP_TARGETS} wrapper-wasm PARENT_SCOPE)
 
     # Export variables
     set(wrapper-wasm_DIR ${CMAKE_BINARY_DIR}/wasm/dist PARENT_SCOPE)

@@ -1,0 +1,74 @@
+# Kreuzstich
+# Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
+name: Build and Test Web Components
+
+on:
+  pull_request:
+    branches: [ "main", "develop" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+        contents: read
+
+    #############################################################################
+    # Build                                                                     #
+    #############################################################################
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v6
+
+    - name: Install dependencies
+      uses: ./.github/actions/install-dependencies
+      with:
+          config: linux-gcc
+
+    - name: Build
+      run: ./make release build-web
+
+    #############################################################################
+    # Test                                                                      #
+    #############################################################################
+
+    - name: Test
+      working-directory: ${{ github.workspace }}/build
+      run: cmake --build ${{ github.workspace }}/build --config release --target runtests-web
+
+    - name: Test Report
+      uses: test-summary/action@v2
+      with:
+        paths: "build/test-results/*.xml"
+      if: always()
+
+    #############################################################################
+    # Upload artifacts                                                          #
+    #############################################################################
+
+    - name: Artifact name suffix
+      if: always()
+      run: echo "ARTIFACT_SUFFIX=${{ matrix.os }}-${{ matrix.c_compiler }}-${GITHUB_SHA::8}" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v6
+      with:
+          retention-days: 7
+          name: test-results-${{ env.ARTIFACT_SUFFIX }}
+          path: build/test-results
+
+    - name: Upload build files on failure
+      if: failure()
+      uses: actions/upload-artifact@v6
+      with:
+          retention-days: 1
+          name: build-${{ env.ARTIFACT_SUFFIX }}
+          path: |
+              build
+              src/gui-web/build
+              tests/wrapper-wasm/build

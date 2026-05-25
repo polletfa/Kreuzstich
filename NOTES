@@ -1,7 +1,5 @@
 todo unit tests gui-web
 
-todo wildcard route for unknown pages + noindex meta tag
-
 todo add to devdoc:
 - cmake target threadlists (not automatic)
 - unit tests for data-web: start/stop test db
