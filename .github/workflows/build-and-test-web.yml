@@ -12,7 +12,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build and Test Web Components
     permissions:
         contents: read
 
@@ -72,3 +71,19 @@ jobs:
               build
               src/gui-web/build
               tests/wrapper-wasm/build
+
+  #############################################################################
+  # Summary job                                                               #
+  #############################################################################
+
+  build-web-all-checks-passed:
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions: {}
+    if: always()
+    steps:
+      - name: Check all matrix jobs passed
+        run: |
+          if [ "${{ needs.build.result }}" != "success" ]; then
+          exit 1
+          fi

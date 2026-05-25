@@ -121,7 +121,7 @@ jobs:
   # Summary job                                                               #
   #############################################################################
 
-  build-all-checks-passed:
+  build-native-all-checks-passed:
     needs: [build]
     runs-on: ubuntu-latest
     permissions: {}
