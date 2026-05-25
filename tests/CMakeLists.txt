@@ -35,20 +35,32 @@ add_subdirectory(core)
 add_subdirectory(data-desktop)
 add_subdirectory(wrapper-wasm)
 
-# Target: runtests
-add_custom_target(runtests
+# Target: runtests-native
+add_custom_target(runtests-native
     COMMAND ctest
     -j4
     --output-on-failure
     --output-junit ${CMAKE_BINARY_DIR}/test-results/cpp-components.xml
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 )
-add_dependencies(runtests
+add_dependencies(runtests-native
     core-tests
     data-desktop-tests
+)
+
+# Target: runtests-web
+add_custom_target(runtests-web)
+add_dependencies(runtests-web
     data-web-tests
     wrapper-wasm-tests
     gui-web-tests
+)
+
+# Target: runtests
+add_custom_target(runtests)
+add_dependencies(runtests
+    runtests-native
+    runtests-web
 )
 
 # Target: coverage

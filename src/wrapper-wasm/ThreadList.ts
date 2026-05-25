@@ -34,6 +34,9 @@ export class ThreadList {
     isDeleted(): boolean { return this.obj.isDeleted(); }
     [Symbol.dispose]() { this.delete(); }
 
+    name(): string {
+        return this.obj.name();
+    }
     get(sortBy: ThreadList.SortBy, sortOrder: ThreadList.SortOrder): ThreadRef[] {
         using list = this.obj.get(sortBy, sortOrder);
         const outList: ThreadRef[] = [];
@@ -84,17 +87,17 @@ export class ThreadList {
 }
 
 export interface ThreadListConstructor {
-    new(threads: Thread[]): ThreadList
+    new(name: string, threads: Thread[]): ThreadList
 };
 
 export function ThreadListConstructor(core: wasm.MainModule): ThreadListConstructor {
     return class extends ThreadList {
-        constructor(threads: Thread[]) {
+        constructor(name: string, threads: Thread[]) {
             using vector = new core.ThreadVector();
             for(const thread of threads) {
                 vector.push_back(thread.wasm());
             }
-            super(new core.ThreadList(vector), core);
+            super(new core.ThreadList(name, vector), core);
         }
     };
 }

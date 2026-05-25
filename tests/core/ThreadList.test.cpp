@@ -10,7 +10,7 @@
 class ThreadListTests: public testing::Test {
 public:
     ThreadListTests()
-        : m_threads({
+        : m_threads("test", {
                 Thread{"1", "bfaa40"}, // 50, 50%, 50%
                 Thread{"2", "c8c814"}, // 60, 82%, 43%
                 Thread{"3", "bfbf40"}  // 60, 50%, 50%
@@ -31,6 +31,12 @@ protected:
     void SetUp() override {
     }
 };
+
+// -- name
+
+TEST_F(ThreadListTests, name) {
+    EXPECT_EQ(m_threads.name(), "test");
+}
 
 // -- get
 
@@ -91,7 +97,7 @@ TEST_F(ThreadListTests, get_Name_DESC) {
 // -- findClosest
 
 TEST_F(ThreadListTests, findClosest_empty) {
-    ThreadList emptyList{{}};
+    ThreadList emptyList{"", {}};
     ASSERT_FALSE(emptyList.findClosest({0, 0, 0}, ColorSpace::DistanceAlgo::CIEDE2000));
 }
 
@@ -104,7 +110,7 @@ TEST_F(ThreadListTests, findClosest) {
 // -- findClosestInUse
 
 TEST_F(ThreadListTests, findClosestInUse_empty) {
-    ThreadList threads{{Thread{"1", "bfaa40"}}}; // usage = 0
+    ThreadList threads{"", {Thread{"1", "bfaa40"}}}; // usage = 0
     ASSERT_FALSE(threads.findClosestInUse({0, 0, 0}, ColorSpace::DistanceAlgo::CIEDE2000));
 }
 

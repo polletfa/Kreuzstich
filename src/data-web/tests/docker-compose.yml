@@ -1,0 +1,15 @@
+# Kreuzstich
+# Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
+services:
+  test-database:
+    container_name: kreuzstich-data-web-test-database
+    image: postgres:18
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_DB=test
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+    ports:
+        - 5555:5432
