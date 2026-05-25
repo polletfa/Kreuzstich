@@ -42,7 +42,7 @@ jobs:
     - name: Test Report
       uses: test-summary/action@v2
       with:
-        paths: "build/test-results/*.xml"
+        paths: "build/release/test-results/*.xml"
       if: always()
 
     #############################################################################
