@@ -38,7 +38,6 @@ jobs:
     #############################################################################
 
     - name: Test
-      working-directory: ${{ github.workspace }}/build
       run: ./make release runtests-web
 
     - name: Test Report
