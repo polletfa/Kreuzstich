@@ -1,0 +1,14 @@
+<!--
+  Kreuzstich
+  Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+  MIT License, see LICENSE file.
+-->
+@if(!userService.isReady()) {
+<mat-progress-spinner mode="indeterminate"/>
+} @else {
+
+@if(userService.user()) { <div>Hello {{ userService.user()?.name }}!</div> }
+<button mat-raised-button color="primary" (click)="onTest()">@if (!userService.user()) { Login } @else { Logout }</button>
+@if(!userService.user()) { <br/><mat-checkbox [(ngModel)]="persistentLogin">Stay logged in</mat-checkbox> }
+
+}

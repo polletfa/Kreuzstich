@@ -7,30 +7,22 @@
 import { TestBed } from '@angular/core/testing';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 
 import { MainComponent } from './main-component';
 
-import { CORE_LOADER } from '@services/core-service/core-service';
-import { mockCore } from '@tests/core.mockup';
-
 describe('MainComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [
                 MainComponent,
-                MatButtonModule,
                 MatIconModule,
                 MatListModule,
                 MatSidenavModule,
                 MatToolbarModule
             ],
-            providers: [
-                { provide: CORE_LOADER, useValue: () => Promise.resolve(mockCore) }
-            ]
         }).compileComponents();
     });
 
