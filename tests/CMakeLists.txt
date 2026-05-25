@@ -35,8 +35,8 @@ add_subdirectory(core)
 add_subdirectory(data-desktop)
 add_subdirectory(wrapper-wasm)
 
-# Target: runtests-cpp
-add_custom_target(runtests-cpp
+# Target: runtests-native
+add_custom_target(runtests-native
     COMMAND ctest
     -j4
     --output-on-failure
