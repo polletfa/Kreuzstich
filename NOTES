@@ -1,5 +1,3 @@
-todo unit tests gui-web
-
 todo add to devdoc:
 - cmake target threadlists (not automatic)
 - unit tests for data-web: start/stop test db

@@ -51,6 +51,8 @@ add_dependencies(data-web-tests data-web-npminstall)
 
 # Target: data-web-tests-coverage
 add_custom_target(data-web-tests-coverage
+    COMMAND ${NPM_EXECUTABLE} run start:db:tests
+    COMMAND ${CMAKE_COMMAND} -E sleep 5
     COMMAND ${NPM_EXECUTABLE} run coverage
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/coverage ${CMAKE_BINARY_DIR}/coverage_report/data-web
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
