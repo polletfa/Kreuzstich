@@ -6,8 +6,9 @@
 
 import { Injectable, InjectionToken, inject } from '@angular/core';
 import * as Core from '@wrapper-wasm';
+import { Version } from '@version';
 
-type CoreLoader = () => Promise<Core.Module>;
+type CoreLoader = (locateFile?: (file:string, prefix: string)=>string) => Promise<Core.Module>;
 export const CORE_LOADER = new InjectionToken<CoreLoader>('CORE_LOADER');
 
 /**
@@ -25,13 +26,21 @@ export class CoreService {
         if (this.module) return Promise.resolve(this.module);
         if (this.loading) return this.loading;
 
-        this.loading = new Promise((resolve) => {
-            this.loader()
-                .then(m => {
-                    this.module = m;
-                    console.log("Core loaded: " + this.module?.Version.getVersionString(), this.module);
-                    resolve(m);
-                });
+        this.loading = new Promise((resolve, reject) => {
+            this.loader((path: string, prefix: string) => {
+                let modifiedPath = path;
+                if(path.endsWith('.wasm')) {
+                    modifiedPath = path.slice(0, -5) + '.' + Version.BUILD_TIME.replace(/:/g, '-') + '.wasm';
+                }
+                console.log(`${prefix}${modifiedPath}`);
+                return `${prefix}${modifiedPath}`;
+            }).then(m => {
+                this.module = m;
+                console.log("Core loaded: " + this.module?.Version.getVersionString(), this.module);
+                resolve(m);
+            }).catch(() => {
+                reject("Unable to load core library.");
+            });
         });
 
         return this.loading;

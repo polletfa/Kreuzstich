@@ -32,7 +32,7 @@ jobs:
     - name: Build
       run: ./make release install-web-app
 
-    - name: Debug
+    - name: Info: git status and VERSION
       run: |
           echo "Git status:"
           git status --porcelain
