@@ -29,6 +29,9 @@ jobs:
       with:
           config: linux-gcc
 
+    - name: Debug
+      run: git status --porcelain
+
     - name: Build
       run: ./make release build-web
 
@@ -62,7 +65,7 @@ jobs:
           path: build/release/test-results
 
     - name: Upload build files on failure
-      if: failure()
+      #if: failure()
       uses: actions/upload-artifact@v6
       with:
           retention-days: 1
