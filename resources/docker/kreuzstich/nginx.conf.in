@@ -58,6 +58,16 @@ http {
         }
 
         # Angular frontend
+        location = /index.html {
+            add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0";   # never cache index.html
+            expires off;
+        }
+        location ~* \.(js|css|wasm)$ {
+            add_header Cache-Control "public, max-age=31536000, immutable";                                # cache hashed/versioned assets forever (actually for one year)
+        }
+        location ~* \.(jpg|jpeg|png|gif|ico|svg)$ {
+            add_header Cache-Control "public, max-age=86400";                                              # cache static files for a day
+        }
         location / {
             try_files $uri $uri/ /index.html;
         }

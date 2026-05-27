@@ -37,14 +37,10 @@
                         "assets": [
                             {
                                 "glob": "**/*",
-                                "input": "public"
-                            },
-                            {
-                                "glob": "**/*",
                                 "input": "build/assets"
                             },
                             {
-                                "glob": "wrapper-wasm.wasm",
+                                "glob": "wrapper-wasm.*.wasm",
                                 "input": "build/wrapper-wasm"
                             }
                         ],

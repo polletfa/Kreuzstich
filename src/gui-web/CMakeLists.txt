@@ -39,10 +39,12 @@ add_custom_target(gui-web-resources
 )
 
 # Target: gui-web-wasm
+string(REPLACE ":" "-" FILE_SUFFIX "${BUILD_TIME}")
 add_custom_target(gui-web-wasm
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/build
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${wrapper-wasm_DIR}/web ${CMAKE_CURRENT_SOURCE_DIR}/build/wrapper-wasm
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${wrapper-wasm_DIR}/lib ${CMAKE_CURRENT_SOURCE_DIR}/build/wrapper-wasm
+    COMMAND ${CMAKE_COMMAND} -E rename ${CMAKE_CURRENT_SOURCE_DIR}/build/wrapper-wasm/wrapper-wasm.wasm ${CMAKE_CURRENT_SOURCE_DIR}/build/wrapper-wasm/wrapper-wasm.${FILE_SUFFIX}.wasm
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     COMMENT "Copy wrapper-wasm"
 )
