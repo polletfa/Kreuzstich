@@ -29,14 +29,11 @@ jobs:
       with:
           config: linux-gcc
 
-    - name: Debug
-      run: git status --porcelain
-
     - name: Build
       run: ./make release install-web-app
 
     - name: Debug
-      run: git status --porcelain
+      run: echo "Git status:"; git status --porcelain; echo "VERSION: "; cat build/release/VERSION
 
     - name: Output variables
       id: vars
