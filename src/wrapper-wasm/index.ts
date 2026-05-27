@@ -31,7 +31,7 @@ export class Module {
     ThreadList: ThreadListConstructor;
 }
 
-export async function load(locateFile?: (file:string)=>string): Promise<Module> {
+export async function load(locateFile?: (file:string, prefix: string)=>string): Promise<Module> {
     const wasmModule = await wasm.default({locateFile});
     return new Module(wasmModule);
 }
