@@ -44,6 +44,7 @@ if(NOT EMSCRIPTEN)
         -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
         BUILD_ALWAYS TRUE
     )
+    set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_CLEAN_FILES "${CMAKE_BINARY_DIR}/wasm")
 
     # Export variables
     set(wrapper-wasm_DIR ${CMAKE_BINARY_DIR}/wasm/dist PARENT_SCOPE)
