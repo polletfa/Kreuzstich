@@ -16,11 +16,13 @@ export class UserService {
     readonly isReady = computed(() => this._user() !== undefined);
 
     constructor(private dataService: DataService) {
-        this.dataService.get<api.GetUserStatusResponse>('user/status', api.GetUserStatusResponseSchema)
-            .then((user) => { if(user.success && user.data) {
+        this.dataService.get<api.GetUserStatusResponse>('user/status', api.GetUserStatusResponseSchema).then((user) => {
+            if(user.success && user.data) {
                 this._user.set(user.data);
-            }})
-            .catch(() => { this._user.set(null)});
+            } else {
+                this._user.set(null);
+            }
+        }).catch(() => { this._user.set(null)});
     }
 
     public async login(request: api.PostUserLoginRequest): Promise<boolean> {
@@ -38,15 +40,17 @@ export class UserService {
         }
     }
 
-    public async logout(): Promise<void> {
+    public async logout(): Promise<boolean> {
         try {
             const res = await this.dataService.get<api.GetUserLogoutResponse>('user/logout', api.GetUserLogoutResponseSchema);
             if(res.success) {
                 console.log('Logged out.');
                 this._user.set(null);
             }
+            return res.success;
         } catch(error) {
             console.error(error);
+            return false;
         }
     }
 }
