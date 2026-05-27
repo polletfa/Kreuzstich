@@ -29,8 +29,14 @@ jobs:
       with:
           config: linux-gcc
 
+    - name: Debug
+      run: git status --porcelain
+
     - name: Build
       run: ./make release install-web-app
+
+    - name: Debug
+      run: git status --porcelain
 
     - name: Output variables
       id: vars
