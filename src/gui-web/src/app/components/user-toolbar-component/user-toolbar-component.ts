@@ -32,7 +32,8 @@ export class UserToolbarComponent {
         });
     }
 
-    public onTest() {
+    public onClickLogin() {
+        //todo this is just a test for now
         if(this.userService.user()) {
             this.userService.logout();
         } else {

@@ -90,5 +90,3 @@ describe('DataService', () => {
         }).rejects.toThrow({success: false, url: '/api/test', request: {test: true}});
     });
 });
-
-// todo

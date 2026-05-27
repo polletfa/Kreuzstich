@@ -8,7 +8,7 @@
 } @else {
 
 @if(userService.user()) { <div>Hello {{ userService.user()?.name }}!</div> }
-<button mat-raised-button color="primary" (click)="onTest()">@if (!userService.user()) { Login } @else { Logout }</button>
+<button mat-raised-button color="primary" (click)="onClickLogin()">@if (!userService.user()) { Login } @else { Logout }</button>
 @if(!userService.user()) { <br/><mat-checkbox [(ngModel)]="persistentLogin">Stay logged in</mat-checkbox> }
 
 }
