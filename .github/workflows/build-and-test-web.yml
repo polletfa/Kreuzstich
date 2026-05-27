@@ -30,7 +30,7 @@ jobs:
           config: linux-gcc
 
     - name: Debug
-       run: git status --porcelain
+      run: git status --porcelain
 
     - name: Build
       run: ./make release build-web
