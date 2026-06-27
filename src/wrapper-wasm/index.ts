@@ -10,6 +10,16 @@ import { ColorSpace } from './ColorSpace'
 import { Thread, ThreadConstructor } from './Thread';
 import { ThreadList, ThreadListConstructor } from './ThreadList';
 
+// Polyfill for Symbol.dispose
+if (typeof Symbol !== "undefined" && !Symbol.dispose) {
+  Object.defineProperty(Symbol, "dispose", {
+    value: Symbol("Symbol.dispose"),
+    configurable: false,
+    enumerable: false,
+    writable: false
+  });
+}
+
 export {
     Version,
     ColorSpace,
