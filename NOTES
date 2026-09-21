@@ -1,5 +1,4 @@
 todo add to devdoc:
+- short explanation about build and test commands (cmake + npm)
 - cmake target threadlists (not automatic)
 - unit tests for data-web: start/stop test db
-- data-web: sql
-- short explanation about build and test commands (cmake + npm)

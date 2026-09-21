@@ -6,9 +6,10 @@
 
 import * as wasm from './wrapper-wasm';
 import { Version } from './Version';
-import { ColorSpace } from './ColorSpace'
+import { ColorSpace } from './ColorSpace';
 import { Thread, ThreadConstructor } from './Thread';
 import { ThreadList, ThreadListConstructor } from './ThreadList';
+import { Selection } from './Selection';
 
 // Polyfill for Symbol.dispose
 if (typeof Symbol !== "undefined" && !Symbol.dispose) {
@@ -20,11 +21,12 @@ if (typeof Symbol !== "undefined" && !Symbol.dispose) {
   });
 }
 
-export {
+export type {
     Version,
     ColorSpace,
     Thread,
-    ThreadList
+    ThreadList,
+    Selection
 };
 
 export class Module {

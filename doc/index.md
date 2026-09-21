@@ -1,7 +1,22 @@
 # Developer documentation
 
+## Remote server
+
 * [Install the backend server](InstallServer.md)
 * [Access the database](AccessDatabase.md)
+
+## Local server
+
+* [Run the website locally](RunWebLocally.md)
+
+## Build & test
+
+* [Build](Build.md)
+* [Unit tests](UnitTests.md)
+
+## Code
+
+* [SQL files (data-web)](SQLFiles.md)
 
 ## Legal
 

@@ -35,10 +35,12 @@ set(THREADLISTS_NAME_DMC DMC)
 # Note: the threadlists are generated once and committed in the repository. We don't need to generate them
 #       on each build, so we don't add the target to ALL or define dependencies. The target needs to be
 #       called explicitely when modifying the threadlists.
+#       The threadlists are also ignored by the clean command.
 
 if(SKIP_THREADLISTS)
     message(WARNING "Skipping threadlists (missing requirement)")
 else()
+    set_directory_properties(PROPERTIES CLEAN_NO_CUSTOM TRUE)
     set(THREADLIST_FILES)
     foreach(NAME ${THREADLISTS})
         set(SOURCES)
@@ -59,7 +61,7 @@ else()
         list(APPEND THREADLISTS_FILES ${OUTPUT_threads})
         list(APPEND THREADLISTS_SQL ${OUTPUT_sql})
     endforeach()
-    add_custom_target(threadlists ALL DEPENDS ${THREADLISTS_FILES}
+    add_custom_target(threadlists DEPENDS ${THREADLISTS_FILES}
         COMMENT "Building threadlists"
     )
     install(FILES ${THREADLISTS_FILES} DESTINATION threadlists COMPONENT desktop-app)
