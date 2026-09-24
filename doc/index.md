@@ -9,7 +9,7 @@
 
 ### Local server
 
-* [Run the website locally](technical/RunWebLocally.md) -- TODO
+* [Run the website locally](technical/RunWebLocally.md)
 
 ### Build, test & code
 
