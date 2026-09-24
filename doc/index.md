@@ -4,21 +4,21 @@
 
 ### Remote server
 
-* [Install the backend server](InstallServer.md)
-* [Access the database](AccessDatabase.md)
+* [Install the backend server](technical/InstallServer.md)
+* [Access the database](technical/AccessDatabase.md)
 
 ### Local server
 
-* [Run the website locally](RunWebLocally.md)
+* [Run the website locally](technical/RunWebLocally.md) -- TODO
 
 ### Build & test
 
-* [Build](Build.md)
-* [Unit tests](UnitTests.md)
+* [Build](technical/Build.md) -- TODO
+* [Unit tests](technical/UnitTests.md) -- TODO
 
 ### Code
 
-* [SQL files (data-web)](SQLFiles.md)
+* [SQL files (data-web)](technical/SQLFiles.md)
 
 ## Legal
 

@@ -64,7 +64,7 @@ And for future applications:
 - Qt6 instead of Qt4/5 for the desktop app
 - Kotlin for the Android version
 
-![architecture overview](doc/architecture-overview.svg)
+![architecture overview](doc/technical/architecture-overview.svg)
 
 ### Developer documentation
 
