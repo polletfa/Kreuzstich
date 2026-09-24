@@ -27,6 +27,9 @@
 * [Data Processing Guidelines](legal/DataProcessingGuidelines.md)
 * [Data Retention Schedule](legal/DataRetentionSchedule.md)
 * [Record of Processing Activities](legal/RecordOfProcessingActivities.md)
+* Data Processing Agreements:
+  * [STRATO GmbH](legal/DPA.strato.pdf)
+  * [Heinlein Hosting GmbH / mailbox.org](legal/DPA.mailbox.pdf)
 
 ### Public
 * [Impressum](legal/Impressum.md)
