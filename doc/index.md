@@ -11,13 +11,9 @@
 
 * [Run the website locally](technical/RunWebLocally.md) -- TODO
 
-### Build & test
+### Build, test & code
 
-* [Build](technical/Build.md) -- TODO
-* [Unit tests](technical/UnitTests.md) -- TODO
-
-### Code
-
+* [Build and test](technical/Build.md) -- Review
 * [SQL files (data-web)](technical/SQLFiles.md)
 
 ## Legal
