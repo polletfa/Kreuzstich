@@ -1,0 +1,72 @@
+# Privacy Policy
+
+*Last updated: May 2026*
+
+## 1. Who we are
+
+This website is operated by [Your Name / Company Name], based in [Country], EU. You can contact us at [your contact email].
+
+## 2. What data we collect and why
+
+### 2.1 Server logs (all visitors)
+
+Our servers generate operational logs for the purpose of diagnosing technical issues and ensuring service stability. These logs record only timestamps, HTTP method, URL path, and response codes. IP addresses, user agents, and all other identifying information are explicitly excluded from our logs.
+
+As a result, our server logs contain no personal data and fall outside the scope of GDPR. Logs are automatically discarded when containers are recycled on each deployment.
+
+### 2.2 Account data (registered users only)
+
+If you create an account, we collect the information you provide during registration (such as your email address) and store data associated with your account in our database.
+
+**Legal basis:** Performance of a contract (Article 6(1)(b) GDPR) — your account data is necessary to provide the service you signed up for.
+
+**Retention:** We keep your account data for as long as your account is active. You may request deletion at any time (see Section 5).
+
+### 2.3 Session cookie (registered users only)
+
+If you create an account and log in, we set a session cookie to maintain your login state. This cookie is strictly necessary to provide the authenticated service and is deleted when you close your browser.
+
+If you choose "keep me logged in" at login, a persistent cookie is set instead, so you do not need to log in again on your next visit. This cookie is only set if you actively choose this option.
+
+Anonymous users receive no cookies. No third-party cookies are used on this website.
+
+### 2.4 Local browser storage (anonymous users)
+
+If you use the website without registering, any data you create is stored locally in your browser using IndexedDB. This data **never leaves your device** and is never transmitted to or accessible by us.
+
+This means:
+- We cannot see, access, or recover your local data
+- Your data will be lost if you clear your browser storage
+- This data falls outside the scope of GDPR, as we do not process it
+
+## 3. What we do not do
+
+- We do not sell your data to third parties
+- We do not use your data for advertising or profiling
+- We do not use analytics tools or tracking scripts
+- We do not transfer your data outside the European Union
+
+## 4. Who we share data with
+
+We do not share your personal data with third parties, with the following exception:
+
+**Hosting provider:** Our website is hosted by Strato (STRATO GmbH, Berlin, Germany), part of the IONOS Group. As our data processor, they have access to server infrastructure on which your data is stored. We have a Data Processing Agreement in place with Strato as required by Article 28 GDPR. Strato's data centres are located within the EU. Strato may engage sub-processors to fulfil their services; the current list is available at [https://www.strato.de/agb/avv/](https://www.strato.de/agb/avv/).
+
+## 5. Your rights
+
+Under GDPR, you have the following rights regarding your personal data:
+
+- **Access** — request a copy of the data we hold about you
+- **Rectification** — ask us to correct inaccurate data
+- **Erasure** — ask us to delete your data ("right to be forgotten")
+- **Restriction** — ask us to limit how we use your data
+- **Portability** — receive your data in a machine-readable format
+- **Objection** — object to processing based on our legitimate interests
+
+To exercise any of these rights, contact us at [your contact email]. We will respond within 30 days.
+
+You also have the right to lodge a complaint with your national data protection authority.
+
+## 6. Changes to this policy
+
+We may update this policy from time to time. The date at the top of this page indicates when it was last revised. Continued use of the service after changes constitutes acceptance of the updated policy.
