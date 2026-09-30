@@ -46,7 +46,7 @@ jobs:
         echo "ARTIFACT=gui-web-${GITHUB_SHA::8}" >> $GITHUB_OUTPUT
 
     - name: Upload
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
           retention-days: 7
           name: ${{ steps.vars.outputs.artifact }}
