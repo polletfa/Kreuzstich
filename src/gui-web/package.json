@@ -24,7 +24,7 @@
         "@angular/router": "^21.2.0",
         "rxjs": "~7.8.0",
         "tslib": "^2.3.0",
-        "zod": "^4.4.3"
+        "zod": "^4.6.5"
     },
     "devDependencies": {
         "@angular/build": "^21.2.9",
