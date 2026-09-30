@@ -1,0 +1,22 @@
+/*
+  Kreuzstich
+  Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+  MIT License, see LICENSE file.
+*/
+#ifndef QSTANDARDPATHWRAPPER_HPP
+#define QSTANDARDPATHWRAPPER_HPP
+
+#include "IQStandardPathsWrapper.hpp"
+
+/**
+ * Wrapper for QStandardPaths.
+ * For testing, use Mockup_QStandardPathsWrapper instead
+ * @see IQStandardPathsWrapper
+ */
+class QStandardPathsWrapper: public IQStandardPathsWrapper {
+public:
+    [[nodiscard]] QStringList standardLocations(QStandardPaths::StandardLocation location) override;
+    [[nodiscard]] QString writableLocation(QStandardPaths::StandardLocation location) override;
+};
+
+#endif // QSTANDARDPATHWRAPPER_HPP

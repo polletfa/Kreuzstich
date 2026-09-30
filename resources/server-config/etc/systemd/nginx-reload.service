@@ -1,0 +1,7 @@
+[Unit]
+Description=Reload Nginx Container
+After=certbot.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/docker exec nginx nginx -s reload

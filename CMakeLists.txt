@@ -1,66 +1,109 @@
-# TODO:
-# - writescript fehler handlung?
-# - generatescript / dialog to select unit and fabric count
-# - oder size in mm/inch schon beim erstellen eines projektes + dialog um parameter nachträglich zu ändern?
-# - tools: pen / fill / replace
-# - imagemagick fehlerhandlung müsste noch überprüft werden (warnings? weitere versuche mit nicht-bild-dateien)
-# - doxy & mehr kommentaren (und Header)
-# - l10n (auch libKreuzstich)
-#   --> im prinzip nichts außer writescript
-#########################################
+# Kreuzstich
+# Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
 
-cmake_minimum_required(VERSION 2.8.11)
-project(Kreuzstich)
+cmake_minimum_required(VERSION 3.19)
 
-#set(USE_QT_VERSION 4)
-set(USE_QT_VERSION 5)
+project(Kreuzstich
+    VERSION 1.0
+    LANGUAGES CXX
+    HOMEPAGE_URL "https://github.com/polletfa/Kreuzstich"
+)
 
-# Build shared libraries
-set(BUILD_SHARED_LIBS ON)
+# Project-wide definitions: Cmake
 
-# Find includes in corresponding build directories
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-# Set C++ standard to C++11
-add_definitions(-std=c++11)
-
-# Git commit hash & build time (note: computed when cmake is run, not make, so only correct with a clean build)
-execute_process(COMMAND git log --pretty=format:%h -n1 HEAD
-                OUTPUT_VARIABLE GIT_COMMIT)
-execute_process(COMMAND date "+%s"
-                COMMAND tr -d "\n"
-                OUTPUT_VARIABLE BUILD_TIME)
-               
-add_definitions(-DGIT_COMMIT="${GIT_COMMIT}"
-                -DBUILD_TIME="${BUILD_TIME}" )
-
-# Copyright
-add_definitions(-DCOPYRIGHT="2013-2020, Fabien Pollet \(polletfa@posteo.de\)")
-
-# System information
-add_definitions(-DSYSTEM="${CMAKE_SYSTEM}"
-                -DPROCESSOR="${CMAKE_SYSTEM_PROCESSOR}")
-
-# Packages
-find_package(ImageMagick 6 REQUIRED COMPONENTS Magick++ MagickCore)
-execute_process(COMMAND pkg-config Magick++ --cflags
-                OUTPUT_VARIABLE MAGICK_CPPFLAGS
-                OUTPUT_STRIP_TRAILING_WHITESPACE)
-add_definitions(${MAGICK_CPPFLAGS})
-execute_process(COMMAND pkg-config Magick++ --libs
-                OUTPUT_VARIABLE MAGICK_LDFLAGS
-                OUTPUT_STRIP_TRAILING_WHITESPACE)
-find_package(Boost REQUIRED COMPONENTS system filesystem program_options regex)
-if(${USE_QT_VERSION} MATCHES 4)
-    find_package(Qt4 REQUIRED QtGui)
-elseif(${USE_QT_VERSION} MATCHES 5)
-    find_package(Qt5Widgets)
-else()
-    message(FATAL_ERROR "USE_QT_VERSION must be set to 4 or 5.")
+if(NOT EMSCRIPTEN)
+    set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+    list(APPEND CMAKE_CTEST_ARGUMENTS "--output-on-failure")
 endif()
-add_definitions(-DUSE_QT_VERSION=${USE_QT_VERSION})
-find_package(LibXml2)
 
-# Subdirectories
-add_subdirectory(libkreuzstich)
-add_subdirectory(kreuzstich)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/tools")
+set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/dist)
+
+string(TIMESTAMP BUILD_TIME "%Y-%m-%dT%H:%M:%SZ" UTC)
+
+# Project-wide definitions: C++
+
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+add_compile_definitions($<$<CONFIG:Debug>:DEBUG>)
+add_compile_options($<$<CONFIG:Debug>:--coverage>)
+add_compile_options($<$<CONFIG:Debug>:-O0>)
+add_compile_options($<$<CONFIG:Debug>:-g>)
+add_link_options($<$<CONFIG:Debug>:--coverage>)
+
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
+    add_compile_options(-Wall -Wextra -Wpedantic -Werror)
+endif()
+
+if(NOT EMSCRIPTEN)
+    ## Install
+    include(generate_version)
+    generate_version(${CMAKE_SOURCE_DIR}/tools/VERSION.in ${CMAKE_BINARY_DIR}/VERSION)
+    install(FILES ${CMAKE_BINARY_DIR}/VERSION DESTINATION . COMPONENT common)
+    install(FILES ${CMAKE_SOURCE_DIR}/LICENSE DESTINATION . COMPONENT common)
+
+    # Target: install-web-app
+    add_custom_target(install-web-app
+        COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component common
+        COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component web-app
+    )
+
+    # Target: install-desktop-app
+    add_custom_target(install-desktop-app
+        COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component common
+        COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --component desktop-app
+    )
+endif()
+
+## WASM build only
+if(EMSCRIPTEN)
+    add_subdirectory(src/core)
+    add_subdirectory(src/wrapper-wasm)
+
+## Standard build
+else()
+    # Components
+    add_subdirectory(src/core)
+    add_subdirectory(src/wrapper-wasm)
+    add_subdirectory(src/data-desktop)
+    add_subdirectory(src/data-web)
+    add_subdirectory(src/gui-desktop)
+    add_subdirectory(src/gui-web)
+
+    ## Components: additional resources
+    add_subdirectory(resources/threadlists)
+
+    ## Unit Tests
+    enable_testing()
+    add_subdirectory(tests)
+
+    ## Build C++ components only
+    add_custom_target(build-cpp)
+    add_dependencies(build-cpp
+        core
+        wrapper-wasm
+        data-desktop
+        gui-desktop
+    )
+
+    ## Build native components only
+    add_custom_target(build-native)
+    add_dependencies(build-native
+        core
+        data-desktop
+        gui-desktop
+    )
+
+    ## Build web components only
+    add_custom_target(build-web)
+    add_dependencies(build-web
+        wrapper-wasm
+        data-web
+        gui-web
+    )
+
+endif()
