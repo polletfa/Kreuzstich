@@ -30,25 +30,13 @@ updates:
     target-branch: "develop"
 
   - package-ecosystem: "docker"
-    directory: "/resources/docker/kreuzstich-prod"
+    directory: "/resources/docker/kreuzstich"
     schedule:
       interval: "weekly"
     target-branch: "develop"
 
   - package-ecosystem: "docker"
-    directory: "/resources/docker/kreuzstich-prod-api"
-    schedule:
-      interval: "weekly"
-    target-branch: "develop"
-
-  - package-ecosystem: "docker"
-    directory: "/resources/docker/kreuzstich-int"
-    schedule:
-      interval: "weekly"
-    target-branch: "develop"
-
-  - package-ecosystem: "docker"
-    directory: "/resources/docker/kreuzstich-int-api"
+    directory: "/resources/docker/kreuzstich-api"
     schedule:
       interval: "weekly"
     target-branch: "develop"
