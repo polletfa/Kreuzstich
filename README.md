@@ -80,6 +80,6 @@ And for future applications:
 
 ![architecture overview](doc/architecture-overview.svg)
 
-### Developer documentation
+## Developer documentation
 
 * [Developer documentation](doc/index.md)
