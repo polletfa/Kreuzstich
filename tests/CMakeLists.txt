@@ -8,7 +8,7 @@ include(FetchContent)
 FetchContent_Declare(
     googletest
     DOWNLOAD_EXTRACT_TIMESTAMP true
-    URL https://github.com/google/googletest/archive/refs/tags/v1.15.2.tar.gz
+    URL https://github.com/google/googletest/archive/refs/tags/v1.18.0.tar.gz
 )
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 set(INSTALL_GTEST OFF)
