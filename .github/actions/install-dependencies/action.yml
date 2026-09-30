@@ -16,6 +16,10 @@ inputs:
 runs:
     using: composite
     steps:
+        - name: Load dependency versions
+          shell: bash
+          run: cat .github/dependencies.conf >> $GITHUB_ENV
+
         - name: Set variables
           shell: bash
           run: |
@@ -50,7 +54,7 @@ runs:
           if: ${{ inputs.target == 'all' || inputs.target == 'gui-desktop' }}
           uses: jurplel/install-qt-action@v4
           with:
-              version: '6.10.2'
+              version: ${{ env.QT_VERSION }}
               host: ${{ env.QT_HOST }}
               arch: ${{ env.QT_ARCH }}
               target: 'desktop'
@@ -60,11 +64,11 @@ runs:
           if: ${{ inputs.target == 'all' || inputs.target == 'gui-web' }}
           uses: actions/setup-node@v6
           with:
-              node-version: '22'
+              node-version: ${{ env.NODE_VERSION }}
 
         - name: Install EMSDK
           if: ${{ inputs.target == 'all' || inputs.target == 'gui-web' }}
           uses: emscripten-core/setup-emsdk@v15
           with:
-              version: 5.0.7
+              version: ${{ env.EMSDK_VERSION }}
               actions-cache-folder: 'emsdk-cache'
