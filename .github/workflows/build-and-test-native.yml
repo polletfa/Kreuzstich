@@ -6,7 +6,7 @@ name: Build and Test Native Components (multiple platforms)
 
 on:
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "main", "develop" ]
   workflow_dispatch:
 
 jobs:
