@@ -3,6 +3,7 @@
 # MIT License, see LICENSE file.
 
 version: 2
+
 updates:
   - package-ecosystem: "docker-compose"
     directory: "/resources/server-config"
@@ -23,25 +24,13 @@ updates:
     target-branch: "develop"
 
   - package-ecosystem: "docker"
-    directory: "/resources/docker/kreuzstich-prod"
+    directory: "/resources/docker/kreuzstich"
     schedule:
       interval: "weekly"
     target-branch: "develop"
 
   - package-ecosystem: "docker"
-    directory: "/resources/docker/kreuzstich-prod-api"
-    schedule:
-      interval: "weekly"
-    target-branch: "develop"
-
-  - package-ecosystem: "docker"
-    directory: "/resources/docker/kreuzstich-int"
-    schedule:
-      interval: "weekly"
-    target-branch: "develop"
-
-  - package-ecosystem: "docker"
-    directory: "/resources/docker/kreuzstich-int-api"
+    directory: "/resources/docker/kreuzstich-api"
     schedule:
       interval: "weekly"
     target-branch: "develop"
@@ -51,18 +40,29 @@ updates:
     schedule:
       interval: "weekly"
     target-branch: "develop"
+    groups:
+      npm-vitest:
+        patterns: ["vitest", "@vitest/*"]
+      npm-angular:
+        patterns: ["@angular/*"]
 
   - package-ecosystem: "npm"
     directory: "/src/data-web"
     schedule:
       interval: "weekly"
     target-branch: "develop"
+    groups:
+      npm-vitest:
+        patterns: ["vitest", "@vitest/*"]
 
   - package-ecosystem: "npm"
     directory: "/tests/wrapper-wasm"
     schedule:
       interval: "weekly"
     target-branch: "develop"
+    groups:
+      npm-vitest:
+        patterns: ["vitest", "@vitest/*"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
