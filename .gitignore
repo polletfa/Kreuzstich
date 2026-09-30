@@ -1,0 +1,108 @@
+># This file is used to ignore files which are generated
+# ----------------------------------------------------------------------------
+
+*~
+*.autosave
+*.a
+*.core
+*.moc
+*.o
+*.obj
+*.orig
+*.rej
+*.so
+*.so.*
+*_pch.h.cpp
+*_resource.rc
+*.qm
+.#*
+*.*#
+core
+!core/
+tags
+.DS_Store
+.directory
+*.debug
+Makefile*
+*.prl
+*.app
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+Thumbs.db
+*.res
+*.rc
+/.qmake.cache
+/.qmake.stash
+
+# qtcreator/aqtinstall
+*.pro.user*
+*.qbs.user*
+CMakeLists.txt.user*
+aqtinstall.log
+
+# xemacs temporary files
+*.flc
+
+# Vim temporary files
+.*.swp
+
+# Draw.io backup files
+.xdp-*
+
+# Visual Studio generated files
+*.ib_pdb_index
+*.idb
+*.ilk
+*.pdb
+*.sln
+*.suo
+*.vcproj
+*vcproj.*.*.user
+*.ncb
+*.sdf
+*.opensdf
+*.vcxproj
+*vcxproj.*
+
+# MinGW generated files
+*.Debug
+*.Release
+
+# Python byte code
+*.pyc
+
+# Binaries
+# --------
+*.dll
+*.exe
+
+# Directories with generated files
+.moc/
+.obj/
+.pch/
+.rcc/
+.uic/
+build/
+coverage/
+test-results/
+node_modules/
+emsdk-cache/
+dist/
+.angular/
+
+# emacs
+.dir-locals.el
+
+# User-config: clangd
+compile_commands.json
+.clangd
+.cache
+
+# npm
+audit.json
+
+# secrets
+.env
+secrets.env
+*.secrets.env

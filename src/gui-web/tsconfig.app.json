@@ -1,0 +1,19 @@
+/*
+  Kreuzstich
+  Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+  MIT License, see LICENSE file.
+*/
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": []
+  },
+  "include": [
+    "src/**/*.ts",
+    "build/wrapper-wasm/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts"
+  ]
+}

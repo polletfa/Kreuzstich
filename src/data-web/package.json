@@ -1,0 +1,31 @@
+{
+  "name": "data-web",
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit && tsup src/index.ts",
+    "start": "node dist/index.cjs",
+    "test-watch": "vitest",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
+    "start:db:tests": "docker compose -f tests/docker-compose.yml up -d",
+    "stop:db:tests": "docker compose -f tests/docker-compose.yml down"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.2",
+    "@vitest/coverage-v8": "^4.1.5",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "vitest": "^4.0.8"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^11.0.2",
+    "@fastify/jwt": "^10.0.0",
+    "@types/bcryptjs": "^2.4.6",
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.4.2",
+    "fastify": "^5.8.5",
+    "fastify-type-provider-zod": "^6.1.0",
+    "pg-promise": "^12.6.2",
+    "zod": "^4.4.3"
+  }
+}

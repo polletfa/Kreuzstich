@@ -1,0 +1,17 @@
+/*
+  Kreuzstich
+  Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+  MIT License, see LICENSE file.
+*/
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./out-tsc/worker",
+        "lib": ["es2018", "webworker"],
+        "types": []
+    },
+  "include": [
+    "build/wrapper-wasm/*.ts",
+    "src/**/*.worker.ts"
+  ]
+}

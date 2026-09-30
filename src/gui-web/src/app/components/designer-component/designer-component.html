@@ -1,0 +1,10 @@
+<!--
+  Kreuzstich
+  Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+  MIT License, see LICENSE file.
+-->
+<p>
+    @for(line of testsOutput(); track $index) {
+    <br/><span [style.color]="line.level === 'error' ? 'red' : 'inherit'">{{line.message}}</span>
+    }
+</p>

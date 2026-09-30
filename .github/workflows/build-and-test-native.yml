@@ -1,0 +1,138 @@
+# Kreuzstich
+# Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
+name: Build and Test Native Components (multiple platforms)
+
+on:
+  pull_request:
+    branches: [ "develop" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build and Test Native Components (${{ matrix.name }})
+    runs-on: ${{ matrix.os }}
+    permissions:
+        contents: read
+
+    #############################################################################
+    # Build matrix                                                              #
+    #############################################################################
+
+    #############################################################################
+    # Build matrix                                                              #
+    #############################################################################
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Windows, MVSC
+            config: windows
+            build_type: Release
+            os: windows-latest
+            c_compiler: cl
+            cpp_compiler: cl
+
+          - name: Linux, GCC
+            config: linux-gcc
+            build_type: Release
+            os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+
+          - name: Linux, clang
+            config: linux-clang
+            build_type: Release
+            os: ubuntu-latest
+            c_compiler: clang-19
+            cpp_compiler: clang++-19
+
+          - name: MacOS, clang
+            config: macos
+            build_type: Release
+            os: macos-latest
+            c_compiler: clang
+            cpp_compiler: clang++
+
+    steps:
+
+    #############################################################################
+    # Build                                                                     #
+    #############################################################################
+
+    - name: Checkout
+      uses: actions/checkout@v6
+
+    - name: Install dependencies
+      uses: ./.github/actions/install-dependencies
+      with:
+          config: ${{ matrix.config }}
+
+    - name: Configure CMake
+      run: >
+        cmake -B ${{ github.workspace }}/build
+        -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
+        -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
+        -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+        -S ${{ github.workspace }}
+
+    - name: Build
+      run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} --target build-native
+
+    #############################################################################
+    # Test                                                                      #
+    #############################################################################
+
+    - name: Test
+      run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }} --target runtests-native
+
+    - name: Test Report
+      uses: test-summary/action@v2
+      with:
+        paths: "build/test-results/*.xml"
+      if: always()
+
+    #############################################################################
+    # Upload artifacts                                                          #
+    #############################################################################
+
+    - name: Artifact name suffix
+      if: always()
+      run: echo "ARTIFACT_SUFFIX=${{ matrix.os }}-${{ matrix.c_compiler }}-${GITHUB_SHA::8}" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v6
+      with:
+          retention-days: 7
+          name: test-results-${{ env.ARTIFACT_SUFFIX }}
+          path: build/test-results
+
+    - name: Upload build files on failure
+      if: failure()
+      uses: actions/upload-artifact@v6
+      with:
+          retention-days: 1
+          name: build-${{ env.ARTIFACT_SUFFIX }}
+          path: |
+              build
+              src/gui-web/build
+              tests/wrapper-wasm/build
+
+  #############################################################################
+  # Summary job                                                               #
+  #############################################################################
+
+  build-native-all-checks-passed:
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions: {}
+    if: always()
+    steps:
+      - name: Check all matrix jobs passed
+        run: |
+          if [ "${{ needs.build.result }}" != "success" ]; then
+          exit 1
+          fi

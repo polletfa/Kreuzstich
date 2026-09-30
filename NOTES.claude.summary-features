@@ -1,0 +1,61 @@
+Project: Kreuzstich rewrite
+
+A cross-stitch pattern design app, rewrite of https://github.com/polletfa/Kreuzstich. The original is written in C++ with Qt, using a lib+app split. The rewrite will be a monolith (single target) but with clean internal separation between:
+
+    gui — widgets and user interaction
+    creator — core logic (yarn database, image processing, pattern)
+
+Technology: C++17, Qt6, CMake, single app target. English UI with German translation from the start (app name stays "Kreuzstich"). Multilingual via Qt translation system (tr(), .ts/.qm files).
+
+Color matching:
+
+    RGB → LAB color space for distance computation
+    RGB → XYZ using D65/2° white point
+    XYZ → LAB with piecewise f() function (not just pow(1/3))
+    Missing: sRGB linearization before matrix multiplication (gamma correction)
+    Distance: CIE76 Euclidean distance in LAB space
+    Color values come from photos of yarn color cards, processed with ImageMagick
+
+App features discussed:
+
+Pattern view:
+
+    Pixel grid displayed with color numbers
+    Rectangle selection tool (ephemeral)
+    Highlight a selected color
+    Mark pixels as done/not-done (per pixel, stored permanently)
+    Dim done pixels
+
+Color/statistics panel (contextual to current area selection):
+
+    List colors present in selected area with stitch counts
+    Show done/remaining per color
+    Flag rare colors (configurable threshold) as candidates for replacement
+    Click color to highlight in pattern view
+    Replace one color with another within selection
+
+Work units (area × color, saved temporarily):
+
+    User selects area + colors to work on
+    App saves the work unit (rectangle + color list + per-color done status)
+    User can generate a batch PDF for the whole area
+    When done, mark entire work unit as done in one click (all pixels of those colors in that area marked done)
+    Work unit then discarded
+
+PDF generation:
+
+    For a selected area, one section per color
+    Each section: the area grid with that color highlighted (different symbol or bold), others shown normally
+    Page 1: overview with color list and stitch counts for the area
+    Colors can be reordered before generating
+    Optimized for reMarkable 2 (grayscale, good square size for pen)
+    Numbers used (not colors) since ~92 colors too many to distinguish visually
+
+Workflow:
+
+    Select area in app
+    Review colors, remove rare ones or plan replacements
+    Generate batch PDF
+    Work on reMarkable
+    Return to app, mark work unit done
+    Repeat

@@ -1,0 +1,11 @@
+# comment line
+     # another comment
+
+invalid # line
+
+thread 1:012345
+thread 2, thread 3, thread 4: abcdef
+thread 5: invalid color
+
+   thread 6   : 112233 # comment
+thread 7:

@@ -8,19 +8,33 @@ Kreuzstich is a program designed to create complex photo-realistic cross-stitch 
 While this is somewhat similar to the online service provided by DMC, it has a stronger focus on photo-realism and doesn't limit the number
 of threads to use or the size of the picture.
 
+The program was originally written as a Qt application with rudimentary features. The current project is a web application which will add following features:
+- Pattern editing
+- Better PDF generation
+- Progress tracking
+
+See below for more details.
+
+## Status
+
+- Initial version: archived (tag [initial_qt_version](https://github.com/polletfa/Kreuzstich/releases/tag/initial_qt_version))
+- Current work:
+  - [main](https://github.com/polletfa/Kreuzstich): Production branch, not yet deployed (unfinished)
+  - [develop](https://github.com/polletfa/Kreuzstich/tree/develop): Development branch, deployed on [int.kreuzstich.art](https://int.kreuzstich.art/).
+
 ## Initial version
 
 The initial version of Kreuzstich was rudimentary but was used to create several patterns over the course of several years:
 
 | Original picture | Kreuzstich creation |
 | :---: | :---: |
-| <img src="doc/examples/andrea1.original.jpg" height="200"> | <img src="doc/examples/andrea1.kreuzstich.jpg" height="200"> |
-| <img src="doc/examples/andrea2.original.jpg" height="200"> | <img src="doc/examples/andrea2.kreuzstich.jpg" height="200"> |
-| <img src="doc/examples/torshavn.original.jpg" height="200"> | <img src="doc/examples/torshavn.kreuzstich.jpg" height="200"> |
+| <img src="doc/examples/andrea1.original.jpg" width="300"> | <img src="doc/examples/andrea1.kreuzstich.jpg" width="300"> |
+| <img src="doc/examples/andrea2.original.jpg" width="300"> | <img src="doc/examples/andrea2.kreuzstich.jpg" width="300"> |
+| <img src="doc/examples/torshavn.original.jpg" width="300"> | <img src="doc/examples/torshavn.kreuzstich.jpg" width="300"> |
 
-One of the main caveat of this version is that it doesn't allow editing. It simply selects the best color for each pixel of the
+One of the main caveats of this version is that it doesn't allow editing. It simply selects the best color for each pixel of the
 picture and may therefore create unnecessary complex patterns with lots of threads being used only for a few pixels.
-While stitching the previous projects, I often made some modifications "on the fly" be replacing or removing some threads.
+While stitching the previous projects, I often made some modifications "on the fly" by replacing or removing some threads.
 
 ## Rewrite
 
@@ -46,20 +60,26 @@ The application will also provide features to help while doing the stitching:
 
 ### Objective
 
-The long-term objective is to develop 3 applications:
-- A desktop application for offline working.
-- A web application that will also allow to save and share the projects online
-- An Android companion app with limited features, which will be use to help during the stitching (no pattern creation/editing)
+The main objective is to provide a web application that will allow users to create and share their projects online.
 
-The priority and the extend of each application is still being defined.
+However other applications could be added in the future, so the architecture has been designed with that possibility in mind:
+- A desktop application for both offline (with files) and online (by connecting to the server) work.
+- An Android companion app with limited features, which will be used to help during the stitching (no pattern creation/editing).
+- Alternatively, a PWA version of the website could be provided instead of an app.
 
 ### Technical aspects
 
 The rewrite will use more modern technologies and better code quality than the initial version:
-- Modern C++ (C++20)
-- Qt6 instead of Qt4/5 for the desktop app
+- Modern C++ (C++23)
 - Angular and WebAssembly for the web version
+- Unit tests with Google Test (C++) and Vitest (TypeScript)
+
+And for future applications:
+- Qt6 instead of Qt4/5 for the desktop app
 - Kotlin for the Android version
-- Unit tests with Google Test
 
 ![architecture overview](doc/architecture-overview.svg)
+
+## Developer documentation
+
+* [Developer documentation](doc/index.md)

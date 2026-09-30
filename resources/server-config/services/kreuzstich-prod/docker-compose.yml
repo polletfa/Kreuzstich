@@ -1,0 +1,64 @@
+# Kreuzstich
+# Copyright (c) 2013, 2026 Fabien Pollet <polletfa@posteo.de>
+# MIT License, see LICENSE file.
+
+networks:
+  kreuzstich-prod-backend:
+    internal: true
+  kreuzstich-prod:
+    internal: true
+
+services:
+  kreuzstich-prod-database:
+    container_name: kreuzstich-prod-database
+    image: postgres:18
+    env_file:
+      # For environment variables that should not be committed:
+      # - POSTGRES_PASSWORD (kreuzstich-int-database)
+      # - KREUZSTICH_DATA_WEB_DB_PASSWORD (kreuzstich-int-api)
+      # - KREUZSTICH_DATA_WEB_JWT_SECRET (kreuzstich-int-api)
+      - ./secrets.env
+    environment:
+      - POSTGRES_USER=kreuzstich
+      - POSTGRES_DB=kreuzstich
+    networks:
+      - kreuzstich-prod-backend
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+
+      - ./database:/var/lib/postgresql/data
+    restart: always
+
+  kreuzstich-prod-api:
+    container_name: kreuzstich-prod-api
+    depends_on:
+      - kreuzstich-prod-database
+    image: ghcr.io/polletfa/kreuzstich-prod-api:latest
+    env_file:
+      # For environment variables that should not be committed:
+      # - POSTGRES_PASSWORD (kreuzstich-int-database)
+      # - KREUZSTICH_DATA_WEB_DB_PASSWORD (kreuzstich-int-api)
+      # - KREUZSTICH_DATA_WEB_JWT_SECRET (kreuzstich-int-api)
+      - ./secrets.env
+    environment:
+      - KREUZSTICH_DATA_WEB_PORT=80
+      - KREUZSTICH_DATA_WEB_DB_HOST=kreuzstich-prod-database
+      - KREUZSTICH_DATA_WEB_DB_DB=kreuzstich
+      - KREUZSTICH_DATA_WEB_DB_USER=kreuzstich
+    networks:
+        - kreuzstich-prod-backend
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+
+  kreuzstich-prod:
+    container_name: kreuzstich-prod
+    depends_on:
+      - kreuzstich-prod-api
+    image: ghcr.io/polletfa/kreuzstich-prod:latest
+    networks:
+      - kreuzstich-prod
+      - kreuzstich-prod-backend
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
