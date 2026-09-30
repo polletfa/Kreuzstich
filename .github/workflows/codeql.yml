@@ -6,7 +6,7 @@ name: "CodeQL"
 
 on:
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "main", "develop" ]
 #  schedule:
 #    - cron: '21 9 * * 1'
 
