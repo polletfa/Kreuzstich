@@ -3,6 +3,13 @@
 # MIT License, see LICENSE file.
 
 version: 2
+
+groups:
+  npm-vitest:
+    patterns: ["vitest", "@vitest/*"]
+  npm-angular:
+    patterns: ["@angular/*"]
+
 updates:
   - package-ecosystem: "docker-compose"
     directory: "/resources/server-config"
@@ -51,18 +58,21 @@ updates:
     schedule:
       interval: "weekly"
     target-branch: "develop"
+    groups: ["npm-angular", "npm-vitest"]
 
   - package-ecosystem: "npm"
     directory: "/src/data-web"
     schedule:
       interval: "weekly"
     target-branch: "develop"
+    groups: ["npm-vitest"]
 
   - package-ecosystem: "npm"
     directory: "/tests/wrapper-wasm"
     schedule:
       interval: "weekly"
     target-branch: "develop"
+    groups: ["npm-vitest"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
