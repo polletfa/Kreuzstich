@@ -41,10 +41,8 @@ updates:
       interval: "weekly"
     target-branch: "develop"
     groups:
-      npm-vitest:
-        patterns: ["vitest", "@vitest/*"]
-      npm-angular:
-        patterns: ["@angular/*"]
+      node_packages:
+        patterns: ["*"]
 
   - package-ecosystem: "npm"
     directory: "/src/data-web"
@@ -52,8 +50,8 @@ updates:
       interval: "weekly"
     target-branch: "develop"
     groups:
-      npm-vitest:
-        patterns: ["vitest", "@vitest/*"]
+      node_packages:
+        patterns: ["*"]
 
   - package-ecosystem: "npm"
     directory: "/tests/wrapper-wasm"
@@ -61,8 +59,8 @@ updates:
       interval: "weekly"
     target-branch: "develop"
     groups:
-      npm-vitest:
-        patterns: ["vitest", "@vitest/*"]
+      node_packages:
+        patterns: ["*"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
