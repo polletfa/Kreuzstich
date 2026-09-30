@@ -4,37 +4,68 @@
 
 version: 2
 updates:
-  - package-ecosystem: "docker"
+  - package-ecosystem: "docker-compose"
     directory: "/resources/server-config"
     schedule:
       interval: "weekly"
+    target-branch: "develop"
 
-  - package-ecosystem: "docker"
+  - package-ecosystem: "docker-compose"
     directory: "/resources/server-config/services/kreuzstich-prod"
     schedule:
       interval: "weekly"
+    target-branch: "develop"
 
-  - package-ecosystem: "docker"
+  - package-ecosystem: "docker-compose"
     directory: "/resources/server-config/services/kreuzstich-int"
     schedule:
       interval: "weekly"
+    target-branch: "develop"
 
   - package-ecosystem: "docker"
     directory: "/resources/docker/kreuzstich-prod"
     schedule:
       interval: "weekly"
+    target-branch: "develop"
 
   - package-ecosystem: "docker"
     directory: "/resources/docker/kreuzstich-prod-api"
     schedule:
       interval: "weekly"
+    target-branch: "develop"
 
   - package-ecosystem: "docker"
     directory: "/resources/docker/kreuzstich-int"
     schedule:
       interval: "weekly"
+    target-branch: "develop"
 
   - package-ecosystem: "docker"
     directory: "/resources/docker/kreuzstich-int-api"
     schedule:
       interval: "weekly"
+    target-branch: "develop"
+
+  - package-ecosystem: "npm"
+    directory: "/src/gui-web"
+    schedule:
+      interval: "weekly"
+    target-branch: "develop"
+
+  - package-ecosystem: "npm"
+    directory: "/src/data-web"
+    schedule:
+      interval: "weekly"
+    target-branch: "develop"
+
+  - package-ecosystem: "npm"
+    directory: "/tests/wrapper-wasm"
+    schedule:
+      interval: "weekly"
+    target-branch: "develop"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    target-branch: "develop"
