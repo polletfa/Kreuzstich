@@ -5,7 +5,6 @@
 */
 
 import { defineConfig } from 'vitest/config'
-import fs from 'fs/promises';
 import path from 'path';
 import loadSqlFile from './sqlPlugin';
 import { walk } from 'estree-walker';
@@ -69,7 +68,14 @@ const vitestSqlPlugin = {
 
 export default defineConfig({
     plugins: [vitestSqlPlugin],
-    resolve: { tsconfigPaths: true },
+    resolve: {
+        alias: {
+            '@datatypes': path.resolve(__dirname, './src/types'),
+            '@sql': path.resolve(__dirname, './src/sql'),
+            '@version': path.resolve(__dirname, './build/Version.ts'),
+            '@threadlists': path.resolve(__dirname, '../../resources/threadlists'),
+        }
+    },
     test: {
         globals: true,
         environment: 'node',
