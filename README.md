@@ -15,7 +15,7 @@ The program was originally written as a Qt application with rudimentary features
 
 ## Status
 
-- Initial version: archived (tag [initial_qt_version](https://github.com/polletfa/Kreuzstich/releases/tag/initial_qt_version)
+- Initial version: archived (tag [initial_qt_version](https://github.com/polletfa/Kreuzstich/releases/tag/initial_qt_version))
 - Current work:
   - [main](https://github.com/polletfa/Kreuzstich): Production branch, not yet deployed (unfinished)
   - [develop](https://github.com/polletfa/Kreuzstich/tree/develop): Development branch, deployed on [int.kreuzstich.art](https://int.kreuzstich.art/).
