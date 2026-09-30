@@ -8,6 +8,18 @@ Kreuzstich is a program designed to create complex photo-realistic cross-stitch 
 While this is somewhat similar to the online service provided by DMC, it has a stronger focus on photo-realism and doesn't limit the number
 of threads to use or the size of the picture.
 
+The program was originally written as a Qt application with rudimentary features. The current project is a web application which will add following features:
+- Pattern editing
+- Better PDF generation
+- Progress tracking
+
+## Status
+
+- Initial version: archived (tag [initial_qt_version](https://github.com/polletfa/Kreuzstich/releases/tag/initial_qt_version)
+- Current work:
+  - [main](https://github.com/polletfa/Kreuzstich): Production branch, not yet deployed (unfinished)
+  - [develop](https://github.com/polletfa/Kreuzstich/tree/develop): Development branch, deployed on [int.kreuzstich.art](https://int.kreuzstich.art/).
+
 ## Initial version
 
 The initial version of Kreuzstich was rudimentary but was used to create several patterns over the course of several years:
