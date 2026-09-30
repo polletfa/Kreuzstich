@@ -75,7 +75,7 @@ jobs:
           fi
 
       - name: Download build artifact
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: ${{ needs.build.outputs.artifact }}
           path: dist
