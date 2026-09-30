@@ -1,4 +1,4 @@
-FROM nginx:1.29.3
+FROM nginx:1.31.0
 RUN rm /usr/share/nginx/html/*
 COPY dist/docker/kreuzstich/nginx.conf /etc/nginx/nginx.conf
 COPY dist/LICENSE /usr/share/nginx/html/
