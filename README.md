@@ -13,6 +13,8 @@ The program was originally written as a Qt application with rudimentary features
 - Better PDF generation
 - Progress tracking
 
+See below for more details.
+
 ## Status
 
 - Initial version: archived (tag [initial_qt_version](https://github.com/polletfa/Kreuzstich/releases/tag/initial_qt_version))
