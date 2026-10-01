@@ -55,6 +55,10 @@ runs:
           uses: jurplel/install-qt-action@v4
           with:
               version: ${{ env.QT_VERSION }}
+              # Known issue, fixed but not yet released:
+              # - https://github.com/jurplel/install-qt-action/issues/374
+              # - https://github.com/miurahr/aqtinstall/issues/959
+              aqtsource: 'git+https://github.com/miurahr/aqtinstall.git@refs/pull/1000/head'
               host: ${{ env.QT_HOST }}
               arch: ${{ env.QT_ARCH }}
               target: 'desktop'
