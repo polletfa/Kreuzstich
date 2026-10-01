@@ -1,5 +1,7 @@
-todo add to devdoc:
+todo review build doc - must contain:
+- short explanation about build and test commands (cmake + npm)
 - cmake target threadlists (not automatic)
 - unit tests for data-web: start/stop test db
-- data-web: sql
-- short explanation about build and test commands (cmake + npm)
+
+todo github doc
+- deploy doesn't upgrade the main nginx. only the relevant services

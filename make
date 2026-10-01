@@ -22,5 +22,5 @@ fi
 cmake -B build/$MODE -DCMAKE_BUILD_TYPE=${MODE^}
 (
     cd build/$MODE
-    make $*
+    make -j$(nproc) $*
 )
