@@ -8,9 +8,6 @@
 
 #include "core/ThreadList.hpp"
 
-// STL
-#include <exception>
-
 struct UsagePairWASM {
     const Thread* thread;
     size_t count;
