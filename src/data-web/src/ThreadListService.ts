@@ -34,8 +34,6 @@ export class ThreadListService {
      */
     private async getLists(user: User|undefined, response: FastifyReply): Promise<api.GetThreadListsResponse> {
         try {
-            this.server.log.info(user);
-            this.server.log.info(getUserThreadLists);
             const res = user
                 ? await this.db.manyOrNone<db.ThreadListFull>(getUserThreadLists, [user.id])
                 : await this.db.manyOrNone<db.ThreadListFull>(getThreadLists);
