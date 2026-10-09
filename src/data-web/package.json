@@ -11,8 +11,8 @@
     "stop:db:tests": "docker compose -f tests/docker-compose.yml down"
   },
   "devDependencies": {
-    "@types/node": "^26.6.3",
-    "@vitest/coverage-v8": "^5.0.2",
+    "@types/node": "^26.6.4",
+    "@vitest/coverage-v8": "^5.0.3",
     "tsup": "^8.5.1",
     "typescript": "^7.0.2",
     "vitest": "^5.0.2"
@@ -21,7 +21,7 @@
     "@fastify/cookie": "^11.1.2",
     "@fastify/jwt": "^10.2.2",
     "bcryptjs": "^3.0.3",
-    "dotenv": "^18.0.4",
+    "dotenv": "^18.0.5",
     "fastify": "^5.12.5",
     "fastify-type-provider-zod": "^7.0.0",
     "pg-promise": "^12.7.1",
