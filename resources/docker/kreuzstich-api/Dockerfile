@@ -1,4 +1,4 @@
-FROM node:26.10.0-alpine3.23
+FROM node:26.11.1-alpine3.23
 WORKDIR /usr/share/kreuzstich
 
 COPY dist/LICENSE /usr/share/kreuzstich
