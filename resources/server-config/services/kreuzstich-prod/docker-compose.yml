@@ -26,7 +26,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
 
-      - ./database:/var/lib/postgresql/data
+      - ./database:/var/lib/postgresql
     restart: always
 
   kreuzstich-prod-api:
