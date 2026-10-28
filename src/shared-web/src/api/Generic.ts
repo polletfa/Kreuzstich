@@ -5,6 +5,7 @@
 */
 
 import * as z from 'zod/v4';
+export { z, ZodType } from 'zod';
 
 /**
  * Generic response schema
