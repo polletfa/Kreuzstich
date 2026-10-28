@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import { ZodType } from 'zod';
 
+import { ZodType } from '@datatypes/api/Generic';
 import * as api from '@datatypes/api/Version';
 
 /**

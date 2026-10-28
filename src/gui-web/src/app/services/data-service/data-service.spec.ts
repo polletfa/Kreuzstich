@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClient } from '@angular/common/http';
 import { of, throwError } from 'rxjs';
-import { z } from 'zod';
+import { z } from '@datatypes/api/Generic';
 
 import { DataService } from './data-service';
 

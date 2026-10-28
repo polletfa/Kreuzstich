@@ -73,6 +73,7 @@ else()
     add_subdirectory(src/data-web)
     add_subdirectory(src/gui-desktop)
     add_subdirectory(src/gui-web)
+    add_subdirectory(src/shared-web)
 
     ## Components: additional resources
     add_subdirectory(resources/threadlists)
