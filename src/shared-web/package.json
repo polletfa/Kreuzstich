@@ -1,0 +1,10 @@
+{
+  "name": "shared-web",
+  "type": "module",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  }
+}

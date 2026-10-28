@@ -6,15 +6,27 @@
 
 import * as wasm from './wrapper-wasm';
 import { Version } from './Version';
-import { ColorSpace } from './ColorSpace'
+import { ColorSpace } from './ColorSpace';
 import { Thread, ThreadConstructor } from './Thread';
 import { ThreadList, ThreadListConstructor } from './ThreadList';
+import { Selection } from './Selection';
 
-export {
+// Polyfill for Symbol.dispose
+if (typeof Symbol !== "undefined" && !Symbol.dispose) {
+  Object.defineProperty(Symbol, "dispose", {
+    value: Symbol("Symbol.dispose"),
+    configurable: false,
+    enumerable: false,
+    writable: false
+  });
+}
+
+export type {
     Version,
     ColorSpace,
     Thread,
-    ThreadList
+    ThreadList,
+    Selection
 };
 
 export class Module {

@@ -61,7 +61,7 @@ ColorSpace::ColorHSL ColorSpace::toHSL(const ColorSpace::ColorRGBA& rgba) {
 }
 
 ColorSpace::ColorLAB ColorSpace::toLAB(const ColorSpace::ColorRGBA& rgba) {
-    ColorSpace::ColorRGBA rgb = rgba.alpha == 1 ? rgba : ColorSpace::compositeRGBAOntoBackground(rgba, {});
+    ColorSpace::ColorRGBA rgb = rgba.alpha == 255 ? rgba : ColorSpace::compositeRGBAOntoBackground(rgba, {});
 
     // Inverse sRGB companding (sRGB -> linear RGB)
     auto inverseCompanding = [](double val) { return val <= 0.04045 ? val/12.92 : std::pow((val + 0.055) / 1.055, 2.4); };
