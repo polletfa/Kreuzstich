@@ -15,6 +15,7 @@ set(SOURCES
     ColorSpace.bindings.cpp
     Thread.bindings.cpp
     ThreadList.bindings.cpp
+    Selection.bindings.cpp
 )
 
 set(LIB_SOURCES
@@ -23,6 +24,7 @@ set(LIB_SOURCES
     ColorSpace.ts
     Thread.ts
     ThreadList.ts
+    Selection.ts
 )
 
 #

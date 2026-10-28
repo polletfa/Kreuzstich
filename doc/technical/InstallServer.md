@@ -10,7 +10,7 @@ On your local machine, execute the following steps:
    scp -r resources/server-config/* root@server:/srv
    ```
 
-2. Create a SSH key pair:
+2. Create a SSH key pair and upload the public key:
    ```
    ssh-keygen -t ed25519 -f id_ed25519 -N "" -C "github"
    scp id_ed25519.pub root@server:/srv/github_key.pub
@@ -44,5 +44,5 @@ On your local machine, execute the following steps:
 
 3. Install and launch:
    ```
-   /srv/install.sh
+   /srv/scripts/install.sh
    ```

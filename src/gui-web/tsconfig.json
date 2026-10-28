@@ -25,7 +25,7 @@
       "@components/*": ["./src/app/components/*"],
       "@services/*": ["./src/app/services/*"],
       "@constants/*": ["./src/app/constants/*"],
-      "@datatypes/*": ["../data-web/src/types/*"],
+      "@datatypes/*": ["./node_modules/shared/src/*"],
       "@version": ["./build/version.constants.ts"],
       "@environment": ["./src/environments/environment.ts"],
       "@wrapper-wasm": ["./build/wrapper-wasm"],
