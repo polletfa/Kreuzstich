@@ -70,7 +70,7 @@ export default defineConfig({
     plugins: [vitestSqlPlugin],
     resolve: {
         alias: {
-            '@datatypes': path.resolve(__dirname, './src/types'),
+            '@datatypes': path.resolve(__dirname, './node_modules/shared/src'),
             '@sql': path.resolve(__dirname, './src/sql'),
             '@version': path.resolve(__dirname, './build/Version.ts'),
             '@threadlists': path.resolve(__dirname, '../../resources/threadlists'),

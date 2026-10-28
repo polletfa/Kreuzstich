@@ -6,9 +6,9 @@
 
 import * as z from 'zod/v4';
 
-import type { GenericResponse } from '@datatypes/api/Generic';
-import { GenericResponseSchema } from '@datatypes/api/Generic';
-import * as db from '@datatypes/db';
+import type { GenericResponse } from './Generic';
+import { GenericResponseSchema } from './Generic';
+import * as db from '../db';
 
 export const UserSchema = db.UserSchema.omit({password: true});
 export type User = z.infer<typeof UserSchema>;
