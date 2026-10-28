@@ -31,7 +31,7 @@ add_custom_target(data-web ALL
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     COMMENT "Building app..."
 )
-add_dependencies(data-web data-web-npminstall)
+add_dependencies(data-web shared-web-npminstall data-web-npminstall)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/dist/index.cjs DESTINATION data-web COMPONENT web-app)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/package.json DESTINATION data-web COMPONENT web-app)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/package-lock.json DESTINATION data-web COMPONENT web-app)
