@@ -14,7 +14,7 @@
 ### Build, test & code
 
 * [Build and test](technical/Build.md) -- Review
-* [GitHub](technical/github.md) -- TODO
+* [GitHub](technical/GitHub.md) -- TODO
 * [SQL files (data-web)](technical/SQLFiles.md)
 
 ## Legal
@@ -25,8 +25,8 @@
 * [Data Retention Schedule](legal/DataRetentionSchedule.md)
 * [Record of Processing Activities](legal/RecordOfProcessingActivities.md)
 * Data Processing Agreements:
-  * [STRATO GmbH](legal/DPA.strato.pdf)
-  * [Heinlein Hosting GmbH / mailbox.org](legal/DPA.mailbox.pdf)
+  * STRATO GmbH
+  * Heinlein Hosting GmbH / mailbox.org
 
 ### Public
 * [Impressum](legal/Impressum.md)
