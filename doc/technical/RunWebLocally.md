@@ -67,7 +67,7 @@ npm run start
 ```
 
 The Angular development server proxies `/api` requests to `http://localhost:8080`, as configured in
-[`src/gui-web/proxy.conf.json`](https://github.com/polletfa/Kreuzstich/blob/feature/wasm/src/gui-web/proxy.conf.json).
+[`src/gui-web/proxy.conf.json`](https://github.com/polletfa/Kreuzstich/blob/main/src/gui-web/proxy.conf.json).
 
 After both services are running, open the website at:
 

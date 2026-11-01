@@ -16,7 +16,8 @@ On your local machine, execute the following steps:
    scp id_ed25519.pub root@server:/srv/github_key.pub
    ```
 
-3. On GitHub: Copy the content of the private key (id_ed25519) in the repository secret SSH_PRIVATE_KEY.
+3. On GitHub: Create an action secret SSH_PRIVATE_KEY with the content of the file id_ed25519
+   (Repository Settings / Secrets and variables / Actions / Secrets).
 
 4. Delete the key:
    ```
@@ -25,7 +26,7 @@ On your local machine, execute the following steps:
 
 ## Install
 
-1. Log into the server
+1. Log into the server as root
 
 2. Create /srv/services/kreuzstich-int/secrets.env and /srv/services/kreuzstich-prod/secrets.env.
    Use different passwords/tokens for INT and PROD:
@@ -46,3 +47,11 @@ On your local machine, execute the following steps:
    ```
    /srv/scripts/install.sh
    ```
+
+## Configure GitHub
+
+Add the host, port and user to access the server as repository variables:
+Go to Repository Settings / Secrets and variables / Actions / Variables and create:
+- SSH_HOST
+- SSH_PORT
+- SSH_USER
